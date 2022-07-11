@@ -14,8 +14,8 @@ app.get("/api/*", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-    if (req.path == "/") req.path = "/index.html";
-    res.sendFile("./web/"+req.path);
+    let path = req.path == "/" ? "/index.html" : req.path;
+    res.sendFile(__dirname+"/web/"+path);
     res.end();
 });
 
