@@ -1,6 +1,7 @@
 import express from "express";
 import { Sequelize } from "sequelize";
 import fs from "fs";
+import path from "path";
 
 fs.writeFileSync("pid.txt", process.pid.toString());
 
@@ -14,9 +15,8 @@ app.get("/api/*", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-    let path = req.path == "/" ? "/index.html" : req.path;
-    res.sendFile(__dirname+"/web/"+path);
-    res.end();
+    let url = req.path == "/" ? "/index.html" : req.path;
+    res.sendFile(path.resolve()+"/web"+url);
 });
 
 // Option 3: Passing parameters separately (other dialects)
