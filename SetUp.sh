@@ -1,1 +1,2 @@
-echo "Setup file is working"
+npm install
+node server.js &

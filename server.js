@@ -1,5 +1,8 @@
 import express from "express";
 import { Sequelize } from "sequelize";
+import fs from "fs";
+
+fs.writeFileSync("pid.txt", process.pid.toString());
 
 const app = express();
 app.listen(8080, () => {
