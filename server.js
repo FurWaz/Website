@@ -9,8 +9,14 @@ app.listen(8080, () => {
     console.log("Server started on port 8080");
 });
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+app.get("/api/*", (req, res) => {
+    res.send("API is not implemented (path=" + req.path + ")");
+});
+
+app.get("/*", (req, res) => {
+    if (req.path == "/") req.path = "/index.html";
+    res.sendFile("./web/"+req.path);
+    res.end();
 });
 
 // Option 3: Passing parameters separately (other dialects)
