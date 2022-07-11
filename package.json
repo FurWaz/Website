@@ -1,0 +1,26 @@
+{
+  "name": "website",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "My own website UwU",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FurWaz/Website.git"
+  },
+  "author": "FurWaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FurWaz/Website/issues"
+  },
+  "homepage": "https://github.com/FurWaz/Website#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mariadb": "^3.0.0",
+    "sequelize": "^6.21.3"
+  }
+}
