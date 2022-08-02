@@ -10,7 +10,7 @@
                 <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 600ms;">Z</h1>
             </div>
         </header>
-        <div class="flex grow mx-4 flex-row justify-evenly">
+        <!-- <div class="flex grow mx-4 flex-row justify-evenly">
             <card>
                 <card-title>Mon nouveau jeu - Nexus</card-title>
                 <card-description>
@@ -21,7 +21,7 @@
                 </card-description>
                 <redirect-button :href="'https://google.com/'">Voir</redirect-button>
             </card>
-        </div>
+        </div> -->
         <footer class="flex justify-center text-white font-bold text-lg m-2">FurWaz - 2022</footer>
     </div>
 </template>
