@@ -24,10 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Hello world echo ot test is the Action is working
-      - name: Displays a simple hello world message
-        run: echo Hello, world!
         
       # Request to my own server to trigger the deployment
       - name: Triggers deployment on my own server
