@@ -2,12 +2,12 @@
     <div class="flex flex-col w-screen min-h-screen background">
         <header class="flex justify-center h-[40vh]">
             <div class="flex flex-row m-auto">
-                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 100ms;">U</h1>
-                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 200ms;">W</h1>
-                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 300ms;">U</h1>
-                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 400ms;">U</h1>
-                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 500ms;">W</h1>
-                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 600ms;">U</h1>
+                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 100ms;">F</h1>
+                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 200ms;">U</h1>
+                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 300ms;">R</h1>
+                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 400ms;">W</h1>
+                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 500ms;">A</h1>
+                <h1 class="title text-9xl font-extrabold text-white" style="animation-delay: 600ms;">Z</h1>
             </div>
         </header>
         <!-- <div class="flex grow mx-4 flex-row justify-evenly">
