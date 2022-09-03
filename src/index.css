@@ -2,17 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: "Roboto";
-    src: url("https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2") format('woff2');
-}
+.blur-1 { backdrop-filter: blur(1px); }
+.blur-2 { backdrop-filter: blur(2px); }
+.blur-4 { backdrop-filter: blur(4px); }
+.blur-8 { backdrop-filter: blur(8px); }
+.blur-16 { backdrop-filter: blur(16px); }
 
-@font-face {
-    font-family: "Roboto Bold";
-    src: url("https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtfBBc4.woff2") format('woff2');
-}
-
-@font-face {
-    font-family: "Roboto Thin";
-    src: url("https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgVxIIzI.woff2") format('woff2');
+.drop-shadow-orange-600 {
+    text-shadow: 0px 0.2em 0.3em #EA580C80;
+    filter: drop-shadow(0px 0.2em 1em #EA580C80);
 }

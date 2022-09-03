@@ -2,12 +2,11 @@
     "name": "furwaz-website",
     "version": "0.1.0",
     "scripts": {
-        "test": "vite --host --port=80",
+        "dev": "vite --host --port=80",
         "build": "vite build",
         "preview": "vite preview"
     },
     "dependencies": {
-        "three": "^0.141.0",
         "vite": "^2.7.2",
         "vue": "^3.2.25",
         "vue-router": "^4.0.12"
