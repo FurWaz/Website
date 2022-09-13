@@ -1,5 +1,7 @@
 <template>
-    <router-view></router-view>
+    <div class="bg-slate-700 min-h-screen min-w-screen">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
