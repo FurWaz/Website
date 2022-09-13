@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
-import Home from './views/Home.vue';
 
 import "./index.css";
 
@@ -14,7 +13,9 @@ const router = createRouter({
     mode: "history",
     history: createWebHistory(),
     routes: [
-        { path: '/', name: 'Home', component: Home }
+        { path: '/', name: 'Home', component: () => import("./views/Home.vue") },
+        { path: '/login', name: 'Login', component: () => import("./views/Login.vue") },
+        { path: '/register', name: 'Register', component: () => import("./views/Register.vue") },
     ]
 });
 
