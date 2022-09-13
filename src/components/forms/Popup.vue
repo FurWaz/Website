@@ -12,7 +12,7 @@
         <span class="bg-blue-500 w-[90%] mx-auto h-1 rounded-lg"></span>
         <div class="flex flex-row justify-between w-full h-fit py-2 space-x-6 px-2">
             <button-text :action="() => { goBack() }"> Cancel </button-text>
-            <button-block :action="validate"> {{ this.validateLabel }} </button-block>
+            <button-block ref="validate-btn" :action="validate"> {{ this.validateLabel }} </button-block>
         </div>
     </div>
 </template>
