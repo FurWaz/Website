@@ -27,4 +27,4 @@ jobs:
         
       # Request to my own server to trigger the deployment
       - name: Triggers deployment on my own server
-        run: curl furwaz.com:4180 -X POST -d 'https://github.com/FurWaz/Website'
+        run: curl furwaz.com:4180 -X POST -d "$GITHUB_REPOSITORY"
