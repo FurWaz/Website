@@ -1,6 +1,6 @@
 class API {
     // API constants
-    static API_URL = window.location.protocol + '//indico-api.lf2l.fr';z
+    static API_URL = 'https://api.furwaz.com';
     static get METHOD_GET() { return "GET"; }
     static get METHOD_PUT() { return "PUT"; }
     static get METHOD_POST() { return "POST"; }
@@ -10,41 +10,15 @@ class API {
     static get TYPE_JSON() { return "application/json"; }
     static get TYPE_FILE() { return "multipart/form-data"; }
     static get TYPE_NONE() { return undefined; }
-    static get AuthorizationHeader() { return "x-indico-authorization"; };
+    static get AuthorizationHeader() { return "x-furwaz-auth"; };
 
     // API routes
     static ROUTE = {
-        LOGIN: "/auth/token/",
-        RESET: "/auth/reset/",
-        PASSWORD: "/auth/password/",
-        LANGUAGES: "/users/languages/",
-        USER: "/users/me/",
-        USERS: "/users/",
-        INVITE: "/users/invite/",
-        SCENARIOS: "/scenarios/",
-        EASY_CONNECT: "/easy/connect",
-        MACHINES: "/scenarios/machines/",
-        CHANGE_ADMIN_LEVEL: "/admin/changeAdminLevel/",
-        ADMIN: {
-            DELETE_USER: "/admin/deleteUser/",
-        },
-        __TARGETS: "/targets/",
-        __SCENARIOS: "/scenarios/",
-        __STEPS: "/steps/",
-        __MODEL: "/model/",
-        __LANGUAGES: "/languages/",
-        STEPS: "/scenarios/steps/",
-        STATS: {
-            SCENARIOS: {
-                AVERAGE_TIME: "/stats/scenarios/averageTime/",
-                SKIP_RATE: "/stats/scenarios/skipRate/",
-                PERFORM_RATE: "/stats/scenarios/performRate/",
-                PERFORM_TIME: "/stats/scenarios/performTime/"
-            },
-            USERS: "/stats/users/",
-            __SESSIONS: "/sessions/",
-            SESSIONS: "/stats/sessions/"
-        }
+        LOGIN: "/auth/token",
+        RESET: "/auth/reset",
+        PASSWORD: "/auth/password",
+        ME: "/users/me",
+        USERS: "/users"
     };
 
     /**
@@ -56,12 +30,8 @@ class API {
      * @param {object[]}} headers API call additionnal headers
      * @returns a promise resolving when the API call is done
      */
-    static execute(path, method = this.METHOD_GET, body = null, type = this.TYPE_NONE, headers = null) {
+    static execute(path, method = this.METHOD_GET, body = null, type = this.TYPE_JSON, headers = null) {
         return new Promise((resolve, reject) => {
-            // update the API protocol if needed
-            if (window.location.protocol !== this.API_URL.split(":")[0]+":")
-                this.API_URL = window.location.protocol + '//indico-api.lf2l.fr';
-
             path = path.replace("/?", "?").replaceAll("//", "/");
             let urlparts = path.split("?");
             let base = urlparts.splice(0, 1);
@@ -69,7 +39,7 @@ class API {
             path = base + params;
 
             let reqHeaders = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0",
+                "User-Agent": navigator.userAgent,
                 "Accept": "application/json",
                 "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
             };
@@ -155,8 +125,8 @@ class API {
                 reject({message: "Please provide credentials (token/type or username/password)"});
                 return;
             }
+            const token_mode = (credentials.token != undefined)
             const login_mode = (credentials.password != undefined && credentials.username != undefined)
-            const token_mode = (credentials.token != undefined && credentials.type != undefined)
 
             if (!login_mode && !token_mode) {
                 reject({message: "Error: Invalid credentials"});
@@ -169,11 +139,11 @@ class API {
                     reqHeaders[key] = headers[key];
 
             if (token_mode) {
-                reqHeaders[API.AuthorizationHeader] = credentials.type + " " + credentials.token;
+                reqHeaders[API.AuthorizationHeader] = credentials.token;
                 this.execute(path, method, body, type, reqHeaders).then(resolve).catch(reject);
             } else {
                 this.execute(API.ROUTE.LOGIN, this.METHOD_POST, { username: credentials.username, password: credentials.password }, this.TYPE_FORM).then(data => {
-                    reqHeaders[API.AuthorizationHeader] = data.token_type + " " + data.access_token;
+                    reqHeaders[API.AuthorizationHeader] = data;
                     this.execute(path, method, body, type, reqHeaders).then(resolve).catch(reject);
                 }).catch(err => reject({message: "Status: "+err.status}));
             }
