@@ -6,6 +6,14 @@ export const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-z
  */
 export function redirectHome(wait=true) {
     setTimeout(() => {
+        if (window.location.href == window.location.origin || window.location.href.substring(0, window.location.href.length-1) == window.location.origin) {
+            window.location.href = window.location.origin;
+            return;
+        }
+        if (window.location.href == document.referrer) {
+            window.location.href = window.location.origin;
+            return;
+        }
         if (document.referrer.startsWith(window.location.origin))
             window.location.href = document.referrer;
         else window.location.href = window.location.origin;

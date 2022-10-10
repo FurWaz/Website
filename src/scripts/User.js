@@ -1,74 +1,157 @@
 import API from "./API";
 
 class User {
-    static forget() {
-        localStorage.removeItem("user");
-        this.#currentUser = null;
-    }
-
-    static ROLES = {
+    static ROLE = {
+        UNKNOWN: 0,
         ADMIN: 1,
         USER: 2,
         GUEST: 3
-    };
+    }
 
-    /**@type {User} */
+    static RoleString(role) {
+        switch (role) {
+            case User.ROLE.ADMIN: return "ADMIN";
+            case User.ROLE.USER: return "USER";
+            case User.ROLE.GUEST: return "GUEST";
+            default: return "UNKNOWN";
+        }
+    }
+
     static #currentUser = null;
-
-    static getCurrentUser() {
-        return User.#currentUser ?? User.fromLocalStorage();
+    static get CurrentUser() {
+        return User.#currentUser || User.fromLocalStorage();
     }
 
     static fromLocalStorage() {
-        const user = localStorage.getItem("user");
-        if (user) {
-            return new User(JSON.parse(user));
-        }
-        return null;
+        const data = localStorage.getItem("user");
+        if (!data) return null;
+        return new User(JSON.parse(data));
     }
 
-    id = 0;
+    static forget() {
+        localStorage.removeItem("user");
+        User.#currentUser = null;
+    }
+
     username = "";
     password = "";
     email = "";
-    password = "";
-    role = User.ROLES.GUEST;
+    icon = "";
+    token = "";
+    id = 0;
+    role = User.ROLE.UNKNOWN;
 
     constructor(infos) {
-        this.saveInformations(infos);
+        this.setInformations(infos);
+        User.#currentUser = this;
     }
 
-    saveInformations(infos) {
-        if (!infos) return;
-        this.id = infos.id ?? this.id;
-        this.username = infos.username ?? this.username;
-        this.password = infos.password ?? this.password;
-        this.email = infos.email ?? this.email;
-        this.token = infos.token ?? this.token;
-        this.role = infos.role ?? this.role;
-        this.save();
+    setInformations(infos) {
+        this.username = infos.username??this.username;
+        this.password = infos.password??this.password;
+        this.email = infos.email??this.email;
+        this.token = infos.token??this.token;
+        this.icon = infos.icon??this.icon;
+        this.id = infos.id??this.id;
+        this.role = infos.role??this.role;
     }
 
     getCredentials() {
-        if (this.token != "" && this.token != null) {
-            return {token: this.token}
-        } else {
-            return {username: this.username, password: this.password}
-        }
+        if (this.token.trim() != "")
+            return API.Credentials.fromToken(this.token);
+        return API.Credentials.fromUsernamePassword(this.username, this.password);
+    }
+
+    makeRequest(path, method=undefined, body=undefined, type=undefined, headers=undefined) {
+        return new Promise((resolve, reject) => {
+            const credentials = this.getCredentials();
+            if (!credentials.isValid()) {
+                reject("Invalid user credentials");
+                return;
+            }
+
+            const req = (creds) => API.execute_logged(path, method, creds, body, type, headers);
+            req(credentials).then(data => {
+                resolve(data);
+            }).catch(err => {
+                if (err.status == 401) {
+                    this.fetchToken().then((token) => {
+                        req(API.Credentials.fromToken(token)).then(data => {
+                            resolve(data);
+                        }).catch(err => {
+                            reject(err);
+                        });
+                    }).catch(err => {
+                        reject(err);
+                    });
+                }
+            });
+        });
+    }
+
+    fetchToken() {
+        return new Promise((resolve, reject) => {
+            if (this.username.trim() == "" || this.password.trim() == "") {
+                reject("Invalid user credentials");
+                return;
+            }
+
+            API.execute(API.ROUTE.LOGIN, API.METHOD.POST, {username: this.username, password: this.password}).then(token => {
+                this.token = token;
+                this.save();
+                resolve(token);
+            }).finally(() => {
+                
+            }).catch(err => {
+                switch (err.status) {
+                    case 404:
+                        reject("Invalid username");
+                        break;
+                    case 403:
+                        reject("Invalid password");
+                        break;
+                    default:
+                        reject("A problem occured");
+                        break;
+                }
+            });
+        });
     }
 
     fetchInformations() {
         return new Promise((resolve, reject) => {
-            API.execute_logged(API.ROUTE.ME, API.METHOD_GET, this.getCredentials()).then(infos => {
-                this.saveInformations(infos);
-                resolve(this);
-            }).catch(reject);
+            const credentials = this.getCredentials();
+            if (!credentials.isValid()) {
+                reject("Invalid user credentials");
+                return;
+            }
+
+            this.makeRequest(API.ROUTE.ME).then(data => {
+                this.setInformations(data);
+                this.save();
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        })
+    }
+
+    delete() {
+        return new Promise((resolve, reject) => {
+            this.makeRequest(API.ROUTE.ME, API.METHOD.DELETE).then(() => {
+                User.forget();
+                resolve();
+            }).catch(err => {
+                reject(err);
+            });
         });
     }
 
     save() {
         localStorage.setItem("user", JSON.stringify(this));
+        User.#currentUser = this;
     }
 }
 
+window.User = User; // for debug
 export default User;

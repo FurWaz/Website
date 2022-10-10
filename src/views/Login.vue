@@ -15,7 +15,6 @@
 import Popup from "../components/forms/Popup.vue";
 import InputText from "../components/forms/InputText.vue";
 
-import API from "../scripts/API.js";
 import { redirectHome } from "../scripts/common.js";
 import User from '../scripts/User';
 
@@ -33,32 +32,21 @@ function login(data, log) {
                 return;
             }
         }
+        
         log("Logging in...");
-        API.execute(API.ROUTE.LOGIN, API.METHOD_POST, {username: data.username, password: data.password}).then(token => {
-            const user = User.getCurrentUser() ?? new User();
-            user.saveInformations({token: token});
+        const user = new User({ username: data.username, password: data.password });
+        user.fetchToken().then(() => {
             user.fetchInformations().then(() => {
-                user.saveInformations({password: data.password});
+                user.save();
                 log("Logged in");
                 resolve();
+                redirectHome(true);
             }).catch(err => {
-                log("Error: Cannot fetch user informations");
+                log(err);
+                reject("Error : Cannot fetch user informations ("+err+")");
             });
-            redirectHome(true);
         }).catch(err => {
-            switch (err.message.status) {
-                case 404:
-                    log("Error: Invalid username");
-                    data.getInput("username").focus();
-                    break;
-                case 403:
-                    log("Error: Invalid password");
-                    data.getInput("password").focus();
-                    break;
-            
-                default:
-                    break;
-            }
+            log("Error: "+err);
             reject(err);
         });
     });

@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col rounded-lg border-2 border-blue-500">
-        <div class="flex flex-row justify-between w-full h-fit py-1 bg-blue-500 space-x-6 px-2">
+    <div class="flex flex-col rounded-lg border-2 border-slate-600 shadow-xl overflow-hidden">
+        <div class="flex flex-row justify-between w-full h-fit py-1 bg-slate-600 space-x-6 px-2">
             <p class="text-white text-lg font-extrabold"> {{ this.title }} </p>
         </div>
         <div ref="inputs" class="flex flex-col w-full h-fit px-4 py-6 space-y-6">
@@ -9,7 +9,7 @@
         <div class="flex grow-0 overflow-hidden h-0 transition-all" ref="logs">
             <p class="text-white text-center w-full h-fit min-w-fit font-semibold"></p>
         </div>
-        <span class="bg-blue-500 w-[90%] mx-auto h-1 rounded-lg"></span>
+        <span class="bg-slate-600 w-[90%] mx-auto h-1 rounded-lg"></span>
         <div class="flex flex-row justify-between w-full h-fit py-2 space-x-6 px-2">
             <button-text :action="() => { goBack() }"> Cancel </button-text>
             <button-block ref="validate-btn" :action="validate"> {{ this.validateLabel }} </button-block>

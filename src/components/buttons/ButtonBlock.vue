@@ -1,9 +1,10 @@
 <template>
     <!-- Template Back Button : Used to go bakc in the website -->
     <button
-        class="blkbtn-1 flex cursor-pointer border border-2 border-white/[0.1] rounded-md shadow-md hover:bg-white/[0.1] hover:border-white/[0.2] transition-all"
+        class="flex border-2 border-slate-600 rounded-md transition-all"
+        :class="this.disabled? ' text-slate-400 cursor-default' : ' text-slate-300 shadow hover:bg-slate-600 hover:border-blue-500 hover:text-slate-200 hover:shadow-lg cursor-pointer'"
         v-on:click="callback(this)">
-        <p ref="text" class="mx-4 my-2 text-white text-md font-bold whitespace-nowrap">
+        <p ref="text" class="mx-4 my-2 text-md font-bold whitespace-nowrap">
             <slot></slot>
         </p>
     </button>
@@ -24,6 +25,11 @@ export default {
             type: Function,
             default: undefined,
             required: false
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+            required: false
         }
     },
     setup() {},
@@ -38,6 +44,8 @@ export default {
     },
     methods: {
         callback() {
+            if (this.disabled) return;
+
             if (this.href) {
                 redirectTo(this.href);
             } else if (this.action) {
@@ -49,10 +57,5 @@ export default {
 </script>
 
 <style scoped>
-.blkbtn-1 > p {
-    @apply translate-y-0 transition-all
-}
-.blkbtn-1:hover > p {
-    @apply -translate-y-[2px] transition-all
-}
+
 </style>

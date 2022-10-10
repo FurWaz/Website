@@ -18,6 +18,7 @@ import Popup from "../components/forms/Popup.vue";
 import InputText from "../components/forms/InputText.vue";
 
 import API from "../scripts/API.js";
+import User from '../scripts/User';
 import { redirectHome, EMAIL_REGEX } from "../scripts/common.js";
 
 function register(data, log) {
@@ -39,15 +40,21 @@ function register(data, log) {
             }
         }
         log("Registering ...");
-        API.execute(API.ROUTE.USERS, API.METHOD_POST, {username: data.username, email: data.email, password: data.password}).then(res => {
-            console.log(res);
-            log("Registered");
-            resolve();
-            redirectHome(true);
+        API.execute(API.ROUTE.USERS, API.METHOD.POST, {username: data.username, email: data.email, password: data.password}).then(res => {
+            const user = new User(res);
+            user.setInformations({password: data.password})
+            user.fetchInformations().then(() => {
+                user.save();
+                log("Registered");
+                resolve();
+                redirectHome(true);
+            }).catch(err => {
+                log(err);
+                reject("Error : Cannot fetch user informations ("+err+")");
+            });
         }).catch(err => {
-            console.log(err.message);
-            err.message.text().then(console.log);
-            switch (err.message.status) {
+            console.log(err);
+            switch (err.status) {
                 case 404:
                     log("Error: Invalid username");
                     data.getInput("username").focus();
@@ -55,6 +62,10 @@ function register(data, log) {
                 case 403:
                     log("Error: Invalid password");
                     data.getInput("password").focus();
+                    break;
+                case 409:
+                    log("Error: User already exists");
+                    data.getInput("username").focus();
                     break;
             
                 default:

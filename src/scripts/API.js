@@ -1,15 +1,71 @@
+class Credentials {
+    static get TYPE() {
+        return {
+            UNKNOWN: 0,
+            TOKEN: 1,
+            CREDENTIALS: 2
+        };
+    }
+
+    static fromToken(token) {
+        return new Credentials({token: token, type: Credentials.TYPE.TOKEN});
+    }
+
+    static fromCredentials(username, password) {
+        return new Credentials({username: username, password: password, type: Credentials.TYPE.CREDENTIALS});
+    }
+
+    token = "";
+    username = "";
+    password = "";
+    type = Credentials.TYPE.UNKNOWN;
+
+    constructor(infos) {
+        this.token = infos.token ?? this.token;
+        this.username = infos.username ?? this.username;
+        this.password = infos.password ?? this.password;
+        this.type = infos.type ?? this.type;
+    }
+
+    isValid() {
+        return this.type != Credentials.TYPE.UNKNOWN;
+    }
+
+    getToken() {
+        return this.token;
+    }
+
+    getUsername() {
+        return this.username;
+    }
+
+    getPassword() {
+        return this.password;
+    }
+}
+
 class API {
+    static Credentials = Credentials;
+
     // API constants
     static API_URL = 'https://api.furwaz.com';
-    static get METHOD_GET() { return "GET"; }
-    static get METHOD_PUT() { return "PUT"; }
-    static get METHOD_POST() { return "POST"; }
-    static get METHOD_PATCH() { return "PATCH"; }
-    static get METHOD_DELETE() { return "DELETE"; }
-    static get TYPE_FORM() { return "application/x-www-form-urlencoded"; }
-    static get TYPE_JSON() { return "application/json"; }
-    static get TYPE_FILE() { return "multipart/form-data"; }
-    static get TYPE_NONE() { return undefined; }
+    static get METHOD() {
+        return {
+            GET: "GET",
+            PUT: "PUT",
+            POST: "POST",
+            PATCH: "PATCH",
+            DELETE: "DELETE"
+        };
+    }
+    static get TYPE() {
+        return {
+            FORM: "application/x-www-form-urlencoded",
+            JSON: "application/json",
+            FILE: "multipart/form-data",
+            NONE: undefined
+        }
+    }
     static get AuthorizationHeader() { return "x-furwaz-auth"; };
 
     // API routes
@@ -24,13 +80,13 @@ class API {
     /**
      * Makes an API call with the specified parameters
      * @param {string} path API call url path (see API.ROUTES for possible routes)
-     * @param {string} method API call method (see API.METHOD_ for possible values)
-     * @param {object|string} body API call body (data to send, ignored if METHOD_GET is used)
-     * @param {string} type API call data type (see API.TYPE_ for possible values))  
+     * @param {string} method API call method (see API.METHOD for possible values)
+     * @param {object|string} body API call body (data to send, ignored if METHOD.GET is used)
+     * @param {string} type API call data type (see API.TYPE for possible values))  
      * @param {object[]}} headers API call additionnal headers
      * @returns a promise resolving when the API call is done
      */
-    static execute(path, method = this.METHOD_GET, body = null, type = this.TYPE_JSON, headers = null) {
+    static execute(path, method = this.METHOD.GET, body = {}, type = this.TYPE.JSON, headers = []) {
         return new Promise((resolve, reject) => {
             path = path.replace("/?", "?").replaceAll("//", "/");
             let urlparts = path.split("?");
@@ -49,8 +105,8 @@ class API {
                 for (let key in headers)
                     reqHeaders[key] = headers[key];
 
-            let reqBody = type == this.TYPE_FORM ? "" : {};
-            if (body && type != this.TYPE_FILE) {
+            let reqBody = type == this.TYPE.FORM ? "" : {};
+            if (body && type != this.TYPE.FILE) {
                 switch (typeof (body)) {
                     case "string":
                         if (body.startsWith("{") && body.endsWith("}"))
@@ -65,7 +121,7 @@ class API {
                 }
             }
 
-            if (type == this.TYPE_FILE) { // create a form data from the body
+            if (type == this.TYPE.FILE) { // create a form data from the body
                 reqBody = new FormData();
                 reqBody.append("model", body);
             }
@@ -74,24 +130,24 @@ class API {
             fetch(API.API_URL + path, {
                 credentials: "omit",
                 method: method,
-                body: method == this.METHOD_GET ? undefined : reqBody,
+                body: method == this.METHOD.GET ? undefined : reqBody,
                 headers: reqHeaders,
                 referrer: window.location.origin,
                 mode: "cors"
             }).then(response => {
                 if (response.status != 200)
-                    reject({message: response});
+                    reject(response);
                 else {
                     response.json().then(data => {
                         resolve(data);
-                    }).catch(err => reject({message: err}));
+                    }).catch(err => reject(err));
                 }
             }).catch(err => {
                 // is the request fails, test the same request but without "/" at the end (in case the error it just a 307 shitty redirection)
                 fetch(API.API_URL + path.replace("?", "/?"), {
                     credentials: "omit",
                     method: method,
-                    body: method == this.METHOD_GET ? undefined : reqBody,
+                    body: method == this.METHOD.GET ? undefined : reqBody,
                     headers: reqHeaders,
                     referrer: window.location.origin,
                     mode: "cors"
@@ -103,7 +159,7 @@ class API {
                             resolve(data);
                         }).catch(reject);
                     }
-                }).catch(err => reject({message: err})).finally(() => {
+                }).catch(err => reject(err)).finally(() => {
                 });
             });
         });
@@ -111,25 +167,25 @@ class API {
 
     /**
      * Makes a logged API call with the specified parameters, using the specified credentials (token + token type / username + password)
-     * @param {*} path API call url path (see API.ROUTES for possible routes)
-     * @param {*} method API call method (see API.METHOD_ for possible values)
-     * @param {*} credentials API call credentials to use (use User.currentUser.getCredentials() to get the current user's credentials)
-     * @param {*} body API call body (data to send, ignored if METHOD_GET is used)
-     * @param {*} type API call data type (see API.TYPE_ for possible values))
-     * @param {*} headers API call additionnal headers
+     * @param {string} path API call url path (see API.ROUTES for possible routes)
+     * @param {string} method API call method (see API.METHOD for possible values)
+     * @param {Credentials} credentials API call credentials to use (use User.currentUser.getCredentials() to get the current user's credentials)
+     * @param {object|string} body API call body (data to send, ignored if METHOD.GET is used)
+     * @param {string} type API call data type (see API.TYPE for possible values))
+     * @param {object[]} headers API call additionnal headers
      * @returns A promise resolving when the API call is done
      */
-    static execute_logged(path, method = this.METHOD_GET, credentials, body = null, type = this.TYPE_JSON, headers = null) {
+    static execute_logged(path, method = API.METHOD.GET, credentials, body = {}, type = this.TYPE.JSON, headers = []) {
         return new Promise((resolve, reject) => {
             if (!credentials) {
-                reject({message: "Please provide credentials (token/type or username/password)"});
+                reject({status: -1, message: "Please provide credentials (token/type or username/password)"});
                 return;
             }
             const token_mode = (credentials.token != undefined)
             const login_mode = (credentials.password != undefined && credentials.username != undefined)
 
             if (!login_mode && !token_mode) {
-                reject({message: "Error: Invalid credentials"});
+                reject({status: -1, message: "Error: Invalid credentials"});
                 return;
             }
 
@@ -145,7 +201,7 @@ class API {
                 this.execute(API.ROUTE.LOGIN, this.METHOD_POST, { username: credentials.username, password: credentials.password }, this.TYPE_FORM).then(data => {
                     reqHeaders[API.AuthorizationHeader] = data;
                     this.execute(path, method, body, type, reqHeaders).then(resolve).catch(reject);
-                }).catch(err => reject({message: "Status: "+err.status}));
+                }).catch(err => reject(err));
             }
         });
     }
@@ -162,8 +218,8 @@ class API {
     static retreiveAll(route, progressCallback = p=>{}, logged = false, pageIndex = 1, data = []) {
         return new Promise((resolve, reject) => {
             if (logged) {
-                API.execute_logged(route + API.createParameters({ page: pageIndex }), API.METHOD_GET, User.currentUser.getCredentials(), undefined, API.TYPE_JSON).then(res => {
-                    if (!res.data) reject("No data found");
+                API.execute_logged(route + API.createParameters({ page: pageIndex }), API.METHOD.GET, User.currentUser.getCredentials(), undefined, API.TYPE_JSON).then(res => {
+                    if (!res.data) reject({status: 404, message: "No data found"});
                     progressCallback(pageIndex / res.last_page);
                     let dataRetreived = res.current_page == res.last_page;
                     if (!dataRetreived) {
@@ -173,8 +229,8 @@ class API {
                 }).catch(reject);
             }
             else {
-                API.execute(route + API.createParameters({ page: pageIndex }), API.METHOD_GET, undefined, API.TYPE_JSON).then(res => {
-                    if (!res.data) reject("No data found");
+                API.execute(route + API.createParameters({ page: pageIndex }), API.METHOD.GET, undefined, API.TYPE_JSON).then(res => {
+                    if (!res.data) reject({status: 404, message: "No data found"});
                     progressCallback(pageIndex / res.last_page);
                     let dataRetreived = res.current_page >= res.last_page;
                     if (!dataRetreived)
@@ -197,7 +253,7 @@ class API {
         let max_page = 1;
         return {
             promise: new Promise((resolve, reject) => {
-                API[logged?"execute_logged": "execute"](path + API.createPagination(page, per_page), API.METHOD_GET, logged ? User.currentUser.getCredentials(): undefined)
+                API[logged?"execute_logged": "execute"](path + API.createPagination(page, per_page), API.METHOD.GET, logged ? User.currentUser.getCredentials(): undefined)
                     .then(res => {
                         max_page = res.last_page;
                         resolve(res);
