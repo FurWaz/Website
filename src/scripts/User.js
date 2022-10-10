@@ -74,7 +74,7 @@ class User {
             req(credentials).then(data => {
                 resolve(data);
             }).catch(err => {
-                if (err.status == 401) {
+                if (err.status == 498) { // invalid or expired token (refresh it)
                     this.fetchToken().then((token) => {
                         req(API.Credentials.fromToken(token)).then(data => {
                             resolve(data);
