@@ -24,14 +24,12 @@
 </template>
 
 <script>
+import { goBack } from "../../scripts/common.js";
+
 export default {
     name: "FbTitle",
     components: {},
-    methods: {
-        goBack() {
-            this.$router.go(-1);
-        }
-    },
+    methods: { goBack },
     props: {
         displayBackBtn: {
             type: Boolean,

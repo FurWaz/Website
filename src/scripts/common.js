@@ -18,6 +18,12 @@ export function redirectTo(url, wait=false) {
     }, wait?1000:0);
 }
 
+export function goBack() {
+    if (document.referrer.startsWith(window.location.origin))
+        window.history.back();
+    else window.location.href = window.location.origin;
+}
+
 /**
  * Converts a number of seconds to a stringified time
  * @param {number} time time in seconds to convert to a string
