@@ -14,7 +14,7 @@
 import { redirectTo } from "../../scripts/common.js";
 
 export default {
-    name: "RedirectButton",
+    name: "ButtonText",
     props: {
         href: {
             type: String,

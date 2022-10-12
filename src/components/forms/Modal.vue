@@ -1,6 +1,6 @@
 <template>
     <div class="fixed top-0 left-0 h-0 w-0 pointer-events-none opacity-0 transition-all">
-        <div class="flex flex-col justify-center w-screen h-screen bg-black/[0.3] back-blur" v-on:click="this.callCancel()">
+        <div class="flex flex-col z-50 justify-center w-screen h-screen bg-black/[0.3]" v-on:click="this.callCancel()">
             <div ref="modal-container" class="w-fit h-fit mx-auto transition-all" style="transform: scale(0.9)">
                 <div class="flex flex-col w-fit h-fit w-[20vw] h-[20vh] rounded-lg shadow-xl border-2 border-slate-600 bg-slate-700">
                     <div class="flex grow-0 justify-center bg-slate-600">

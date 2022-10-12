@@ -17,6 +17,7 @@ class User {
         }
     }
 
+    /** @type {User} */
     static #currentUser = null;
     static get CurrentUser() {
         return User.#currentUser || User.fromLocalStorage();
@@ -76,6 +77,7 @@ class User {
             }).catch(err => {
                 if (err.status == 498) { // invalid or expired token (refresh it)
                     this.fetchToken().then((token) => {
+                        
                         req(API.Credentials.fromToken(token)).then(data => {
                             resolve(data);
                         }).catch(err => {

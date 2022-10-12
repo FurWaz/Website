@@ -1,12 +1,21 @@
 <template>
-    <div class="bg-slate-700 min-h-screen min-w-screen">
+    <div class="flex flex-col bg-slate-700 min-h-screen min-w-screen">
         <router-view></router-view>
+        <div class="flex flex-col grow-0 h-fit justify-center text-center pb-1">
+            <p class="text-slate-500 text-xl font-bold"> FurWaz </p>
+            <p class="text-slate-500 text font-semibold"> {{ 'Copyright &copy; ' + year + ' FurWaz' }} </p>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: "App",
+    data() {
+        return {
+            year: new Date().getFullYear()
+        }
+    }
 };
 </script>
 

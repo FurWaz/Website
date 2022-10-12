@@ -1,11 +1,22 @@
 <template>
-    <div class="absolute w-screen h-fit">
-        <div class="flex grow h-fit m-4 rounded-lg p-2 bg-slate-700 border-2 border-slate-600">
-            <div class="flex grow flex-col justify-center">
+    <div class="fixed w-screen h-fit">
+        <div class="flex grow z-50 h-fit m-4 rounded-lg shadow-xl p-2 bg-slate-700 border-2 border-slate-600">
+            <div class="flex flex-col justify-center">
                 <h1
                     class="text-white text-2xl font-bold mx-2 w-fit cursor-pointer hover:text-blue-500 select-none transition-all"
                     v-on:click="redirectHome(false)"
                 >FurWaz</h1>
+            </div>
+            <div class="flex grow flex-row space-x-4 w-fit mx-4">
+                <div class="flex flex-col justify-center">
+                    <button-topbar href="/applications"> Applications </button-topbar>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <button-topbar href="/projects"> Projects </button-topbar>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <button-topbar href="/about"> About </button-topbar>
+                </div>
             </div>
             <div class="flex flex-col justify-center">
                 <div v-if="User.CurrentUser == null" class="flex flex-row justify-center space-x-6">
@@ -44,6 +55,7 @@ import ButtonBlock from "./buttons/ButtonBlock.vue";
 import ButtonText from "./buttons/ButtonText.vue";
 import { redirectHome } from "../scripts/common.js";
 import User from "../scripts/User.js";
+import ButtonTopbar from './buttons/ButtonTopbar.vue';
 
 function disconnect() {
     User.forget();
@@ -55,7 +67,8 @@ export default {
     methods: { disconnect },
     components: {
         ButtonBlock,
-        ButtonText
+        ButtonText,
+        ButtonTopbar
     },
     data() { return { User, redirectHome }; },
     setup() {},

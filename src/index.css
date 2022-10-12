@@ -2,17 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.blur-1 { backdrop-filter: blur(1px); }
-.blur-2 { backdrop-filter: blur(2px); }
-.blur-4 { backdrop-filter: blur(4px); }
-.blur-8 { backdrop-filter: blur(8px); }
-.blur-16 { backdrop-filter: blur(16px); }
-
-.drop-shadow-orange-600 {
-    text-shadow: 0px 0.2em 0.3em #EA580C80;
-    filter: drop-shadow(0px 0.2em 1em #EA580C80);
+@keyframes spawn-up {
+    0% { opacity: 0; transform: translateY(5%); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes spawn-down {
+    0% { opacity: 0; transform: translateY(-5%); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-.glow {
-    @apply shadow-lg shadow-blue-500/[0.4];
+.spawn-up {
+    opacity: 0;
+    transform: translateY(5%);
+    animation: spawn-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
+
+.spawn-down {
+    opacity: 0;
+    transform: translateY(-5%);
+    animation: spawn-down 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
 }

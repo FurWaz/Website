@@ -1,5 +1,5 @@
 <template>
-    <div class="flex min-h-screen flex-col justify-center">
+    <div class="flex grow flex-col justify-center">
         <div class="flex flex-row justify-center">
             
             <!-- LOGIN POPUP -->

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col rounded-lg border-2 border-slate-600 shadow-xl overflow-hidden">
+    <div class="flex flex-col spawn-up rounded-lg border-2 border-slate-600 shadow-xl overflow-hidden">
         <div class="flex flex-row justify-between w-full h-fit py-1 bg-slate-600 space-x-6 px-2">
             <p class="text-white text-lg font-extrabold"> {{ this.title }} </p>
         </div>
