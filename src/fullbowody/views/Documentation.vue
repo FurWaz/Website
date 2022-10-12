@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-screen h-screen bg-slate-700">
+    <div class="flex grow bg-slate-700">
         <topbar></topbar>
         <div class="flex flex-col grow pt-20">
             <fb-title> Documentation </fb-title>
