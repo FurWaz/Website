@@ -1,5 +1,6 @@
 <template>
     <div class="flex grow bg-slate-700">
+        <payement ref="payement"></payement>
         <topbar></topbar>
         <div class="flex flex-col grow pt-20">
             <fb-title> Addons </fb-title>
@@ -7,7 +8,7 @@
 
                 <div
                     v-for="addon in addons"
-                    class="spawn-up rounded-lg border-2 border-slate-600 m-4 overflow-hidden transition-all"
+                    class="bg-slate-700 spawn-up rounded-lg border-2 border-slate-600 md:m-4 m-2 overflow-hidden transition-all"
                     :class="addon.purchased? ' select-none ': ' shadow-lg hover:shadow-xl hover:border-slate-500'"
                     :style="'animation-delay: '+addons.indexOf(addon)+'00ms'">
                     <div class="flex flex-col w-min min-h-[20em]">
@@ -30,7 +31,10 @@
                                 <h2 :class="addon.purchased? 'text-slate-600': 'text-slate-400'" class=" text-xl font-bold mx-1"> {{ addon.currency }} </h2>
                             </div>
                             <div class="flex flex-row mx-auto">
-                                <button-block :action="addon.onclick" :disabled="addon.purchased"> {{ addon.purchased? 'Purchased' : 'Get addon' }} </button-block>
+                                <button-block
+                                    :action="() => { addon.onclick({price: addon.price, currency: addon.currency, label: addon.title}); }"
+                                    :disabled="addon.purchased"
+                                > {{ addon.purchased? 'Purchased' : 'Get addon' }} </button-block>
                             </div>
                         </div>
                     </div>
@@ -45,6 +49,7 @@
 import Topbar from '../../components/Topbar.vue';
 import ButtonBlock from '../../components/buttons/ButtonBlock.vue';
 import FbTitle from '../components/FbTitle.vue';
+import Payement from '../../components/forms/Payement.vue';
 
 const addons = [
     {
@@ -53,7 +58,7 @@ const addons = [
         price: "4.99",
         currency: "€",
         purchased: false,
-        onclick: () => {}
+        onclick: (obj) => { purchase(obj) }
     },
     {
         title: "Third tracking camera",
@@ -61,7 +66,7 @@ const addons = [
         price: "1.99",
         currency: "€",
         purchased: false,
-        onclick: () => {}
+        onclick: (obj) => { purchase(obj) }
     },
     {
         title: "60 FPS body tracking",
@@ -69,7 +74,7 @@ const addons = [
         price: "2.49",
         currency: "€",
         purchased: false,
-        onclick: () => {}
+        onclick: (obj) => { purchase(obj) }
     },
     {
         title: "Smooth body tracking",
@@ -77,21 +82,31 @@ const addons = [
         price: "1.49",
         currency: "€",
         purchased: false,
-        onclick: () => {}
+        onclick: (obj) => { purchase(obj) }
     }
-]
+];
+
+let page = null;
+
+function purchase(data) {
+    if (page == null) return;
+    page.$refs["payement"].display(data.label, data.price, data.currency);
+}
 
 export default {
     name: "Home",
     components: {
         Topbar,
         ButtonBlock,
-        FbTitle
+        FbTitle,
+        Payement
     },
-    methods: {},
+    methods: { purchase },
     data() { return { addons }; },
     setup() {},
-    mounted() {}
+    mounted() {
+        page = this;
+    }
 };
 </script>
 

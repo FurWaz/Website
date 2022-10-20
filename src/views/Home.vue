@@ -6,12 +6,12 @@
                 <div class="spawn-down flex w-full h-fit justify-center">
                     <div class="flex -skew-x-12 border-8 border-blue-500 bg-slate-800 h-fit w-fit px-8 pb-2 shadow-xl">
                         <div class="flex mx-auto skew-x-12">
-                            <h1 class="text-slate-50 text-8xl font-bold jump" style="animation-delay: 0s;"> F </h1>
-                            <h1 class="text-slate-50 text-8xl font-bold jump" style="animation-delay: 100ms;"> u </h1>
-                            <h1 class="text-slate-50 text-8xl font-bold jump" style="animation-delay: 200ms;"> r </h1>
-                            <h1 class="text-slate-50 text-8xl font-bold jump" style="animation-delay: 300ms;"> w </h1>
-                            <h1 class="text-slate-50 text-8xl font-bold jump" style="animation-delay: 400ms;"> a </h1>
-                            <h1 class="text-slate-50 text-8xl font-bold jump" style="animation-delay: 500ms;"> z </h1>
+                            <h1 class="text-slate-50 md:text-8xl text-6xl font-bold jump" style="animation-delay: 0s;"> F </h1>
+                            <h1 class="text-slate-50 md:text-8xl text-6xl font-bold jump" style="animation-delay: 100ms;"> u </h1>
+                            <h1 class="text-slate-50 md:text-8xl text-6xl font-bold jump" style="animation-delay: 200ms;"> r </h1>
+                            <h1 class="text-slate-50 md:text-8xl text-6xl font-bold jump" style="animation-delay: 300ms;"> w </h1>
+                            <h1 class="text-slate-50 md:text-8xl text-6xl font-bold jump" style="animation-delay: 400ms;"> a </h1>
+                            <h1 class="text-slate-50 md:text-8xl text-6xl font-bold jump" style="animation-delay: 500ms;"> z </h1>
                         </div>
                     </div>
                 </div>

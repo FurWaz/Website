@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col grow justify-center">
-                        <p class="text-4xl text-slate-500 mx-auto"> Seems like this page doesn't exist ... </p>
+                        <p class="text-4xl text-slate-500 text-center mx-auto"> Seems like this page doesn't exist ... </p>
                         <div class="w-fit h-fit mx-auto mt-4">
                             <button-block href="/"> Go back home </button-block>
                         </div>

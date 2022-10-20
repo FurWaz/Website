@@ -1,17 +1,17 @@
 <template>
     <div class="flex grow">
         <topbar></topbar>
-        <div class="flex grow pt-20">
-            <div class="flex flex-col grow pt-10 max-h-[50em]">
+        <div class="flex grow pt-20 min-w-0">
+            <div class="flex flex-col grow pt-10 max-h-[50em] min-w-0">
                 <div class="flex w-full h-fit justify-center">
                     <div class="flex border-2 border-slate-600 rounded-lg px-4 py-1">
                         <h1 class="spawn-down text-slate-200 text-4xl font-bold mb-1"> Applications </h1>
                     </div>
                 </div>
-                <div class="flex flex-row grow m-10 justify-center p-10">
-                    <div class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 w-min">
+                <div class="flex flex-row grow m-10 justify-center py-10">
+                    <div class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 w-min max-w-full">
                         <div class="flex mx-auto">
-                            <h1 class="text-slate-300 text-4xl font-bold mx-20"> FullBowody </h1>
+                            <h1 class="text-slate-300 text-4xl font-bold mx-auto px-10"> FullBowody </h1>
                         </div>
                         <div class="flex flex-col grow p-2 justify-center">
                             <div class="flex mx-auto w-fit h-fit rounded-lg bg-black/[0.1]">

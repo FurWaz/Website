@@ -3,11 +3,11 @@
         <topbar></topbar>
         <div class="flex flex-col grow pt-20">
             <fb-title :displayBackBtn="false"> Track your body with two or more basic cameras </fb-title>
-            <div class="flex flex-row wrap justify-center h-fit m-4 pt-10">
+            <div class="flex md:flex-row flex-col wrap justify-center h-fit m-4 pt-4">
 
                 <div
                     v-for="short in shortcuts"
-                    class="spawn-up rounded-lg border-2 border-slate-600 mx-4 overflow-hidden shadow-xl"
+                    class="spawn-up rounded-lg border-2 border-slate-600 m-4 overflow-hidden shadow-xl"
                     :style="'animation-delay: '+shortcuts.indexOf(short)+'00ms'"
                 >
                     <div class="flex flex-col w-min h-fit p-4">
@@ -20,7 +20,7 @@
                         <div class="flex grow my-4">
                             <p class="text-slate-400 text-xl font-semibold"> {{ short.description }} </p>
                         </div>
-                        <div class="flex flex-row justify-center">
+                        <div class="flex flex-row md:justify-center justify-start">
                             <button-block :href="short.link"> {{ short.button }} </button-block>
                         </div>
                     </div>
