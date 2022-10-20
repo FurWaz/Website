@@ -65,12 +65,9 @@
                     <div class="flex flex-col bg-slate-600 rounded-lg p-2 mt-2">
                         <div id="preview" class="cover-prev rounded-lg bg-slate-700 w-[30vw] h-[15vw] m-2 border-2 border-slate-500 overflow-hidden">
                             <div class="flex w-full h-full max-h-[100%] overflow-hidden">
-                                <div :class="showLyrics? 'bg-black/[0.2] blur-bg': 'bg-black/[0]'" class="flex grow flex-col justify-center transition-all">
-                                    <div :class="showLyrics? 'opacity-1 pointer-events-all' : 'opacity-0 pointer-events-none'" class=" flex flex-col mx-auto overflow-hidden transition-all">
-                                        <p class="paroles">Paroles 1</p>
-                                        <p class="paroles">Paroles 2</p>
-                                        <p class="paroles selected">Paroles 3</p>
-                                        <p class="paroles">Paroles 4</p>
+                                <div :class="showLyrics? 'bg-black/[0.4] blur-bg': 'bg-black/[0]'" class="flex grow flex-col justify-center transition-all">
+                                    <div id="lyrics" :class="showLyrics? 'opacity-1 pointer-events-all' : 'opacity-0 pointer-events-none'" class=" flex flex-col mx-auto overflow-x-hidden transition-all py-[10%]">
+                                        <p class="paroles">Loading ...</p>
                                     </div>
                                 </div>
                             </div>
@@ -180,6 +177,10 @@ function formatTime(time) {
 
 let updateInterval = -1;
 function setTime(time) {
+    if (time == 0) {
+        clearInterval(updateInterval);
+        updateInterval = -1;
+    }
     time = Math.min(time, maxLength);
     
     const updateTime = () => {
@@ -222,6 +223,7 @@ function setInfos(infos) {
     setMaxTime(infos.length);
     setTime(0);
     getStream(API_URL+infos.stream);
+    getLyrics(API_URL+infos.lyrics);
 }
 
 function requestSearch(search) {
@@ -253,6 +255,32 @@ function getStream(link) {
             audio.play();
             audio.currentTime = infos.progress / 1000;
             setTime(infos.progress / 1000);
+        });
+    });
+}
+
+function getLyrics(link) {
+    fetch(link, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    }).then(res => {
+        res.json().then(infos => {
+            if (typeof(infos) == "string" && infos.startsWith("Error")) {
+                console.error(infos);
+                return;
+            }
+            
+            const lyrics = infos.lyrics;
+            console.log(lyrics)
+            const lyricsContainer = document.getElementById("lyrics");
+            lyricsContainer.innerHTML = "";
+            console.log(lyrics);
+            lyrics.forEach(line => {
+                const p = document.createElement("p");
+                p.classList.add("paroles")
+                p.innerHTML = line;
+                lyricsContainer.appendChild(p);
+            });
         });
     });
 }
@@ -299,7 +327,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .cover-prev {
     background-image: url("");
     background-position: center;
@@ -311,7 +339,8 @@ export default {
 }
 
 .paroles {
-    @apply text-slate-50/[0.5] font-semibold text-lg my-1 mx-auto rounded-lg px-4 py-1;
+    @apply text-slate-50 font-bold text-lg text-center bg-slate-50/[0.1] my-4 mx-auto max-w-[80%] rounded-lg px-4 py-1 transition-all;
+    /* @apply text-slate-50/[0.5] font-semibold text-lg text-center my-2 mx-auto max-w-[80%] rounded-lg px-4 py-1 transition-all; */
 }
 .selected {
     @apply text-slate-50 font-bold text-xl bg-slate-50/[0.2];
