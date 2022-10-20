@@ -25,7 +25,7 @@
         <div class="flex grow">
             <div ref="drawer" class="flex grow-0 flex-row w-0 overflow-hidden transition-all"> <!-- DRAWER -->
                 <div class="flex grow flex-col mx-2">
-                    <div class="flex justify-center bg-slate-600 rounded-lg py-1">
+                    <div class="flex justify-center bg-slate-600 rounded-lg py-1 w-min">
                         <p class="text-xl font-semibold text-slate-50"> Listeners </p>
                     </div>
                     <div class="flex flex-col space-y-2 mt-2 mx-2">
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="flex grow-0 mt-8 mx-2 justify-center">
-                            <h1 id="title" class="text-slate-200 font-bold text-xl"> - - - - - </h1>
+                            <h1 id="title" class="text-slate-200 font-bold text-xl text-ellipsis"> - - - - - </h1>
                         </div>
                         <div class="flex grow-0 mt-4 text-slate-400 font-semibold mx-2">
                             <div id="progress" class="flex flex-col justify-center"> <!-- TIMER LEFT -->
@@ -186,6 +186,7 @@ function setTime(time) {
     const updateTime = () => {
         document.getElementById("progress").innerHTML = formatTime(time);
         document.getElementById("bar").style.width = `${(time / maxLength) * 100}%`;
+        setPlaying(true);
     }
     updateTime();
 
@@ -195,6 +196,7 @@ function setTime(time) {
         if (time >= maxLength) {
             clearInterval(updateInterval);
             updateInterval = -1;
+            setPlaying(false);
             return;
         }
         updateTime();
@@ -219,7 +221,7 @@ function setTitle(title) {
 
 function setInfos(infos) {
     setPreview(infos.thumbnail);
-    setTitle(infos.title);
+    setTitle(infos.author + " - " + infos.title);
     setMaxTime(infos.length);
     setTime(0);
     getStream(API_URL+infos.stream);
@@ -265,13 +267,11 @@ function getLyrics(link) {
         headers: { "Content-Type": "application/json" }
     }).then(res => {
         res.json().then(infos => {
+            let lyrics = infos.lyrics;
             if (typeof(infos) == "string" && infos.startsWith("Error")) {
-                console.error(infos);
-                return;
+                lyrics = ["Error : Can't find lyrics for this song"];
             }
             
-            const lyrics = infos.lyrics;
-            console.log(lyrics)
             const lyricsContainer = document.getElementById("lyrics");
             lyricsContainer.innerHTML = "";
             console.log(lyrics);
