@@ -5,7 +5,7 @@
         v-on:click="hide()"
     >
         <div class="w-fit mx-auto">
-            <div class="flex flex-col rounded-lg bg-slate-700 border-2 border-slate-600 shadow-xl w-[500px] md:max-w-[80vw] md:max-h-[80vh] max-w-[95vw] max-h-[95vh] overflow-hidden">
+            <div class="flex flex-col rounded-lg bg-slate-700 border-2 border-slate-600 shadow-xl w-[500px] md:max-w-[80vw] md:max-h-[80vh] max-w-[95vw] max-h-[80vh] overflow-hidden">
                 <div class="flex flex-row justify-between w-full h-fit py-1 bg-slate-600 space-x-6 px-2">
                     <p class="text-white text-lg font-extrabold w-full"> Payement </p>
                 </div>
