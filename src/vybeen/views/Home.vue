@@ -1,5 +1,7 @@
 <template>
     <div class="flex grow flex-col">
+        <audio id="audio" src="" class="hidden"></audio>
+
         <div class="flex grow-0 p-2 w-full h-fit"> <!-- HEADER -->
             <div class="flex justify-between w-full rounded-lg bg-slate-600">
                 <div class="flex flex-col justify-center p-2">
@@ -47,11 +49,12 @@
                     <!-- SEARCH BAR -->
                     <div class="flex rounded-lg bg-slate-600 p-1">
                         <input
+                            id="search"
                             type="text"
                             name="search"
                             class="w-full bg-transparent rounded-lg border-2 border-slate-500 outline-none text-slate-50 focus:border-slate-300 px-2 py-1 transition-all"
                         >
-                        <div class="flex flex-col justify-center px-2 cursor-pointer text-slate-400 hover:text-slate-300 transition-all">
+                        <div id="btn-search" class="flex flex-col justify-center px-2 cursor-pointer text-slate-400 hover:text-slate-300 transition-all">
                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -60,7 +63,7 @@
                     </div>
                     <!-- VIEW -->
                     <div class="flex flex-col bg-slate-600 rounded-lg p-2 mt-2">
-                        <div class="cover-prev rounded-lg bg-slate-700 w-[30vw] h-[15vw] m-2 border-2 border-slate-500 overflow-hidden">
+                        <div id="preview" class="cover-prev rounded-lg bg-slate-700 w-[30vw] h-[15vw] m-2 border-2 border-slate-500 overflow-hidden">
                             <div class="flex w-full h-full max-h-[100%] overflow-hidden">
                                 <div :class="showLyrics? 'bg-black/[0.2] blur-bg': 'bg-black/[0]'" class="flex grow flex-col justify-center transition-all">
                                     <div :class="showLyrics? 'opacity-1 pointer-events-all' : 'opacity-0 pointer-events-none'" class=" flex flex-col mx-auto overflow-hidden transition-all">
@@ -85,19 +88,19 @@
                             </div>
                         </div>
                         <div class="flex grow-0 mt-8 mx-2 justify-center">
-                            <h1 class="text-slate-200 font-bold text-xl"> Title - Artist </h1>
+                            <h1 id="title" class="text-slate-200 font-bold text-xl"> - - - - - </h1>
                         </div>
                         <div class="flex grow-0 mt-4 text-slate-400 font-semibold mx-2">
-                            <div class="flex flex-col justify-center"> <!-- TIMER LEFT -->
-                                00 : 24
+                            <div id="progress" class="flex flex-col justify-center"> <!-- TIMER LEFT -->
+                                00 : 00
                             </div>
                             <div class="flex grow flex-col justify-center mx-2">
                                 <div class="flex h-1 bg-slate-500 rounded-lg">
-                                    <div class="flex bg-slate-200 rounded-lg w-[20%]"></div>
+                                    <div id="bar" class="flex bg-slate-200 rounded-lg transition-all" style="width: 0%"></div>
                                 </div>
                             </div>
-                            <div class="flex flex-col justify-center"> <!-- TIMER RIGHT -->
-                                01 : 30
+                            <div id="time" class="flex flex-col justify-center"> <!-- TIMER RIGHT -->
+                                00 : 00
                             </div>
                         </div>
                         <div class="flex grow-0 justify-center mt-8 font-semibold mx-2">
@@ -140,7 +143,11 @@
 </template>
 
 <script>
+const API_URL = "https://vybeen.furwaz.com";
 let page = null;
+
+let maxLength = 0;
+let time = 0;
 
 let drawerOpen = false;
 function toogleDrawer() {
@@ -165,6 +172,114 @@ function setShowLyrics(state) {
     page.showLyrics = state;
 }
 
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time - minutes * 60);
+    return `${minutes.toString().padStart(2, "0")} : ${seconds.toString().padStart(2, "0")}`;
+}
+
+let updateInterval = -1;
+function setTime(time) {
+    time = Math.min(time, maxLength);
+    
+    const updateTime = () => {
+        document.getElementById("progress").innerHTML = formatTime(time);
+        document.getElementById("bar").style.width = `${(time / maxLength) * 100}%`;
+    }
+    updateTime();
+
+    if (updateInterval != -1) clearInterval(updateInterval);
+    updateInterval = setInterval(() => {
+        time += 1;
+        if (time >= maxLength) {
+            clearInterval(updateInterval);
+            updateInterval = -1;
+            return;
+        }
+        updateTime();
+    }, 1000);
+}
+
+function setMaxTime(time) {
+    document.getElementById("time")
+    .innerHTML = formatTime(time);
+    maxLength = time;
+}
+
+function setPreview(url) {
+    document.getElementById("preview")
+    .style.backgroundImage = "url("+url+")";
+}
+
+function setTitle(title) {
+    document.getElementById("title")
+    .innerHTML = title;
+}
+
+function setInfos(infos) {
+    setPreview(infos.thumbnail);
+    setTitle(infos.title);
+    setMaxTime(infos.length);
+    setTime(0);
+    getStream(API_URL+infos.stream);
+}
+
+function requestSearch(search) {
+    fetch(API_URL+"/search?q="+search, {
+        method: "GET",
+        headers: { "Content-Type": "application/json"}
+    }).then(res => {
+        res.json().then(infos => {
+            if (typeof(infos) == "string" && infos.startsWith("Error")) {
+                return;
+            }
+            setInfos(infos);
+        });
+    });
+}
+
+function getStream(link) {
+    fetch(link, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    }).then(res => {
+        res.json().then(infos => {
+            if (typeof(infos) == "string" && infos.startsWith("Error")) {
+                return;
+            }
+            /**@type {HTMLAudioElement} */
+            const audio = document.getElementById("audio");
+            audio.src = infos.stream;
+            audio.play();
+            audio.currentTime = infos.progress / 1000;
+            setTime(infos.progress / 1000);
+        });
+    });
+}
+
+function setup() {
+    document.getElementById("btn-search").addEventListener("click", ev => {
+        requestSearch(document.getElementById("search").value);
+    });
+    document.getElementById("search").addEventListener("keyup", ev => {
+        if (ev.key == "Enter") {
+            requestSearch(document.getElementById("search").value);
+        }
+    });
+
+    fetch(API_URL+"/infos", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    }).then(res => {
+        res.json().then(infos => {
+            if (typeof(infos) == "string" && infos.startsWith("Error")) {
+                return;
+            }
+            setInfos(infos);
+        });
+    });
+}
+
 export default {
     name: 'Home',
     data() {
@@ -177,13 +292,16 @@ export default {
         toogleDrawer,
         setPlaying,
         setShowLyrics
+    },
+    mounted() {
+        setup();
     }
 }
 </script>
 
 <style scoped>
 .cover-prev {
-    background-image: url("https://thumbs.gfycat.com/MilkyElementaryHagfish-max-1mb.gif");
+    background-image: url("");
     background-position: center;
     background-size: cover;
 }
