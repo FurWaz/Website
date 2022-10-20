@@ -4,6 +4,7 @@ import App from './App.vue';
 
 import "./index.css";
 import fullBowodyRoutes from "./fullbowody/routes.js";
+import vybeenRoutes from "./vybeen/routes.js";
 
 // https redirection (should be done in NGINX, but it not we do it here)
 // if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
@@ -23,6 +24,13 @@ for (let i = 0; i < fullBowodyRoutes.length; i++) {
         path: "/fullbowody" + fullBowodyRoutes[i].path,
         name: "FB" + fullBowodyRoutes[i].name,
         component: fullBowodyRoutes[i].component
+    });
+}
+for (let i = 0; i < vybeenRoutes.length; i++) {
+    mainRoutes.push({
+        path: "/vybeen" + vybeenRoutes[i].path,
+        name: "VB" + vybeenRoutes[i].name,
+        component: vybeenRoutes[i].component
     });
 }
 
