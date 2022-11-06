@@ -5,7 +5,7 @@
                 <h1
                     class="text-white text-2xl font-bold mx-2 w-fit cursor-pointer hover:text-blue-500 select-none transition-all"
                     v-on:click="redirectHome(false)"
-                >FurWaz</h1>
+                > FurWaz </h1>
             </div>
             <div class="flex grow flex-row space-x-4 w-fit mx-4 overflow-x-auto">
                 <div class="flex flex-col justify-center">
