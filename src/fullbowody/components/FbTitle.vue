@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { goBack } from "../../scripts/common.js";
+import { goBack } from "../../main/scripts/common.js";
 
 export default {
     name: "FbTitle",

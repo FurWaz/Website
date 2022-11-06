@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import Topbar from '../../components/Topbar.vue';
-import ButtonBlock from '../../components/buttons/ButtonBlock.vue';
+import Topbar from '../../main/components/Topbar.vue';
+import ButtonBlock from '../../main/components/buttons/ButtonBlock.vue';
 import FbTitle from '../components/FbTitle.vue';
-import Payement from '../../components/forms/Payement.vue';
+import Payement from '../../main/components/forms/Payement.vue';
 
 const addons = [
     {
@@ -90,7 +90,7 @@ let page = null;
 
 function purchase(data) {
     if (page == null) return;
-    page.$refs["payement"].display(data.label, data.price, data.currency);
+    //page.$refs["payement"].display(data.label, data.price, data.currency);
 }
 
 export default {

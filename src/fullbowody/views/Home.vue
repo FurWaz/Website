@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import Topbar from '../../components/Topbar.vue';
-import ButtonBlock from '../../components/buttons/ButtonBlock.vue';
+import Topbar from '../../main/components/Topbar.vue';
+import ButtonBlock from '../../main/components/buttons/ButtonBlock.vue';
 import FbTitle from '../components/FbTitle.vue';
 
 const shortcuts = [

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Topbar from '../../components/Topbar.vue';
+import Topbar from '../../main/components/Topbar.vue';
 import FbTitle from '../components/FbTitle.vue';
 
 function setup(obj) {
