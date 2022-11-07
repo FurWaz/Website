@@ -54,7 +54,6 @@ const API_URL = "https://vybeen.furwaz.com";
 let page = null;
 
 let maxLength = 0;
-let time = 0;
 
 let drawerOpen = false;
 function toogleDrawer() {
@@ -125,17 +124,21 @@ function requestSearch(search) {
     });
 }
 
+/**@type {HTMLAudioElement} */
+let audio = null;
+
 function getStream(link) {
     fetch(link, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
     }).then(res => {
+        if (audio == null) audio = document.getElementById("audio");
+
+        audio.currentTime = 0;
         res.json().then(infos => {
             if (typeof(infos) == "string" && infos.startsWith("Error")) {
                 return;
             }
-            /**@type {HTMLAudioElement} */
-            const audio = document.getElementById("audio");
             audio.src = infos.stream;
             audio.play();
             audio.currentTime = infos.progress / 1000;
@@ -145,9 +148,9 @@ function getStream(link) {
 
 let lyricsUpdater = -1;
 let lyricsBuffer = [];
-let lastBufferElement = null;
 
 function getLyrics(link) {
+    lyricsBuffer.splice(0, lyricsBuffer.length);
     fetch(link, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
@@ -169,8 +172,9 @@ function getLyrics(link) {
                 }
                 lyricsBuffer.push({
                     el: line.text == "" ? null: p,
-                    time: line.time
+                    time: Number(line.time)
                 });
+                window.lyricsBuffer = lyricsBuffer;
             });
 
             document.getElementById("lyrics").scrollTo({
@@ -178,41 +182,20 @@ function getLyrics(link) {
                 behavior: "smooth"
             });
 
-            lyricsUpdater = setInterval(() => {
-                if (lyricsBuffer.length == 0) {
-                    clearInterval(lyricsUpdater);
-                    lyricsUpdater = -1;
-                    lastBufferElement = null;
-                    return;
-                }
-
-                /**@type {HTMLAudioElement} */
-                const audio = document.getElementById("audio");
-                const delay = audio.currentTime;
-
-                if (lyricsBuffer[0].time <= delay) {
-                    if (lyricsBuffer[0].el != null)
-                        lyricsBuffer[0].el.classList.add("selected");
-                    if (lastBufferElement != null) {
-                        lastBufferElement.classList.remove("selected");
-                        document.getElementById("lyrics").scrollTo({
-                            top: lastBufferElement.offsetTop,
-                            behavior: "smooth"
-                        });
-                    }
-                    lastBufferElement = lyricsBuffer.shift().el;
-
-                    const updateTime = () => {
-                        document.getElementById("progress").innerHTML = formatTime(delay);
-                        document.getElementById("bar").style.width = `${(delay / maxLength) * 100}%`;
-                    }
-                    updateTime();
-
-                    page.player.setPlaying(!audio.paused);
-                }
-            }, 100);
+            startMainLoop();
         });
     });
+}
+
+function startMainLoop() {
+    if (audio == null) audio = document.getElementById("audio");
+
+    if (lyricsUpdater != -1)
+        clearInterval(lyricsUpdater);
+
+    lyricsUpdater = setInterval(() => {
+        update();
+    }, 100);
 }
 
 function setup() {
@@ -235,6 +218,7 @@ function setup() {
         if (audio.paused) {
             audio.play();
             setPlaying(true);
+            startMainLoop();
         } else {
             audio.pause();
             setPlaying(false);
@@ -261,6 +245,53 @@ function setup() {
             setInfos(infos);
         });
     });
+}
+
+let progress = null;
+let bar = null;
+function update() {
+    if (lyricsBuffer.length == 0) {
+        clearInterval(lyricsUpdater);
+        lyricsUpdater = -1;
+        return;
+    }
+
+    const delay = audio.currentTime * 1000; // time since song start, in ms
+
+    let index = 0;
+    while (lyricsBuffer[index].time < delay) {
+        index++;
+        if (index >= lyricsBuffer.length) {
+            clearInterval(lyricsUpdater);
+            lyricsUpdater = -1;
+            return;
+        }
+    }
+    index--;
+
+    for(let i = 0; i < lyricsBuffer.length; i++) {
+        if (lyricsBuffer[i].el != null) {
+            if (i == index) {
+                lyricsBuffer[i].el.classList.add("selected");
+                const container = document.getElementById("lyrics");
+                const containerHeight = container.getBoundingClientRect().height;
+                const lyricsHeight = lyricsBuffer[i].el.getBoundingClientRect().height;
+                container.scrollTo({
+                    top: lyricsBuffer[index].el.offsetTop - containerHeight / 2 + lyricsHeight / 2,
+                    behavior: "smooth"
+                });
+            } else {
+                lyricsBuffer[i].el.classList.remove("selected");
+            }
+        }
+    }
+
+    if (progress == null) progress = document.getElementById("progress");
+    if (bar == null) bar = document.getElementById("bar");
+    page.player.setPlaying(!audio.paused);
+
+    progress.innerHTML = formatTime(delay/1000);
+    bar.style.width = `${(delay / 1000 / maxLength) * 100}%`;
 }
 
 export default {
@@ -290,6 +321,22 @@ export default {
 </script>
 
 <style>
+/* random translation and rotation */
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0);
+    }
+    25% {
+        transform: translate(4px, 0) rotate(-1deg);
+    }
+    50% {
+        transform: translate(0, 4px) rotate(1deg);
+    }
+    75% {
+        transform: translate(2px, 3px) rotate(-2deg);
+    }
+}
+
 .cover-prev {
     background-image: url("");
     background-position: center;
@@ -301,10 +348,10 @@ export default {
 }
 
 .paroles {
-    @apply text-slate-50 font-bold text-lg text-center bg-slate-50/[0.1] my-4 mx-auto max-w-[80%] rounded-lg px-4 py-1 transition-all;
-    /* @apply text-slate-50/[0.5] font-semibold text-lg text-center my-2 mx-auto max-w-[80%] rounded-lg px-4 py-1 transition-all; */
+    @apply text-slate-200/[0.3] font-semibold text-lg text-center my-2 mx-auto max-w-[80%] rounded-lg px-4 py-1 border border-transparent transition-all;
 }
 .selected {
-    @apply text-slate-50 font-bold text-xl bg-slate-50/[0.2] border-2 border-slate-50/[0.2];
+    @apply text-slate-50 font-bold text-2xl bg-slate-50/[0.2] border-2 border-slate-50/[0.2];
+    animation: float 4s cubic-bezier(.4,.2,.6,.8) infinite;
 }
 </style>
