@@ -23,7 +23,7 @@ for (let i = 0; i < mainRoutes.length; i++) {
 }
 for (let i = 0; i < fullBowodyRoutes.length; i++) {
     routes.push({
-        path: "/applications/fullbowody" + fullBowodyRoutes[i].path,
+        path: "/apps/fullbowody" + fullBowodyRoutes[i].path,
         name: "FB" + fullBowodyRoutes[i].name,
         component: fullBowodyRoutes[i].component
     });

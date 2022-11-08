@@ -10,7 +10,7 @@
                 </div>
                 <div class="flex flex-row grow m-10 justify-center py-10">
                     <div
-                        v-for="app in applications"
+                        v-for="app in apps"
                         class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 w-min min-w-[15vw] max-w-full
                                hover:border-slate-500 hover:shadow-lg cursor-pointer transition-all"
                         v-on:click="redirectTo(app.href)"
@@ -45,19 +45,19 @@ import ButtonBlock from '../components/buttons/ButtonBlock.vue';
 import Topbar from '../components/Topbar.vue'
 import { redirectTo } from "../scripts/common.js";
 
-const applications = [
+const apps = [
     {
         title: "FullBowody",
         description: "Track your body with two or more basic cameras",
         link: "Go to page",
-        href: "/applications/fullbowody",
+        href: "/apps/fullbowody",
         icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />`
     },
     {
         title: "Processor",
         description: "Play with a little processor, make it evolve in his world and fight agains other processors !",
         link: "See the game",
-        href: "/applications/processor",
+        href: "/apps/processor",
         icon: `<line x1="6" y1="12" x2="10" y2="12"></line>
                <line x1="8" y1="10" x2="8" y2="14"></line>
                <line x1="15" y1="13" x2="15.01" y2="13"></line>
@@ -67,13 +67,13 @@ const applications = [
 ];
 
 export default {
-    name: "Applications",
+    name: "Apps",
     components: {
         Topbar,
         ButtonBlock
     },
     methods: {},
-    data() { return { applications, redirectTo }; },
+    data() { return { apps, redirectTo }; },
     setup() {},
     mounted() {}
 };

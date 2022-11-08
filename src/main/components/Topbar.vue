@@ -9,7 +9,7 @@
             </div>
             <div class="flex grow flex-row space-x-4 w-fit mx-4 overflow-x-auto">
                 <div class="flex flex-col justify-center">
-                    <button-topbar href="/applications"> Applications </button-topbar>
+                    <button-topbar href="/apps"> Applications </button-topbar>
                 </div>
                 <div class="flex flex-col justify-center">
                     <button-topbar href="/projects"> Projects </button-topbar>
