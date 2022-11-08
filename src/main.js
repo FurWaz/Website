@@ -23,14 +23,14 @@ for (let i = 0; i < mainRoutes.length; i++) {
 }
 for (let i = 0; i < fullBowodyRoutes.length; i++) {
     routes.push({
-        path: "/fullbowody" + fullBowodyRoutes[i].path,
+        path: "/applications/fullbowody" + fullBowodyRoutes[i].path,
         name: "FB" + fullBowodyRoutes[i].name,
         component: fullBowodyRoutes[i].component
     });
 }
 for (let i = 0; i < vybeenRoutes.length; i++) {
     routes.push({
-        path: "/vybeen" + vybeenRoutes[i].path,
+        path: "/projects/vybeen" + vybeenRoutes[i].path,
         name: "VB" + vybeenRoutes[i].name,
         component: vybeenRoutes[i].component
     });
