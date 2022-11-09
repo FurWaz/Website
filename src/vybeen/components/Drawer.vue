@@ -39,7 +39,7 @@
 <script>
 import User from '../../main/scripts/User.js';
 
-const friends = [ {name: "Talluan"}, {name: "Celian68"} ];
+const friends = [];
 // TODO : make server connection (long pooling for events, register, etc)
 
 export default {
