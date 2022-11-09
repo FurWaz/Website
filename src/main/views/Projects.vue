@@ -2,16 +2,16 @@
     <div class="flex grow">
         <topbar></topbar>
         <div class="flex grow pt-20 min-w-0">
-            <div class="flex flex-col grow pt-10 max-h-[50em] min-w-0">
+            <div class="flex flex-col grow pt-10 min-w-0">
                 <div class="flex w-full h-fit justify-center">
                     <div class="flex border-2 border-slate-600 rounded-lg px-4 py-1">
                         <h1 class="spawn-down text-slate-200 text-4xl font-bold mb-1"> Projects </h1>
                     </div>
                 </div>
-                <div class="flex flex-row grow m-10 justify-center py-10">
+                <div class="flex flex-wrap grow my-10 justify-center py-10">
                     <div
                         v-for="project in projects"
-                        class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 w-min min-w-[15vw] max-w-full
+                        class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 my-4 md:max-w-[20vw]
                                hover:border-slate-500 hover:shadow-lg cursor-pointer transition-all"
                         v-on:click="redirectTo(project.href)"
                     >

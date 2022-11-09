@@ -1,35 +1,35 @@
 <template>
     <div class="flex grow">
         <topbar></topbar>
-        <div class="flex grow pt-20 min-w-0">
-            <div class="flex flex-col grow pt-10 max-h-[50em] min-w-0">
+        <div class="flex grow pt-20 min-w-0 min-h-0">
+            <div class="flex flex-col grow pt-10 min-w-0">
                 <div class="flex w-full h-fit justify-center">
                     <div class="flex border-2 border-slate-600 rounded-lg px-4 py-1">
                         <h1 class="spawn-down text-slate-200 text-4xl font-bold mb-1"> Applications </h1>
                     </div>
                 </div>
-                <div class="flex flex-row grow m-10 justify-center py-10">
+                <div class="flex flex-wrap grow my-10 justify-center py-10">
                     <div
                         v-for="app in apps"
-                        class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 w-min min-w-[15vw] max-w-full
+                        class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 my-4 md:max-w-[20vw]
                                hover:border-slate-500 hover:shadow-lg cursor-pointer transition-all"
                         v-on:click="redirectTo(app.href)"
                     >
-                        <div class="flex mx-auto">
+                        <div class="flex w-fit mx-auto">
                             <h1 class="text-slate-300 text-4xl font-bold mx-auto px-10"> {{ app.title }} </h1>
                         </div>
-                        <div class="flex flex-col grow p-2 justify-center">
+                        <div class="flex w-fit mx-auto flex-col grow p-2 justify-center">
                             <div class="flex mx-auto  w-fit h-fit rounded-lg bg-black/[0.1]">
                                 <svg xmlns="http://www.w3.org/2000/svg" v-html="app.icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500 w-40 h-40">
                                     
                                 </svg>
                             </div>
                         </div>
-                        <div class="flex flex-col grow p-2 space-y-4 justify-between">
+                        <div class="flex flex-col mx-auto w-fit grow p-2 space-y-4 justify-between">
                             <div class="flex mx-auto w-fit h-fit">
                                 <p class="text-slate-400 font-semibold text-lg"> {{ app.description }} </p>
                             </div>
-                            <div class="flex flex-wrap justify-evenly">
+                            <div class="flex w-fit justify-evenly">
                                 <button-block class="m-1" :href="app.href"> {{ app.link }} </button-block>
                             </div>
                         </div>
