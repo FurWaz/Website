@@ -9,31 +9,7 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap grow my-10 justify-center py-10">
-                    <div
-                        v-for="app in apps"
-                        class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 my-4 md:max-w-[20vw]
-                               hover:border-slate-500 hover:shadow-lg cursor-pointer transition-all"
-                        v-on:click="redirectTo(app.href)"
-                    >
-                        <div class="flex w-fit mx-auto">
-                            <h1 class="text-slate-300 text-4xl font-bold mx-auto px-10"> {{ app.title }} </h1>
-                        </div>
-                        <div class="flex w-fit mx-auto flex-col grow p-2 justify-center">
-                            <div class="flex mx-auto  w-fit h-fit rounded-lg bg-black/[0.1]">
-                                <svg xmlns="http://www.w3.org/2000/svg" v-html="app.icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500 w-40 h-40">
-                                    
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex flex-col mx-auto w-fit grow p-2 space-y-4 justify-between">
-                            <div class="flex mx-auto w-fit h-fit">
-                                <p class="text-slate-400 font-semibold text-lg"> {{ app.description }} </p>
-                            </div>
-                            <div class="flex w-fit justify-evenly">
-                                <button-block class="m-1" :href="app.href"> {{ app.link }} </button-block>
-                            </div>
-                        </div>
-                    </div>
+                    <pres-card v-for="app in apps" :data="app"></pres-card>
                 </div>
             </div>
         </div>
@@ -41,9 +17,8 @@
 </template>
 
 <script>
-import ButtonBlock from '../components/buttons/ButtonBlock.vue';
-import Topbar from '../components/Topbar.vue'
-import { redirectTo } from "../scripts/common.js";
+import Topbar from '../components/Topbar.vue';
+import PresCard from '../components/PresCard.vue';
 
 const apps = [
     {
@@ -70,10 +45,10 @@ export default {
     name: "Apps",
     components: {
         Topbar,
-        ButtonBlock
+        PresCard
     },
     methods: {},
-    data() { return { apps, redirectTo }; },
+    data() { return { apps }; },
     setup() {},
     mounted() {}
 };
