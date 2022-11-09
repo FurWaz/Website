@@ -6,9 +6,9 @@
     <div class="flex grow flex-col z-50">
         <audio id="audio" src="" class="hidden"></audio>
         <vb-header></vb-header>
-        <div class="flex grow">
-            <div class="flex grow flex-col justify-center"> <!-- CONTENT -->
-                <div class="flex flex-col mx-auto p-1">
+        <div class="flex grow min-w-0 min-h-0">
+            <div class="flex grow flex-col justify-center px-4 min-w-0"> <!-- CONTENT -->
+                <div class="flex flex-col mx-auto p-1 min-w-0 max-w-full">
                     <!-- SEARCH BAR -->
                     <search></search>
                     <!-- VIEW -->
@@ -24,161 +24,14 @@
 import Player from '../components/Player.vue';
 import Search from '../components/Search.vue';
 import VbHeader from '../components/VbHeader.vue';
-import Drawer from "../components/Drawer.vue";
+import Drawer from '../components/Drawer.vue'
 import { goBack } from '../../main/scripts/common.js';
-
-const API_URL = "https://vybeen.furwaz.com";
-let page = null;
-
-let maxLength = 0;
-
-let drawerOpen = false;
-function toogleDrawer() {
-    if (page == null) return;
-    /**@type {HTMLElement} */
-    const drawer = document.getElementById("drawer");
-    if (drawerOpen) {
-        drawer.classList.remove("w-[20%]");
-        drawer.classList.add("w-0");
-    } else {
-        drawer.classList.remove("w-0");
-        drawer.classList.add("w-[20%]");
-    }
-    drawerOpen = !drawerOpen;
-}
-
-function setPlaying(state) {
-    page.playing = state;
-}
-
-function setShowLyrics(state) {
-    page.showLyrics = state;
-}
-
-function formatTime(time) {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time - minutes * 60);
-    return `${minutes.toString().padStart(2, "0")} : ${seconds.toString().padStart(2, "0")}`;
-}
-
-function setMaxTime(time) {
-    document.getElementById("time")
-    .innerHTML = formatTime(time);
-    maxLength = time;
-}
-
-function setPreview(url) {
-    document.getElementById("preview")
-    .style.backgroundImage = "url("+url+")";
-    document.getElementById("background")
-    .style.backgroundImage = "url("+url+")";
-}
-
-function setTitle(title) {
-    document.getElementById("title")
-    .innerHTML = title;
-}
-
-function setInfos(infos) {
-    setPreview(infos.thumbnail);
-    setTitle(infos.author + " - " + infos.title);
-    setMaxTime(infos.length);
-    getStream(API_URL+infos.stream);
-    getLyrics(API_URL+infos.lyrics);
-}
-
-function requestSearch(search) {
-    fetch(API_URL+"/search?q="+search, {
-        method: "GET",
-        headers: { "Content-Type": "application/json"}
-    }).then(res => {
-        res.json().then(infos => {
-            if (typeof(infos) == "string" && infos.startsWith("Error")) {
-                return;
-            }
-            setInfos(infos);
-        });
-    });
-}
-
-/**@type {HTMLAudioElement} */
-let audio = null;
-
-function getStream(link) {
-    fetch(link, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }).then(res => {
-        if (audio == null) audio = document.getElementById("audio");
-
-        audio.currentTime = 0;
-        res.json().then(infos => {
-            if (typeof(infos) == "string" && infos.startsWith("Error")) {
-                return;
-            }
-            audio.src = infos.stream;
-            audio.play();
-            audio.currentTime = infos.progress / 1000;
-        });
-    });
-}
-
-let lyricsUpdater = -1;
-let lyricsBuffer = [];
-
-function getLyrics(link) {
-    lyricsBuffer.splice(0, lyricsBuffer.length);
-    fetch(link, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }).then(res => {
-        res.json().then(infos => {
-            let lyrics = infos.lyrics;
-            if (typeof(infos) == "string" && infos.startsWith("Error")) {
-                lyrics = ["Error : Can't find lyrics for this song"];
-            }
-            
-            const lyricsContainer = document.getElementById("lyrics");
-            lyricsContainer.innerHTML = "";
-            lyrics.forEach(line => {
-                const p = document.createElement("p");
-                if (line.text != "") {
-                    p.classList.add("paroles")
-                    p.innerHTML = line.text;
-                    lyricsContainer.appendChild(p);
-                }
-                lyricsBuffer.push({
-                    el: line.text == "" ? null: p,
-                    time: Number(line.time)
-                });
-                window.lyricsBuffer = lyricsBuffer;
-            });
-
-            document.getElementById("lyrics").scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            startMainLoop();
-        });
-    });
-}
-
-function startMainLoop() {
-    if (audio == null) audio = document.getElementById("audio");
-
-    if (lyricsUpdater != -1)
-        clearInterval(lyricsUpdater);
-
-    lyricsUpdater = setInterval(() => {
-        update();
-    }, 100);
-}
+import { toogleDrawer, showLyrics, doesShowLyrics, setPlayingIcon } from '../scripts/uiManager.js';
+import { fetchInfos, requestSearch, startMainLoop } from '../scripts/main';
 
 function setup() {
     document.getElementById("show-lyrics-btn").addEventListener("click", ev => {
-        setShowLyrics(!page.showLyrics);
-        if (page.player != null) page.player.setShowLyrics(page.showLyrics);
+        showLyrics(!doesShowLyrics());
     });
 
     document.getElementById("btn-back").addEventListener("click", ev => {
@@ -194,11 +47,11 @@ function setup() {
         const audio = document.getElementById("audio");
         if (audio.paused) {
             audio.play();
-            setPlaying(true);
+            setPlayingIcon(true);
             startMainLoop();
         } else {
             audio.pause();
-            setPlaying(false);
+            setPlayingIcon(false);
         }
     });
 
@@ -211,74 +64,14 @@ function setup() {
         }
     });
 
-    fetch(API_URL+"/infos", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }).then(res => {
-        res.json().then(infos => {
-            if (typeof(infos) == "string" && infos.startsWith("Error")) {
-                return;
-            }
-            setInfos(infos);
-        });
-    });
-}
-
-let progress = null;
-let bar = null;
-function update() {
-    if (lyricsBuffer.length == 0) {
-        clearInterval(lyricsUpdater);
-        lyricsUpdater = -1;
-        return;
-    }
-
-    const delay = audio.currentTime * 1000; // time since song start, in ms
-
-    let index = 0;
-    while (lyricsBuffer[index].time < delay) {
-        index++;
-        if (index >= lyricsBuffer.length) {
-            clearInterval(lyricsUpdater);
-            lyricsUpdater = -1;
-            return;
-        }
-    }
-    index--;
-
-    for(let i = 0; i < lyricsBuffer.length; i++) {
-        if (lyricsBuffer[i].el != null) {
-            if (i == index) {
-                lyricsBuffer[i].el.classList.add("selected");
-                const container = document.getElementById("lyrics");
-                const containerHeight = container.getBoundingClientRect().height;
-                const lyricsHeight = lyricsBuffer[i].el.getBoundingClientRect().height;
-                container.scrollTo({
-                    top: lyricsBuffer[index].el.offsetTop - containerHeight / 2 + lyricsHeight / 2,
-                    behavior: "smooth"
-                });
-            } else {
-                lyricsBuffer[i].el.classList.remove("selected");
-            }
-        }
-    }
-
-    if (progress == null) progress = document.getElementById("progress");
-    if (bar == null) bar = document.getElementById("bar");
-    page.player.setPlaying(!audio.paused);
-
-    progress.innerHTML = formatTime(delay/1000);
-    bar.style.width = `${(delay / 1000 / maxLength) * 100}%`;
+    fetchInfos();
+    startMainLoop();
 }
 
 export default {
     name: 'Home',
     data() {
-        page = this;
-        return {
-            playing: false, showLyrics: false,
-            player: null
-        }
+        return {}
     },
     components: {
         Player,
@@ -286,12 +79,7 @@ export default {
         VbHeader,
         Drawer
     },
-    methods: {
-        toogleDrawer,
-        setPlaying,
-        setShowLyrics,
-        goBack
-    },
+    methods: {},
     mounted() {
         setup();
     }

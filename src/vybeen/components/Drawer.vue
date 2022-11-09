@@ -1,12 +1,12 @@
 <template>
-    <div id="drawer" class="flex grow-0 flex-row w-0 overflow-hidden transition-all">
-        <span class="flex grow-0 w-1 bg-slate-600 rounded-lg"></span>
-        <div class="flex grow flex-col mx-2">
-            <div class="flex justify-center bg-slate-600 rounded-lg py-1 w-full">
-                <p class="text-xl font-semibold text-slate-50"> Listeners </p>
+    <div id="drawer" class="flex grow-0 flex-row w-0 overflow-hidden transition-all min-w-0">
+        <span class="flex grow-0 min-w-[0.3em] rounded-lg md:bg-slate-600 bg-transparent"></span>
+        <div class="flex grow flex-col mx-2 min-w-fit min-h-0">
+            <div class="flex justify-center bg-slate-600 rounded-lg py-1 px-4 w-full min-w-fit min-h-0">
+                <p class="text-xl font-semibold text-slate-50 w-fit min-w-0 whitespace-nowrap"> Listeners </p>
             </div>
             <div class="flex flex-col space-y-2 mt-2 mx-2">
-                <div class="flex rounded-lg shadow border-2 border-slate-600 bg-slate-900/[0.3] p-2">
+                <div class="flex rounded-lg shadow border-2 border-slate-600 bg-slate-900/[0.3] p-2 px-4 w-full min-w-fit min-h-0">
                     <div class="flex flex-col justify-center text-slate-50 mr-2 ml-1">
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>

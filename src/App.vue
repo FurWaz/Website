@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col bg-slate-700 min-h-screen min-w-screen">
+    <div class="flex grow flex-col min-w-0 min-h-0 bg-slate-700">
         <router-view></router-view>
         <div class="flex flex-col grow-0 h-fit justify-center text-center pb-1">
             <p class="text-slate-500 text-xl font-bold"> FurWaz </p>

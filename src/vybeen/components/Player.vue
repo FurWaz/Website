@@ -1,15 +1,15 @@
 <template>
-    <div class="flex flex-col bg-slate-700/[0.5] rounded-lg p-2 mt-2 w-[30vw] border-2 border-slate-700">
-        <div id="preview" class="flow grow-0 cover-prev rounded-lg bg-slate-70 0 h-[15vw] m-2 border-2 border-slate-500 overflow-hidden">
+    <div class="flex flex-col bg-slate-700/[0.5] rounded-lg p-2 mt-2 w-[40em] max-w-[100%] min-w-fit border-2 border-slate-700">
+        <div id="preview" class="flow grow-0 cover-prev rounded-lg bg-slate-70 0 h-[10em] md:h-[20em] m-2 border-2 border-slate-500 overflow-hidden">
             <div class="flex w-full h-full max-h-[100%] overflow-hidden">
-                <div :class="showLyrics? 'bg-black/[0.4] blur-bg': 'bg-black/[0]'" class="flex grow flex-col justify-center transition-all">
-                    <div id="lyrics" :class="showLyrics? 'opacity-1 pointer-events-all' : 'opacity-0 pointer-events-none'" class=" flex grow flex-col px-2 overflow-x-hidden transition-all py-[10%]">
+                <div id="div-lyrics" class="flex grow flex-col justify-center transition-all bg-black/[0]">
+                    <div id="lyrics" class="flex grow flex-col px-2 overflow-x-hidden transition-all py-[10%] opacity-0 pointer-events-none">
                         <p class="paroles">Loading ...</p>
                     </div>
                 </div>
             </div>
             <div class="flex justify-end w-full h-0">
-                <div class="fixed w-0 h-0">
+                <div class="absolute w-0 h-0">
                     <div
                         id="show-lyrics-btn"
                         class="absolute bottom-1 right-1 w-fit h-fit border-2 border-slate-400 rounded p-1 bg-slate-700/[0.5] text-slate-300 hover:text-slate-100 hover:border-slate-300 hover:bg-slate-500/[0.6] cursor-pointer transition-all"
@@ -52,12 +52,9 @@
                 id="btn-play"
                 class="flex rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 m-2 transition-all cursor-pointer"
             >
-                <svg v-if="!playing" class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <svg v-if="playing" class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="6" y="4" width="4" height="16"></rect>
-                    <rect x="14" y="4" width="4" height="16"></rect>
                 </svg>
             </div>
             <div
