@@ -28,6 +28,7 @@ import Drawer from '../components/Drawer.vue'
 import { goBack } from '../../main/scripts/common.js';
 import { toogleDrawer, showLyrics, doesShowLyrics, setPlayingIcon } from '../scripts/uiManager.js';
 import { fetchInfos, requestSearch, startMainLoop } from '../scripts/main';
+import { setupEvents } from '../scripts/events';
 
 function setup() {
     document.getElementById("show-lyrics-btn").addEventListener("click", ev => {
@@ -82,6 +83,7 @@ export default {
     methods: {},
     mounted() {
         setup();
+        setupEvents();
     }
 }
 </script>

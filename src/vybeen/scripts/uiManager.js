@@ -1,5 +1,19 @@
+import { getClients } from "./clients";
+
+const friendContent = `
+<div class="flex flex-col justify-center text-slate-50 mr-2 ml-1">
+    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+    </svg>
+</div>
+<div class="flex flex-col justify-center">
+    <p class="text-xl font-semibold text-slate-50 whitespace-nowrap"> {{CLIENT_NAME}} </p>
+</div>`;
+
 let drawerOpen = false;
 let drawer = null;
+
 function toogleDrawer() {
     /**@type {HTMLElement} */
     if (drawer == null) drawer = document.getElementById("drawer");
@@ -40,6 +54,18 @@ function setPreview(url) {
 function setTitle(title) {
     document.getElementById("title")
     .innerHTML = title;
+}
+
+let friendsDiv = null;
+function updateClientsList() {
+    if (friendsDiv == null) friendsDiv = document.getElementById("friends");
+
+    getClients().forEach(client => {
+        const div = document.createElement("div");
+        div.classList.add("flex", "rounded-lg", "shadow", "border-2", "border-slate-600", "bg-slate-900/[0.3]", "p-2");
+        div.innerHTML = friendContent.replace("{{CLIENT_NAME}}", client.name);
+        friendsDiv.appendChild(div);
+    });
 }
 
 /** @type {HTMLDivElement} */
@@ -124,5 +150,6 @@ export {
     toogleDrawer,
     showLyrics,
     doesShowLyrics,
-    setPlayingIcon
+    setPlayingIcon,
+    updateClientsList
 };

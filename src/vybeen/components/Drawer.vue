@@ -20,7 +20,11 @@
                         </p>
                     </div>
                 </div>
-                <div v-for="friend in friends" class="flex rounded-lg shadow border-2 border-slate-600 bg-slate-900/[0.3] p-2">
+                <div id="friends">
+
+                </div>
+                <!-- JUST HERE FOR TAILWIND TO GENERATE CSS -->
+                <div class="hidden flex rounded-lg shadow border-2 border-slate-600 bg-slate-900/[0.3] p-2">
                     <div class="flex flex-col justify-center text-slate-50 mr-2 ml-1">
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
@@ -28,7 +32,7 @@
                         </svg>
                     </div>
                     <div class="flex flex-col justify-center">
-                        <p class="text-xl font-semibold text-slate-50 whitespace-nowrap"> {{ friend.name }} </p>
+                        <p class="text-xl font-semibold text-slate-50 whitespace-nowrap"> </p>
                     </div>
                 </div>
             </div>
