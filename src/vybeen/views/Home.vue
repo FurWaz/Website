@@ -29,6 +29,7 @@ import { goBack } from '../../main/scripts/common.js';
 import { toogleDrawer, showLyrics, doesShowLyrics, setPlayingIcon } from '../scripts/uiManager.js';
 import { fetchInfos, requestSearch, startMainLoop } from '../scripts/main';
 import { setupEvents } from '../scripts/events';
+import { fetchClients } from '../scripts/clients';
 
 function setup() {
     document.getElementById("show-lyrics-btn").addEventListener("click", ev => {
@@ -64,9 +65,6 @@ function setup() {
             requestSearch(document.getElementById("search").value);
         }
     });
-
-    fetchInfos();
-    startMainLoop();
 }
 
 export default {
@@ -84,6 +82,9 @@ export default {
     mounted() {
         setup();
         setupEvents();
+        fetchInfos();
+        fetchClients();
+        startMainLoop();
     }
 }
 </script>

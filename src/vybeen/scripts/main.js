@@ -1,5 +1,3 @@
-import { setClients } from "./clients";
-import { getEvents } from "./events";
 import { fetchLyrics, getLyricsBuffer } from "./lyricsGetter";
 import { fetchStream } from "./streamGetter";
 import { lyricsScroll, lyricsSelect, setMaxTime, setPlayingIcon, setPreview, setProgress, setTitle } from "./uiManager";
@@ -16,18 +14,6 @@ function fetchInfos() {
                 return;
             }
             setInfos(infos);
-        });
-    });
-
-    fetch(API_URL+"/clients", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }).then(res => {
-        res.json().then(clients => {
-            if (typeof(clients) == "string" && clients.startsWith("Error")) {
-                return;
-            }
-            setClients(clients);
         });
     });
 }

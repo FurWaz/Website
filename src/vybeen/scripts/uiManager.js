@@ -1,4 +1,5 @@
 import { getClients } from "./clients";
+import { getClientId } from "./events";
 
 const friendContent = `
 <div class="flex flex-col justify-center text-slate-50 mr-2 ml-1">
@@ -59,8 +60,13 @@ function setTitle(title) {
 let friendsDiv = null;
 function updateClientsList() {
     if (friendsDiv == null) friendsDiv = document.getElementById("friends");
+    while (friendsDiv.firstChild) friendsDiv.firstChild.remove();
 
-    getClients().forEach(client => {
+    const clients = getClients();
+    console.log("clients: ", clients.map(c => c.name));
+    const others = clients.filter(c => c.id != getClientId());
+    console.log("others: ", others.map(c => c.name));
+    others.forEach(client => {
         const div = document.createElement("div");
         div.classList.add("flex", "rounded-lg", "shadow", "border-2", "border-slate-600", "bg-slate-900/[0.3]", "p-2");
         div.innerHTML = friendContent.replace("{{CLIENT_NAME}}", client.name);

@@ -1,6 +1,21 @@
+import { API_URL } from "./main";
 import { updateClientsList } from "./uiManager";
 
 const clients = [];
+
+function fetchClients() {
+    fetch(API_URL+"/clients", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    }).then(res => {
+        res.json().then(clients => {
+            if (typeof(clients) == "string" && clients.startsWith("Error")) {
+                return;
+            }
+            setClients(clients);
+        });
+    });
+}
 
 function getClients() {
     return clients;
@@ -20,12 +35,12 @@ function getClientById(id) {
     return clients.find(client => client.id == id);
 }
 
-function setClients(clients) {
+function setClients(array) {
     clients.splice(0, clients.length);
-    clients.forEach(client => {
-        addClient(client);
+    array.forEach(client => {
+        clients.push(client);
     });
     updateClientsList();
 }
 
-export { addClient, getClientById, getClients, removeClient, setClients };
+export { addClient, getClientById, getClients, removeClient, setClients, fetchClients };

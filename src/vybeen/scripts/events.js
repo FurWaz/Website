@@ -1,6 +1,6 @@
 import User from "../../main/scripts/User";
-import { addClient, removeClient } from "./clients";
-import { API_URL, setInfos } from "./main";
+import { fetchClients } from "./clients";
+import { API_URL, fetchInfos } from "./main";
 
 class Event {
     #type = "";
@@ -19,24 +19,21 @@ const events = [];
 function setupEvents() {
     events.splice(0, events.length);
     register();
-    setInterval(() => {
-        getEvents().forEach(event => {
-            processEvent(event);
-        });
-    }, 1000);
+}
+
+function getClientId() {
+    return user_poll_id;
 }
 
 function processEvent(event) {
-    console.log("new event: "+event.type);
+    console.log("new event: "+event.type+" (data: "+JSON.stringify(event.data)+")");
     switch (event.type) {
         case "newMusic":
-            setInfos(event.data);
+            fetchInfos();
             break;
         case "newClient":
-            addClient(event.data);
-            break;
-        case "removeClient":
-            removeClient(event.data);
+        case "clientRemoved":
+            fetchClients();
             break;
     
         default:
@@ -57,27 +54,32 @@ function register() {
             user_poll_id = data.id;
             console.log("registered with id "+data.id);
             pollEvents();
-        });
+        }).catch(err => { console.error(err); });
     }).catch(err => { console.error(err); });
 }
 
 function pollEvents() {
+    console.log("polling events ...");
     fetch(API_URL+"/events?id="+user_poll_id, {
         method: "GET",
         headers: { "Content-Type": "application/json", "Accept": "application/json" }
     }).then(res => {
+        console.log("event received !")
+        pollEvents();
         res.json().then(data => {
             if (typeof(data) == "string" && data.startsWith("Error")) {
                 console.log("error : "+data);
                 return;
             }
-            events.push(new Event(data.type, data.data));
+            processEvent(new Event(data.type, data.data));
+
         }).catch(err => {
             console.error(err);
         });
-    }).catch(err => { console.error(err); })
-    .finally(() => {
+    }).catch(err => {
+        console.log("error getting event !")
         pollEvents();
+        console.error(err);
     });
 }
 
@@ -85,4 +87,4 @@ function getEvents() {
     return events.splice(0, events.length);
 }
 
-export { Event, getEvents, setupEvents };
+export { Event, getEvents, setupEvents, getClientId };
