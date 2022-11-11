@@ -20,7 +20,7 @@
                         </p>
                     </div>
                 </div>
-                <div id="friends">
+                <div id="friends" class="flex flex-col space-y-2 mt-2 mx-2">
 
                 </div>
                 <!-- JUST HERE FOR TAILWIND TO GENERATE CSS -->
