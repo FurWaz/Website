@@ -15,10 +15,8 @@ class Event {
 }
 
 let user_poll_id = -1;
-const events = [];
 function setupEvents() {
-    events.splice(0, events.length);
-    register();
+    pollEvents();
 }
 
 function getClientId() {
@@ -26,7 +24,7 @@ function getClientId() {
 }
 
 function processEvent(event) {
-    console.log("new event: "+event.type+" (data: "+JSON.stringify(event.data)+")");
+    // console.log("new event: "+event.type+" (data: "+JSON.stringify(event.data)+")");
     switch (event.type) {
         case "newMusic":
             fetchInfos();
@@ -42,44 +40,55 @@ function processEvent(event) {
 }
 
 function register() {
-    fetch(API_URL+"/register?name="+User.CurrentUser.username, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }).then(res => {
-        res.json().then(data => {
-            if (typeof(data) == "string" && data.startsWith("Error")) {
-                console.log("error : "+data);
-                return;
-            }
-            user_poll_id = data.id;
-            console.log("registered with id "+data.id);
-            pollEvents();
-        }).catch(err => { console.error(err); });
-    }).catch(err => { console.error(err); });
+    return new Promise((resolve, reject) => {
+        fetch(API_URL+"/register?name="+User.CurrentUser.username, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(res => {
+            res.json().then(data => {
+                if (typeof(data) == "string" && data.startsWith("Error")) {
+                    reject(data);
+                    return;
+                }
+                user_poll_id = data.id;
+                // console.log("registered with id "+data.id);
+                resolve();
+            }).catch(reject);
+        }).catch(reject);
+    });
 }
 
 function pollEvents() {
-    console.log("polling events ...");
-    fetch(API_URL+"/events?id="+user_poll_id, {
-        method: "GET",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" }
-    }).then(res => {
-        console.log("event received !")
+    pollEvent().then(() => {
         pollEvents();
-        res.json().then(data => {
-            if (typeof(data) == "string" && data.startsWith("Error")) {
-                console.log("error : "+data);
-                return;
-            }
-            processEvent(new Event(data.type, data.data));
-
-        }).catch(err => {
-            console.error(err);
-        });
     }).catch(err => {
-        console.log("error getting event !")
-        pollEvents();
-        console.error(err);
+        // console.log("error while polling events: "+err);
+        register().then(() => {
+            pollEvents();
+            fetchClients();
+        }).catch(err => {
+            // console.log("error while registering for events: "+err);
+        });
+    });
+}
+
+function pollEvent() {
+    return new Promise((resolve, reject) => {
+        // console.log("polling event with id "+user_poll_id);
+        fetch(API_URL+"/events?id="+user_poll_id, {
+            method: "GET",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" }
+        }).then(res => {
+            // console.log("event received !")
+            res.json().then(data => {
+                if (typeof(data) == "string" && data.startsWith("Error")) {
+                    reject(data);
+                    return;
+                }
+                processEvent(new Event(data.type, data.data));
+                resolve();
+            }).catch(reject);
+        }).catch(reject);
     });
 }
 
@@ -87,4 +96,4 @@ function getEvents() {
     return events.splice(0, events.length);
 }
 
-export { Event, getEvents, setupEvents, getClientId };
+export { Event, getEvents, setupEvents, getClientId, pollEvents };

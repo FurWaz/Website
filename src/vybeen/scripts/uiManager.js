@@ -63,9 +63,9 @@ function updateClientsList() {
     while (friendsDiv.firstChild) friendsDiv.firstChild.remove();
 
     const clients = getClients();
-    console.log("clients: ", clients.map(c => c.name));
+    // console.log("clients: ", clients.map(c => c.name));
     const others = clients.filter(c => c.id != getClientId());
-    console.log("others: ", others.map(c => c.name));
+    // console.log("others: ", others.map(c => c.name));
     others.forEach(client => {
         const div = document.createElement("div");
         div.classList.add("flex", "rounded-lg", "shadow", "border-2", "border-slate-600", "bg-slate-900/[0.3]", "p-2");
