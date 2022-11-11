@@ -1,9 +1,9 @@
 <template>
-    <div class="absolute top-0 right-0 w-screen h-screen bg-black">
+    <div class="vybeen-ui absolute top-0 right-0 w-screen h-screen bg-black">
         <div id="background" class="absolute top-0 right-0 w-screen h-screen bg-cover bg-center blur-3xl"></div>
         <div class="absolute top-0 right-0 w-screen h-screen flex grow bg-slate-900/[0.6]"></div>
     </div>
-    <div class="flex grow flex-col z-50">
+    <div class="vybeen-ui flex grow flex-col z-50">
         <audio id="audio" src="" class="hidden"></audio>
         <vb-header></vb-header>
         <div class="flex grow min-w-0 min-h-0">
@@ -18,6 +18,24 @@
             <drawer></drawer>
         </div>
     </div>
+    <div class="vybeen-popup hidden flex grow flex-col justify-center">
+        <div class="flex mx-auto w-fit">
+            
+            <div class="flex flex-col bg-slate-700 border-2 border-slate-600 shadow-lg rounded-lg">
+                <h1 class="bg-slate-600 text-slate-200 font-bold text-xl py-2 px-4">VyBeen</h1>
+                <div class="p-4">
+                    <!-- need to be connected to access vybeen -->
+                    <p class="text-slate-300 font-semibold"> You are currently not connected. </p>
+                    <p class="text-slate-300 font-semibold"> Please <a href="/login">log in</a> or <a href="/register">register</a> to access VyBeen. </p>
+                </div>
+                <div class="flex grow-0 justify-between p-2">
+                    <button-text :action="goBack"> Cancel </button-text>
+                    <button-block href="/register"> Log In </button-block>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </template>
 
 <script>
@@ -25,13 +43,27 @@ import Player from '../components/Player.vue';
 import Search from '../components/Search.vue';
 import VbHeader from '../components/VbHeader.vue';
 import Drawer from '../components/Drawer.vue'
+import ButtonBlock from '../../main/components/buttons/ButtonBlock.vue';
+import ButtonText from '../../main/components/buttons/ButtonText.vue';
 import { goBack } from '../../main/scripts/common.js';
+
 import { toogleDrawer, showLyrics, doesShowLyrics, setPlayingIcon } from '../scripts/uiManager.js';
 import { fetchInfos, requestSearch, startMainLoop } from '../scripts/main';
 import { setupEvents } from '../scripts/events';
 import { fetchClients } from '../scripts/clients';
+import User from '../../main/scripts/User';
 
 function setup() {
+    if (User.CurrentUser == null) {
+        const uis = document.getElementsByClassName('vybeen-ui');
+        for (let i = 0; i < uis.length; i++) {
+            uis[i].classList.add('hidden');
+        }
+        const popup = document.getElementsByClassName('vybeen-popup')[0];
+        popup.classList.remove('hidden');
+        return;
+    }
+
     document.getElementById("show-lyrics-btn").addEventListener("click", ev => {
         showLyrics(!doesShowLyrics());
     });
@@ -76,9 +108,11 @@ export default {
         Player,
         Search,
         VbHeader,
-        Drawer
+        Drawer,
+        ButtonBlock,
+        ButtonText
     },
-    methods: {},
+    methods: { goBack },
     mounted() {
         setup();
         setupEvents();
@@ -122,5 +156,8 @@ export default {
 .selected {
     @apply text-slate-50 font-bold text-2xl bg-slate-50/[0.2] border-2 border-slate-50/[0.2];
     animation: float 4s cubic-bezier(.4,.2,.6,.8) infinite;
+}
+a {
+    @apply text-blue-500 font-bold;
 }
 </style>
