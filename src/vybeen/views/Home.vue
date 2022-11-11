@@ -155,7 +155,7 @@ export default {
 }
 .selected {
     @apply text-slate-50 font-bold text-2xl bg-slate-50/[0.2] border-2 border-slate-50/[0.2];
-    animation: float 4s cubic-bezier(.4,.2,.6,.8) infinite;
+    /* animation: float 4s cubic-bezier(.4,.2,.6,.8) infinite; */
 }
 a {
     @apply text-blue-500 font-bold;

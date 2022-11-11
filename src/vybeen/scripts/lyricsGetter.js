@@ -14,29 +14,38 @@ function fetchLyrics(link) {
     }).then(res => {
         res.json().then(infos => {
             let lyrics = infos.lyrics;
+            lyricsBuffer.splice(0, lyricsBuffer.length);
             if (typeof(infos) == "string" && infos.startsWith("Error")) {
-                lyrics = {text: "Error : Can't find lyrics for this song"};
+                lyrics = "Error : Can't find lyrics for this song";
             }
             
             const lyricsContainer = document.getElementById("lyrics");
             while (lyricsContainer.firstChild) lyricsContainer.firstChild.remove();
 
-            lyrics.forEach(line => {
+            if (typeof lyrics == "string") {
                 const p = document.createElement("p");
-                if (line.text != "") {
-                    p.classList.add("paroles")
-                    p.innerHTML = line.text;
-                    lyricsContainer.appendChild(p);
-                }
-                lyricsBuffer.push({
-                    el: line.text == "" ? null: p,
-                    time: Number(line.time)
+                p.classList.add("paroles", "selected")
+                p.innerHTML = lyrics;
+                lyricsContainer.appendChild(p);
+            } else {
+                lyrics.forEach(line => {
+                    const p = document.createElement("p");
+                    if (line.text != "") {
+                        p.classList.add("paroles")
+                        p.innerHTML = line.text;
+                        lyricsContainer.appendChild(p);
+                    }
+                    lyricsBuffer.push({
+                        el: line.text == "" ? null: p,
+                        time: Number(line.time)
+                    });
+                    window.lyricsBuffer = lyricsBuffer;
                 });
-                window.lyricsBuffer = lyricsBuffer;
-            });
+            }
 
             lyricsScroll(0);
             startMainLoop();
+            window.lyrics = lyricsBuffer;
         });
     });
 }

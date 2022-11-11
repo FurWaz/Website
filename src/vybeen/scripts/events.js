@@ -75,6 +75,10 @@ function pollEvents() {
 function pollEvent() {
     return new Promise((resolve, reject) => {
         // console.log("polling event with id "+user_poll_id);
+        if (user_poll_id == -1) {
+            reject("not registered");
+            return;
+        }
         fetch(API_URL+"/events?id="+user_poll_id, {
             method: "GET",
             headers: { "Content-Type": "application/json", "Accept": "application/json" }

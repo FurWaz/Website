@@ -48,9 +48,7 @@ function startMainLoop() {
     if (lyricsUpdater != -1)
         clearInterval(lyricsUpdater);
 
-    lyricsUpdater = setInterval(() => {
-        update();
-    }, 100);
+    lyricsUpdater = setInterval(() => { update(); }, 100);
 }
 
 function stopMainLoop() {
@@ -61,7 +59,7 @@ function stopMainLoop() {
 function update() {
     const lyricsBuffer = getLyricsBuffer();
     if (lyricsBuffer.length == 0) {
-        stopMainLoop();
+        // stopMainLoop();
         return;
     }
 
@@ -71,11 +69,12 @@ function update() {
     while (lyricsBuffer[index].time < delay) {
         index++;
         if (index >= lyricsBuffer.length) {
-            stopMainLoop();
+            // stopMainLoop();
             return;
         }
     }
     index--;
+    console.log("selecting index "+index+" out of "+lyricsBuffer.length);
 
     if (index >= 0) {
         lyricsSelect(lyricsBuffer[index].el);
