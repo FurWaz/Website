@@ -4,7 +4,7 @@ import { fetchLyrics, getLyricsBuffer } from "./lyricsGetter";
 import { fetchStream } from "./streamGetter";
 import { lyricsScroll, lyricsSelect, setMaxTime, setPlayingIcon, setPreview, setProgress, setTitle } from "./uiManager";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "https://vybeen.furwaz.com";
 
 function fetchInfos() {
     fetch(API_URL+"/infos", {
