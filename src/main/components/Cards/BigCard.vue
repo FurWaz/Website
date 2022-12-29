@@ -1,11 +1,11 @@
 <template>
     <div
-        class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 my-4 md:max-w-[20vw]
+        class="spawn-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 my-4 max-w-[25em] min-w-min
                 hover:border-slate-500 hover:shadow-lg cursor-pointer transition-all"
         v-on:click="redirectTo(data.href)"
     >
-        <div class="flex w-fit mx-auto">
-            <h1 class="text-slate-300 text-4xl font-bold mx-auto px-10"> {{ data.title }} </h1>
+        <div class="flex w-fit mx-auto min-w-min">
+            <h1 class="text-slate-300 text-4xl font-bold mx-auto mt-2 whitespace-nowrap"> {{ data.title }} </h1>
         </div>
         <div class="flex w-fit mx-auto h-fit flex-col px-2 py-6 justify-center">
             <div class="flex mx-auto w-fit h-fit rounded-lg bg-black/[0.1]">
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import ButtonBlock from '../components/buttons/ButtonBlock.vue';
-import { redirectTo } from "../scripts/common.js";
+import ButtonBlock from '../buttons/ButtonBlock.vue';
+import { redirectTo } from "../../scripts/common.js";
 
 export default {
     name: "PresCard",

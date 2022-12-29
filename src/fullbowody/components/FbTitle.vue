@@ -18,7 +18,7 @@
                 <h1 class="text-slate-200 md:text-6xl text-4xl font-extrabold">FullBowody</h1>
             </div>
         </div>
-        <p ref="description" class="text-slate-500 text-3xl font-semibold text-center mx-auto min-w-0 max-w-[100%] whitespace-wrap"> <slot></slot> </p>
+        <p ref="description" class="text-slate-500 text-2xl font-semibold text-center mx-auto min-w-0 max-w-[100%] whitespace-wrap"> <slot></slot> </p>
     </div>
 </template>
 

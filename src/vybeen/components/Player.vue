@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col bg-slate-700/[0.5] rounded-lg p-2 mt-2 w-[40em] max-w-[100%] min-w-fit border-2 border-slate-700">
-        <div id="preview" class="flow grow-0 cover-prev rounded-lg bg-slate-70 0 h-[10em] md:h-[20em] m-2 border-2 border-slate-500 overflow-hidden">
+    <div class="flex flex-col bg-slate-700/[0.5] rounded-lg p-2 mt-2 w-[40em] max-w-[100%] border-2 border-slate-700">
+        <div id="preview" class="flow grow-0 cover-prev rounded-lg bg-slate-70 0 h-[10em] md:h-[15em] lg:h-[20em] m-2 border-2 border-slate-500 overflow-hidden">
             <div class="flex w-full h-full max-h-[100%] overflow-hidden">
                 <div id="div-lyrics" class="flex grow flex-col justify-center transition-all bg-black/[0]">
                     <div id="lyrics" class="flex grow flex-col px-2 overflow-x-hidden transition-all py-[10%] opacity-0 pointer-events-none">

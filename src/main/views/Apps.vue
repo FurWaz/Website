@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap grow my-10 justify-center py-10">
-                    <pres-card v-for="app in apps" :data="app"></pres-card>
+                    <big-card v-for="app in apps" :data="app"></big-card>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
 
 <script>
 import Topbar from '../components/Topbar.vue';
-import PresCard from '../components/PresCard.vue';
+import BigCard from '../components/Cards/BigCard.vue';
 
 const apps = [
     {
@@ -45,7 +45,7 @@ export default {
     name: "Apps",
     components: {
         Topbar,
-        PresCard
+        BigCard
     },
     methods: {},
     data() { return { apps }; },

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row justify-between w-full h-fit space-x-4">
+    <div class="flex md:flex-row flex-col justify-between w-full h-fit md:space-x-4">
         <p class="text-white text-lg font-semibold"> {{ this.label }} : </p>
         <input :type="this.type" :name="this._name" class="border-2 text-white px-1 font-semibold rounded bg-transparent">
     </div>

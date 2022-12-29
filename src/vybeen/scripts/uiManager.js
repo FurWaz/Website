@@ -104,6 +104,7 @@ function lyricsSelect(el) {
 let progress = null;
 let bar = null;
 function setProgress(time) {
+    if (time > maxLength) time = maxLength;
     if (progress == null) progress = document.getElementById("progress");
     if (bar == null) bar = document.getElementById("bar");
 

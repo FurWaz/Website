@@ -30,7 +30,7 @@
                 </div>
                 <div class="flex grow-0 justify-between p-2">
                     <button-text :action="goBack"> Cancel </button-text>
-                    <button-block href="/register"> Log In </button-block>
+                    <button-block href="/login"> Log In </button-block>
                 </div>
             </div>
 
@@ -151,10 +151,10 @@ export default {
 }
 
 .paroles {
-    @apply text-slate-200/[0.3] font-semibold text-lg text-center my-2 mx-auto max-w-[80%] rounded-lg px-4 py-1 border border-transparent transition-all;
+    @apply text-slate-200/[0.3] font-semibold md:text-lg text-base text-center my-2 mx-auto max-w-[80%] rounded-lg px-4 py-1 border border-transparent transition-all;
 }
 .selected {
-    @apply text-slate-50 font-bold text-2xl bg-slate-50/[0.2] border-2 border-slate-50/[0.2];
+    @apply text-slate-50 font-bold md:text-2xl text-xl bg-slate-50/[0.2] border-2 border-slate-50/[0.2];
     /* animation: float 4s cubic-bezier(.4,.2,.6,.8) infinite; */
 }
 a {
