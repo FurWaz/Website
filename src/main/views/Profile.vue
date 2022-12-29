@@ -22,16 +22,16 @@
                                     <span class="h-[2px] w-full bg-slate-600 rounded"></span>
                                 </div>
                                 <div class="flex flex-col justify-center">
-                                    <p class="text-slate-500 text font-semibold mx-2"> {{ item.label }} </p>
+                                    <p class="text-slate-500 font-semibold mx-2"> {{ item.label }} </p>
                                 </div>
                                 <div class="flex flex-col justify-center w-full">
                                     <span class="h-[2px] w-full bg-slate-600 rounded"></span>
                                 </div>
                             </div>
                             <div v-for="info in item.items" class="flex grow-0 flex-row pt-4 justify-between">
-                                <div v-if="info.type == 'input'" class="flex grow">
+                                <div v-if="info.type == 'input'" class="flex md:flex-row flex-col grow">
                                     <div class="flex flex-col justify-center mr-auto">
-                                        <h2 class="text-slate-200 text-xl font-semibold mx-2"> {{info.label}}: </h2>
+                                        <h2 class="text-slate-200 text-base font-semibold md:mx-2"> {{info.label}}: </h2>
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <input
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-between pt-4">
+                            <div class="flex justify-between pt-4 space-x-2">
                                 <div v-for="info in item.buttons" >
                                     <button-block :disabled="!info.enabled" :action="info.onclick"> {{ info.label }} </button-block>
                                 </div>
