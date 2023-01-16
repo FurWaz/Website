@@ -4,5 +4,6 @@ export default [
     { path: '/register', name: 'Register', component: () => import("./views/Register.vue") },
     { path: '/profile', name: 'Profile', component: () => import("./views/Profile.vue") },
     { path: '/apps', name: 'Apps', component: () => import("./views/Apps.vue") },
-    { path: '/projects', name: 'Projects', component: () => import("./views/Projects.vue") }
+    { path: '/projects', name: 'Projects', component: () => import("./views/Projects.vue") },
+    { path: '/about', name: 'About', component: () => import("./views/About.vue") }
 ];
