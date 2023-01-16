@@ -15,9 +15,6 @@ export default {
         return {
             year: new Date().getFullYear()
         }
-    },
-    mounted: () => {
-        console.log("URL requested : " + window.location.href);
     }
 };
 </script>
