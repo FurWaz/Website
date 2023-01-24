@@ -79,12 +79,12 @@ export default {
             this.label = label;
             this.amount = amount;
             this.currency = currency;
-            this.$el.firstElementChild.firstElementChild.classList.add("spawn-up");
+            this.$el.firstElementChild.firstElementChild.classList.add("show-up");
             initPayPalButton(amount, currency);
         },
         hide() {
             this.showing = false;
-            this.$el.firstElementChild.firstElementChild.classList.remove("spawn-up");
+            this.$el.firstElementChild.firstElementChild.classList.remove("show-up");
         }
     },
     components: {

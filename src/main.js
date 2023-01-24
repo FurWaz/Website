@@ -5,6 +5,7 @@ import App from './App.vue';
 import "./index.css";
 import fullBowodyRoutes from "./fullbowody/routes.js";
 import vybeenRoutes from "./vybeen/routes.js";
+import convRoutes from "./conv/routes.js";
 import mainRoutes from "./main/routes.js";
 
 // https redirection (should be done in NGINX, but it not we do it here)
@@ -33,6 +34,13 @@ for (let i = 0; i < vybeenRoutes.length; i++) {
         path: "/projects/vybeen" + vybeenRoutes[i].path,
         name: "VB" + vybeenRoutes[i].name,
         component: vybeenRoutes[i].component
+    });
+}
+for (let i = 0; i < convRoutes.length; i++) {
+    routes.push({
+        path: "/apps/conv" + convRoutes[i].path,
+        name: "CV" + convRoutes[i].name,
+        component: convRoutes[i].component
     });
 }
 

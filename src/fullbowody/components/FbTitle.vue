@@ -1,5 +1,5 @@
 <template>
-    <div class="spawn-down flex flex-col px-2 max-w-[100vw] min-w-0 min-h-0">
+    <div class="show-down flex flex-col px-2 max-w-[100vw] min-w-0 min-h-0">
         <div
             v-if="this.displayBackBtn"
             class="md:flex hidden cursor-pointer left-8 top-8 fixed py-1 px-4 shadow-md rounded-lg bg-slate-600 border-2 border-slate-500 text-slate-400

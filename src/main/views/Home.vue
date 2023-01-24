@@ -3,7 +3,7 @@
         <topbar></topbar>
         <div class="flex grow pt-20">
             <div class="flex grow pt-10">
-                <div class="spawn-down flex w-full h-fit justify-center">
+                <div class="show-down flex w-full h-fit justify-center">
                     <div class="flex -skew-x-12 border-8 border-blue-500 bg-slate-800 h-fit w-fit px-8 pb-2 shadow-xl">
                         <div class="flex mx-auto skew-x-12">
                             <h1 class="text-slate-50 md:text-8xl text-6xl font-bold jump" style="animation-delay: 0s;"> F </h1>
