@@ -1,101 +1,117 @@
 <template>
-    <div class="flex grow">
-        <div class="flex flex-col w-max mx-auto justify-center">
-            <div class="flex flex-col mx-auto">
-                <conv-card></conv-card>
-                <p style="animation-delay: 1s;" class="show-down text-2xl text-teal-500 font-bold italic mt-2"> Convert YouTube videos to any audio/video file !</p>
+    <div class="flex grow justify-evenly mt-10">
+        <div class="md:flex hidden justify-center px-4">
+            <div class="flex flex-col grow justify-evenly">
+                <side-ad class="w-[12vw] h-[30vh]"></side-ad>
+                <side-ad class="w-[12vw] h-[30vh]"></side-ad>
             </div>
-            <div ref="input-zone" style="animation-delay: 1.2s;" class="h-0 flex w-full transition-all duration-500 overflow-hidden">
-                <div style="animation-delay: 1.8s;" class="show-down flex w-full h-fit pt-8 space-x-2">
-                    <conv-input class="w-full"></conv-input>
-                    <div ref="search-btn" class="flex flex-col justify-center px-1.5 cursor-pointer text-teal-50/[0.5]
-                                hover:text-teal-500 border-2 border-teal-50/[0.5] hover:border-teal-500 rounded-lg transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                        </svg>
+        </div>
+        <div class="flex flex-col grow w-full">
+            <top-ad class="flex h-[10vh] min-h-[80px] md:mx-20 mx-4 mb-4"></top-ad>
+            <div class="flex grow flex-col w-max max-w-full mx-auto justify-center px-2">
+                <div class="flex flex-col mx-auto">
+                    <conv-card></conv-card>
+                    <p style="animation-delay: 1s;" class="show-down md:text-2xl text-xl text-center text-teal-500 font-bold italic mt-2"> Convert YouTube videos to any audio/video file !</p>
+                </div>
+                <div ref="input-zone" style="animation-delay: 1.2s;" class="h-0 flex w-full transition-all duration-500 overflow-hidden px-1">
+                    <div style="animation-delay: 1.8s;" class="show-down flex w-full h-fit pt-8 space-x-2">
+                        <conv-input class="w-full"></conv-input>
+                        <div ref="search-btn" class="flex flex-col justify-center px-1.5 cursor-pointer text-teal-50/[0.5]
+                                    hover:text-teal-500 border-2 border-teal-50/[0.5] hover:border-teal-500 rounded-lg transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div ref="log-zone" class="flex w-full mx-auto transition-all duration-500" style="max-height: 0px">
-                <div class="flex justify-center text-teal-500 w-full text-lg h-fit font-semibold space-x-4">
+                <div ref="log-zone" class="flex w-full mx-auto transition-all duration-500" style="max-height: 0px">
+                    <div class="flex justify-center text-teal-500 w-full text-lg h-fit font-semibold space-x-4">
 
+                    </div>
                 </div>
-            </div>
-            <div ref="video-view" class="overflow-hidden transition-all duration-500" style="height: 0px;">
-                <div class="flex flex-col border-2 border-teal-50/[0.5] rounded-md space-x-2">
-                    <div class="flex py-1 px-2 space-x-2">
-                        <div class="flex flex-col w-min min-w-[200px] space-y-2 p-2 max-w-[300px]">
-                            <p id="video-title" class="text-xl text-teal-500 font-bold text-center whitespace-nowrap overflow-hidden max-w-full text-ellipsis"> Video title </p>
-                            <img id="video-thumbnail" src="https://i.ytimg.com/vi/iaETHB54-jw/maxresdefault.jpg" class="max-w-full rounded-md border-2 border-teal-50">
-                            <div class="flex flex-col w-full text-base font-semibold">
-                                <div class="flex w-full justify-between space-x-4">
-                                    <p class="text-teal-50"> Author: </p>
-                                    <p id="video-author" class="text-teal-500"> Author name </p>
-                                </div>
-                                <div class="flex w-full justify-between space-x-4">
-                                    <p class="text-teal-50"> Length: </p>
-                                    <p id="video-length" class="text-teal-500"> 00:00 </p>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="flex grow-0 w-[2px] bg-teal-50/[0.2] rounded"></span>
-                        <div class="flex flex-col grow p-2">
-                            <p class="text-xl text-teal-500 font-bold text-center"> Download options </p>
-                            <div ref="default-format" class="h-fit transition-all overflow-hidden" style="max-height: 30px;">
-                                <div class="flex space-x-4">
-                                    <p class="text-lg text-teal-50 font-bold text-center"> Format:  </p>
-                                    <p class="text-lg text-teal-500 font-bold text-center"> Default (WEBM Audio) </p>
-                                </div>
-                            </div>
-                            <div class="flex flex-col mt-2 w-full text-base font-semibold rounded-lg overflow-hidden border-2 border-slate-600">
-                                <div v-on:click="toogleOptions" ref="options-header" class="flex bg-slate-600 text-teal-50 cursor-pointer select-none">
-                                    <div class="flex flex-col justify-center pl-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-all">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                        </svg>
+                <div ref="video-view" class="overflow-hidden transition-all duration-500 mt-4" style="height: 00px;">
+                    <div class="flex flex-col border-2 border-teal-50/[0.5] rounded-md md:space-x-2 space-y-2">
+                        <div class="flex flex-col md:flex-row py-1 px-2 md:space-x-2 md:space-y-0 space-y-2 mx-auto">
+                            <div class="flex flex-col w-min min-w-[200px] space-y-2 p-2 max-w-[300px] mx-auto">
+                                <p id="video-title" class="text-xl text-teal-500 font-bold text-center whitespace-nowrap overflow-hidden max-w-full text-ellipsis"> Video title </p>
+                                <img id="video-thumbnail" src="https://i.ytimg.com/vi/iaETHB54-jw/maxresdefault.jpg" class="max-w-[50vw] w-full rounded-md border-2 border-teal-50 mx-auto">
+                                <div class="flex flex-col w-full text-base font-semibold">
+                                    <div class="flex w-full justify-between space-x-4">
+                                        <p class="text-teal-50"> Author: </p>
+                                        <p id="video-author" class="text-teal-500"> Author name </p>
                                     </div>
-                                    <div class="flex flex-col justify-center">
-                                        <p class="px-2 text-lg font-semibold text-left"> More options </p>
-                                    </div>
-                                </div>
-                                <div ref="options-panel" class="h-fit transition-all overflow-hidden" style="height: 0px">
-                                    <div class="flex flex-col p-1">
-                                        <p class="text-md text-teal-50 font-semibold text-left"> Audio formats: </p>
-                                        <selector :data="audioFormats" :onchange="onaudiochange" :onload="setAudioSelector" ></selector>
-                                        <p class="text-md text-teal-50 font-semibold text-left mt-2"> Video formats: </p>
-                                        <selector :data="videoFormats" :onchange="onvideochange" :onload="setVideoSelector" ></selector>
+                                    <div class="flex w-full justify-between space-x-4">
+                                        <p class="text-teal-50"> Length: </p>
+                                        <p id="video-length" class="text-teal-500"> 00:00 </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex grow justify-end w-full mt-2">
-                                <div class="flex flex-col justify-end">
-                                    <button-block ref="convert-btn" class="h-fit w-fit" :onclick="convert"> Convert </button-block>
+                            <span class="flex md:hidden grow-0 h-[2px] bg-teal-50/[0.2] rounded"></span>
+                            <span class="md:flex hidden grow-0 w-[2px] bg-teal-50/[0.2] rounded"></span>
+                            <div class="flex flex-col grow p-2 mx-auto">
+                                <p class="text-xl text-teal-500 font-bold text-center"> Download options </p>
+                                <div ref="default-format" class="h-fit transition-all overflow-hidden" style="max-height: 30px;">
+                                    <div class="flex space-x-4">
+                                        <p class="text-lg text-teal-50 font-bold text-center"> Format:  </p>
+                                        <p class="text-lg text-teal-500 font-bold text-center"> Default (WEBM Audio) </p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col mt-2 w-full text-base font-semibold rounded-lg overflow-hidden border-2 border-slate-600">
+                                    <div v-on:click="toogleOptions" ref="options-header" class="flex bg-slate-600 text-teal-50 cursor-pointer select-none">
+                                        <div class="flex flex-col justify-center pl-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-all">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex flex-col justify-center">
+                                            <p class="px-2 text-lg font-semibold text-left"> More options </p>
+                                        </div>
+                                    </div>
+                                    <div ref="options-panel" class="h-fit transition-all overflow-hidden" style="height: 0px">
+                                        <div class="flex flex-col p-1">
+                                            <p class="text-md text-teal-50 font-semibold text-left"> Audio formats: </p>
+                                            <selector :data="audioFormats" :onchange="onaudiochange" :onload="setAudioSelector" ></selector>
+                                            <p class="text-md text-teal-50 font-semibold text-left mt-2"> Video formats: </p>
+                                            <selector :data="videoFormats" :onchange="onvideochange" :onload="setVideoSelector" ></selector>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex grow justify-end w-full mt-2">
+                                    <div class="flex flex-col justify-end">
+                                        <button-block ref="convert-btn" class="h-fit w-fit" :onclick="convert"> Convert </button-block>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div ref="download-view" class="overflow-hidden transition-all duration-500" style="height: 0px;">
-                <div class="flex flex-col h-fit py-4 px-2 border-2 border-teal-50/[0.5] rounded-md space-y-4">
-                    <p class="text-xl text-teal-500 font-bold text-center"> Convertion complete ! </p>
-                    
-                    <div class="flex flex-col">
-                        <div ref="download-label" class="flex overflow-hidden transition-all duration-500">
-                            <div class="flex w-full justify-center space-x-2 h-fit">
-                                <p class="text-lg text-teal-50 font-semibold text-center"> File name: </p>
-                                <p id="filename-text" class="text-lg text-teal-500 font-semibold text-center"> filename.format </p>
+                <div ref="download-view" class="overflow-hidden transition-all duration-500" style="height: 0px;">
+                    <div class="flex flex-col h-fit py-4 px-2 border-2 border-teal-50/[0.5] rounded-md space-y-4">
+                        <p class="text-xl text-teal-500 font-bold text-center"> Convertion complete ! </p>
+                        
+                        <div class="flex flex-col">
+                            <div ref="download-label" class="flex overflow-hidden transition-all duration-500">
+                                <div class="flex w-full justify-center space-x-2 h-fit">
+                                    <p class="text-lg text-teal-50 font-semibold text-center whitespace-nowrap"> File name: </p>
+                                    <p id="filename-text" class="text-lg text-teal-500 font-semibold text-center whitespace-nowrap text-ellipsis overflow-hidden"> filename.format </p>
+                                </div>
                             </div>
-                        </div>
-                        <div ref="restart-label" class="flex justify-center space-x-2 overflow-hidden transition-all duration-500" style="height: 0px">
-                            <p class="h-fit w-fit text-lg text-teal-50 font-semibold text-center whitespace-nowrap"> Want to convert an other video ? </p>
-                        </div>
-                        <div class="flex justify-center">
-                            <button-block ref="restart-btn" class="h-fit w-fit hidden" :onclick="restart"> Restart </button-block>
-                            <button-block ref="download-btn" class="h-fit w-fit" :onclick="download"> Download </button-block>
+                            <div ref="restart-label" class="flex justify-center space-x-2 overflow-hidden transition-all duration-500" style="height: 0px">
+                                <p class="h-fit w-fit text-lg text-teal-50 font-semibold text-center whitespace-nowrap"> Want to convert an other video ? </p>
+                            </div>
+                            <div class="flex justify-center">
+                                <button-block ref="restart-btn" class="h-fit w-fit hidden" :onclick="restart"> Restart </button-block>
+                                <button-block ref="download-btn" class="h-fit w-fit" :onclick="download"> Download </button-block>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="md:flex hidden justify-center px-4">
+            <div class="flex flex-col grow justify-evenly">
+                <side-ad class="w-[12vw] h-[30vh]"></side-ad>
+                <side-ad class="w-[12vw] h-[30vh]"></side-ad>
             </div>
         </div>
     </div>
@@ -108,6 +124,8 @@ import ConvInput from '../components/form/ConvInput.vue';
 import Selector from '../components/form/Selector.vue';
 import API from '../scripts/API.js';
 import { stringTime } from '../scripts/common';
+import SideAd from '../components/ads/SideAd.vue';
+import TopAd from '../components/ads/TopAd.vue';
 
 let page = null;
 function update_log_size(shift=0) {
@@ -406,7 +424,9 @@ export default {
         ConvCard,
         ButtonBlock,
         ConvInput,
-        Selector
+        Selector,
+        SideAd,
+        TopAd
     },
     methods: { search, convert, download, restart, onaudiochange, onvideochange, toogleOptions },
     data() { return { audioFormats, videoFormats, setAudioSelector, setVideoSelector }; },
