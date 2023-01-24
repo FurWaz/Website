@@ -1,7 +1,7 @@
 <template>
     <div
         class="show-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-8 my-4 max-w-[25em] min-w-min
-                hover:border-slate-500 hover:shadow-lg cursor-pointer transition-all"
+                max-h-[600px] hover:border-slate-500 hover:shadow-lg cursor-pointer transition-all"
         v-on:click="redirectTo(data.href)"
     >
         <div class="flex w-fit mx-auto min-w-min">

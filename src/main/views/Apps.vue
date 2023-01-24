@@ -29,6 +29,13 @@ const apps = [
         icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />`
     },
     {
+        title: "Converter",
+        description: "Convert YouTube videos to any audio / video file !",
+        link: "Convert videos",
+        href: "/apps/conv",
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`
+    },
+    {
         title: "Processor",
         description: "Play with a little processor, make it evolve in his world and fight agains other processors !",
         link: "See the game",
