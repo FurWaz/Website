@@ -3,7 +3,7 @@
         <topbar></topbar>
         <div v-if="User.CurrentUser != null" class="flex grow flex-col justify-center pt-20">
             <div class="flex flex-row justify-evenly">
-                <div class="flex flex-col spawn-up rounded-lg border-2 border-slate-600 bg-slate-700 shadow-xl">
+                <div class="flex flex-col show-up rounded-lg border-2 border-slate-600 bg-slate-700 shadow-xl">
                     <div class="flex flex-row justify-between w-full h-fit py-1 bg-slate-600 space-x-6 px-2">
                         <p class="text-white text-lg font-extrabold"> Profile </p>
                     </div>
@@ -85,6 +85,12 @@ function deleteAccount() {
     });
 }
 
+function updateUserInfo() {
+    User.CurrentUser.setInformations({
+
+    });
+}
+
 const userInfos = [
     {
         label: "Account",
@@ -95,7 +101,7 @@ const userInfos = [
         ],
         buttons: [
             {type: "button", label: "Delete Account", enabled: true, onclick: () => { openDeleteModal(); }},
-            {type: "button", label: "Update infos", enabled: false, onclick: () => {  }}
+            {type: "button", label: "Update infos", enabled: false, onclick: () => { updateUserInfo(); }}
         ]
     },
     {

@@ -42,7 +42,6 @@ function register(data, log) {
         log("Registering ...");
         API.execute(API.ROUTE.USERS, API.METHOD.POST, {username: data.username, email: data.email, password: data.password}).then(res => {
             const user = new User(res);
-            user.setInformations({password: data.password})
             user.fetchInformations().then(() => {
                 user.save();
                 log("Registered");

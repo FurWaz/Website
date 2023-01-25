@@ -34,8 +34,8 @@ function login(data, log) {
         }
         
         log("Logging in...");
-        const user = new User({ username: data.username, password: data.password });
-        user.fetchToken().then(() => {
+        const user = new User({ username: data.username });
+        user.fetchToken(data.password).then(() => {
             user.fetchInformations().then(() => {
                 user.save();
                 log("Logged in");

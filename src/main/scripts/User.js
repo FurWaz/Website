@@ -35,32 +35,57 @@ class User {
     }
 
     username = "";
-    password = "";
     email = "";
     icon = "";
     token = "";
+    refresh = "";
     id = 0;
     role = User.ROLE.UNKNOWN;
 
     constructor(infos) {
-        this.setInformations(infos);
+        this.setInformations(infos, false);
         User.#currentUser = this;
     }
 
-    setInformations(infos) {
-        this.username = infos.username??this.username;
-        this.password = infos.password??this.password;
-        this.email = infos.email??this.email;
-        this.token = infos.token??this.token;
-        this.icon = infos.icon??this.icon;
-        this.id = infos.id??this.id;
-        this.role = infos.role??this.role;
+    setInformations(infos, updateOnDB=true) {
+        return new Promise((resolve, reject) => {
+            const props = ["username", "email", "token", "refresh", "icon", "id", "role"];
+            let changes = {};
+            let hasChanges = false;
+            for (const prop of props) {
+                if (infos[prop] && (this[prop] != infos[prop])) {
+                    changes[prop] = infos[prop];
+                    hasChanges = true;
+                    console.log("adding change: " + prop + " = " + infos[prop])
+                }
+            }
+
+            const applyChanges = () => {
+                for (const prop in changes) {
+                    if (changes[prop]) {
+                        this[prop] = changes[prop];
+                    }
+                }
+            }
+
+            if (!hasChanges) return;
+            if (updateOnDB) {
+                this.makeRequest(API.ROUTE.ME, API.METHOD.PUT, changes).then(() => {
+                    applyChanges();
+                    resolve();
+                }).catch(err => reject(err));
+            }
+            else {
+                applyChanges();
+                resolve();
+            }
+        });
     }
 
     getCredentials() {
         if (this.token.trim() != "")
             return API.Credentials.fromToken(this.token);
-        return API.Credentials.fromUsernamePassword(this.username, this.password);
+        return API.Credentials.fromCredentials(this.username, this.password);
     }
 
     makeRequest(path, method=undefined, body=undefined, type=undefined, headers=undefined) {
@@ -77,7 +102,6 @@ class User {
             }).catch(err => {
                 if (err.status == 498) { // invalid or expired token (refresh it)
                     this.fetchToken().then((token) => {
-                        
                         req(API.Credentials.fromToken(token)).then(data => {
                             resolve(data);
                         }).catch(err => {
@@ -91,17 +115,20 @@ class User {
         });
     }
 
-    fetchToken() {
+    fetchToken(password="") {
         return new Promise((resolve, reject) => {
-            if (this.username.trim() == "" || this.password.trim() == "") {
+            const useRefresh = this.refresh.trim() != "";
+            if ( (this.username.trim() === "" || password.trim() === "") && !useRefresh) {
                 reject("Invalid user credentials");
                 return;
             }
 
-            API.execute(API.ROUTE.LOGIN, API.METHOD.POST, {username: this.username, password: this.password}).then(token => {
-                this.token = token;
+            const data = useRefresh? {refresh: this.refresh}: {username: this.username, password: password};
+            API.execute(API.ROUTE.LOGIN, API.METHOD.POST, data).then(tokens => {
+                if (tokens.refresh) this.refresh = tokens.refresh;
+                this.token = tokens.token;
                 this.save();
-                resolve(token);
+                resolve(tokens.token);
             }).finally(() => {
                 
             }).catch(err => {
@@ -129,7 +156,7 @@ class User {
             }
 
             this.makeRequest(API.ROUTE.ME).then(data => {
-                this.setInformations(data);
+                this.setInformations(data, false);
                 this.save();
                 resolve(data);
             }).catch(err => {
