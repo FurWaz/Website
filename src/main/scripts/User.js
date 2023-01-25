@@ -109,6 +109,8 @@ class User {
                         });
                     }).catch(err => {
                         reject(err);
+                        User.forget();
+                        window.location.href = window.location.href;
                     });
                 }
             });
