@@ -1,7 +1,7 @@
 <template>
     <div class="flex grow-0 flex-col">
         <div class="flex md:flex-col flex-row md:h-screen w-screen md:w-min h-min bg-slate-700 shadow-lg">
-            <sideicon href="/account" name="Account"></sideicon>
+            <sideicon href="/profile" name="Account"></sideicon>
             <div class="md:flex hidden flex-col grow">
                 <backbtn></backbtn>
                 <sidebtn v-for="el in menu" :href="el.href" :name="el.name" :icon="el.icon"></sidebtn>

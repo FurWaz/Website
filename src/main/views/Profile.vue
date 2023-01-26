@@ -1,5 +1,5 @@
 <template>
-    <div class="flex grow bg-slate-700">
+    <div class="flex grow">
         <topbar></topbar>
         <div v-if="User.CurrentUser != null" class="flex grow flex-col justify-center pt-20">
             <div class="flex flex-row justify-evenly">
