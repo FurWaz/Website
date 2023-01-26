@@ -7,7 +7,7 @@
             </div>
         </div>
         
-        <div ref="label" class="absolute -right-4 flex grow h-full w-0 flex-col justify-center transition-all opacity-0 pointer-events-none">
+        <div ref="label" class="absolute -right-4 flex grow h-full w-0 flex-col justify-center transition-all pointer-events-none" style="opacity: 0">
             <div class="w-fit h-fit bg-slate-700 px-4 rounded-lg border-2 border-slate-600">
                 <p class="text-lg font-bold text-slate-50 p-0 m-0"> {{ name }} </p>
             </div>
@@ -19,9 +19,6 @@
 function setup(obj) {
     const btn = obj.$refs.btn;
     const label = obj.$refs.label;
-
-    if (btn.name === "")
-        label.classList.add("hidden");
     
     btn.addEventListener("mouseenter", ev => {
         label.style.transform = "scale(1, 1)";
@@ -55,7 +52,8 @@ export default {
     props: {
         name: {
             type: String,
-            required: true
+            default: "",
+            required: false
         },
         icon: {
             required: true

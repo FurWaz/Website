@@ -2,7 +2,8 @@
     <div class="flex grow-0 flex-col">
         <div class="flex md:flex-col flex-row md:h-screen w-screen md:w-min h-min bg-slate-700 shadow-lg">
             <sideicon href="/account" name="Account"></sideicon>
-            <div class="md:flex hidden flex-col grow space-y-6 my-10 overflow-y-scroll">
+            <div class="md:flex hidden flex-col grow">
+                <backbtn></backbtn>
                 <sidebtn v-for="el in menu" :href="el.href" :name="el.name" :icon="el.icon"></sidebtn>
             </div>
             <div ref="mobile-btn" class="md:hidden flex grow justify-end pr-4">
@@ -22,6 +23,7 @@
 
 <script>
 import Sidebtn from './Sidebtn.vue';
+import Backbtn from './Backbtn.vue';
 import Sideicon from './Sideicon.vue';
 
 import {
@@ -99,13 +101,14 @@ export default {
     components: {
         Sidebtn,
         Sideicon,
-        Bars3Icon
+        Bars3Icon,
+        Backbtn,
     },
     data() {
         setup(this);
         return {
             menu,
-            Cog6ToothIcon
+            Cog6ToothIcon,
         };
     },
     setup() {},
