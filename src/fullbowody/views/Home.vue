@@ -1,25 +1,25 @@
 <template>
     <div class="flex flex-col grow">
         <fb-title :displayBackBtn="false"> Track your body with two or more basic cameras </fb-title>
-        <div class="flex md:flex-row flex-col wrap justify-center h-fit m-4 pt-4">
-
+        <div class="flex md:flex-row flex-wrap wrap justify-center h-fit m-4 pt-4">
             <div
                 v-for="short in shortcuts"
-                class="show-up rounded-lg border-2 border-slate-600 m-4 overflow-hidden shadow-xl"
-                :style="'animation-delay: '+shortcuts.indexOf(short)+'00ms'"
+                class="show-up flex rounded-lg border-2 border-slate-600 m-4 overflow-hidden shadow-xl max-w-min"
             >
-                <div class="flex flex-col w-min h-fit p-4">
-                    <div class="flex flex-row">
-                        <svg v-html="short.icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-transparent fill-blue-500 w-10 h-10 mr-4"></svg>
-                        <div class="flex flex-col justify-center mx-4">
-                            <h2 class="text-slate-200 text-2xl font-semibold"> {{ short.label }} </h2>
+                <div class="flex grow flex-col w-min p-4 max-w-full">
+                    <div class="flex flex-row max-w-full md:space-x-4">
+                        <svg v-html="short.icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:flex hidden text-transparent fill-blue-500 w-10 h-10 mr-4"></svg>
+                        <div class="flex flex-col justify-center max-w-full">
+                            <h2 class="text-slate-200 text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap"> {{ short.label }} </h2>
                         </div>
                     </div>
                     <div class="flex grow my-4">
                         <p class="text-slate-400 text-xl font-semibold"> {{ short.description }} </p>
                     </div>
-                    <div class="flex flex-row md:justify-center justify-start">
-                        <button-block :href="short.link"> {{ short.button }} </button-block>
+                    <div class="flex flex-col grow justify-end">
+                        <div class="flex grow-0 flex-row md:justify-end justify-start">
+                            <button-block :href="short.link"> {{ short.button }} </button-block>
+                        </div>
                     </div>
                 </div>
             </div>
