@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { redirectTo } from "../../scripts/common.js";
+
 
 export default {
     name: "ButtonBlock",

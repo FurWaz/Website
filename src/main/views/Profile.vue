@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import Topbar from '../components/Topbar.vue';
 import User from '../scripts/User.js';
 import ButtonBlock from '../components/buttons/ButtonBlock.vue';
 import Modal from '../components/forms/Modal.vue';
@@ -120,7 +119,6 @@ const userInfos = [
 export default {
     name: "Home",
     components: {
-        Topbar,
         ButtonBlock,
         Modal
     },

@@ -1,16 +1,18 @@
 <template>
-    <div class="flex grow flex-col min-w-0 min-h-0 bg-slate-700">
-        <router-view></router-view>
-        <div class="flex flex-col grow-0 h-fit justify-center text-center pb-1">
-            <p class="text-slate-500 text-xl font-bold"> FurWaz </p>
-            <p class="text-slate-500 text font-semibold"> {{ 'Copyright &copy; ' + year + ' FurWaz' }} </p>
-        </div>
+    <div class="flex grow min-w-0 min-h-0 dark:bg-slate-800 bg-slate-50">
+        <sidebar></sidebar>
+        <router-view class="overflow-y-scroll"></router-view>
     </div>
 </template>
 
 <script>
+import Sidebar from './main/components/sidebar/Sidebar.vue'
+
 export default {
     name: "App",
+    components: {
+        Sidebar
+    },
     data() {
         return {
             year: new Date().getFullYear()

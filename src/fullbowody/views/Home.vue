@@ -1,38 +1,34 @@
 <template>
-    <div class="flex grow bg-slate-700">
-        <topbar></topbar>
-        <div class="flex flex-col grow pt-20">
-            <fb-title :displayBackBtn="false"> Track your body with two or more basic cameras </fb-title>
-            <div class="flex md:flex-row flex-col wrap justify-center h-fit m-4 pt-4">
+    <div class="flex flex-col grow">
+        <fb-title :displayBackBtn="false"> Track your body with two or more basic cameras </fb-title>
+        <div class="flex md:flex-row flex-col wrap justify-center h-fit m-4 pt-4">
 
-                <div
-                    v-for="short in shortcuts"
-                    class="show-up rounded-lg border-2 border-slate-600 m-4 overflow-hidden shadow-xl"
-                    :style="'animation-delay: '+shortcuts.indexOf(short)+'00ms'"
-                >
-                    <div class="flex flex-col w-min h-fit p-4">
-                        <div class="flex flex-row">
-                            <svg v-html="short.icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-transparent fill-blue-500 w-10 h-10 mr-4"></svg>
-                            <div class="flex flex-col justify-center mx-4">
-                                <h2 class="text-slate-200 text-2xl font-semibold"> {{ short.label }} </h2>
-                            </div>
-                        </div>
-                        <div class="flex grow my-4">
-                            <p class="text-slate-400 text-xl font-semibold"> {{ short.description }} </p>
-                        </div>
-                        <div class="flex flex-row md:justify-center justify-start">
-                            <button-block :href="short.link"> {{ short.button }} </button-block>
+            <div
+                v-for="short in shortcuts"
+                class="show-up rounded-lg border-2 border-slate-600 m-4 overflow-hidden shadow-xl"
+                :style="'animation-delay: '+shortcuts.indexOf(short)+'00ms'"
+            >
+                <div class="flex flex-col w-min h-fit p-4">
+                    <div class="flex flex-row">
+                        <svg v-html="short.icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-transparent fill-blue-500 w-10 h-10 mr-4"></svg>
+                        <div class="flex flex-col justify-center mx-4">
+                            <h2 class="text-slate-200 text-2xl font-semibold"> {{ short.label }} </h2>
                         </div>
                     </div>
+                    <div class="flex grow my-4">
+                        <p class="text-slate-400 text-xl font-semibold"> {{ short.description }} </p>
+                    </div>
+                    <div class="flex flex-row md:justify-center justify-start">
+                        <button-block :href="short.link"> {{ short.button }} </button-block>
+                    </div>
                 </div>
-
             </div>
+
         </div>
     </div>
 </template>
 
 <script>
-import Topbar from '../../main/components/Topbar.vue';
 import ButtonBlock from '../../main/components/buttons/ButtonBlock.vue';
 import FbTitle from '../components/FbTitle.vue';
 
@@ -64,7 +60,6 @@ const shortcuts = [
 export default {
     name: "Home",
     components: {
-        Topbar,
         ButtonBlock,
         FbTitle
     },

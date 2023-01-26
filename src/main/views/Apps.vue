@@ -1,23 +1,19 @@
 <template>
     <div class="flex grow">
-        <topbar></topbar>
-        <div class="flex grow pt-20 min-w-0 min-h-0">
-            <div class="flex flex-col grow pt-10 min-w-0">
-                <div class="flex w-full h-fit justify-center">
-                    <div class="flex border-2 border-slate-600 rounded-lg px-4 py-1">
-                        <h1 class="show-down text-slate-200 text-4xl font-bold mb-1"> Applications </h1>
-                    </div>
+        <div class="flex flex-col grow pt-10 min-w-0">
+            <div class="flex w-full h-fit justify-center">
+                <div class="flex border-2 border-slate-600 rounded-lg px-4 py-1">
+                    <h1 class="show-down text-slate-200 text-4xl font-bold mb-1"> Applications </h1>
                 </div>
-                <div class="flex flex-wrap grow my-10 justify-center py-10">
-                    <big-card v-for="app in apps" :data="app"></big-card>
-                </div>
+            </div>
+            <div class="flex flex-wrap grow my-10 justify-center py-10">
+                <big-card v-for="app in apps" :data="app"></big-card>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Topbar from '../components/Topbar.vue';
 import BigCard from '../components/Cards/BigCard.vue';
 
 const apps = [
@@ -51,7 +47,6 @@ const apps = [
 export default {
     name: "Apps",
     components: {
-        Topbar,
         BigCard
     },
     methods: {},

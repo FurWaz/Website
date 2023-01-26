@@ -12,12 +12,6 @@ export function redirectHome(wait=true) {
     }, wait?1000:0);
 }
 
-export function redirectTo(url, wait=false) {
-    setTimeout(() => {
-        window.location.href = url;
-    }, wait?1000:0);
-}
-
 export function goBack() {
     if (document.referrer.startsWith(window.location.origin))
         window.history.back();

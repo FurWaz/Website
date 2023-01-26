@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import { redirectTo } from "../../scripts/common.js";
-
 export default {
     name: "ButtonText",
     props: {
@@ -40,7 +38,9 @@ export default {
     methods: {
         callback() {
             if (this.href) {
-                redirectTo(this.href);
+                this.$router.push(this.href).then(() => {
+                    window.app.sidebar.update();
+                });
             } else if (this.action) {
                 this.action(this);
             }
