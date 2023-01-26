@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col grow">
         <fb-title :displayBackBtn="false"> Track your body with two or more basic cameras </fb-title>
-        <div class="flex md:flex-row flex-wrap wrap justify-center h-fit m-4 pt-4">
+        <div class="flex md:flex-row flex-wrap justify-center h-fit m-4 pt-4">
             <div
                 v-for="short in shortcuts"
                 class="show-up flex rounded-lg border-2 border-slate-600 m-4 overflow-hidden shadow-xl max-w-min"

@@ -6,7 +6,7 @@
                     <h1 class="text-slate-200 text-4xl font-bold mb-1"> Applications </h1>
                 </div>
             </div>
-            <div class="flex flex-wrap grow my-10 justify-center py-10">
+            <div class="flex flex-wrap my-10 justify-center py-10 h-min">
                 <big-card v-for="app in apps" :data="app"></big-card>
             </div>
         </div>
