@@ -19,6 +19,9 @@
 function setup(obj) {
     const btn = obj.$refs.btn;
     const label = obj.$refs.label;
+
+    if (btn.name === "")
+        label.classList.add("hidden");
     
     btn.addEventListener("mouseenter", ev => {
         label.style.transform = "scale(1, 1)";

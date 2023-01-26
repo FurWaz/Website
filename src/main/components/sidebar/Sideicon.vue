@@ -3,7 +3,7 @@
         <div class="flex grow p-1 m-2 rounded-lg border-2 bg-slate-600
                     hover:shadow-xl hover:border-orange-500 cursor-pointer transition-all">
             <div class="icon flex flex-col justify-center mx-auto text-slate-50 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 250 250" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 250 250" stroke-width="1.5" stroke="currentColor" class="h-12">
                     <g transform="translate(0,250) scale(0.1,-0.1)"
                     fill="currentColor" stroke="none">
                     <path d="M712 2203 c-6 -21 -36 -162 -67 -312 -31 -151 -63 -286 -71 -300 -8
