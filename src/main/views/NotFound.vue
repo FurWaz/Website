@@ -26,12 +26,7 @@
 
 <script>
 import ButtonBlock from '../components/buttons/ButtonBlock.vue';
-
-function goBack() {
-    try {
-        window.app.sidebar.buttons.find(btn => btn.id === "back").click();
-    } catch (e) { console.error(e); }
-}
+import { goBack } from '../scripts/common.js';
 
 export default {
     name: "Home",

@@ -1,6 +1,6 @@
 <template>
-    <div class="flex md:flex-row flex-col grow min-w-0 min-h-0 dark:bg-slate-800 bg-slate-50">
-        <sidebar></sidebar>
+    <div class="flex md:flex-row flex-col grow min-w-0 min-h-0 dark:bg-slate-800 bg-slate-50 overflow-hidden">
+        <sidebar style="z-index: 1;"></sidebar>
         <router-view class="overflow-y-scroll"></router-view>
     </div>
 </template>

@@ -6,16 +6,16 @@ export const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-z
  */
 export function redirectHome(wait=true) {
     setTimeout(() => {
-        if (document.referrer.startsWith(window.location.origin))
-            window.location.href = window.location.origin;
-        else window.location.href = document.referrer;
+        const length = window.history.length;
+        if (length > 1) window.app.sidebar.$router.go(-length);
+        else window.app.sidebar.$router.push("/");
     }, wait?1000:0);
 }
 
 export function goBack() {
-    if (document.referrer.startsWith(window.location.origin))
-        window.history.back();
-    else window.location.href = window.location.origin;
+    try {
+        window.app.sidebar.buttons.find(btn => btn.id === "back").click();
+    } catch (e) { console.error(e); }
 }
 
 /**
