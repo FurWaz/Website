@@ -54,15 +54,39 @@
     }
 }
 
-.show-up { animation: show-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
-.show-down { animation: show-down 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
-.show-left { animation: show-left 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
-.show-right { animation: show-right 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
+.show-up {
+    opacity: 0;
+    animation: show-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
+.show-down {
+    opacity: 0;
+    animation: show-down 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
+.show-left {
+    opacity: 0;
+    animation: show-left 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
+.show-right {
+    opacity: 0;
+    animation: show-right 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
 
-.hide-up { animation: hide-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
-.hide-down { animation: hide-down 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
-.hide-left { animation: hide-left 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
-.hide-right { animation: hide-right 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8); }
+.hide-up {
+    opacity: 0;
+    animation: hide-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
+.hide-down {
+    opacity: 0;
+    animation: hide-down 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
+.hide-left {
+    opacity: 0;
+    animation: hide-left 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
+.hide-right {
+    opacity: 0;
+    animation: hide-right 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
+}
 
 .show-jump {
     transform: translateY(0px);

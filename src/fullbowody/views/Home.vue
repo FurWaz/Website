@@ -5,6 +5,7 @@
             <div
                 v-for="short in shortcuts"
                 class="show-up flex rounded-lg border-2 border-slate-600 m-4 overflow-hidden shadow-xl max-w-min"
+                :style="'animation-delay: ' + shortcuts.indexOf(short) * 100 + 'ms;'"
             >
                 <div class="flex grow flex-col w-min p-4 max-w-full">
                     <div class="flex flex-row max-w-full md:space-x-4">

@@ -7,7 +7,8 @@
             <div
                 v-for="addon in addons"
                 class="bg-slate-700 show-up rounded-lg border-2 border-slate-600 md:m-4 m-2 overflow-hidden transition-all"
-                :class="addon.purchased? ' select-none ': ' shadow-lg hover:shadow-xl hover:border-slate-500'">
+                :class="addon.purchased? ' select-none ': ' shadow-lg hover:shadow-xl hover:border-slate-500'"
+                :style="'animation-delay: ' + (addons.indexOf(addon) * 100) + 'ms;'">
                 <div class="flex flex-col w-min min-h-[20em]">
                     <div class="flex flex-col">
                         <h1

@@ -1,8 +1,9 @@
 <template>
     <!-- Template Back Button : Used to go bakc in the website -->
     <a
-        :href="href"
+        :href="href==''? null : href"
         class="flex border-2 border-slate-600 rounded-md transition-all"
+        v-on:click="callback($event)"
         :class="this.disabled? ' text-slate-400 cursor-default' : ' text-slate-300 shadow hover:bg-slate-600 hover:border-orange-500 hover:text-slate-200 hover:shadow-lg cursor-pointer'">
         <p ref="text" class="mx-4 my-2 text-md font-bold whitespace-nowrap">
             <slot></slot>
@@ -41,16 +42,20 @@ export default {
         return {};
     },
     mounted() {
-        this.$el.addEventListener("click", this.callback);
+        
     },
     methods: {
         callback(ev) {
             if (this.disabled) return;
 
             if (this.href != "") {
-                this.$router.push(this.href).then(() => {
-                    window.app.sidebar.update();
-                });
+                if (this.href.startsWith("http")) {
+                    window.open(this.href, "_blank");
+                } else {
+                    this.$router.push(this.href).then(() => {
+                        window.app.sidebar.update();
+                    });
+                }
             } else if (this.action) {
                 this.action(this);
             }

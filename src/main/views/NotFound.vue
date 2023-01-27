@@ -16,7 +16,7 @@
                 <div class="flex flex-col grow justify-center">
                     <p class="show-up text-2xl md:text-4xl text-slate-500 text-center mx-auto"> Seems like this page doesn't exist ... </p>
                     <div class="w-fit h-fit mx-auto mt-4">
-                        <button-block class="show-up" href="/"> Go back home </button-block>
+                        <button-block class="show-up" :action="() => { goBack(); }"> Go back </button-block>
                     </div>
                 </div>
             </div>
@@ -27,15 +27,23 @@
 <script>
 import ButtonBlock from '../components/buttons/ButtonBlock.vue';
 
+function goBack() {
+    try {
+        window.app.sidebar.buttons.find(btn => btn.id === "back").click();
+    } catch (e) { console.error(e); }
+}
+
 export default {
     name: "Home",
     components: {
         ButtonBlock
     },
-    methods: {},
+    methods: { goBack },
     data() { return {}; },
     setup() {},
-    mounted() {}
+    mounted() {
+        
+    }
 };
 </script>
 

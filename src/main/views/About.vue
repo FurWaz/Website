@@ -1,20 +1,16 @@
 <template>
-    <div class="flex grow">
-        <div class="flex flex-col grow pt-10 min-w-0">
-            <div class="flex w-full h-fit justify-center">
-                <div class="flex border-2 border-slate-600 rounded-lg px-4 py-1">
-                    <h1 class="show-down text-slate-200 text-4xl font-bold mb-1"> About </h1>
-                </div>
-            </div>
-        </div>
+    <div class="flex flex-col grow pt-10 min-w-0">
+        <page-title> About </page-title>
     </div>
 </template>
 
 <script>
+import PageTitle from '../components/labels/PageTitle.vue';
+
 export default {
     name: "Home",
     components: {
-        
+        PageTitle
     },
     methods: {},
     data() { return {}; },

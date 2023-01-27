@@ -1,7 +1,7 @@
 <template>
     <div
         :href="data.href"
-        class="show-up flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 mx-4 my-4 min-w-[18em] max-w-[320px] translate-y-0
+        class="flex flex-col border-2 border-slate-600 rounded-lg px-4 py-1 md:mx-8 mx-4 my-4 min-w-[18em] max-w-[320px] translate-y-0
                bg-slate-700 shadow-lg hover:border-slate-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer transition-all"
     >
         <div class="flex w-fit mx-auto min-w-min px-8">

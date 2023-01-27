@@ -1,6 +1,6 @@
 <template>
     <a ref="btn" class="relative flex m-2 transition-all">
-        <div :class="' bg-'+bg+' '" class="flex grow rounded-lg p-3 border-2 border-slate-700 text-slate-500
+        <div class="flex grow rounded-lg p-3 border-2 border-slate-700 text-slate-500
                     hover:bg-slate-600 hover:text-slate-50 hover:border-orange-500 cursor-pointer transition-all">
             <div class="flex flex-col justify-center mx-auto">
                 <arrow-left-icon class="w-8 h-8"></arrow-left-icon>
@@ -23,9 +23,6 @@ import {
 function setup(obj) {
     const btn = obj.$refs.btn;
     const label = obj.$refs.label;
-
-    if (btn.name === "")
-        label.classList.add("hidden");
     
     btn.addEventListener("mouseenter", ev => {
         label.style.transform = "scale(1, 1)";
@@ -36,13 +33,14 @@ function setup(obj) {
         label.style.opacity = "0";
     });
 
-    btn.addEventListener("click", ev => {
+    obj.click = (ev) => {
         window.history.length > 1? obj.$router.go(-1) : obj.$router.push("/");
         setTimeout(() => {
             window.app.sidebar.update();
         }, 10);
-        ev.preventDefault();
-    });
+        ev?.preventDefault();
+    };
+    btn.addEventListener("click", ev => obj.click(ev));
 
     obj.update = () => {
         const shouldShow = window.location.pathname !== "/";
@@ -62,6 +60,7 @@ export default {
     data() { return {}; },
     setup() {  },
     mounted() {
+        this.id = "back";
         setup(this);
     }
 }

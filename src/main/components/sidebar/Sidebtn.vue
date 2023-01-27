@@ -19,6 +19,9 @@
 function setup(obj) {
     const btn = obj.$refs.btn;
     const label = obj.$refs.label;
+
+    if (obj.name === "" || obj.name === undefined)
+        label.classList.add("hidden");
     
     btn.addEventListener("mouseenter", ev => {
         label.style.transform = "scale(1, 1)";
@@ -29,12 +32,13 @@ function setup(obj) {
         label.style.opacity = "0";
     });
 
-    btn.addEventListener("click", ev => {
+    obj.click = (ev) => {
         obj.$router.push(obj.href).then(() => {
             window.app.sidebar.update();
         });
         ev.preventDefault();
-    });
+    };
+    btn.addEventListener("click", ev => obj.click(ev));
 
     obj.update = () => {
         const isButtonURL = window.location.pathname === obj.href;
@@ -72,6 +76,7 @@ export default {
     data() { return {}; },
     setup() {  },
     mounted() {
+        this.id = this.name.toLowerCase().replace(" ", "-");
         setup(this);
     }
 }

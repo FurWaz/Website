@@ -1,13 +1,9 @@
 <template>
-    <div class="flex grow">
-        <div class="flex flex-col grow pt-10 min-w-0">
-            <div class="show-down flex w-full h-fit justify-center">
-                <div class="flex border-2 border-slate-600 rounded-lg px-4 py-1">
-                    <h1 class="text-slate-200 text-4xl font-bold mb-1"> Applications </h1>
-                </div>
-            </div>
-            <div class="flex flex-wrap my-10 justify-center py-10 h-min">
-                <big-card v-for="app in apps" :data="app"></big-card>
+    <div class="flex flex-col grow pt-10 min-w-0">
+        <page-title> Applications </page-title>
+        <div class="flex flex-wrap my-10 justify-center py-10 h-min">
+            <div v-for="app in apps" class="flex show-up" :style="'animation-delay: ' + apps.indexOf(app) * 100 + 'ms;'">
+                <big-card :data="app"></big-card>
             </div>
         </div>
     </div>
@@ -15,6 +11,7 @@
 
 <script>
 import BigCard from '../components/Cards/BigCard.vue';
+import PageTitle from '../components/labels/PageTitle.vue';
 
 const apps = [
     {
@@ -47,7 +44,8 @@ const apps = [
 export default {
     name: "Apps",
     components: {
-        BigCard
+        BigCard,
+        PageTitle
     },
     methods: {},
     data() { return { apps }; },
