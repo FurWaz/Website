@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col grow pt-10 min-w-0">
-        <page-title> Projects </page-title>
+        <page-title> {{ Lang.CurrentLang.Projects }} </page-title>
         <div class="flex flex-wrap my-10 justify-center py-10 h-min">
             <div v-for="project in projects" class="flex show-up" :style="'animation-delay: ' + projects.indexOf(project) * 100 + 'ms;'">
                 <big-card :data="project"></big-card>
@@ -12,12 +12,13 @@
 <script>
 import BigCard from '../components/Cards/BigCard.vue';
 import PageTitle from '../components/labels/PageTitle.vue';
+import Lang from '../scripts/Lang';
 
 const projects = [
     {
         title: "VyBeen",
-        description: "Listen music and sing with your friends !",
-        link: "Try VyBeen",
+        description: Lang.CurrentLang.VybeenDescription,
+        link: Lang.CurrentLang.VybeenLink,
         href: "/projects/vybeen",
         icon: `<path d="M9 18V5l12-2v13"></path>
                <circle cx="6" cy="18" r="3"></circle>
@@ -25,8 +26,8 @@ const projects = [
     },
     {
         title: "Robot",
-        description: "Create your own humanoïd robot, with a 3D printer, an Arduino, and some motors !",
-        link: "See project",
+        description: Lang.CurrentLang.RobotDescription,
+        link: Lang.CurrentLang.RobotLink,
         href: "/projects/robot",
         icon: `<rect x="3" y="11" width="18" height="10" rx="2"></rect>
                <circle cx="12" cy="5" r="2"></circle>
@@ -43,7 +44,7 @@ export default {
         PageTitle
     },
     methods: {},
-    data() { return { projects }; },
+    data() { return { projects, Lang }; },
     setup() {},
     mounted() {}
 };

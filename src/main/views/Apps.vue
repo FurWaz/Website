@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col grow pt-10 min-w-0">
-        <page-title> Applications </page-title>
+        <page-title> {{ Lang.CurrentLang.Applications }} </page-title>
         <div class="flex flex-wrap my-10 justify-center py-10 h-min">
             <div v-for="app in apps" class="flex show-up" :style="'animation-delay: ' + apps.indexOf(app) * 100 + 'ms;'">
                 <big-card :data="app"></big-card>
@@ -12,26 +12,27 @@
 <script>
 import BigCard from '../components/Cards/BigCard.vue';
 import PageTitle from '../components/labels/PageTitle.vue';
+import Lang from '../scripts/Lang';
 
 const apps = [
     {
         title: "FullBowody",
-        description: "Track your body with two or more basic cameras",
-        link: "Go to page",
+        description: Lang.CurrentLang.FullbowodyDescription,
+        link: Lang.CurrentLang.FullbowodyLink,
         href: "/apps/fullbowody",
         icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />`
     },
     {
         title: "Converter",
-        description: "Convert YouTube videos to any audio / video file !",
-        link: "Convert videos",
+        description: Lang.CurrentLang.ConverterDescription,
+        link: Lang.CurrentLang.ConverterLink,
         href: "/apps/conv",
         icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`
     },
     {
         title: "Processor",
-        description: "Play with a little processor, make it evolve in his world and fight agains other processors !",
-        link: "See the game",
+        description: Lang.CurrentLang.ProcessorDescription,
+        link: Lang.CurrentLang.ProcessorLink,
         href: "/apps/processor",
         icon: `<line x1="6" y1="12" x2="10" y2="12"></line>
                <line x1="8" y1="10" x2="8" y2="14"></line>
@@ -48,7 +49,7 @@ export default {
         PageTitle
     },
     methods: {},
-    data() { return { apps }; },
+    data() { return { apps, Lang }; },
     setup() {},
     mounted() {}
 };

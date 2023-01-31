@@ -1,11 +1,12 @@
 <template>
     <div class="flex flex-col grow pt-10 min-w-0">
-        <page-title> About </page-title>
+        <page-title> {{ Lang.CurrentLang.About }} </page-title>
     </div>
 </template>
 
 <script>
 import PageTitle from '../components/labels/PageTitle.vue';
+import Lang from '../scripts/Lang';
 
 export default {
     name: "Home",
@@ -13,7 +14,7 @@ export default {
         PageTitle
     },
     methods: {},
-    data() { return {}; },
+    data() { return { Lang }; },
     setup() {},
     mounted() {}
 };
