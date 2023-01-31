@@ -11,7 +11,7 @@
                     <div class="flex flex-row max-w-full md:space-x-4">
                         <svg v-html="short.icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="md:flex hidden text-transparent fill-blue-500 w-10 h-10 mr-4"></svg>
                         <div class="flex flex-col justify-center max-w-full">
-                            <h2 class="text-slate-200 text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap"> {{ short.label }} </h2>
+                            <h2 class="dark:text-slate-200 text-slate-500 text-2xl font-semibold overflow-hidden text-ellipsis whitespace-nowrap"> {{ short.label }} </h2>
                         </div>
                     </div>
                     <div class="flex grow my-4">

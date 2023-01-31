@@ -2,14 +2,18 @@
     <div class="fixed top-0 left-0 h-0 w-0 pointer-events-none opacity-0 transition-all">
         <div class="flex flex-col z-50 justify-center w-screen h-screen bg-black/[0.3]" v-on:click="this.callCancel()">
             <div ref="modal-container" class="w-fit h-fit mx-auto transition-all" style="transform: scale(0.9)">
-                <div class="flex flex-col w-fit h-fit w-[20vw] h-[20vh] rounded-lg shadow-xl border-2 border-slate-600 bg-slate-700">
-                    <div class="flex grow-0 justify-center bg-slate-600">
-                        <h2 class="text-xl font-bold text-slate-200 m-0 px-4 py-1"> {{ this.title }} </h2>
+                <div class="flex flex-col w-fit h-fit rounded-lg shadow-xl border-2 dark:border-slate-600 border-slate-500 dark:bg-slate-700 bg-slate-200 overflow-hidden">
+                    <div class="flex grow-0 justify-center dark:bg-slate-600 bg-slate-300">
+                        <h2 class="text-xl font-bold dark:text-slate-200 text-slate-600 m-0 px-4 py-1"> {{ this.title }} </h2>
                     </div>
-                    <div class="flex grow p-2 justify-left">
-                        <p class="text-lg text-slate-300 m-0"> {{ this.content }} </p>
+                    <div class="flex flex-col grow p-2 justify-left">
+                        <p
+                            v-for="line of this.content.split('<br>')"
+                            class="text-lg font-semibold dark:text-slate-300 text-slate-500 m-0"
+                            :key="line"
+                        > {{ line }} </p>
                     </div>
-                    <span class="flex grow-0 h-1 rounded-lg bg-slate-600 mx-2"></span>
+                    <span class="flex grow-0 h-1 rounded-lg dark:bg-slate-600 bg-slate-300 mx-2"></span>
                     <div class="flex grow-0 py-2 px-2 justify-between">
                         <button-text ref="btn-cancel" :action="this.callCancel"> Cancel </button-text>
                         <button-block ref="btn-confirm" :action="this.callConfirm"> Confirm </button-block>

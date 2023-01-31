@@ -2,7 +2,7 @@
     <div class="flex flex-col md:flex-row justify-between">
         <input
             class="py-1 px-2 bg-transparent text-teal-500 text-xl font-semibold outline-none
-                   border-2 border-teal-50/[0.2] rounded-md hover:border-teal-500/[0.5] focus:border-teal-500 transition-all box-border w-full"
+                   border-2 dark:border-teal-50/[0.2] border-slate-200 rounded-md hover:border-teal-500/[0.5] focus:border-teal-500 transition-all box-border w-full"
             :type="type"
             :name="name"
             :placeholder="placeholder"

@@ -16,8 +16,8 @@
                 <div ref="input-zone" style="animation-delay: 1.2s;" class="h-0 flex w-full transition-all duration-500 overflow-hidden px-1">
                     <div style="animation-delay: 1.8s;" class="show-down flex w-full h-fit pt-8 space-x-2">
                         <conv-input class="w-full"></conv-input>
-                        <div ref="search-btn" class="flex flex-col justify-center px-1.5 cursor-pointer text-teal-50/[0.5]
-                                    hover:text-teal-500 border-2 border-teal-50/[0.5] hover:border-teal-500 rounded-lg transition-all">
+                        <div ref="search-btn" class="flex flex-col justify-center px-1.5 cursor-pointer dark:text-teal-50/[0.5] text-slate-200
+                                    hover:text-teal-500 border-2 dark:border-teal-50/[0.5] border-slate-200 hover:border-teal-500 rounded-lg transition-all">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                             </svg>
@@ -30,18 +30,18 @@
                     </div>
                 </div>
                 <div ref="video-view" class="overflow-hidden transition-all duration-500 mt-4" style="height: 00px;">
-                    <div class="flex flex-col border-2 border-teal-50/[0.5] rounded-md md:space-x-2 space-y-2">
+                    <div class="flex flex-col border-2 dark:border-teal-50/[0.5] border-slate-200 rounded-md md:space-x-2 space-y-2">
                         <div class="flex flex-col md:flex-row py-1 px-2 md:space-x-2 md:space-y-0 space-y-2 mx-auto">
                             <div class="flex flex-col w-min min-w-[200px] space-y-2 p-2 max-w-[300px] mx-auto">
                                 <p id="video-title" class="text-xl text-teal-500 font-bold text-center whitespace-nowrap overflow-hidden max-w-full text-ellipsis"> Video title </p>
                                 <img id="video-thumbnail" src="https://i.ytimg.com/vi/iaETHB54-jw/maxresdefault.jpg" class="max-w-[50vw] w-full rounded-md border-2 border-teal-50 mx-auto">
                                 <div class="flex flex-col w-full text-base font-semibold">
                                     <div class="flex w-full justify-between space-x-4">
-                                        <p class="text-teal-50"> Author: </p>
+                                        <p class="dark:text-teal-50 text-slate-600"> Author: </p>
                                         <p id="video-author" class="text-teal-500"> Author name </p>
                                     </div>
                                     <div class="flex w-full justify-between space-x-4">
-                                        <p class="text-teal-50"> Length: </p>
+                                        <p class="dark:text-teal-50 text-slate-600"> Length: </p>
                                         <p id="video-length" class="text-teal-500"> 00:00 </p>
                                     </div>
                                 </div>
@@ -52,12 +52,12 @@
                                 <p class="text-xl text-teal-500 font-bold text-center"> Download options </p>
                                 <div ref="default-format" class="h-fit transition-all overflow-hidden" style="max-height: 30px;">
                                     <div class="flex space-x-4">
-                                        <p class="text-lg text-teal-50 font-bold text-center"> Format:  </p>
+                                        <p class="text-lg dark:text-teal-50 text-slate-600 font-bold text-center"> Format:  </p>
                                         <p class="text-lg text-teal-500 font-bold text-center"> Default (WEBM Audio) </p>
                                     </div>
                                 </div>
-                                <div class="flex flex-col mt-2 w-full text-base font-semibold rounded-lg overflow-hidden border-2 border-slate-600">
-                                    <div v-on:click="toogleOptions" ref="options-header" class="flex bg-slate-600 text-teal-50 cursor-pointer select-none">
+                                <div class="flex flex-col mt-2 w-full text-base font-semibold rounded-lg overflow-hidden border-2 dark:border-slate-600 border-slate-300">
+                                    <div v-on:click="toogleOptions" ref="options-header" class="flex dark:bg-slate-600 bg-slate-200 dark:text-teal-50 text-slate-600 cursor-pointer select-none">
                                         <div class="flex flex-col justify-center pl-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-all">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -69,9 +69,9 @@
                                     </div>
                                     <div ref="options-panel" class="h-fit transition-all overflow-hidden" style="height: 0px">
                                         <div class="flex flex-col p-1">
-                                            <p class="text-md text-teal-50 font-semibold text-left"> Audio formats: </p>
+                                            <p class="text-md dark:text-teal-50 text-slate-600 font-semibold text-left"> Audio formats: </p>
                                             <selector :data="audioFormats" :onchange="onaudiochange" :onload="setAudioSelector" ></selector>
-                                            <p class="text-md text-teal-50 font-semibold text-left mt-2"> Video formats: </p>
+                                            <p class="text-md dark:text-teal-50 text-slate-600 font-semibold text-left mt-2"> Video formats: </p>
                                             <selector :data="videoFormats" :onchange="onvideochange" :onload="setVideoSelector" ></selector>
                                         </div>
                                     </div>
@@ -86,13 +86,13 @@
                     </div>
                 </div>
                 <div ref="download-view" class="overflow-hidden transition-all duration-500" style="height: 0px;">
-                    <div class="flex flex-col h-fit py-4 px-2 border-2 border-teal-50/[0.5] rounded-md space-y-4">
+                    <div class="flex flex-col h-fit py-4 px-2 border-2 dark:border-teal-50/[0.5] border-slate-200 rounded-md space-y-4">
                         <p class="text-xl text-teal-500 font-bold text-center"> Convertion complete ! </p>
                         
                         <div class="flex flex-col">
                             <div ref="download-label" class="flex overflow-hidden transition-all duration-500">
                                 <div class="flex w-full justify-center space-x-2 h-fit">
-                                    <p class="text-lg text-teal-50 font-semibold text-center whitespace-nowrap"> File name: </p>
+                                    <p class="text-lg dark:text-teal-50 text-slate-600 font-semibold text-center whitespace-nowrap"> File name: </p>
                                     <p id="filename-text" class="text-lg text-teal-500 font-semibold text-center whitespace-nowrap text-ellipsis overflow-hidden"> filename.format </p>
                                 </div>
                             </div>
@@ -403,7 +403,6 @@ function restart() {
 }
 
 function toogleOptions(obj) {
-    return;
     const header = page.$refs["options-header"];
     const icon = header.firstElementChild.firstElementChild;
     const options = page.$refs["options-panel"];

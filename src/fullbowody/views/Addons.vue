@@ -6,27 +6,27 @@
 
             <div
                 v-for="addon in addons"
-                class="bg-slate-700 show-up rounded-lg border-2 border-slate-600 md:m-4 m-2 overflow-hidden transition-all"
-                :class="addon.purchased? ' select-none ': ' shadow-lg hover:shadow-xl hover:border-slate-500'"
+                class="dark:bg-slate-700 bg-slate-200 show-up rounded-lg border-2 dark:border-slate-600 border-slate-300 md:m-4 m-2 overflow-hidden transition-all"
+                :class="addon.purchased? ' select-none ': ' shadow-lg hover:shadow-xl hover:dark:border-slate-500 hover:border-slate-400'"
                 :style="'animation-delay: ' + (addons.indexOf(addon) * 100) + 'ms;'">
                 <div class="flex flex-col w-min min-h-[20em]">
                     <div class="flex flex-col">
                         <h1
-                            class="bg-slate-600 text-2xl font-bold text-center px-10 whitespace-nowrap py-2"
-                            :class="addon.purchased? ' text-slate-400' : ' text-slate-200'"
+                            class="dark:bg-slate-600 bg-slate-400 text-2xl font-bold text-center px-10 whitespace-nowrap py-2"
+                            :class="addon.purchased? ' dark:text-slate-400 text-slate-200' : ' dark:text-slate-200 text-slate-50'"
                         > {{ addon.title }} </h1>
                     </div>
                     <div class="flex grow flex-col justify-between ml-auto p-4">
                         <h2
                             class="text-xl font-bold"
-                            :class="addon.purchased? ' text-slate-500': ' text-slate-400'"
+                            :class="addon.purchased? ' dark:text-slate-500 text-slate-400': ' dark:text-slate-400 text-slate-600'"
                         > {{ addon.description }} </h2>
                         <div
                             class="flex flex-row ml-auto border-2 rounded px-2"
-                            :class="addon.purchased? ' border-slate-600 bg-slate-700': ' border-slate-500 bg-slate-600 shadow-md'"
+                            :class="addon.purchased? ' dark:border-slate-600 border-slate-400 dark:bg-slate-700 bg-slate-300': ' dark:border-slate-500 border-slate-400 dark:bg-slate-600 bg-slate-300 shadow-md'"
                         >
-                            <h1 :class="addon.purchased? 'text-slate-400': 'text-slate-200'" class=" text-2xl font-bold"> {{ addon.price }} </h1>
-                            <h2 :class="addon.purchased? 'text-slate-600': 'text-slate-400'" class=" text-xl font-bold mx-1"> {{ addon.currency }} </h2>
+                            <h1 :class="addon.purchased? 'dark:text-slate-400 text-slate-400': 'dark:text-slate-200 text-slate-500'" class=" text-2xl font-bold"> {{ addon.price }} </h1>
+                            <h2 :class="addon.purchased? 'dark:text-slate-500 text-slate-400': 'dark:text-slate-400 text-slate-600'" class=" text-xl font-bold mx-1"> {{ addon.currency }} </h2>
                         </div>
                         <div class="flex flex-row mx-auto">
                             <button-block
@@ -60,7 +60,7 @@ const addons = [
         description: "Add a third tracking camera to your setup",
         price: "1.99",
         currency: "€",
-        purchased: false,
+        purchased: true,
         onclick: (obj) => { purchase(obj) }
     },
     {

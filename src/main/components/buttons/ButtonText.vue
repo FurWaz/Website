@@ -2,7 +2,7 @@
     <!-- Template Back Button : Used to go bakc in the website -->
     <a
         :href="href==''? null : href"
-        class="setchildcolored flex flex-col justify-center cursor-pointer mx-2 text-slate-300 hover:text-slate-200 transition-all"
+        class="setchildcolored flex flex-col justify-center cursor-pointer mx-2 dark:text-slate-300 text-slate-400 hover:dark:text-slate-200 hover:text-slate-700 transition-all"
         v-on:click="callback(this)">
         <p ref="text" class="text-md font-bold whitespace-nowrap">
             <slot></slot>

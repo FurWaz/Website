@@ -1,11 +1,11 @@
 <template>
-    <div class="flex grow-0 justify-evenly rounded-lg overflow-hidden border-2 border-teal-50">
+    <div class="flex grow-0 justify-evenly rounded-lg overflow-hidden border-2 dark:border-teal-50 border-slate-200">
         <div
             v-for="item in data"
             :id="'item-'+item.id"
             v-on:click="() => select(item.id, true)"
-            class="flex w-full flex-col px-2 py-1 bg-slate-700 hover:bg-teal-50/[0.2] cursor-pointer select-none transition-all rounded-md">
-            <p class="text-md text-center text-bold text-teal-50"> {{ item.value }} </p>
+            class="flex w-full flex-col px-2 py-1 dark:bg-slate-700 bg-slate-50 hover:dark:bg-teal-50/[0.2] hover:bg-slate-200 cursor-pointer select-none transition-all rounded-md">
+            <p class="text-md text-center text-bold dark:text-teal-50 text-slate-600"> {{ item.value }} </p>
         </div>
     </div>
 </template>

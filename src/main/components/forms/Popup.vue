@@ -20,7 +20,7 @@
 <script>
 import ButtonBlock from "../buttons/ButtonBlock.vue";
 import ButtonText from "../buttons/ButtonText.vue";
-import { redirectHome, goBack } from "../../scripts/common.js";
+import { goBack } from "../../scripts/common.js";
 
 let logMessage = msg => {};
 let logTimeoutID = -1;
@@ -86,8 +86,15 @@ export default {
         logMessage = (msg) => {
             /**@type {HTMLDivElement} */
             const logs = this.$refs["logs"];
-            logs.firstElementChild.innerHTML = msg;
-            logs.style.height = logs.firstElementChild.getBoundingClientRect().height+"px";
+            const p = document.createElement("p");
+            p.innerHTML = msg;
+            p.classList.add("h-fit", "mx-auto", "dark:text-slate-200", "text-slate-700", "text-center", "w-full", "text-lg", "font-semibold");
+            while (logs.firstElementChild)
+                logs.firstElementChild.remove();
+            logs.appendChild(p);
+            setTimeout(() => {
+                logs.style.height = logs.firstElementChild.getBoundingClientRect().height+"px";
+            }, 200);
             if (logTimeoutID != -1) clearTimeout(logTimeoutID);
             logTimeoutID = setTimeout(() => {
                 logs.style.height = "0px";

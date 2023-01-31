@@ -8,14 +8,15 @@
         <div class="flex flex-col grow" style="z-index: 1;">
             <div class="flex grow justify-center my-40">
                 <div class="flex flex-col justify-center">
-                    <div class="show-down flex dark:bg-slate-800 bg-slate-300 md:border-4 border-2 border-slate-600 md:rounded-3xl rounded-xl md:px-20 px-6 h-fit shadow-xl">
+                    <div class="show-down flex dark:bg-slate-800 bg-slate-300 md:border-4 border-2 dark:border-slate-600 border-slate-400 md:rounded-3xl rounded-xl md:px-20 px-6 h-fit shadow-xl">
                         <h1 style="animation-delay: 200ms"
                             class="show-down md:text-[8em] text-[3em] font-extrabold drop-shadow-xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-orange-500 m-0"> FurWaz </h1>
                     </div>
                 </div>
             </div>
             <div class="show-up flex grow-0 h-fit">
-                <img src="../../assets/UI/waves-orange.svg" alt="" class="w-full">
+                <img v-if="isDarkMode" src="../../assets/UI/waves-orange-dark.svg" alt="" class="w-full">
+                <img v-if="!isDarkMode" src="../../assets/UI/waves-orange.svg" alt="" class="w-full">
                 <div class="flex grow bg-orange-500">
 
                 </div>
@@ -78,7 +79,13 @@ export default {
         
     },
     methods: {},
-    data() { return {}; },
+    data() {
+        let theme = localStorage.getItem("theme");
+        if (theme == null) {
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        return { isDarkMode: theme === "dark" };
+    },
     setup() {},
     mounted() {
         spawnParticles(this);
