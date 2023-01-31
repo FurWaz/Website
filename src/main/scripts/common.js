@@ -12,6 +12,15 @@ export function redirectHome(wait=true) {
     }, wait?1000:0);
 }
 
+window.redirectLink = redirectLink;
+export function redirectLink(wait=true) {
+    setTimeout(() => {
+        let link = window.app.sidebar.$route.query.link;
+        if (!link) link = "/";
+        window.app.sidebar.$router.push(link);
+    }, wait?1000:0);
+}
+
 export function goBack() {
     try {
         window.app.sidebar.buttons.find(btn => btn.id === "back").click();

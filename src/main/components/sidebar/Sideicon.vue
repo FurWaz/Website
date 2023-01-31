@@ -1,8 +1,8 @@
 <template>
     <div ref="btn" class="relative flex">
-        <div class="flex grow p-1 m-2 rounded-lg border-2 bg-slate-600
-                    hover:shadow-xl hover:border-orange-500 cursor-pointer transition-all">
-            <div class="icon flex flex-col justify-center mx-auto text-slate-50 transition-all">
+        <div class="flex grow p-1 m-2 rounded-lg border-2 dark:bg-slate-600 bg-slate-300 dark:border-slate-700 border-slate-400
+                    hover:shadow-xl dark:hover:border-orange-500 hover:border-orange-500 hover:bg-slate-400 dark:text-slate-50 text-slate-700 hover:text-slate-50 cursor-pointer transition-all">
+            <div class="icon flex flex-col justify-center mx-auto transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 250 250" stroke-width="1.5" stroke="currentColor" class="h-12">
                     <g transform="translate(0,250) scale(0.1,-0.1)"
                     fill="currentColor" stroke="none">
@@ -35,8 +35,8 @@
         </div>
         
         <div ref="label" class="absolute -right-4 flex grow h-full w-0 flex-col justify-center transition-all opacity-0 pointer-events-none">
-            <div class="w-fit h-fit bg-slate-700 px-4 rounded-lg border-2 border-slate-600">
-                <p class="text-lg font-bold text-slate-50 p-0 m-0"> {{ name }} </p>
+            <div class="w-fit h-fit dark:bg-slate-700 bg-slate-300 px-4 rounded-lg border-2 dark:border-slate-600 border-slate-400">
+                <p class="text-lg font-bold dark:text-slate-50 text-slate-700 p-0 m-0"> {{ name }} </p>
             </div>
         </div>
     </div>
@@ -67,7 +67,9 @@ function setup(obj) {
     obj.update = () => {
         const isButtonURL = window.location.pathname === obj.href;
         btn.firstElementChild.classList.add(isButtonURL? "border-orange-500" : "border-slate-500");
+        btn.firstElementChild.classList.add(isButtonURL? "dark:border-orange-500" : "dark:border-slate-500");
         btn.firstElementChild.classList.remove(isButtonURL? "border-slate-500" : "border-orange-500");
+        btn.firstElementChild.classList.remove(isButtonURL? "dark:border-slate-500" : "dark:border-orange-500");
     };
     window.app.sidebar.addButton(obj);
     obj.update();

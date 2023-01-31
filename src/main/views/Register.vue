@@ -19,7 +19,7 @@ import InputText from "../components/forms/InputText.vue";
 
 import API from "../scripts/API.js";
 import User from '../scripts/User';
-import { redirectHome, EMAIL_REGEX } from "../scripts/common.js";
+import { redirectLink, EMAIL_REGEX } from "../scripts/common.js";
 
 function register(data, log) {
     return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ function register(data, log) {
                 user.save();
                 log("Registered");
                 resolve();
-                redirectHome(true);
+                redirectLink(true);
             }).catch(err => {
                 log(err);
                 reject("Error : Cannot fetch user informations ("+err+")");

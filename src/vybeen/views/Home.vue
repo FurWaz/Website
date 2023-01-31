@@ -18,7 +18,7 @@
             <drawer></drawer>
         </div>
     </div>
-    <div class="vybeen-popup hidden flex grow flex-col justify-center">
+    <div class="show-up vybeen-popup hidden flex grow flex-col justify-center">
         <div class="flex mx-auto w-fit">
             
             <div class="flex flex-col bg-slate-700 border-2 border-slate-600 shadow-lg rounded-lg">
@@ -26,11 +26,11 @@
                 <div class="p-4">
                     <!-- need to be connected to access vybeen -->
                     <p class="text-slate-300 font-semibold"> You are currently not connected. </p>
-                    <p class="text-slate-300 font-semibold"> Please <a href="/login">log in</a> or <a href="/register">register</a> to access VyBeen. </p>
+                    <p class="text-slate-300 font-semibold"> Please <a href="/login?link=/projects/vybeen">log in</a> or <a href="/register?link=/projects/vybeen">register</a> to access VyBeen. </p>
                 </div>
                 <div class="flex grow-0 justify-between p-2">
                     <button-text :action="goBack"> Cancel </button-text>
-                    <button-block href="/login"> Log In </button-block>
+                    <button-block href="/login?link=/projects/vybeen"> Log In </button-block>
                 </div>
             </div>
 

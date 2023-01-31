@@ -2,7 +2,7 @@
     <!-- Template Back Button : Used to go bakc in the website -->
     <a
         :href="href==''? null : href"
-        class="setchildblue flex flex-col justify-center cursor-pointer mx-2 text-slate-300 hover:text-slate-200 transition-all"
+        class="setchildcolored flex flex-col justify-center cursor-pointer mx-2 text-slate-300 hover:text-slate-200 transition-all"
         v-on:click="callback(this)">
         <p ref="text" class="text-md font-bold whitespace-nowrap">
             <slot></slot>
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-.setchildblue:hover > .txtbtn-2 {
-    @apply bg-blue-500;
+.setchildcolored:hover > .txtbtn-2 {
+    @apply bg-orange-500;
 }
 </style>

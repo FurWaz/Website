@@ -1,7 +1,7 @@
 <template>
     <div class="flex grow-0 flex-col">
-        <div class="flex md:flex-col flex-row md:h-screen w-screen md:w-min h-min bg-slate-700 shadow-lg">
-            <sideicon href="/account" name="Account"></sideicon>
+        <div class="flex md:flex-col flex-row md:h-screen w-screen md:w-min h-min dark:bg-slate-700 bg-slate-300 shadow-lg">
+            <sideicon href="/account" :name="Lang.CurrentLang.Account"></sideicon>
             <div class="md:flex hidden flex-col grow">
                 <sidebtn v-for="el in menu" :href="el.href" :name="el.name" :icon="el.icon"></sidebtn>
                 <backbtn></backbtn>
@@ -26,6 +26,7 @@
 import Sidebtn from './Sidebtn.vue';
 import Backbtn from './Backbtn.vue';
 import Sideicon from './Sideicon.vue';
+import Lang from "../../scripts/Lang";
 
 import {
     HomeIcon,
@@ -39,22 +40,22 @@ import {
 const menu = [
     {
         href: "/",
-        name: "Home",
+        name: Lang.CurrentLang.Home,
         icon: HomeIcon
     },
     {
         href: "/apps",
-        name: "Apps",
+        name: Lang.CurrentLang.Apps,
         icon: Squares2X2Icon
     },
     {
         href: "/projects",
-        name: "Projects",
+        name: Lang.CurrentLang.Projects,
         icon: WrenchScrewdriverIcon
     },
     {
         href: "/about",
-        name: "About",
+        name: Lang.CurrentLang.About,
         icon: InformationCircleIcon
     }
 ];
@@ -125,6 +126,7 @@ export default {
         return {
             menu,
             Cog6ToothIcon,
+            Lang,
         };
     },
     setup() {},

@@ -11,7 +11,7 @@
         </div>
         <span class="bg-slate-600 w-[90%] mx-auto h-1 rounded-lg"></span>
         <div class="flex flex-row justify-between w-full h-fit py-2 space-x-6 px-2">
-            <button-text :action="() => { goBack() }"> Cancel </button-text>
+            <button-text :action="goBack"> Cancel </button-text>
             <button-block ref="validate-btn" :action="validate"> {{ this.validateLabel }} </button-block>
         </div>
     </div>
@@ -20,7 +20,7 @@
 <script>
 import ButtonBlock from "../buttons/ButtonBlock.vue";
 import ButtonText from "../buttons/ButtonText.vue";
-import { redirectHome } from "../../scripts/common.js";
+import { redirectHome, goBack } from "../../scripts/common.js";
 
 let logMessage = msg => {};
 let logTimeoutID = -1;
@@ -79,7 +79,7 @@ export default {
         ButtonText
     },
     methods: {
-        goBack() { redirectHome(false); },
+        goBack,
         validate
     },
     mounted() {

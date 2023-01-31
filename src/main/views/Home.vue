@@ -8,7 +8,7 @@
         <div class="flex flex-col grow" style="z-index: 1;">
             <div class="flex grow justify-center my-40">
                 <div class="flex flex-col justify-center">
-                    <div class="show-down flex bg-slate-800 md:border-4 border-2 border-slate-600 md:rounded-3xl rounded-xl md:px-20 px-6 h-fit shadow-xl">
+                    <div class="show-down flex dark:bg-slate-800 bg-slate-300 md:border-4 border-2 border-slate-600 md:rounded-3xl rounded-xl md:px-20 px-6 h-fit shadow-xl">
                         <h1 style="animation-delay: 200ms"
                             class="show-down md:text-[8em] text-[3em] font-extrabold drop-shadow-xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-orange-500 m-0"> FurWaz </h1>
                     </div>

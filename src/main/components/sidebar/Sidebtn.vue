@@ -1,15 +1,15 @@
 <template>
     <a ref="btn" class="relative flex m-2" :href="href">
-        <div :class="' bg-'+bg+' '" class="flex grow rounded-lg p-3 border-2 border-slate-700
-                    hover:bg-slate-600 hover:text-slate-50 hover:border-orange-500 cursor-pointer transition-all">
+        <div class="flex grow rounded-lg p-3 border-2 dark:border-slate-700 border-slate-400 dark:bg-slate-700 bg-slate-300
+                    dark:hover:bg-slate-600 hover:bg-slate-400 hover:text-slate-50 dark:hover:border-orange-500 hover:border-orange-500 cursor-pointer transition-all">
             <div class="flex flex-col justify-center mx-auto">
                 <component :is="icon" class="w-8 h-8"></component>
             </div>
         </div>
         
         <div ref="label" class="absolute -right-4 flex grow h-full w-0 flex-col justify-center transition-all pointer-events-none" style="opacity: 0">
-            <div class="w-fit h-fit bg-slate-700 px-4 rounded-lg border-2 border-slate-600">
-                <p class="text-lg font-bold text-slate-50 p-0 m-0"> {{ name }} </p>
+            <div class="w-fit h-fit dark:bg-slate-700 bg-slate-300 px-4 rounded-lg border-2 dark:border-slate-600 border-slate-400">
+                <p class="text-lg font-bold dark:text-slate-50 text-slate-700 p-0 m-0 whitespace-nowrap"> {{ name }} </p>
             </div>
         </div>
     </a>
@@ -61,11 +61,6 @@ export default {
         },
         icon: {
             required: true
-        },
-        bg: {
-            type: String,
-            default: "slate-700",
-            required: false
         },
         href: {
             type: String,

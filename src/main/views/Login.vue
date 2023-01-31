@@ -15,7 +15,7 @@
 import Popup from "../components/forms/Popup.vue";
 import InputText from "../components/forms/InputText.vue";
 
-import { redirectHome } from "../scripts/common.js";
+import { redirectLink } from "../scripts/common.js";
 import User from '../scripts/User';
 
 function login(data, log) {
@@ -40,7 +40,7 @@ function login(data, log) {
                 user.save();
                 log("Logged in");
                 resolve();
-                redirectHome(true);
+                redirectLink(true);
             }).catch(err => {
                 log(err);
                 reject("Error : Cannot fetch user informations ("+err+")");
