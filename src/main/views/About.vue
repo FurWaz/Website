@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col grow pt-10 min-w-0">
+    <div class="flex flex-col grow py-10 min-w-0">
         <page-title> {{ Lang.CurrentLang.About }} </page-title>
     </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
-    <div class="flex flex-col grow pt-10 min-w-0">
+    <div class="flex flex-col grow py-10 min-w-0 max-w-full">
         <page-title> {{ Lang.CurrentLang.Account }} </page-title>
-        <div class="flex md:flex-row flex-col grow justify-evenly">
-            <div class="flex mx-auto px-2">
-                <div v-if="!User.CurrentUser" class="show-up flex flex-col grow">
+        <div class="flex md:flex-row flex-col space-y-4 mt-10 grow justify-evenly max-w-full min-w-0">
+            <div class="flex mx-auto px-2 min-w-0 max-w-full">
+                <div v-if="!User.CurrentUser" class="show-up flex flex-col grow min-w-0 max-w-full">
                     <div class="flex flex-col justify-center items-center grow">
                         <card class="p-4">
                             <p class="dark:text-slate-200 text-slate-600 font-semibold text-2xl text-center"> You are not logged in </p>
@@ -15,12 +15,12 @@
                         </card>
                     </div>
                 </div>
-                <div v-if="User.CurrentUser" class="show-up flex flex-col grow justify-center">
-                    <card>
+                <div v-if="User.CurrentUser" class="show-up flex flex-col grow justify-center min-w-0 max-w-full">
+                    <card class="max-w-full min-w-0">
                         <h1 class="text-xl font-bold dark:text-slate-200 text-slate-700 text-center"> {{Lang.CurrentLang.Informations}} </h1>
                         <div v-for="field in userFields" :key="field.label.toLowerCase()" class="flex flex-col grow-0 h-fit my-2">
                             <p class="text-lg font-semibold text-slate-50"> {{ field.label }} </p>
-                            <div class="ml-2 flex flex-col grow-0 h-fit space-y-2">
+                            <div class="ml-2 flex flex-col grow-0 h-fit space-y-2 min-w-0 max-w-full">
                                 <input-text
                                     v-for="input in field.items"
                                     :label="input.label"
@@ -28,7 +28,7 @@
                                     :key="input.label.toLowerCase()"
                                     :disabled="!input.enabled"></input-text>
                             </div>
-                            <div class="flex justify-between grow-0 h-fit my-2">
+                            <div class="flex justify-between grow-0 h-fit my-2 space-x-4 min-w-0 max-w-full">
                                 <button-block
                                     v-for="btn in field.buttons"
                                     :key="btn.label.toLowerCase()"

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col grow pt-10 min-w-0">
+    <div class="flex flex-col grow py-10 min-w-0">
         <page-title> {{ Lang.CurrentLang.Projects }} </page-title>
         <div v-for="categ in projects" class="flex flex-col my-10 show-down" :style="'animation-delay: ' + projects.indexOf(categ) * 100 + 'ms;'">
             <div class="flex grow h-fit md:space-x-4 md:mx-10 justify-center">

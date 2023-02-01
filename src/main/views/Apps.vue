@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col grow pt-10 min-w-0">
+    <div class="flex flex-col grow py-10 min-w-0">
         <page-title> {{ Lang.CurrentLang.Applications }} </page-title>
         <div class="flex flex-wrap my-10 justify-center py-10 h-min">
             <div v-for="app in apps" class="flex show-up" :style="'animation-delay: ' + apps.indexOf(app) * 100 + 'ms;'">
