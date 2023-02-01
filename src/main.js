@@ -4,6 +4,7 @@ import App from './App.vue';
 
 import "./index.css";
 import fullBowodyRoutes from "./fullbowody/routes.js";
+import piuzleRoutes from "./piuzle/routes.js";
 import vybeenRoutes from "./vybeen/routes.js";
 import convRoutes from "./conv/routes.js";
 import mainRoutes from "./main/routes.js";
@@ -41,6 +42,13 @@ for (let i = 0; i < convRoutes.length; i++) {
         path: "/apps/conv" + convRoutes[i].path,
         name: "CV" + convRoutes[i].name,
         component: convRoutes[i].component
+    });
+}
+for (let i = 0; i < piuzleRoutes.length; i++) {
+    routes.push({
+        path: "/apps/piuzle" + piuzleRoutes[i].path,
+        name: "PZ" + piuzleRoutes[i].name,
+        component: piuzleRoutes[i].component
     });
 }
 

@@ -1,7 +1,7 @@
 <template>
     <!-- Template Back Button : Used to go bakc in the website -->
     <a
-        :href="href==''? null : href"
+        :href="href==''? null : href" target="_blank"
         class="flex border-2 dark:border-slate-600 border-slate-400 rounded-md transition-all"
         v-on:click="callback($event)"
         :class="this.disabled? ' text-slate-400 cursor-default' : ' dark:text-slate-300 text-slate-500 shadow hover:dark:bg-slate-600 hover:bg-slate-300 hover:dark:border-orange-500 hover:border-orange-500 hover:dark:text-slate-200 hover:text-slate-700 hover:shadow-lg cursor-pointer'">
@@ -48,7 +48,7 @@ export default {
         callback(ev) {
             if (this.disabled) return;
 
-            if (this.href != "") {
+            if (this.href !== "") {
                 if (this.href.startsWith("http")) {
                     window.open(this.href, "_blank");
                 } else {

@@ -6,7 +6,7 @@
         <div class="flex grow justify-center border-2 border-slate-500 bg-slate-500 space-x-[2px] rounded-lg overflow-hidden">
             <div
                 v-for="el in this.elements"
-                :class="el.selected? ' text-slate-50 bg-orange-500 hover:bg-orange-400 ' : ' dark:text-slate-200 text-slate-700 dark:bg-slate-800 bg-slate-400 dark:hover:bg-slate-700 hover:bg-slate-300 '"
+                :class="el.selected? ' text-slate-50 bg-orange-500 hover:bg-orange-400 ' : ' dark:text-slate-200 text-slate-700 dark:bg-slate-800 bg-slate-300 dark:hover:bg-slate-700 hover:bg-slate-300 '"
                 :key="el.value"
                 v-on:click="this.setSelected(el.value)"
                 class="flex grow cursor-pointer">

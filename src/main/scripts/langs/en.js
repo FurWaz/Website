@@ -32,12 +32,22 @@ export default {
     FullbowodyLink: "Go to page",
     ConverterDescription: "Convert YouTube videos to any audio / video file !",
     ConverterLink: "Convert videos",
+    PiuzleDescription: "Challenge your brain and find the right path to the exit !",
+    PiuzleLink: "Play Piuzle",
     ProcessorDescription: "Play with a little processor, make it evolve in his world and fight agains other processors !",
     ProcessorLink: "See the game",
 
     // projects
+    PersonnalProjects: "Personnal projects",
+    SchoolProjects: "School projects",
     VybeenDescription: "Listen music and sing with your friends !",
     VybeenLink: "Try Vybeen",
     RobotDescription: "Create your own humanoïd robot, with a 3D printer, an Arduino, and some motors !",
     RobotLink: "See project",
+    XRTouchDescription: "Make VR apps feel more real with XRTouch products !",
+    XRTouchLink: "What's that ?",
+    CocktailsDescription: "Browse and search for cocktails recipes, and save your favorites !",
+    CocktailsLink: "Browse cocktails",
+    IndicoDescription: "Learn how to use industrial machines thanks to AR / VR !",
+    IndicoLink: "Check Indico",
 }

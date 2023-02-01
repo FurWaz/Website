@@ -1,6 +1,7 @@
 <template>
+<!-- :href="data.href" -->
     <div
-        :href="data.href"
+        
         class="flex flex-col border-2 dark:border-slate-600 border-slate-300 rounded-lg px-4 py-1 md:mx-8 mx-4 my-4 min-w-[18em] max-w-[320px] translate-y-0
                dark:bg-slate-700 bg-slate-200 shadow-lg hover:dark:border-slate-500 hover:border-slate-400 hover:shadow-xl hover:-translate-y-1 cursor-pointer transition-all"
     >
@@ -29,13 +30,13 @@
 import ButtonBlock from '../buttons/ButtonBlock.vue';
 
 function setup(obj) {
-    const el = obj.$el;
-    el.addEventListener("click", ev => {
-        obj.$router.push(obj.data.href).then(() => {
-            window.app.sidebar.update();
-        });
-        ev.preventDefault();
-    });
+    // const el = obj.$el;
+    // el.addEventListener("click", ev => {
+    //     obj.$router.push(obj.data.href).then(() => {
+    //         window.app.sidebar.update();
+    //     });
+    //     ev.preventDefault();
+    // });
 }
 
 export default {
