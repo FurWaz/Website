@@ -32,7 +32,7 @@
                     <div class="flex flex-wrap justify-evenly my-8 md:w-[50%] mx-auto">
                         <div v-for="item in skills" class="show-up flex m-4" :style="'animation-delay: ' + skills.indexOf(item) * 100 + 'ms'">
                             <a
-                                class="flex py-1 px-2 w-fit h-fit border-4 dark:border-slate-600 border-slate-300 hover:border-orange-500 -skew-x-12 dark:bg-slate-700 bg-slate-200 shadow-md hover:shadow-lg transition-all hover:-translate-y-1"
+                                class="flex py-1 px-2 w-fit h-fit border-4 dark:border-slate-600 border-slate-300 hover:border-orange-500 hover:dark:border-orange-500 -skew-x-12 dark:bg-slate-700 bg-slate-200 shadow-md hover:shadow-lg transition-all hover:-translate-y-1"
                                 :href="item.link"
                                 target="_blank"
                             >
