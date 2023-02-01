@@ -50,4 +50,15 @@ export default {
     CocktailsLink: "Browse cocktails",
     IndicoDescription: "Learn how to use industrial machines thanks to AR / VR !",
     IndicoLink: "Check Indico",
+
+    // about
+    AboutMe: "About me",
+    AboutFurwaz: "About FurWaz",
+    Skills: "Skills",
+    PersoHeader: "<======|| Personnal infos ||======>",
+    PersoFirstname: "First name : Paul",
+    PersoLastname: "Last name : Loisil",
+    PersoAge: "Age : 20 years old",
+    PersoGenre: "Genre : Male",
+    PersoHobbies: "Hobbies : Web design, Game dev, ...",
 }
