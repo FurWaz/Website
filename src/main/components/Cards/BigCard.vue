@@ -3,6 +3,7 @@
         :href="data.href"
         class="flex flex-col border-2 dark:border-slate-600 border-slate-300 rounded-lg px-4 py-1 md:mx-8 mx-4 my-4 min-w-[18em] max-w-[320px] translate-y-0
                dark:bg-slate-700 bg-slate-200 shadow-lg hover:dark:border-slate-500 hover:border-slate-400 hover:shadow-xl hover:-translate-y-1 cursor-pointer transition-all"
+        v-on:click="callback($event)"
     >
         <div class="flex w-fit mx-auto min-w-min px-8">
             <h1 class="dark:text-slate-50 text-slate-600 text-4xl font-bold mx-auto mt-2 whitespace-nowrap"> {{ data.title }} </h1>
@@ -28,22 +29,27 @@
 <script>
 import ButtonBlock from '../buttons/ButtonBlock.vue';
 
-function setup(obj) {
-    const el = obj.$el;
-    el.addEventListener("click", ev => {
-        obj.$router.push(obj.data.href).then(() => {
-            window.app.sidebar.update();
-        });
-        ev.preventDefault();
-    });
-}
-
 export default {
     name: "PresCard",
     components: {
         ButtonBlock
     },
-    methods: {},
+    methods: {
+        callback(ev) {
+            if (this.disabled) return;
+
+            if (this.data.href !== "") {
+                if (this.data.href.startsWith("http")) {
+                    window.open(this.data.href, "_blank");
+                } else {
+                    this.$router.push(this.data.href).then(() => {
+                        window.app.sidebar.update();
+                    });
+                }
+                ev?.preventDefault();
+            }
+        }
+    },
     props: {
         data: {
             type: Object,
@@ -53,7 +59,7 @@ export default {
     data() { return { }; },
     setup() {},
     mounted() {
-        setup(this);
+        
     }
 };
 </script>

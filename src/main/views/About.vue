@@ -66,10 +66,7 @@ import Lang from '../scripts/Lang';
 function showCursor() {
     const cursor = document.querySelector('.cursor');
     cursor.style.opacity = 1;
-    cursor.style.animation = 'none';
-    setTimeout(() => {
-        cursor.style.animation = 'blink 1s ease forwards'
-    }, 5);;
+    cursor.style.animation = 'blink 1s ease infinite'
 }
 
 function hideCursor() {
@@ -82,7 +79,6 @@ function setCursorPos(pos) {
     const cursor = document.querySelector('.cursor');
     cursor.style.left = pos.x + 'px';
     cursor.style.top = pos.y + 'px';
-    showCursor();
 }
 
 function glitchElement(el) {
@@ -130,12 +126,12 @@ function summonCode() {
             });
 
             if (line.innerText.length < text.length) {
-                setTimeout(printChars, Math.random() * 150 + 50);
+                setTimeout(printChars, Math.random() * 100 + 50);
             } else {
                 if (lineindex < lines.length) {
                     setTimeout(printLines, Math.random() * 700 + 300);
                 } else {
-                    setTimeout(hideCursor, 1000);
+                    //setTimeout(hideCursor, 1000);
                 }
             }
         }
@@ -185,9 +181,8 @@ export default {
 
 <style>
 @keyframes blink {
-    0% { opacity: 1; }
-    30% { opacity: 1; }
-    100% { opacity: 0; }
+    0%, 60% { opacity: 1; }
+    10%, 50% { opacity: 0; }
 }
 
 @keyframes glitch {
