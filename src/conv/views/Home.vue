@@ -370,6 +370,7 @@ function convert() {
 
     const stateInterval = setInterval(() => {
         API.execute("/state?ticket="+converterTicket).then(res => {
+            clearTimeout(timeoutID);
             if (res.state == "CONVERTING") {
                 setLog("Converting video to " + selectedFormat.toUpperCase() + " ... " + res.progress + "%");
             } else {
