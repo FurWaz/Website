@@ -4,7 +4,7 @@
             v-for="item in data"
             :id="'item-'+item.id"
             v-on:click="() => select(item.id, true)"
-            class="flex w-full flex-col px-2 py-1 dark:bg-slate-700 bg-slate-50 hover:dark:bg-teal-50/[0.2] hover:bg-slate-200 cursor-pointer select-none transition-all rounded-md">
+            class="flex w-full flex-col px-2 py-1 transparent hover:dark:bg-teal-50/[0.2] hover:bg-slate-200 cursor-pointer select-none transition-all rounded-md">
             <p class="text-md text-center text-bold dark:text-teal-50 text-slate-600"> {{ item.value }} </p>
         </div>
     </div>
@@ -38,13 +38,13 @@ export default {
 
         this.setItemSelected = id => {
             const el = this.$el.querySelector("#item-"+id);
-            el.classList.add("bg-teal-500", "hover:bg-teal-500/[0.2]");
-            el.classList.remove("hover:bg-teal-50/[0.2]");
+            el.classList.add("bg-teal-500", "hover:bg-teal-500/[0.2]", "dark:bg-teal-600", "hover:dark:bg-teal-500");
+            el.classList.remove("hover:bg-teal-50/[0.2]", "hover:dark:bg-teal-50/[0.2]");
         }
         this.setItemDeselected = id => {
             const el = this.$el.querySelector("#item-"+id);
-            el.classList.remove("bg-teal-500", "hover:bg-teal-500/[0.2]");
-            el.classList.add("hover:bg-teal-50/[0.2]");
+            el.classList.remove("bg-teal-500", "hover:bg-teal-500/[0.2]", "dark:bg-teal-600", "hover:dark:bg-teal-500");
+            el.classList.add("hover:bg-teal-50/[0.2]", "hover:dark:bg-teal-50/[0.2]");
         }
 
         this.select = (id, emitEvent=false) => {

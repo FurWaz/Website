@@ -29,7 +29,7 @@
 
                     </div>
                 </div>
-                <div ref="video-view" class="overflow-hidden transition-all duration-500 mt-4" style="height: 00px;">
+                <div ref="video-view" class="overflow-hidden transition-all duration-500 mt-4" style="height: 0px;">
                     <div class="flex flex-col border-2 dark:border-teal-50/[0.5] border-slate-200 rounded-md md:space-x-2 space-y-2">
                         <div class="flex flex-col md:flex-row py-1 px-2 md:space-x-2 md:space-y-0 space-y-2 mx-auto">
                             <div class="flex flex-col w-min min-w-[200px] space-y-2 p-2 max-w-[300px] mx-auto">
@@ -86,11 +86,16 @@
                     </div>
                 </div>
                 <div ref="download-view" class="overflow-hidden transition-all duration-500" style="height: 0px;">
-                    <div class="flex flex-col h-fit py-4 px-2 border-2 dark:border-teal-50/[0.5] border-slate-200 rounded-md space-y-4">
-                        <p class="text-xl text-teal-500 font-bold text-center"> Convertion complete ! </p>
+                    <div class="flex flex-col h-fit py-4 px-2 border-2 dark:border-teal-50/[0.5] border-slate-200 rounded-md space-y-2">
+                        <p ref="conv-label" class="text-xl text-teal-500 font-bold text-center"> Convertion complete ! </p>
                         
-                        <div class="flex flex-col">
-                            <div ref="download-label" class="flex overflow-hidden transition-all duration-500">
+                        <div class="flex flex-col grow h-fit space-y-2">
+                            <div class="flex grow h-fit bg-slate-900 rounded-xl overflow-hidden transition-all duration-500" style="max-height: 0px;">
+                                <span ref="download-bar" class="h-2 bg-teal-500 rounded" style="width: 0%;">
+
+                                </span>
+                            </div>
+                            <div ref="download-label" class="flex flex-col overflow-hidden transition-all duration-500">
                                 <div class="flex w-full justify-center space-x-2 h-fit">
                                     <p class="text-lg dark:text-teal-50 text-slate-600 font-semibold text-center whitespace-nowrap"> File name: </p>
                                     <p id="filename-text" class="text-lg text-teal-500 font-semibold text-center whitespace-nowrap text-ellipsis overflow-hidden"> filename.format </p>
@@ -130,16 +135,18 @@ import TopAd from '../components/ads/TopAd.vue';
 let page = null;
 function update_log_size(shift=0) {
     const logZone = page.$refs["log-zone"];
+    if (!logZone) return;
     const child = logZone.firstElementChild;
 
     logZone.style.maxHeight = child.getBoundingClientRect().height + shift + "px";
 }
 
-function addLog(text) {
+function addLog(text, animate=true) {
     const logZone = page.$refs["log-zone"];
     const log = document.createElement("p");
     log.innerText = text;
-    log.classList.add("transition-all", "duration-500", "w-fit", "show-right", "whitespace-nowrap");
+    log.classList.add("w-fit", "whitespace-nowrap");
+    if (animate) log.classList.add("transition-all", "duration-500", "show-right");
     logZone.firstElementChild.insertBefore(log, logZone.firstElementChild.firstElementChild);
     log.style.maxWidth = log.getBoundingClientRect().width + "px";
     update_log_size();
@@ -156,6 +163,16 @@ function addLog(text) {
         }, 250);
     };
     return { dismiss };
+}
+
+function setLog(text) {
+    delLog();
+    return addLog(text, false);
+}
+
+function delLog(text) {
+    const logZone = page.$refs["log-zone"].firstElementChild;
+    while (logZone.firstElementChild) logZone.firstElementChild.remove();
 }
 
 function animatePage() {
@@ -194,11 +211,12 @@ function hideResultsView() {
 
 function showDownloadView() {
     const downloadView = page.$refs["download-view"];
-    const height = downloadView.firstElementChild.getBoundingClientRect().height;
+    const height = downloadView.firstElementChild.getBoundingClientRect().height + 20;
     downloadView.classList.add("mt-4");
     downloadView.style.height = `${height}px`;
 
-
+    const convLabel = page.$refs["conv-label"];
+    convLabel.innerText = "Convertion finished !";
     const filename = document.getElementById("video-title").innerText + "." + (selectedFormat=="default"? "webm" : selectedFormat);
     document.getElementById("filename-text").innerText = filename;
 }
@@ -249,27 +267,19 @@ function onvideochange(id) {
     audioSelector.select(null);
 }
 
-let converterTicket = null;
-function search() {
-    hideResultsView();
-    hideDownloadView();
-
-    const input = page.$refs["input-zone"].querySelector("input");
-    if (input == null) return;
-
-    let videoID = null;
-    if ( input.value == "" ) {
+function getVideoID(input) {
+    if ( !input ) {
         const log = addLog("Error : Please enter a video URL or ID !");
         setTimeout(() => {
             log.dismiss();
         }, 2000);
         return;
     }
-    if ( input.value.startsWith("http") ) {
-        const url = new URL(input.value);
-        if ( url.hostname == "www.youtube.com" ) {
+    if ( input.startsWith("http") ) {
+        const url = new URL(input);
+        if ( url.hostname == "www.youtube.com" || url.hostname == "youtube.com" ) {
             if ( url.pathname == "/watch" ) {
-                videoID = url.searchParams.get("v");
+                return url.searchParams.get("v");
             } else {
                 const log = addLog("Error : Invalid URL !");
                 setTimeout(() => {
@@ -278,15 +288,19 @@ function search() {
                 return;
             }
         } else {
-            const log = addLog("Error : Invalid URL !");
-            setTimeout(() => {
-                log.dismiss();
-            }, 2000);
-            return;
+            if ( url.hostname == "youtu.be" ) {
+                return url.pathname.substring(1);
+            } else {
+                const log = addLog("Error : Invalid URL !");
+                setTimeout(() => {
+                    log.dismiss();
+                }, 2000);
+                return;
+            }
         }
     } else {
-        if ( input.value.length == 11 ) {
-            videoID = input.value;
+        if ( input.length == 11 && input.match(/^[a-zA-Z0-9_-]+$/) ) {
+            return input;
         } else {
             const log = addLog("Error : Invalid video ID !");
             setTimeout(() => {
@@ -295,6 +309,20 @@ function search() {
             return;
         }
     }
+}
+
+let converterTicket = null;
+function search() {
+    hideResultsView();
+    hideDownloadView();
+
+    const zone = page.$refs["input-zone"];
+    if (!zone) return;
+    const input = zone.querySelector("input");
+    if (input == null) return;
+
+    let videoID = getVideoID(input.value);
+    if (videoID == null) return;
 
     const log = addLog("Retreiving video informations ...");
     
@@ -330,9 +358,30 @@ function convert() {
 
     hideResultsView();
     hideDownloadView();
-    const log = addLog("Converting video to " + selectedFormat.toUpperCase() + " ...");
+    const log = addLog("Converting video to " + selectedFormat.toUpperCase());
+
+    const timeoutID = setTimeout(() => {
+        log.dismiss();
+        let newlog = addLog("Error: The video is taking too long to convert");
+        setTimeout(() => {
+            newlog.dismiss();
+        }, 2000);
+    }, 10000);
+
+    const stateInterval = setInterval(() => {
+        API.execute("/state?ticket="+converterTicket).then(res => {
+            if (res.state == "CONVERTING") {
+                setLog("Converting video to " + selectedFormat.toUpperCase() + " ... " + res.progress + "%");
+            } else {
+                setLog("Downloading video ... " + res.progress + "%");
+            }
+        }).catch(err => console.error(err));
+    }, 500);
     
     API.execute("/convert?ticket="+converterTicket+"&format="+selectedFormat).then(res => {
+        clearTimeout(timeoutID);
+        clearInterval(stateInterval);
+        delLog();
         if (!res.success) {
             log.dismiss();
             let newlog = addLog("Error: Cannot convert the video");
@@ -368,16 +417,56 @@ function download() {
         restartBtn.classList.add("show-right");
     }, 150);
 
+    const convLabel = page.$refs["conv-label"];
+    convLabel.innerText = "Downloading ...";
+    const downloadBar = page.$refs["download-bar"];
+    downloadBar.parentElement.style.maxHeight = "20px";
+    downloadBar.setProgress = p => { downloadBar.style.width = p + "%"; };
+    downloadBar.setProgress(0);
+
     const link = API.API_URL + downloadLink;
     const filename = document.getElementById("video-title").innerText + "." + (selectedFormat=="default"? "webm" : selectedFormat);
-    fetch(link).then(res => res.blob().then(blob => {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        a.click();
-        URL.revokeObjectURL(url);
-    }));
+    fetch(link).then(res => {
+
+        const reader = res.body.getReader();
+        const contentLength = +res.headers.get("Content-Length") || 5000000;
+        let receivedLength = 0;
+        let chunks = [];
+
+        const readChunks = (whenDone) => {
+            reader.read().then(({done, value}) => {
+                if (done) {
+                    whenDone();
+                    return;
+                }
+
+                chunks.push(value);
+                receivedLength += value.length;
+                downloadBar.setProgress(receivedLength / contentLength * 100);
+                readChunks(whenDone);
+            });
+        };
+
+        readChunks(() => {
+            let chunksAll = new Uint8Array(receivedLength);
+            let position = 0;
+            for (let chunk of chunks) {
+                chunksAll.set(chunk, position);
+                position += chunk.length;
+            }
+            
+            const blob = new Blob([chunksAll]);
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            convLabel.innerText = "Downloaded !";
+            downloadBar.parentElement.style.maxHeight = "0px";
+        });
+    });
 }
 function restart() {
     hideResultsView();

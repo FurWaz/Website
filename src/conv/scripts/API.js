@@ -48,7 +48,7 @@ class API {
     static Credentials = Credentials;
 
     // API constants
-    static API_URL = 'https://converter.furwaz.com';
+    static API_URL = 'http://localhost:7000'; // 'https://converter.furwaz.com';
     static get METHOD() {
         return {
             GET: "GET",
