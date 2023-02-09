@@ -60,7 +60,7 @@ const addons = [
         description: "Add a third tracking camera to your setup",
         price: "1.99",
         currency: "€",
-        purchased: true,
+        purchased: false,
         onclick: (obj) => { purchase(obj) }
     },
     {
