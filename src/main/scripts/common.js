@@ -44,6 +44,38 @@ export function stringTime(time) {
     return (minutes + seconds).toLowerCase();
 }
 
+/**
+ * Manages all the .show-* page elements animations
+ * @param {HTMLDivElement} page page
+ */
+export function animateShows(page) {
+    let classes = ["show-up", "show-down", "show-left", "show-right"];
+    let elements = [];
+    classes.forEach(c => {
+        const els = page.querySelectorAll("."+c);
+        els.forEach(el => {
+            if (el.classList.contains("noscroll")) return;
+            el.classList.remove(c);
+            el.index = elements.length;
+            elements.push({el, c});
+        });
+    });
+    
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            console.log(e)
+            if (e.isIntersecting) {
+                e.target.classList.add(elements[e.target.index].c);
+            }
+            else {
+                e.target.classList.remove(elements[e.target.index].c);
+            }
+        });
+    });
+
+    elements.forEach(e => observer.observe(e.el));
+}
+
 /** FOR EXIT PREVENT POPUP **/
 // window.addEventListener("beforeunload", function (e) {
 //     var confirmationMessage = "Certaines modifications ne seront pas enregistrés si vous quittez la page maintenant.\n"+
