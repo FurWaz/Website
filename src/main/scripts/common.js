@@ -63,7 +63,6 @@ export function animateShows(page) {
     
     const observer = new IntersectionObserver(entries => {
         entries.forEach(e => {
-            console.log(e)
             if (e.isIntersecting) {
                 e.target.classList.add(elements[e.target.index].c);
             }
