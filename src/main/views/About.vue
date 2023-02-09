@@ -10,7 +10,7 @@
             <div class="flex flex-col grow h-fit my-4"> <!-- ABOUT ME -->
                 <div class="flex md:flex-row flex-col justify-evenly">
                     <div class="flex flex-col justify-center">
-                        <div class="show flex flex-col mx-4 justify-start rounded-lg dark:bg-slate-900 bg-slate-200 p-4 text-xl font-semibold font-mono
+                        <div class="show-right flex flex-col mx-4 justify-start rounded-lg dark:bg-slate-900 bg-slate-200 p-4 text-xl font-semibold font-mono
                                     dark:text-slate-400 text-slate-500 border-2 dark:border-slate-700 border-slate-300 relative">
                             <p class="absolute cursor"> _ </p>
                             <p class="summon-code w-fit"> {{ Lang.CurrentLang.PersoHeader }} </p>
@@ -61,6 +61,7 @@
 
 <script>
 import PageTitle from '../components/labels/PageTitle.vue';
+import { animateShows } from '../scripts/common';
 import Lang from '../scripts/Lang';
 
 function showCursor() {
@@ -175,6 +176,7 @@ export default {
     setup() {},
     mounted() {
         summonCode();
+        animateShows(this.$el);
     }
 };
 </script>

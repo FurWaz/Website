@@ -7,18 +7,77 @@
         </div>
         <div class="flex flex-col grow" style="z-index: 1;">
             <div class="flex grow justify-center my-40">
-                <div class="flex flex-col justify-center">
-                    <div class="show-down flex dark:bg-slate-800 bg-slate-300 md:border-4 border-2 dark:border-slate-600 border-slate-400 md:rounded-3xl rounded-xl md:px-20 px-6 h-fit shadow-xl">
+                <div ref="title" class="flex flex-col justify-center">
+                    <div class="show-down noscroll flex dark:bg-slate-800 bg-slate-300 md:border-4 border-2 dark:border-slate-600 border-slate-400 md:rounded-3xl rounded-xl md:px-20 px-6 h-fit shadow-xl">
                         <h1 style="animation-delay: 200ms"
-                            class="show-down md:text-[8em] text-[3em] font-extrabold drop-shadow-xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-orange-500 m-0"> FurWaz </h1>
+                            class="show-down noscroll md:text-[8em] text-[3em] font-extrabold drop-shadow-xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-orange-500 m-0"> FurWaz </h1>
                     </div>
                 </div>
             </div>
-            <div class="show-up flex grow-0 h-fit">
-                <img v-if="isDarkMode" src="../../assets/UI/waves-orange-dark.svg" alt="" class="w-full">
-                <img v-if="!isDarkMode" src="../../assets/UI/waves-orange.svg" alt="" class="w-full">
-                <div class="flex grow bg-orange-500">
-
+            <div class="show-up flex flex-col grow-0 h-fit">
+                <img v-if="isDarkMode" src="../../assets/UI/waves-dark.svg" alt="" class="w-full scale-[1.01]">
+                <img v-if="!isDarkMode" src="../../assets/UI/waves.svg" alt="" class="w-full scale-[1.01]">
+                <div class="flex grow bg-orange-500 h-[60vh] w-full">
+                    <div class="flex flex-col justify-center grow w-[50%] px-10">
+                        <h1 class="show-up text-6xl text-slate-700 font-bold text-center mx-auto mb-8"> {{ Lang.CurrentLang.Applications }} </h1>
+                        <p class="show-up text-2xl text-slate-700 font-bold text-center mx-auto" style="animation-delay: 200ms"> {{ Lang.CurrentLang.ApplicationsDesc1 }} </p>
+                        <p class="show-up text-2xl text-slate-700 font-bold text-center mx-auto" style="animation-delay: 200ms"> {{ Lang.CurrentLang.ApplicationsDesc2 }} </p>
+                    </div>
+                    <div class="flex flex-col justify-evenly grow w-[50%] px-10">
+                        <div class="flex flex-wrap justify-center space-x-8">
+                            <div v-for="el in appsIcons" :key="el" class="show-down" :style="'animation-delay: '+(appsIcons.indexOf(el) * 100 + 100)+'ms'">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                    v-html="el.icon" class="text-slate-700 w-24" :style="'transform: rotate('+el.rot+'deg);'">
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="show-up flex justify-center" style="animation-delay: 500ms">
+                            <button-block href="/apps" color="black"> {{ Lang.CurrentLang.SeeApps }} </button-block>
+                        </div>
+                    </div>
+                </div>
+                <img v-if="isDarkMode" src="../../assets/UI/waves-dark.svg" alt="" class="w-full -scale-[1.01]">
+                <img v-if="!isDarkMode" src="../../assets/UI/waves.svg" alt="" class="w-full -scale-[1.01]">
+                <div class="flex grow bg-transparent h-[60vh] w-full">
+                    <div class="flex flex-col justify-evenly grow w-[50%] px-10">
+                        <div class="flex flex-wrap justify-center space-x-8">
+                            <div v-for="el in projectsIcons" :key="el" class="show-down" :style="'animation-delay: '+(appsIcons.indexOf(el) * 100 + 100)+'ms'">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                    v-html="el.icon" class="text-slate-400 w-24" :style="'transform: rotate('+el.rot+'deg);'">
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="show-up flex justify-center" style="animation-delay: 500ms">
+                            <button-block href="/projects"> {{ Lang.CurrentLang.SeeProjects }} </button-block>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center grow w-[50%] px-10">
+                        <h1 class="show-up text-6xl text-slate-400 font-bold text-center mx-auto mb-8"> {{ Lang.CurrentLang.Projects }} </h1>
+                        <p class="show-up text-2xl text-slate-400 font-bold text-center mx-auto" style="animation-delay: 200ms"> {{ Lang.CurrentLang.ProjectsDesc1 }} </p>
+                        <p class="show-up text-2xl text-slate-400 font-bold text-center mx-auto" style="animation-delay: 200ms"> {{ Lang.CurrentLang.ProjectsDesc2 }} </p>
+                    </div>
+                </div>
+                <div class="flex grow h-fit w-full">
+                    <div class="flex flex-col grow w-[50%]">
+                        <div v-if="!isDarkMode" class="show-right mr-auto">
+                            <img src="../../assets/UI/blob.svg" alt="" class="h-80">
+                            <img src="../../assets/UI/blob.svg" alt="" class="h-80 rotate-90">
+                        </div>
+                        <div v-if="isDarkMode" class="show-right mr-auto">
+                            <img src="../../assets/UI/blob-dark.svg" alt="" class="h-80">
+                            <img src="../../assets/UI/blob-dark.svg" alt="" class="h-80 rotate-90">
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center grow w-[50%] px-10">
+                        <h1 class="show-up text-6xl text-slate-400 font-bold text-center mx-auto mb-8"> {{ Lang.CurrentLang.About }} </h1>
+                        <p class="show-up text-2xl text-slate-400 font-bold text-center mx-auto" style="animation-delay: 200ms"> {{ Lang.CurrentLang.AboutDesc1 }} </p>
+                        <p class="show-up text-2xl text-slate-400 font-bold text-center mx-auto" style="animation-delay: 200ms"> {{ Lang.CurrentLang.AboutDesc2 }} </p>
+                        <div class="show-up flex justify-center" style="animation-delay: 500ms">
+                            <button-block href="/about" class="w-fit mx-auto mt-8"> {{ Lang.CurrentLang.SeeAbout }} </button-block>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,6 +85,9 @@
 </template>
 
 <script>
+import ButtonBlock from '../components/buttons/ButtonBlock.vue';
+import { animateShows } from '../scripts/common';
+import Lang from '../scripts/Lang';
 
 function spawnSVG(dom, size, pos, rot, color) {
     const svgContent = `
@@ -73,10 +135,58 @@ function spawnParticles(obj) {
     }
 }
 
+function setupAnimation(page) {
+    const particles = page.$refs["particles"];
+    const title = page.$refs["title"];
+
+    page.$el.addEventListener("scroll", ev => {
+        const scroll = page.$el.scrollTop;
+        if (scroll > window.innerHeight) return;
+
+        title.style.transform = "translateY(" + (scroll * 0.6) + "px)";
+        particles.style.transform = "translateY(" + (scroll * 0.4) + "px)";
+    });
+}
+
+const appsIcons = [
+    {rot: Math.random() * 40 - 20, icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />`},
+    {rot: Math.random() * 40 - 20, icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`},
+    {rot: Math.random() * 40 - 20, icon: `<path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"></path>
+        <path d="m7 16.5-4.74-2.85"></path>
+        <path d="m7 16.5 5-3"></path>
+        <path d="M7 16.5v5.17"></path>
+        <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"></path>
+        <path d="m17 16.5-5-3"></path>
+        <path d="m17 16.5 4.74-2.85"></path>
+        <path d="M17 16.5v5.17"></path>
+        <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"></path>
+        <path d="M12 8 7.26 5.15"></path>
+        <path d="m12 8 4.74-2.85"></path>
+        <path d="M12 13.5V8"></path>`},
+    {rot: Math.random() * 40 - 20, icon: `<line x1="6" y1="12" x2="10" y2="12"></line>
+        <line x1="8" y1="10" x2="8" y2="14"></line>
+        <line x1="15" y1="13" x2="15.01" y2="13"></line>
+        <line x1="18" y1="11" x2="18.01" y2="11"></line>
+        <rect x="2" y="6" width="20" height="12" rx="2"></rect>`},
+];
+
+const projectsIcons = [
+    {rot: Math.random() * 40 - 20, icon: `<path d="M9 18V5l12-2v13"></path>
+        <circle cx="6" cy="18" r="3"></circle>
+        <circle cx="18" cy="16" r="3"></circle>`},
+    {rot: Math.random() * 40 - 20, icon: `<rect x="3" y="11" width="18" height="10" rx="2"></rect>
+        <circle cx="12" cy="5" r="2"></circle>
+        <path d="M12 7v4"></path>
+        <line x1="8" y1="16" x2="8" y2="16"></line>
+        <line x1="16" y1="16" x2="16" y2="16"></line>`},
+    {rot: Math.random() * 40 - 20, icon: `<path d="m3 9 7-7v4h11v6H10v4z"></path>
+        <path d="m21 15-7-7v4H3v6h11v4z"></path>`},
+];
+
 export default {
     name: "Home",
     components: {
-        
+        ButtonBlock
     },
     methods: {},
     data() {
@@ -84,11 +194,13 @@ export default {
         if (theme == null) {
             theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
-        return { isDarkMode: theme === "dark" };
+        return { isDarkMode: theme === "dark", appsIcons, projectsIcons, Lang };
     },
     setup() {},
     mounted() {
         spawnParticles(this);
+        setupAnimation(this);
+        animateShows(this.$el);
     }
 };
 </script>

@@ -12,6 +12,7 @@
 <script>
 import BigCard from '../components/Cards/BigCard.vue';
 import PageTitle from '../components/labels/PageTitle.vue';
+import { animateShows } from '../scripts/common';
 import Lang from '../scripts/Lang';
 
 const apps = [
@@ -69,7 +70,9 @@ export default {
     methods: {},
     data() { return { apps, Lang }; },
     setup() {},
-    mounted() {}
+    mounted() {
+        animateShows(this.$el);
+    }
 };
 </script>
 

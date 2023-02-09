@@ -26,6 +26,17 @@ export default {
     ChangePassword: "Changer le mot de passe",
     DeleteConfirm: "Êtes-vous sûr de vouloir supprimer votre compte ?<br>Cette action est irréversible.",
 
+    // home
+    ApplicationsDesc1: "Vous voulez tracker votre corps ? Convertir des vidéos ?",
+    ApplicationsDesc2: "J'ai quelques applications à vous faire voir !",
+    SeeApps: "Voir les apps",
+    ProjectsDesc1: "Vous cherchez des techs sympa en AR/VR ? Ou voulez faire votre propre robot ?",
+    ProjectsDesc2: "Certains de mes projets pourraient vous intéresser !",
+    SeeProjects: "Voir les projets",
+    AboutDesc1: "Vous voulez en savoir plus sur moi ?",
+    AboutDesc2: "Vous pouvez voir mes compétences, mes infos personnelles, et plus encore !",
+    SeeAbout: "Voir plus",
+
     // apps
     Applications: "Applications",
     FullbowodyDescription: "Suivez votre corps avec deux caméras basiques ou plus",

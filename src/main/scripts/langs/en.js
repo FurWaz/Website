@@ -26,6 +26,17 @@ export default {
     ChangePassword: "Change password",
     DeleteConfirm: "Are you sure you want to delete your account ?<br>This action is irreversible.",
 
+    // home
+    ApplicationsDesc1: "You want to track your body ? Convert videos ?",
+    ApplicationsDesc2: "I have some applications to show you !",
+    SeeApps: "See the apps",
+    ProjectsDesc1: "You're looking for nice AR/VR techs ? Or want to build your own robot ?",
+    ProjectsDesc2: "Some of my projects could interest you !",
+    SeeProjects: "See the projects",
+    AboutDesc1: "Want to know more about me ?",
+    AboutDesc2: "You can check out my skills, my personnal infos, and more !",
+    SeeAbout: "See more",
+
     // apps
     Applications: "Applications",
     FullbowodyDescription: "Track your body with two basic cameras or more",
