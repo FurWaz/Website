@@ -38,34 +38,66 @@
                 00 : 00
             </div>
         </div>
-        <div class="flex grow-0 justify-center mt-8 font-semibold mx-2">
-            <div
-                id="btn-prev"
-                class="flex rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 m-2 transition-all cursor-pointer"
-            >
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="19 20 9 12 19 4 19 20"></polygon>
-                    <line x1="5" y1="19" x2="5" y2="5"></line>
-                </svg>
+        <div class="flex grow h-fit mx-2 mt-8 font-semibold ">
+            <div id="btn-sound" class="flex m-2">
+                <div
+                    class="flex h-fit w-fit rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 transition-all cursor-pointer"
+                >
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                </div>
+
+                <div class="w-0 h-0">
+                    <div class="flex w-fit h-fit">
+                        <span class="border-4 border-transparent"></span>
+                        <div id="sound-panel" class="flex justify-center flex-col w-fit h-9 my-1 rounded-md border-slate-600 bg-slate-700/[0.5] transition-all overflow-hidden" style="max-width: 0px">
+                            <div id="sound-panel-child" class="w-20 m-2">
+                                <div class="flex flex-col justify-center">
+                                    <div class="flex h-2 bg-slate-500 rounded pointer-events-none">
+                                        <div id="sound-bar" class="flex bg-slate-50 rounded transition-all" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div
-                id="btn-play"
-                class="flex rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 m-2 transition-all cursor-pointer"
-            >
-                <svg class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
+
+            <div class="flex justify-center mx-auto">
+                <div
+                    id="btn-prev"
+                    :class="'opacity-0 pointer-events-none'"
+                    class="flex rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 m-2 transition-all cursor-pointer"
+                >
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                        <line x1="5" y1="19" x2="5" y2="5"></line>
+                    </svg>
+                </div>
+                <div
+                    id="btn-play"
+                    class="flex rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 m-2 transition-all cursor-pointer"
+                >
+                    <svg class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </div>
+                <div
+                    id="btn-next"
+                    class="flex rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 m-2 transition-all cursor-pointer"
+                >
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                        <line x1="19" y1="5" x2="19" y2="19"></line>
+                    </svg>
+                </div>
             </div>
-            <div
-                id="btn-next"
-                class="flex rounded-lg border-2 border-slate-600 bg-slate-700/[0.5] text-slate-500 hover:bg-slate-600/[0.5] hover:text-slate-300 hover:border-slate-500 p-2 m-2 transition-all cursor-pointer"
-            >
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
-                    <line x1="19" y1="5" x2="19" y2="19"></line>
-                </svg>
-            </div>
+
+            <div class="opacity-0 pointer-events-none w-10 h-8 m-2"></div>
         </div>
     </div>
 </template>

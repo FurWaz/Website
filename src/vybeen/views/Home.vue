@@ -1,9 +1,9 @@
 <template>
-    <div class="vybeen-ui absolute top-0 right-0 w-screen h-screen bg-black">
+    <div class="absolute top-0 right-0 w-screen h-screen bg-black">
         <div id="background" class="absolute top-0 right-0 w-screen h-screen bg-cover bg-center blur-3xl"></div>
         <div class="absolute top-0 right-0 w-screen h-screen flex grow bg-slate-900/[0.6]"></div>
     </div>
-    <div class="vybeen-ui flex grow flex-col z-50">
+    <div class="flex grow flex-col z-50">
         <audio id="audio" src="" class="hidden"></audio>
         <vb-header></vb-header>
         <div class="flex grow min-w-0 min-h-0">
@@ -47,7 +47,7 @@ import ButtonBlock from '../../main/components/buttons/ButtonBlock.vue';
 import ButtonText from '../../main/components/buttons/ButtonText.vue';
 import { goBack } from '../../main/scripts/common.js';
 
-import { toogleDrawer, showLyrics, doesShowLyrics, setPlayingIcon } from '../scripts/uiManager.js';
+import { toogleDrawer, showLyrics, doesShowLyrics, setPlayingIcon, displaySoundPanel, hideSoundPanel } from '../scripts/uiManager.js';
 import { fetchInfos, requestSearch, startMainLoop } from '../scripts/main';
 import { setupEvents } from '../scripts/events';
 import { fetchClients } from '../scripts/clients';
@@ -96,6 +96,14 @@ function setup() {
         if (ev.key == "Enter") {
             requestSearch(document.getElementById("search").value);
         }
+    });
+
+    let btnSound = document.getElementById("btn-sound");
+    btnSound.addEventListener("mouseenter", ev => {
+        displaySoundPanel();
+    });
+    btnSound.addEventListener("mouseleave", ev => {
+        hideSoundPanel();
     });
 }
 

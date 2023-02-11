@@ -23,7 +23,9 @@ function getClientId() {
     return user_poll_id;
 }
 
+let audio = null;
 function processEvent(event) {
+    if (audio == null) audio = document.getElementById("audio");
     // console.log("new event: "+event.type+" (data: "+JSON.stringify(event.data)+")");
     switch (event.type) {
         case "newMusic":
@@ -32,6 +34,14 @@ function processEvent(event) {
         case "newClient":
         case "clientRemoved":
             fetchClients();
+            break;
+        case "play":
+            audio.play();
+            setPlayingIcon(true);
+            startMainLoop();
+        case "pause":
+            audio.pause();
+            setPlayingIcon(false);
             break;
     
         default:

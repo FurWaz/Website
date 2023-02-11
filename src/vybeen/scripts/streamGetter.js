@@ -1,4 +1,4 @@
-import { setProgress } from "./uiManager";
+import { setPlayingIcon, setProgress } from "./uiManager";
 
 /**@type {HTMLAudioElement} */
 let audio = null;
@@ -13,6 +13,7 @@ function setupListener() {
     if (listenerSetup) return;
     listenerSetup = true;
 
+    setInteracted();
     document.addEventListener("click", setInteracted);
     document.addEventListener("touchstart", setInteracted);
     document.addEventListener("keydown", setInteracted);

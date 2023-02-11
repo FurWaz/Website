@@ -77,6 +77,7 @@ function updateClientsList() {
 /** @type {HTMLDivElement} */
 let lyricsContainer = null;
 function lyricsScroll(amount) {
+    if (amount == null) return;
     if (lyricsContainer == null) lyricsContainer = document.getElementById("lyrics");
     
     if (typeof(amount) != "number") {
@@ -147,6 +148,48 @@ function setPlayingIcon(state) {
     playBtn.firstElementChild.innerHTML = state ? pauseIcon : playIcon;
 }
 
+function displaySoundPanel() {
+    const panel = document.getElementById("sound-panel");
+    const child = document.getElementById("sound-panel-child");
+    panel.classList.add("border-2");
+    panel.style.maxWidth = child.getBoundingClientRect().width + 40 + "px";
+
+    let soundBar = null;
+    let audio = null;
+    const setVolume = volume => {
+        if (soundBar == null) soundBar = document.getElementById("sound-bar");
+        if (audio == null) audio = document.getElementById("audio");
+
+        audio.volume = volume;
+        soundBar.style.width = `${volume * 100}%`;
+        localStorage.setItem("volume", volume);
+    };
+
+    let oldVolume = localStorage.getItem("volume") || 1;
+    setVolume(oldVolume);
+    const adjustVolume = ev => {
+        const rect = ev.target.getBoundingClientRect();
+        const x = ev.clientX - rect.left;
+        const width = rect.width;
+        const volume = Math.round(x * 4 / width) / 4;
+        if (oldVolume != volume) {
+            setVolume(volume);
+            oldVolume = volume;
+        }
+    };
+
+    let pressed = false;
+    child.addEventListener("mousedown", ev => { pressed = true; adjustVolume(ev); });
+    child.addEventListener("mouseup", ev => { pressed = false; });
+    child.addEventListener("mousemove", ev => { if (pressed) adjustVolume(ev); });
+}
+
+function hideSoundPanel() {
+    const panel = document.getElementById("sound-panel");
+    panel.classList.remove("border-2");
+    panel.style.maxWidth = "0px";
+}
+
 export {
     setMaxTime,
     setPreview,
@@ -158,5 +201,7 @@ export {
     showLyrics,
     doesShowLyrics,
     setPlayingIcon,
-    updateClientsList
+    updateClientsList,
+    displaySoundPanel,
+    hideSoundPanel
 };

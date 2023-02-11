@@ -74,7 +74,6 @@ function update() {
         }
     }
     index--;
-    console.log("selecting index "+index+" out of "+lyricsBuffer.length);
 
     if (index >= 0) {
         lyricsSelect(lyricsBuffer[index].el);
