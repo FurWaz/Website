@@ -48,7 +48,7 @@ class API {
     static Credentials = Credentials;
 
     // API constants
-    static API_URL = 'https://api.furwaz.com';
+    static API_URL = 'https://api.furwaz.fr';
     static get METHOD() {
         return {
             GET: "GET",
