@@ -6,6 +6,10 @@ export default {
     About: "About",
     Back: "Back",
 
+    // actions
+    Login: "Login",
+    Register: "Register",
+
     // account
     Informations: "Informations",
     Language: "Language",
@@ -25,6 +29,8 @@ export default {
     ConfirmPassword: "Confirm password",
     ChangePassword: "Change password",
     DeleteConfirm: "Are you sure you want to delete your account ?<br>This action is irreversible.",
+    NotLoggedIn: "You're not logged in !",
+    NotLoggedInDesc: "Please login or register to access your account",
 
     // home
     ApplicationsDesc1: "You want to track your body ? Convert videos ?",

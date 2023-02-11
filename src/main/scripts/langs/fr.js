@@ -6,6 +6,10 @@ export default {
     About: "À propos",
     Back: "Retour",
 
+    // actions
+    Login: "Se connecter",
+    Register: "S'inscrire",
+
     // account
     Informations: "Informations",
     Language: "Langage",
@@ -25,6 +29,8 @@ export default {
     ConfirmPassword: "Confirmer le mot de passe",
     ChangePassword: "Changer le mot de passe",
     DeleteConfirm: "Êtes-vous sûr de vouloir supprimer votre compte ?<br>Cette action est irréversible.",
+    NotLoggedIn: "Vous n'êtes pas connecté !",
+    NotLoggedInDesc: "Veuillez vous connecter ou vous inscrire pour accéder à votre compte",
 
     // home
     ApplicationsDesc1: "Vous voulez tracker votre corps ? Convertir des vidéos ?",

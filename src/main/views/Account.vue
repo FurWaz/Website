@@ -6,11 +6,11 @@
                 <div v-if="!User.CurrentUser" class="show-up flex flex-col grow min-w-0 max-w-full">
                     <div class="flex flex-col justify-center items-center grow">
                         <card class="p-4">
-                            <p class="dark:text-slate-200 text-slate-600 font-semibold text-2xl text-center"> You are not logged in </p>
-                            <p class="dark:text-slate-200 text-slate-500 font-semibold text-xl text-center"> Please login of register to access your account </p>
+                            <p class="dark:text-slate-200 text-slate-600 font-semibold text-2xl text-center"> {{ Lang.CurrentLang.NotLoggedIn }} </p>
+                            <p class="dark:text-slate-200 text-slate-500 font-semibold text-xl text-center"> {{ Lang.CurrentLang.NotLoggedInDesc }} </p>
                             <div class="flex justify-evenly space-x-20 mt-10">
-                                <button-block href="/login?link=/account"> Login </button-block>
-                                <button-block href="/register?link=/account"> Register </button-block>
+                                <button-block href="/login?link=/account"> {{ Lang.CurrentLang.Login }} </button-block>
+                                <button-block href="/register?link=/account"> {{ Lang.CurrentLang.Register }} </button-block>
                             </div>
                         </card>
                     </div>
