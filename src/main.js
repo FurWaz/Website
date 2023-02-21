@@ -5,7 +5,6 @@ import App from './App.vue';
 import "./index.css";
 import fullBowodyRoutes from "./fullbowody/routes.js";
 import piuzleRoutes from "./piuzle/routes.js";
-import vybeenRoutes from "./vybeen/routes.js";
 import convRoutes from "./conv/routes.js";
 import mainRoutes from "./main/routes.js";
 
@@ -28,13 +27,6 @@ for (let i = 0; i < fullBowodyRoutes.length; i++) {
         path: "/apps/fullbowody" + fullBowodyRoutes[i].path,
         name: "FB" + fullBowodyRoutes[i].name,
         component: fullBowodyRoutes[i].component
-    });
-}
-for (let i = 0; i < vybeenRoutes.length; i++) {
-    routes.push({
-        path: "/projects/vybeen" + vybeenRoutes[i].path,
-        name: "VB" + vybeenRoutes[i].name,
-        component: vybeenRoutes[i].component
     });
 }
 for (let i = 0; i < convRoutes.length; i++) {
