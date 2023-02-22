@@ -65,7 +65,7 @@ const projects = [
                 title: "Cocktails",
                 description: Lang.CurrentLang.CocktailsDescription,
                 link: Lang.CurrentLang.CocktailsLink,
-                href: "https://cocktails.projects.antoinectx.fr",
+                href: "https://cocktails.projects.furwaz.fr",
                 icon: `<path d="M8 22h8"></path>
                     <path d="M12 11v11"></path>
                     <path d="m19 3-7 8-7-8Z"></path>`
