@@ -65,6 +65,8 @@ export default {
     XRTouchLink: "Qu'est-ce que c'est ?",
     CocktailsDescription: "Parcourez et recherchez des recettes de cocktails, et enregistrez vos favorites !",
     CocktailsLink: "Parcourir les cocktails",
+    CarshareDescription: "Covoiturez avec des amis ou étrangers grâce à Car Share !",
+    CarshareLink: "C'est parti !",
     IndicoDescription: "Apprenez à utiliser des machines industrielles grâce à l'AR / VR !",
     IndicoLink: "Voir Indico",
 
