@@ -102,3 +102,6 @@
     opacity: 0;
     animation: show-jump 1s forwards cubic-bezier(0.5, 0, 0, 0.5);
 }
+
+.w-inherit { width: inherit; }
+.h-inherit { height: inherit; }

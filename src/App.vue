@@ -1,22 +1,25 @@
 <template>
-    <div class="flex md:flex-row flex-col grow min-w-0 min-h-0 dark:bg-slate-800 bg-slate-50 overflow-hidden">
-        <sidebar style="z-index: 1;"></sidebar>
-        <router-view class="overflow-y-scroll"></router-view>
+    <div class="flex flex-col grow min-w-0 min-h-0 dark:bg-slate-700 bg-slate-50 overflow-hidden">        
+        <top-bar />
+        <div
+            ref="content"
+            class="flex grow max-w-full max-h-full overflow-x-hidden overflow-y-auto md:pt-20 pt-14"
+        >
+            <router-view />
+        </div>
     </div>
 </template>
 
 <script>
-import Sidebar from './main/components/sidebar/Sidebar.vue'
+import TopBar from "./components/TopBar.vue";
 
 export default {
     name: "App",
     components: {
-        Sidebar
+        TopBar
     },
     data() {
-        return {
-            year: new Date().getFullYear()
-        }
+        return {lastScroll: 0}
     },
     mounted() {
         let theme = localStorage.getItem('theme');
@@ -26,6 +29,15 @@ export default {
         } else {
             document.documentElement.classList.remove('dark');
         }
+
+        this.$refs["content"].addEventListener("scroll", (ev) => {
+            const deltaY = ev.target.scrollTop - this.lastScroll;
+            this.lastScroll = ev.target.scrollTop;
+            window.deltaY = deltaY;
+            
+            if (window.innerWidth >= 768) return; // not mobile, don't trigger fake events
+            window.dispatchEvent(new Event("wheel"));
+        });
     }
 };
 </script>

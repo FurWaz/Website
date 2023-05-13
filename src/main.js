@@ -3,41 +3,24 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 
 import "./index.css";
-import fullBowodyRoutes from "./fullbowody/routes.js";
-import piuzleRoutes from "./piuzle/routes.js";
-import mainRoutes from "./main/routes.js";
 
 // https redirection (should be done in NGINX, but it not we do it here)
 // if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
 //     window.location.protocol = 'https:';
 // }
 
-const routes = [];
-
-for (let i = 0; i < mainRoutes.length; i++) {
-    routes.push({
-        path: mainRoutes[i].path,
-        name: mainRoutes[i].name,
-        component: mainRoutes[i].component
-    });
-}
-for (let i = 0; i < fullBowodyRoutes.length; i++) {
-    routes.push({
-        path: "/apps/fullbowody" + fullBowodyRoutes[i].path,
-        name: "FB" + fullBowodyRoutes[i].name,
-        component: fullBowodyRoutes[i].component
-    });
-}
-for (let i = 0; i < piuzleRoutes.length; i++) {
-    routes.push({
-        path: "/apps/piuzle" + piuzleRoutes[i].path,
-        name: "PZ" + piuzleRoutes[i].name,
-        component: piuzleRoutes[i].component
-    });
-}
+const routes = [
+    { path: '/', name: 'Home', component: () => import("./views/Home.vue") },
+    { path: '/register', name: 'Register', component: () => import("./views/Register.vue") },
+    { path: '/login', name: 'Login', component: () => import("./views/Login.vue") },
+    { path: '/about', name: 'About', component: () => import("./views/About.vue") },
+    { path: '/profile', name: 'Profile', component: () => import("./views/Profile.vue") },
+    { path: '/projects', name: 'Projects', component: () => import("./views/Projects.vue") },
+    { path: '/apps', name: 'Apps', component: () => import("./views/Apps.vue") }
+];
 
 // 404 redirection
-routes.push({ path: "/:catchAll(.*)", name: 'NotFound', component: () => import("./main/views/NotFound.vue") });
+routes.push({ path: "/:catchAll(.*)", name: 'NotFound', component: () => import("./views/NotFound.vue") });
 
 const router = createRouter({
     mode: "history",
