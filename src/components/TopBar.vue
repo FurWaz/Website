@@ -74,22 +74,24 @@
             <div
                 v-if="mobile"
                 class="md:hidden flex grow space-x-2 mx-1"
-                @click="$router.push('/')"
             >
-                <icon-card
-                    class="h-12 w-12"
-                    :clickable="true"
-                    :animate="false"
-                />
-                <div class="flex grow items-center">
+                <router-link
+                    class="flex w-fit items-center space-x-2"
+                    to="/"
+                >
+                    <icon-card
+                        class="h-12 w-12"
+                        :clickable="true"
+                        :animate="false"
+                    />
                     <h1 class="text-xl font-bold text-slate-700 dark:text-white">
                         FurWaz
                     </h1>
-                </div>
+                </router-link>
                 <div class="flex grow justify-end items-center">
                     <button
                         class="text-slate-600 dark:text-slate-200 hover:text-slate-700 hover:dark:text-white"
-                        @click="toogleMobileMenu"
+                        @click="toogleMobileMenu();"
                     >
                         <bars-3-icon class="h-6 w-6 mx-2" />
                     </button>
@@ -214,7 +216,16 @@ export default {
     },
     data() {
         window.topbar = this;
-        return { User, lang: Lang.CurrentLang, menu, hiding: false, isOpen: false, lastY: 0, mobile: window.innerWidth < 768 };
+        return {
+            User,
+            lang: Lang.CurrentLang,
+            menu,
+            hiding: false,
+            isOpen: false,
+            lastY: 0,
+            mobile: window.innerWidth < 768,
+            console
+        };
     },
     mounted() {
         Lang.AddCallback(lang => this.lang = lang);
@@ -250,7 +261,10 @@ export default {
             if (this.isOpen) this.toogleMobileMenu();
         });
 
-        this.$router.afterEach((to, from) => { if (this.isOpen) this.toogleMobileMenu(); });
+        this.$router.afterEach((to, from) => {
+            if (to.fullPath === from.fullPath) return;
+            if (this.isOpen) this.toogleMobileMenu();
+        });
     },
     methods: {
         toogleMobileMenu() {
