@@ -37,7 +37,7 @@
                 <badge-card
                     v-for="(item, index) in tech"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md md:mx-0 mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
@@ -75,7 +75,7 @@
                 <badge-card
                     v-for="(item, index) in music"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md md:mx-0 mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
@@ -113,7 +113,7 @@
                 <badge-card
                     v-for="(item, index) in other"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md md:mx-0 mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
