@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col h-fit w-full grow">
-        <div class="flex flex-col w-full md:h-[48em] h-fit md:pt-[13.25em] pt-0 px-[10%] items-end space-y-4">
+        <div class="flex flex-col w-full md:h-[45.5em] h-fit md:pt-[13.25em] pt-0 px-[10%] items-end space-y-4">
             <div class="flex space-x-4">
                 <span
                     class="show-left flex grow-0 h-2 w-10 bg-prim-4"

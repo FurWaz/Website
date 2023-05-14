@@ -264,6 +264,7 @@ export default {
         this.$router.afterEach((to, from) => {
             if (to.fullPath === from.fullPath) return;
             if (this.isOpen) this.toogleMobileMenu();
+            document.getElementById("page-content").scrollTo(0, 0);
         });
     },
     methods: {

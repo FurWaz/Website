@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-fit w-full md:pt-[24em] pt-40 grow">
+    <div class="flex flex-col h-fit w-full md:pt-0 pt-40 grow">
         <div class="flex flex-col w-full md:h-[48em] h-fit md:pt-[13.25em] pt-0 px-[10%] items-end space-y-4">
             <div class="flex space-x-4">
                 <span

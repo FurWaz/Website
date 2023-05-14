@@ -14,11 +14,11 @@
             <title-text class="show-up mx-auto">
                 {{ lang.MyGames() }}
             </title-text>
-            <div class="flex space-x-8 justify-evenly w-full my-12">
+            <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full my-12">
                 <badge-card
                     v-for="(item, index) in games"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
@@ -52,11 +52,11 @@
             <title-text class="show-up mx-auto">
                 {{ lang.MyProjects() }}
             </title-text>
-            <div class="flex space-x-8 justify-evenly w-full my-12">
+            <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full my-12">
                 <badge-card
                     v-for="(item, index) in projects"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
@@ -90,11 +90,11 @@
             <title-text class="show-up mx-auto">
                 {{ lang.SchoolProjects() }}
             </title-text>
-            <div class="flex space-x-8 justify-evenly w-full my-12">
+            <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full my-12">
                 <badge-card
                     v-for="(item, index) in school"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div

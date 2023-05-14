@@ -14,7 +14,7 @@
             <title-text class="show-up mx-auto">
                 {{ lang.ProjectManagement() }}
             </title-text>
-            <div class="flex flex-col justify-center w-full my-12">
+            <div class="flex flex-col justify-center w-full my-12 px-4">
                 <badge-card
                     class="show-up w-fit p-2 mx-auto"
                     :hoverable="false"
@@ -31,13 +31,13 @@
         
         <div class="flex flex-col h-fit w-full mt-20">
             <title-text class="show-up mx-auto">
-                {{ lang.Programming() }}
+                {{ lang.Technology() }}
             </title-text>
-            <div class="flex space-x-8 justify-evenly w-full my-12">
+            <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full my-12">
                 <badge-card
-                    v-for="(item, index) in prog"
+                    v-for="(item, index) in tech"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
@@ -71,11 +71,11 @@
             <title-text class="show-up mx-auto">
                 {{ lang.Music() }}
             </title-text>
-            <div class="flex space-x-8 justify-evenly w-full my-12">
+            <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full my-12">
                 <badge-card
                     v-for="(item, index) in music"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
@@ -109,11 +109,11 @@
             <title-text class="show-up mx-auto">
                 {{ lang.Other() }}
             </title-text>
-            <div class="flex space-x-8 justify-evenly w-full my-12">
+            <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full my-12">
                 <badge-card
                     v-for="(item, index) in other"
                     :key="item.name"
-                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md"
+                    class="show-up p-2 space-y-8 max-w-[18em] min-h-[20em] h-full hover:shadow-md mx-auto"
                     :style="'animation-delay: ' + (index * 100 + 100) + 'ms;'"
                 >
                     <div
@@ -159,7 +159,7 @@ const project = [
     // TODO : Do some apps !
 ];
 
-const prog = [
+const tech = [
     {
         name: Lang.CurrentLang.Brainfuck(),
         icon: `<path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0-1.32 4.24 3 3 0 0 0 .34 5.58 2.5 2.5 0 0 0 2.96 3.08A2.5 2.5 0 0 0 9.5 22c1.21 0 2.5-.74 2.5-2.5m0-15a2.5 2.5 0 0 1 4.96-.46 2.5 2.5 0 0 1 1.98 3 2.5 2.5 0 0 1 1.32 4.24 3 3 0 0 1-.34 5.58 2.5 2.5 0 0 1-2.96 3.08A2.5 2.5 0 0 1 14.5 22c-1.21 0-2.5-.74-2.5-2.5m0-15V5m0 14.5V19"></path><circle cx="12" cy="12" r="2"></circle><path d="M12 9v1"></path><path d="M12 14v1"></path><path d="m14.6 10.5-.87.5"></path><path d="m10.27 13-.87.5"></path><path d="m14.6 13.5-.87-.5"></path><path d="m10.27 11-.87-.5"></path>`,
@@ -237,7 +237,7 @@ export default {
         return {
             lang: Lang.CurrentLang,
             project,
-            prog,
+            tech,
             music,
             other
         };

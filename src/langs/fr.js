@@ -106,7 +106,7 @@ export default {
     ProjectManagement: () => "Gestion de projets",
     OhWoops: () => "Ah zut !",
     NothingInSection: () => "Il n'y a rien dans cette section ! (Pour le moment)",
-    Programming: () => "Programmation",
+    Technology: () => "Technologies",
     Music: () => "Musique",
     Other: () => "Autre",
     Brainfuck: () => "BrainFuck",
