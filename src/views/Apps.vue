@@ -171,6 +171,17 @@ const tech = [
             }
         ]
     },
+    {
+        name: Lang.CurrentLang.Fullbowody(),
+        icon: `<circle cx="12" cy="5" r="1"></circle><path d="m9 20 3-6 3 6"></path><path d="m6 8 6 2 6-2"></path><path d="M12 10v4"></path>`,
+        description: Lang.CurrentLang.FullbowodyDesc(),
+        links: [
+            {
+                name: Lang.CurrentLang.FullbowodyBtn(),
+                url: "https://github.com/FullBowody"
+            }
+        ]
+    }
 ];
 
 const music = [

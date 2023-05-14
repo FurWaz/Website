@@ -123,5 +123,8 @@ export default {
     QuidBtn: () => "Try the app",
     Converter: () => "Converter",
     ConverterDesc: () => "A Youtube video converter to multiple audio and video formats!",
-    ConverterBtn: () => "Oh, that's cool!"
+    ConverterBtn: () => "Oh, that's cool!",
+    Fullbowody: () => "FullBowody",
+    FullbowodyDesc: () => "Track your body in realtime thanks to one or many cameras !",
+    FullbowodyBtn: () => "Show me that !",
 }
