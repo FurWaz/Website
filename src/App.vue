@@ -2,6 +2,7 @@
     <div class="flex flex-col grow min-w-0 min-h-0 dark:bg-slate-700 bg-slate-50 overflow-hidden">        
         <top-bar />
         <div
+            id="page-content"
             ref="content"
             class="flex grow max-w-full max-h-full overflow-x-hidden overflow-y-auto md:pt-20 pt-14"
         >

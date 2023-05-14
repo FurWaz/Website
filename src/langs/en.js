@@ -66,6 +66,7 @@ export default {
     MyAbout: () => "About me",
     MyAboutDesc: () => "I'm a french student in computer science, and I love to invent and create things !",
     MyAboutBtn: () => "See about me",
+    ScrollForMore: () => "Scroll for more",
 
     // about
     AboutMe: () => "About me",

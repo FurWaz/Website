@@ -66,6 +66,7 @@ export default {
     MyAbout: () => "À propos de moi",
     MyAboutDesc: () => "Je suis un étudiant Français en Info, et j'adore inventer et créer des trucs !",
     MyAboutBtn: () => "Voir la section",
+    ScrollForMore: () => "Défiler pour voir plus",
 
     // about
     AboutMe: () => "À propos de moi",
