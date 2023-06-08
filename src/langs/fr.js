@@ -15,8 +15,16 @@ export default {
     Register: () => "S'inscrire",
     Registration: () => "Inscription",
     Registering: () => "Inscription",
+    Connect: () => "Connecter",
+    Connecting: () => "Connexion",
+    Connected: () => "Connecté",
     Edit: () => "Modifier",
     Editing: () => "Modification",
+    Continue: () => "Continuer",
+    Change: () => "Changer",
+    Changing: () => "Changement",
+    Close: () => "Fermer",
+    Closing: () => "Fermeture",
     Save: () => "Sauvegarder",
     Saving: () => "Sauvegarde",
     Cancel: () => "Annuler",
@@ -55,6 +63,10 @@ export default {
     DeleteConfirm: () => "Êtes-vous sûr de vouloir supprimer votre compte ?<br>Cette action est irréversible.",
     NotLoggedIn: () => "Vous n'êtes pas connecté !",
     NotLoggedInDesc: () => "Veuillez vous connecter ou vous inscrire pour accéder à votre compte",
+
+    // portal
+    ConnectedAs: (name) => "Connecté en tant que {" + name + "}",
+    NoPortalTokenSpecified: () => "Aucun jeton de portail spécifié, impossible de continuer :(",
 
     // home
     MyApps: () => "Mes applis",

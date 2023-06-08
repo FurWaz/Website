@@ -30,7 +30,7 @@
             style="animation-delay: 200ms;"
         />
         <div
-            class="show-up flex w-full mt-2 "
+            class="show-up flex w-full mt-2 space-x-4"
             :class="cancel === '' ? 'justify-end' : 'justify-between'"
             style="animation-delay: 300ms;"
         >

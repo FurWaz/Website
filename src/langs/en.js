@@ -15,8 +15,16 @@ export default {
     Register: () => "Register",
     Registration: () => "Registration",
     Registering: () => "Registering",
+    Connect: () => "Connect",
+    Connecting: () => "Connecting",
+    Connected: () => "Connected",
     Edit: () => "Edit",
     Editing: () => "Editing",
+    Continue: () => "Continue",
+    Change: () => "Change",
+    Changing: () => "Changing",
+    Close: () => "Close",
+    Closing: () => "Closing",
     Save: () => "Save",
     Saving: () => "Saving",
     Cancel: () => "Cancel",
@@ -55,6 +63,10 @@ export default {
     DeleteConfirm: () => "Are you sure you want to delete your account ?\nThis action is irreversible.",
     NotLoggedIn: () => "You're not logged in !",
     NotLoggedInDesc: () => "Please login or register to access your account",
+
+    // portal
+    ConnectedAs: (name) => "Connected as {" + name + "}",
+    NoPortalTokenSpecified: () => "No portal token has been specified, can't continue :(",
 
     // home
     MyApps: () => "My apps",

@@ -16,7 +16,8 @@ const routes = [
     { path: '/about', name: 'About', component: () => import("./views/About.vue") },
     { path: '/profile', name: 'Profile', component: () => import("./views/Profile.vue") },
     { path: '/projects', name: 'Projects', component: () => import("./views/Projects.vue") },
-    { path: '/apps', name: 'Apps', component: () => import("./views/Apps.vue") }
+    { path: '/apps', name: 'Apps', component: () => import("./views/Apps.vue") },
+    { path: '/portal', name: 'Portal', component: () => import("./views/Portal.vue") }
 ];
 
 // 404 redirection

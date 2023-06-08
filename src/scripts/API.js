@@ -282,9 +282,9 @@ class API {
      * @param {object[]} headers API call additionnal headers
      * @returns A promise resolving when the API call is done
      */
-    static execute_logged(path, method = API.METHOD.GET, body = {}, type = this.TYPE.JSON, headers = [], retryLogin = true) {
+    static execute_logged(path, method = API.METHOD.GET, body = {}, type = this.TYPE.JSON, headers = [], user = User.CurrentUser, retryLogin = true) {
         return new Promise((resolve, reject) => {
-            const credentials = User.CurrentUser.getCredentials();
+            const credentials = user.getCredentials();
             if (!credentials) {
                 reject({status: -1, message: "Please provide credentials (token/type or username/password)"});
                 return;
@@ -308,10 +308,10 @@ class API {
             } else {
                 if (!retryLogin) reject({status: 400, message: "Invalid credentials"});
                 const auth = {};
-                auth[API.AuthorizationHeader] = "Bearer " + User.CurrentUser.refresh;
+                auth[API.AuthorizationHeader] = "Bearer " + user.refresh;
                 this.execute(API.ROUTE.TOKEN(), this.METHOD.GET, undefined, undefined, auth).then(data => {
-                    User.CurrentUser.setTokens(data.tokens);
-                    this.execute_logged(path, method, body, type, reqHeaders, false).then(resolve).catch(reject);
+                    user.setTokens(data.tokens);
+                    this.execute_logged(path, method, body, type, reqHeaders, user, false).then(resolve).catch(reject);
                 }).catch(err => reject(err));
             }
         });
