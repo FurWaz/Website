@@ -128,7 +128,7 @@ export default {
     },
     methods: {
         login(form) {
-            const log = form.log(this.lang.Logining() + " ...");
+            const log = form.log(this.lang.LoggingIn() + " ...");
             const body = form.body();
 
             const headers = {};

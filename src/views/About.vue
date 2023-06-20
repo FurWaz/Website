@@ -1,36 +1,35 @@
 <template>
     <div class="flex flex-col grow min-h-full w-full">
-        <div class="flex flex-col justify-center items-center h-[20%] my-20">
-            <icon-card class="h-40 w-40" />
-            <h1
-                class="noscroll show-up text-4xl font-bold text-slate-700 dark:text-white"
-                style="animation-delay: 400ms;"
-            >
-                {{ lang.About() }}
-            </h1>
-        </div>
-        <div class="flex h-fit w-full mt-20">
-            
+        <icon-header :label="lang.About()" />
+        <div class="flex flex-col">
+            <h2 class="show-up my-10 text-center text-xl font-bold italic text-slate-500">
+                This section is still in development, please come back later
+            </h2>
         </div>
     </div>
 </template>
 
 <script>
-import IconCard from "../components/cards/IconCard.vue";
 import { animateShows } from '../scripts/common';
 import Lang from '../scripts/Lang';
+import IconHeader from '../components/cards/IconHeader.vue';
 
 export default {
-    name: "HomeView",
+    name: "MyApps",
     components: {
-        IconCard
+        IconHeader
     },
     data() {
-        return { lang: Lang.CurrentLang };
+        return {
+            lang: Lang.CurrentLang
+        };
     },
     mounted() {
         Lang.AddCallback(lang => this.lang = lang);
         animateShows(this.$el);
+    },
+    methods: {
+        
     }
 }
 </script>

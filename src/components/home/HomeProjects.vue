@@ -58,7 +58,7 @@
 
                 <button-block
                     class="mr-auto"
-                    href="/projects"
+                    href="/projects?tag=project"
                 >
                     {{ lang.MyProjectsBtn() }}
                 </button-block>

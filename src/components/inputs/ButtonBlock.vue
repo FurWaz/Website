@@ -10,7 +10,7 @@
                 :is="link ? (link.startsWith('http') ? 'a' : 'router-link') : 'button'"
                 ref="btn"
                 class="py-1 px-3 outline-none outline-offset-4 rounded max-w-full"
-                :class="disabled? ' cursor-default': ' focus:outline-orange-500'"
+                :class="(disabled? ' cursor-default': ' focus:outline-orange-500') + classes"
                 :to="href"
                 :href="href"
             >
@@ -54,6 +54,11 @@ export default {
         color: {
             type: String,
             default: 'slate',
+            required: false
+        },
+        classes: {
+            type: String,
+            default: '',
             required: false
         }
     },

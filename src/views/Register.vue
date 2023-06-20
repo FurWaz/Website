@@ -3,19 +3,21 @@
         <div class="flex flex-col justify-center items-center">
             <form-card
                 class="show-up p-2"
-                :title="lang.Registration()"
+                :title="lang.Register()"
                 :validate="lang.Register()"
                 :on-validate="register"
             >
                 <input-text
                     name="pseudo"
                     :label="lang.Pseudo()"
+                    :placeholder="lang.Pseudo()"
                     class="show-down"
                     style="animation-delay: 100ms;"
                 />
                 <input-text
                     name="email"
                     :label="lang.Email()"
+                    :placeholder="lang.Email()"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
@@ -23,6 +25,7 @@
                     name="password"
                     type="password"
                     :label="lang.Password()"
+                    :placeholder="lang.Password()"
                     class="show-down"
                     style="animation-delay: 300ms;"
                 />
@@ -30,6 +33,7 @@
                     name="confirm"
                     type="password"
                     :label="lang.Confirmation()"
+                    :placeholder="lang.Confirmation()"
                     class="show-down"
                     style="animation-delay: 400ms;"
                 />
@@ -81,7 +85,7 @@ export default {
             }).catch(err => {
                 log.error(err);
                 if (err.field) {
-                    this.$refs[err.field].focus();
+                    this.$el.querySelector("input[name=" + err.field + "]")?.focus();
                 }
                 console.error(err);
                 setTimeout(() => { log.delete(); }, 4000);

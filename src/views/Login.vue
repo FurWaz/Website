@@ -3,13 +3,14 @@
         <div class="flex flex-col justify-center items-center">
             <form-card
                 class="show-up p-2"
-                :title="lang.Logining()"
+                :title="lang.Login()"
                 :validate="lang.Login()"
                 :on-validate="login"
             >
                 <input-text
                     name="email"
                     :label="lang.Email()"
+                    :placeholder="lang.Email()"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
@@ -17,6 +18,7 @@
                     name="password"
                     type="password"
                     :label="lang.Password()"
+                    :placeholder="lang.Password()"
                     class="show-down"
                     style="animation-delay: 300ms;"
                 />
@@ -48,7 +50,7 @@ export default {
     },
     methods: {
         login(form) {
-            const log = form.log(this.lang.Logining() + " ...");
+            const log = form.log(this.lang.LoggingIn() + " ...");
             const body = form.body();
 
             const headers = {};
@@ -73,7 +75,7 @@ export default {
             }).catch(err => {
                 log.error(err);
                 if (err.field) {
-                    this.$refs[err.field].focus();
+                    this.$el.querySelector("input[name=" + err.field + "]")?.focus();
                 }
                 console.error(err);
                 setTimeout(() => { log.delete(); }, 4000);

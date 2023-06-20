@@ -29,6 +29,7 @@
                 <div class="flex grow justify-evenly items-center space-x-4 overflow-x-auto px-20">
                     <button-text
                         v-for="item in menu"
+                        v-show="item.condition() && item.name !== 'Account'"
                         :key="item.name"
                         :href="item.href"
                         class="m-2 min-w-fit outline-none focus:outline-orange-500 rounded"
@@ -43,9 +44,9 @@
                     >
                         <button-block
                             class="m-2"
-                            href="/profile"
+                            href="/my"
                         >
-                            {{ lang.Profile() }}
+                            {{ lang.Account() }}
                         </button-block>
                     </div>
 
@@ -112,6 +113,7 @@
                     <div class="flex flex-wrap justify-evenly items-center grow py-2 max-w-full min-w-0">
                         <router-link 
                             v-for="item in menu"
+                            v-show="item.condition()"
                             :key="item.name"
                             :to="item.href"
                             class="w-[30vw] m-2 outline-none focus:outline-orange-500 rounded"
@@ -126,20 +128,6 @@
                                 </span>
                             </badge-card>
                         </router-link>
-                    </div>
-
-                    <span class="h-0.5 w-20 mx-auto rounded-lg bg-slate-200 dark:bg-slate-600" />
-
-                    <div 
-                        v-show="User.CurrentUser !== null"
-                        class="flex wrap justify-evenly items-center grow py-2"
-                    >
-                        <button-block
-                            class="w-fit m-2"
-                            href="/profile"
-                        >
-                            {{ lang.Profile() }}
-                        </button-block>
                     </div>
 
                     <div 
@@ -178,8 +166,8 @@ import {
     Bars3Icon,
     HomeIcon,
     InformationCircleIcon,
-    Squares2X2Icon,
     WrenchScrewdriverIcon,
+    UserIcon,
 } from '@heroicons/vue/24/outline';
 
 const menu = [
@@ -187,21 +175,25 @@ const menu = [
         name: "Home",
         icon: HomeIcon,
         href: "/",
-    },
-    {
-        name: "Apps",
-        icon: Squares2X2Icon,
-        href: "/apps",
+        condition: () => true
     },
     {
         name: "Projects",
         icon: WrenchScrewdriverIcon,
         href: "/projects",
+        condition: () => true
+    },
+    {
+        name: "Account",
+        icon: UserIcon,
+        href: "/my",
+        condition: () => User.CurrentUser !== null
     },
     {
         name: "About",
         icon: InformationCircleIcon,
         href: "/about",
+        condition: () => true
     }
 ];
 

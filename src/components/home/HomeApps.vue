@@ -59,7 +59,7 @@
 
                 <button-block
                     class="ml-auto"
-                    href="/apps"
+                    href="/projects?tag=app"
                 >
                     {{ lang.MyAppsBtn() }}
                 </button-block>

@@ -4,7 +4,7 @@
         <div
             id="page-content"
             ref="content"
-            class="flex grow max-w-full max-h-full overflow-x-hidden overflow-y-auto md:pt-20 pt-14"
+            class="flex grow max-w-full max-h-full overflow-x-hidden overflow-y-auto md:pt-20 pt-16"
         >
             <router-view />
         </div>

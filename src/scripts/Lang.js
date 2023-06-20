@@ -1,11 +1,11 @@
 import en from "../langs/en.js";
-import fr from "../langs/fr.js";
+// import fr from "../langs/fr.js";
 
 class Lang {
     static Langs = [
-        {id: "ENGLISH", value: "en", data: en},
-        {id: "FRENCH", value: "fr", data: fr},
-        {id: "DEFAULT", value: null, data: fr},
+        {id: "English", value: "en", data: en},
+        // {id: "French", value: "fr", data: fr},
+        {id: "Default", value: "-", data: en},
     ];
 
     static #callbackIndex = 0;
@@ -16,6 +16,7 @@ class Lang {
     static #defaultLanguage = null;
 
     static #sanitizeCode = (code) => {
+        if (!code) return this.DefaultCode;
         if (code.length > 2) code = code.split("-")[0];
         if (code.length > 2) code = code.substring(0, 2);
         return code.toLowerCase();
@@ -46,19 +47,22 @@ class Lang {
 
     static LoadLang(code, save = true) {
         if (!code) {
-            code = this.#defaultCode;
             localStorage.removeItem("lang");
             save = false;
+            if (this.#defaultCode) code = this.#defaultCode;
         }
 
         code = this.#sanitizeCode(code);
-        if (this.Langs.map(l => l.value).indexOf(code) === -1) {
-            code = this.#defaultCode;
+        
+        let language = this.Langs.find(l => l.value === code);
+        if (!language) {
+            language = this.Langs[0];
+            code = language.value;
             localStorage.removeItem("lang");
             save = false;
         }
         
-        this.#current_lang = this.Langs.find(l => l.value === code).data;
+        this.#current_lang = language.data;
         for (const key in Lang.defaultLanguage) {
             if (!this.#current_lang[key])
                 this.#current_lang[key] = Lang.defaultLanguage[key];

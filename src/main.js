@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
+import User from "./scripts/User.js";
 
 import "./index.css";
 
@@ -10,14 +11,18 @@ import "./index.css";
 // }
 
 const routes = [
-    { path: '/', name: 'Home', component: () => import("./views/Home.vue") },
-    { path: '/register', name: 'Register', component: () => import("./views/Register.vue") },
-    { path: '/login', name: 'Login', component: () => import("./views/Login.vue") },
-    { path: '/about', name: 'About', component: () => import("./views/About.vue") },
-    { path: '/profile', name: 'Profile', component: () => import("./views/Profile.vue") },
-    { path: '/projects', name: 'Projects', component: () => import("./views/Projects.vue") },
-    { path: '/apps', name: 'Apps', component: () => import("./views/Apps.vue") },
-    { path: '/portal', name: 'Portal', component: () => import("./views/Portal.vue") }
+    { path: '/', name: 'Home',                component: () => import("./views/Home.vue"),             condition: () => true },
+    { path: '/register', name: 'Register',    component: () => import("./views/Register.vue"),         condition: () => true },
+    { path: '/login', name: 'Login',          component: () => import("./views/Login.vue"),            condition: () => true },
+    { path: '/about', name: 'About',          component: () => import("./views/About.vue"),            condition: () => true },
+    { path: '/projects', name: 'Projects',    component: () => import("./views/Projects.vue"),         condition: () => true },
+    { path: '/portal', name: 'Portal',        component: () => import("./views/Portal.vue"),           condition: () => true },
+    { path: '/my', name: 'Account'     ,      component: () => import("./views/Account.vue"),          condition: () => User.CurrentUser !== null },
+    { path: '/my/profile', name: 'Profile',   component: () => import("./views/Account/Profile.vue"),  condition: () => User.CurrentUser !== null },
+    { path: '/my/apps', name: 'MyApps',       component: () => import("./views/Account/Apps.vue"),     condition: () => User.CurrentUser !== null },
+    { path: '/my/sessions', name: 'Sessions', component: () => import("./views/Account/Sessions.vue"), condition: () => User.CurrentUser !== null },
+    { path: '/my/security', name: 'Security', component: () => import("./views/Account/Security.vue"), condition: () => User.CurrentUser !== null },
+    { path: '/my/settings', name: 'Settings', component: () => import("./views/Account/Settings.vue"), condition: () => User.CurrentUser !== null }
 ];
 
 // 404 redirection
@@ -27,6 +32,13 @@ const router = createRouter({
     mode: "history",
     history: createWebHistory(),
     routes: routes
+});
+
+router.beforeEach((to, from) => {
+    const route = routes.find(r => r.name === to.name);
+    if (route.condition === undefined) return true;
+
+    return route.condition() ? true : { name: "Home" };
 });
 
 createApp(App).use(router).mount('#app');

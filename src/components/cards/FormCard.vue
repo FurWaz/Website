@@ -1,5 +1,6 @@
 <template>
-    <badge-card
+    <component
+        :is="borders? 'badge-card' : 'div'"
         class="show-up p-2"
         :hoverable="false"
     >
@@ -48,7 +49,7 @@
                 {{ validate }}
             </button-block>
         </div>
-    </badge-card>
+    </component>
 </template>
 
 <script>
@@ -97,6 +98,11 @@ export default {
         disabled: {
             type: Boolean,
             default: false
+        },
+        borders: {
+            type: Boolean,
+            default: true,
+            required: false
         }
     },
     data() {

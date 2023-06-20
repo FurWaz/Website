@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col grow min-h-full h-fit w-full">
-        <div class="flex flex-col h-[80vh] w-full justify-center items-center">
+        <div class="flex flex-col h-[75vh] w-full justify-center items-center">
             <icon-card class="h-40 w-40" />
             <h1
                 class="noscroll show-up text-4xl font-bold text-slate-700 dark:text-white"

@@ -33,6 +33,9 @@ export default {
     Deleting: () => "Suppression",
     Update: () => "Mettre à jour",
     Updating: () => "Mise à jour",
+    Create: () => "Créer",
+    Creating: () => "Création",
+    Created: () => "Créé",
 
     // not found
     Woops: () => "Oups !",
@@ -67,6 +70,13 @@ export default {
     // portal
     ConnectedAs: (name) => "Connecté en tant que {" + name + "}",
     NoPortalTokenSpecified: () => "Aucun jeton de portail spécifié, impossible de continuer :(",
+
+    // apps
+    YourApps: () => "Tes apps",
+    CreateApp: () => "Créer une app",
+    AppName: () => "Nom de l'app",
+    AppDescription: () => "Description de l'app",
+    AppKey: () => "Clé de l'app",
 
     // home
     MyApps: () => "Mes applis",

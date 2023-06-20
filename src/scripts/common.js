@@ -4,7 +4,7 @@ export const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-z
  * Redirects the user back in history or on the home page
  * @param {boolean} wait Should the function wait 1s before redirecting
  */
-export function redirectHome(wait=true) {
+export function redirectHome(wait = true) {
     const url = new URL(window.location.href);
     setTimeout(() => {
         window.topbar.$forceUpdate();
@@ -14,10 +14,10 @@ export function redirectHome(wait=true) {
         const length = window.history.length;
         if (length > 1) window.topbar.$router.go(-length);
         else window.topbar.$router.push("/");
-    }, wait?1000:0);
+    }, wait ? 1000 : 0);
 }
 
-export function redirectLink(wait=true) {
+export function redirectLink(wait = true) {
     const url = new URL(window.location.href);
     setTimeout(() => {
         window.topbar.$forceUpdate();
@@ -27,7 +27,7 @@ export function redirectLink(wait=true) {
         let link = window.topbar.$route.query.link;
         if (!link) link = "/";
         window.topbar.$router.push(link);
-    }, wait?1000:0);
+    }, wait ? 1000 : 0);
 }
 
 export function goBack() {
@@ -59,36 +59,37 @@ export function stringTime(time) {
  * @param {HTMLDivElement} page page
  */
 export function animateShows(page) {
+    if (!page.tagName) return;
     let classes = ["show-up", "show-down", "show-left", "show-right"];
     let elements = [];
     classes.forEach(c => {
-        const els = page.querySelectorAll("."+c);
+        const els = page.querySelectorAll("." + c);
         els.forEach(el => {
             if (el.classList.contains("noscroll")) return;
             el.classList.remove(c);
             el.classList.add("opacity-0");
             el.index = elements.length;
-            elements.push({el, c});
+            elements.push({ el, c });
         });
 
-        const els2 = page.querySelectorAll(".-"+c);
+        const els2 = page.querySelectorAll(".-" + c);
         els2.forEach(el => {
             if (el.classList.contains("noscroll")) return;
             el.index = elements.length;
-            elements.push({el, c});
+            elements.push({ el, c });
         });
     });
-    
+
     const observer = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting) {
                 e.target.classList.add(elements[e.target.index].c);
-                e.target.classList.remove("-"+elements[e.target.index].c);
+                e.target.classList.remove("-" + elements[e.target.index].c);
                 e.target.classList.remove('opacity-0');
             }
             else {
                 e.target.classList.remove(elements[e.target.index].c);
-                e.target.classList.add("-"+elements[e.target.index].c);
+                e.target.classList.add("-" + elements[e.target.index].c);
                 e.target.classList.add('opacity-0');
             }
         });
@@ -96,6 +97,25 @@ export function animateShows(page) {
 
     elements.forEach(e => observer.observe(e.el));
 }
+
+export const levenshteinDistance = (s, t) => {
+    if (!s.length) return t.length;
+    if (!t.length) return s.length;
+    const arr = [];
+    for (let i = 0; i <= t.length; i++) {
+        arr[i] = [i];
+        for (let j = 1; j <= s.length; j++) {
+            arr[i][j] = i === 0
+                ? j
+                : Math.min(
+                    arr[i - 1][j] + 1,
+                    arr[i][j - 1] + 1,
+                    arr[i - 1][j - 1] + (s[j - 1] === t[i - 1] ? 0 : 1)
+                );
+        }
+    }
+    return arr[t.length][s.length];
+};
 
 /** FOR EXIT PREVENT POPUP **/
 // window.addEventListener("beforeunload", function (e) {

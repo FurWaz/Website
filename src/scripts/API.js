@@ -304,7 +304,13 @@ class API {
 
             if (token_mode) {
                 reqHeaders[API.AuthorizationHeader] = credentials.token;
-                this.execute(path, method, body, type, reqHeaders).then(resolve).catch(reject);
+                this.execute(path, method, body, type, reqHeaders).then(resolve).catch(err => {
+                    if (err.status === 498 || err.status === 406) { // token expired
+                        User.forget();
+                        window.location.reload();
+                    }
+                    reject(err);
+                });
             } else {
                 if (!retryLogin) reject({status: 400, message: "Invalid credentials"});
                 const auth = {};
