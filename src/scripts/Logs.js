@@ -66,11 +66,11 @@ class Log {
         this.setType(type);
     }
 
-    error(err) {
+    async error(err) {
         switch (err.status) {
         case 400: this.update(err.message, Log.ERROR); break;
         case 417: this.update(err.message, Log.WARNING); break;
-        default:  this.update(Lang.CurrentLang.Error() + " : " + err.message, Log.ERROR); break;
+        default:  this.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('common', 'Error')) + " : " + err.message, Log.ERROR); break;
         }
     }
 

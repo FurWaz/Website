@@ -1,0 +1,5 @@
+{
+    "Portal": "Portal",
+    "ConnectedAs": "Connected as {username}",
+    "NoPortalTokenSpecified": "No portal token has been specified, can't continue :("
+}

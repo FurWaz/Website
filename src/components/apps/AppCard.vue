@@ -18,7 +18,7 @@
                 name="key-app"
                 :value="app.key"
                 :show-copy="true"
-                :label="lang.AppKey()"
+                :label="Lang.CreateTranslationContext('apps', 'AppKey')"
             />
         </div>
         <log-zone ref="log-zone" />
@@ -28,18 +28,18 @@
                     color="red"
                     :onclick="() => $refs['delete-modal'].open()"
                 >
-                    {{ lang.Delete() }}
+                    <get-text :context="Lang.CreateTranslationContext('verbs', 'Delete')" />
                 </button-block>
             </div>
             <button-block>
-                {{ lang.Edit() }}
+                <get-text :context="Lang.CreateTranslationContext('verbs', 'Edit')" />
             </button-block>
         </div>
         <modal-card ref="delete-modal">
             <confirm-form
                 color="red"
-                :title="lang.DeleteApp()"
-                :description="lang.DeleteAppConfirm()"
+                :title="Lang.CreateTranslationContext('apps', 'DeleteApp')"
+                :description="Lang.CreateTranslationContext('apps', 'DeleteAppConfirm')"
                 :on-cancel="() => $refs['delete-modal'].close()"
                 :on-confirm="deleteApp"
             />
@@ -59,6 +59,7 @@ import ModalCard from '../cards/ModalCard.vue';
 import ConfirmForm from '../cards/ConfirmForm.vue';
 import { Log } from '../../scripts/Logs';
 import API from '../../scripts/API';
+import GetText from '../text/GetText.vue';
 
 export default {
     name: "AppCard",
@@ -70,7 +71,8 @@ export default {
         ButtonBlock,
         LogZone,
         ModalCard,
-        ConfirmForm
+        ConfirmForm,
+        GetText
     },
     props: {
         app: {
@@ -84,13 +86,9 @@ export default {
         }
     },
     data() {
-        return {
-            lang: Lang.CurrentLang
-        };
+        return { Lang };
     },
-    mounted() {
-        
-    },
+    mounted() { },
     methods: {
         deleteApp(modal) {
             const log = modal.log(Lang.CurrentLang.Deleting(), Log.INFO);

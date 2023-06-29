@@ -6,13 +6,13 @@
                 class="show-up text-4xl font-bold text-slate-700 dark:text-white"
                 style="animation-delay: 400ms;"
             >
-                {{ lang.Woops() }}
+                <get-text :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
             </h1>
             <p
                 class="show-up text-2xl font-bold text-slate-600 dark:text-slate-200"
                 style="animation-delay: 500ms;"
             >
-                {{ lang.NotFound() }}
+                <get-text :context="Lang.CreateTranslationContext('notfound', 'NotFound')" />
             </p>
         </div>
         <button-block
@@ -20,14 +20,14 @@
             style="animation-delay: 600ms;"
             :onclick="() => $router.go(-1)"
         >
-            {{ lang.Back() }}
+            <get-text :context="Lang.CreateTranslationContext('common', 'Back')" />
         </button-block>
         <div class="opacity-50">
             <p
                 class="show-up text-xl italic font-semibold text-slate-700 dark:text-slate-200"
                 style="animation-delay: 800ms;"
             >
-                {{ lang.WhereAmI() }} 🤔
+                <get-text :context="Lang.CreateTranslationContext('notfound', 'WhereAmI')" /> 🤔
             </p>
         </div>
     </div>
@@ -36,19 +36,19 @@
 <script>
 import IconCard from "../components/cards/IconCard.vue";
 import ButtonBlock from '../components/inputs/ButtonBlock.vue';
+import GetText from '../components/text/GetText.vue';
 import Lang from '../scripts/Lang';
 
 export default {
     name: "NotFound",
     components: {
         IconCard,
-        ButtonBlock
+        ButtonBlock,
+        GetText
     },
     data() {
-        return { lang: Lang.CurrentLang };
+        return { Lang };
     },
-    mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-    }
+    mounted() {}
 }
 </script>

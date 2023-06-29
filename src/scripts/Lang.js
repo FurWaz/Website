@@ -1,96 +1,153 @@
-import en from "../langs/en.js";
-// import fr from "../langs/fr.js";
+export default class Lang {
+    static #browserLanguageCode = null;
+    static #fallbackLanguageCode = "en";
+    static #translationFilesRootFolder = "/langs";
 
-class Lang {
-    static Langs = [
-        {id: "English", value: "en", data: en},
-        // {id: "French", value: "fr", data: fr},
-        {id: "Default", value: "-", data: en},
-    ];
+    static #fetchedTranslationFiles = {};
+    static #onlanguageChangeEvents = [];
+    static #pendingTranslationFilesRequest = {};
 
-    static #callbackIndex = 0;
-    static #callbacks = [];
-    static #current_lang = null;
-    static #current_code = null;
-    static #defaultCode = null;
-    static #defaultLanguage = null;
+    static async #getTranslationFile(filePath) {
+        if (this.#fetchedTranslationFiles[filePath] === null)
+            return null;
+        if (this.#fetchedTranslationFiles[filePath] !== undefined) {
+            return this.#fetchedTranslationFiles[filePath];
+        }
 
-    static #sanitizeCode = (code) => {
-        if (!code) return this.DefaultCode;
+        if (this.#pendingTranslationFilesRequest[filePath]) {
+            return await this.#pendingTranslationFilesRequest[filePath];
+        }
+
+        let resolveCallback = null;
+        this.#pendingTranslationFilesRequest[filePath] = new Promise((resolve, reject) => { resolveCallback = resolve; });
+
+        const data = await fetch(filePath);
+        try {
+            const json = await data.json();
+            this.#fetchedTranslationFiles[filePath] = json;
+            resolveCallback?.(json);
+            return json;
+        } catch {
+            this.#fetchedTranslationFiles[filePath] = null;
+            resolveCallback?.(null);
+            return null;
+        }
+    }
+
+    static #getFilePath(language, file) {
+        return `${this.#getTranslationFilesRootFolder()}/${language}/${file}.json`
+    }
+
+    static #sanitizeLanguageCode(code) {
+        if (!code) return null;
         if (code.length > 2) code = code.split("-")[0];
         if (code.length > 2) code = code.substring(0, 2);
         return code.toLowerCase();
     }
 
-    static get DefaultCode() {
-        if (this.#defaultCode == null)
-            this.#defaultCode = this.#sanitizeCode( navigator.language || navigator.userLanguage );
-        return this.#defaultCode;
+    static #getTranslationFilesRootFolder() {
+        return this.#translationFilesRootFolder;
     }
 
-    static get DefaultLanguage() {
-        if (this.#defaultLanguage == null)
-            this.#defaultLanguage = this.Langs.find(l => l.value === this.DefaultCode).data;
-        return this.#defaultLanguage;
+    static #getFallbackLanguageCode() {
+        return this.#fallbackLanguageCode;
     }
 
-    static get CurrentLang() {
-        if (this.#current_lang == null)
-            this.LoadLang( localStorage.getItem("lang") || this.DefaultCode, false );
-        return this.#current_lang;
+    static #setSavedLanguageCode(code) {
+        if (!code) localStorage.removeItem("lang");
+        else localStorage.setItem("lang", code);
+        this.#onlanguageChangeEvents.forEach(callback => callback(code));
     }
 
-    static get CurrentCode() {
-        let temp = this.CurrentLang;
-        return this.#current_code;
+    static #getSavedLanguageCode() {
+        return localStorage.getItem("lang") ?? null;
     }
 
-    static LoadLang(code, save = true) {
-        if (!code) {
-            localStorage.removeItem("lang");
-            save = false;
-            if (this.#defaultCode) code = this.#defaultCode;
+    static #retreiveBrowserLanguageCode() {
+        this.#setBrowserLanguageCode(this.#sanitizeLanguageCode(navigator.language || navigator.userLanguage))
+    }
+
+    static #getBrowserLanguageCode() {
+        if (!this.#browserLanguageCode)
+            this.#retreiveBrowserLanguageCode();
+        return this.#browserLanguageCode;
+    }
+
+    static #setBrowserLanguageCode(code) {
+        this.#browserLanguageCode = code;
+    }
+
+    static #getFormatedText(text, format) {
+        if (!format) return text;
+        for (const key in format) {
+            if (text.includes(`{${key}}`))
+                text = text.replace(`{${key}}`, format[key]);
+        }
+        return text;
+    }
+
+    static getLanguages() {
+        return [
+            { value: "en", name: "English" },
+            { value: "fr", name: "Français" },
+            { value: "",   name: "Auto"}
+        ];
+    }
+
+    static getLanguage() {
+        return this.#getSavedLanguageCode() ?? this.#getBrowserLanguageCode() ?? this.#getFallbackLanguageCode();
+    }
+
+    static setLanguage(value) {
+        this.#setSavedLanguageCode(this.#sanitizeLanguageCode(value));
+    }
+
+    static registerOnLanguageChange(callback) {
+        this.#onlanguageChangeEvents.push(callback);
+    }
+
+    static async TranslateAsync(context) {
+        if (!this.isValidContext(context)) {
+            console.error("Invalid translation context : ", context);
+            return null;
         }
 
-        code = this.#sanitizeCode(code);
-        
-        let language = this.Langs.find(l => l.value === code);
-        if (!language) {
-            language = this.Langs[0];
-            code = language.value;
-            localStorage.removeItem("lang");
-            save = false;
-        }
-        
-        this.#current_lang = language.data;
-        for (const key in Lang.defaultLanguage) {
-            if (!this.#current_lang[key])
-                this.#current_lang[key] = Lang.defaultLanguage[key];
-        }
+        const filePath = this.#getFilePath(this.getLanguage(), context.file);
+        const translationFile = await this.#getTranslationFile(filePath);
+        if (translationFile && translationFile[context.code])
+            return translationFile[context.code];
 
-        this.#callbacks.forEach(c => {
-            if (c.callback)
-                c.callback(this.#current_lang);
-        });
+        const fallbackFilePath = this.#getFilePath(this.#getFallbackLanguageCode(), context.file);
+        const fallbackTranslationFile = await this.#getTranslationFile(fallbackFilePath);
+        if (fallbackTranslationFile && fallbackTranslationFile[context.code])
+            return fallbackTranslationFile[context.code];
 
-        this.#current_code = code;
-        if (save) localStorage.setItem("lang", code);
-        return true;
+        console.error(
+            "Translation not found for code [" + context.code + "] in file : [" + context.file + "]\n" +
+            "Language : [" + this.Language + "]\n" +
+            "Fallback language : [" + this.#getFallbackLanguageCode() + "]\n" +
+            "Translation file : [" + filePath + "]\n" +
+            "Fallback translation file : [" + fallbackFilePath + "]\n"
+        );
+        return null;
     }
 
-    static AddCallback(c) {
-        const i = this.#callbackIndex++;
-        this.#callbacks.push( {index: i, callback: c} );
-        return i;
+    static async GetTextAsync(context) {
+        if (!context) return null;
+        const translation = await this.TranslateAsync(context);
+        if (!translation) return null;
+        return this.#getFormatedText(translation, context.format);
     }
 
-    static RemCallback(i) {
-        const ind = this.#callbacks.findIndex(e => e.index === i);
-        if (ind === -1) return false;
-        this.#callbacks.splice(ind, 1);
-        return true;
+    static GetText(context, callback) {
+        this.GetTextAsync(context).then(callback);
+    }
+
+    static CreateTranslationContext(file, code, format) {
+        return {file, code, format: format ?? undefined};
+    }
+
+    static isValidContext(context) {
+        return context && context.file && context.code;
     }
 }
-
-window.Lang = Lang;
-export default Lang;

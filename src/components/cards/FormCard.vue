@@ -17,7 +17,7 @@
                 class="show-up text-lg font-semibold text-slate-600 dark:text-slate-200"
                 style="animation-delay: 300ms;"
             >
-                {{ title }}
+                <get-text :context="title" />
             </p>
         </div>
         
@@ -39,14 +39,14 @@
                 v-show="cancel !== ''"
                 :onclick="doCancel"
             >
-                {{ cancel }}
+                <get-text :context="cancel" />
             </button-text>
             <button-block
                 v-show="validate !== ''"
                 :disabled="disabled"
                 :onclick="doValidate"
             >
-                {{ validate }}
+                <get-text :context="validate" />
             </button-block>
         </div>
     </component>
@@ -60,6 +60,7 @@ import IconCard from '../cards/IconCard.vue';
 import LogZone from '../cards/LogZone.vue';
 import ButtonBlock from '../inputs/ButtonBlock.vue';
 import ButtonText from '../inputs/ButtonText.vue';
+import GetText from '../text/GetText.vue';
 
 export default {
     name: "FormCard",
@@ -68,20 +69,21 @@ export default {
         IconCard,
         ButtonText,
         ButtonBlock,
-        LogZone
+        LogZone,
+        GetText
     },
     props: {
         title: {
-            type: String,
-            default: ""
+            type: Object,
+            required: true
         },
         validate: {
-            type: String,
-            default: ""
+            type: Object,
+            default: () => Lang.CreateTranslationContext('verbs', 'Validate')
         },
         cancel: {
-            type: String,
-            default: Lang.CurrentLang.Back
+            type: Object,
+            default: () => Lang.CreateTranslationContext('verbs', 'Cancel')
         },
         onValidate: {
             type: Function,
@@ -106,9 +108,21 @@ export default {
         }
     },
     data() {
-        return { lang: Lang.CurrentLang };
+        return {
+            lang: Lang.CurrentLang,
+            title_str: '',
+            validate_str: '',
+            cancel_str: ''
+        };
+    },
+    watch: {
+        title() { this.fetchTranslations(); },
+        validate() { this.fetchTranslations(); },
+        cancel() { this.fetchTranslations(); }
     },
     mounted() {
+        this.fetchTranslations();
+
         this.log = (msg, type) => {
             const logZone = this.$refs['log-zone'];
             const log = logZone.log(msg, type);
@@ -154,6 +168,11 @@ export default {
             const inputs = content.querySelectorAll(tags.join(','));
             const input = Array.from(inputs).find(i => i.name === inputName);
             if (input) input.focus();
+        },
+        async fetchTranslations() {
+            this.title_str = await Lang.GetTextAsync(this.title);
+            this.validate_str = await Lang.GetTextAsync(this.validate);
+            this.cancel_str = await Lang.GetTextAsync(this.cancel);
         }
     }
 }

@@ -4,40 +4,40 @@
         <div class="flex flex-col grow justify-center items-center space-y-2">
             <form-card
                 class="show-up p-2"
-                :title="lang.Profile()"
-                :validate="lang.Edit()"
-                :cancel="lang.Delete()"
+                :title="Lang.CreateTranslationContext('account', 'Profile')"
+                :validate="Lang.CreateTranslationContext('verbs', 'Edit')"
+                :cancel="Lang.CreateTranslationContext('verbs', 'Delete')"
                 :on-cancel="() => $refs['delete-modal'].open()"
                 :on-validate="editProfile"
             >
                 <input-text
                     name="pseudo"
-                    :label="lang.Pseudo()"
+                    :label="Lang.CreateTranslationContext('account', 'Pseudo')"
                     :value="User.CurrentUser?.pseudo"
                     class="show-down"
                     style="animation-delay: 100ms;"
                 />
                 <input-text
                     name="email"
-                    :label="lang.Email()"
+                    :label="Lang.CreateTranslationContext('account', 'Email')"
                     :value="User.CurrentUser?.email"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
                 <input-choice
                     name="language"
-                    :label="lang.Language()"
-                    :value="currentCode"
-                    :list="langs"
-                    :onchange="onLangChanged"
+                    :label="Lang.CreateTranslationContext('account', 'Language')"
+                    :value="Lang.getLanguage()"
+                    :list="Lang.getLanguages()"
+                    :onchange="ev => Lang.setLanguage(ev.target.value)"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
                 <input-choice
                     name="role"
-                    :label="lang.Role()"
+                    :label="Lang.CreateTranslationContext('account', 'Role')"
                     :disabled="true"
-                    :value="User.CurrentUser?.role_id"
+                    :value="User.CurrentUser.role_id"
                     :list="User.Roles"
                     class="show-down"
                     style="animation-delay: 200ms;"
@@ -47,8 +47,8 @@
         <modal-card ref="delete-modal">
             <confirm-form
                 color="red"
-                :title="lang.DeleteAccount()"
-                :description="lang.DeleteAccountConfirm()"
+                :title="Lang.CreateTranslationContext('account', 'DeleteAccount')"
+                :description="Lang.CreateTranslationContext('account', 'DeleteAccountConfirm')"
                 :on-cancel="() => $refs['delete-modal'].close()"
                 :on-confirm="deleteAccount"
             />
@@ -61,7 +61,6 @@ import FormCard from '../../components/cards/FormCard.vue';
 import InputText from '../../components/inputs/InputText.vue';
 import InputChoice from '../../components/inputs/InputChoice.vue';
 import API from '../../scripts/API';
-import { goBack } from '../../scripts/common';
 import Lang from '../../scripts/Lang';
 import { Log } from '../../scripts/Logs';
 import User from '../../scripts/User';
@@ -80,20 +79,16 @@ export default {
         ConfirmForm,
     },
     data() {
-        if (!User.CurrentUser) goBack(this);
         return {
-            lang: Lang.CurrentLang,
-            langs: Lang.Langs,
+            Lang,
             currentCode: Lang.CurrentCode,
             User
         };
     },
-    mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-    },
+    mounted() {},
     methods: {
-        editProfile(form) {
-            const log = form.log(this.lang.Editing() + " ...");
+        async editProfile(form) {
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Editing')), Log.INFO);
             const body = form.body();
 
             delete body.role;
@@ -111,8 +106,8 @@ export default {
                 setTimeout(() => { log.delete(); }, 4000);
             });
         },
-        deleteAccount(form) {
-            const log = form.log(Lang.CurrentLang.Deleting() + " ...", Log.INFO);
+        async deleteAccount(form) {
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Deleting')), Log.INFO);
             API.execute_logged(API.ROUTE.ME(), API.METHOD.DELETE).then(res => {
                 log.update(Lang.CurrentLang.Deleted(), Log.SUCCESS);
                 setTimeout(() => {
@@ -127,12 +122,6 @@ export default {
                     log.delete();
                 }, 4000);
             })
-        },
-        onLangChanged(ev) {
-            if (ev.target.value === '') ev.target.value = null;
-            const success = Lang.LoadLang(ev.target.value);
-            if (!success) console.error("Error changing language : Cannot switch to " + ev.target.value);
-            this.currentCode = Lang.CurrentCode;
         }
     }
 }

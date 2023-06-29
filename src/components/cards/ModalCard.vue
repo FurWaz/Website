@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import Lang from '../../scripts/Lang';
 import BadgeCard from './BadgeCard.vue';
 
 export default {
@@ -28,12 +27,10 @@ export default {
     },
     data() {
         return {
-            lang: Lang.CurrentLang,
             openClicked: false
         };
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         const root = this.$refs["root"];
         document.body.appendChild(root);
 

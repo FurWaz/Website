@@ -1,22 +1,13 @@
 <template>
     <div class="flex flex-col grow min-h-full w-full">
         <button-back class="p-2" />
-        <icon-header :label="lang.Settings()" />
+        <icon-header :label="Lang.CreateTranslationContext('account', 'Settings')" />
         <div class="flex flex-col">
             <h2 class="show-up my-10 text-center text-xl font-bold italic text-slate-500">
                 This section is still in development, please come back later
             </h2>
         </div>
     </div>
-    <modal-card ref="delete-modal">
-        <confirm-form
-            color="red"
-            :title="lang.DeleteAccount()"
-            :description="lang.DeleteAccountConfirm()"
-            :on-cancel="() => $refs['delete-modal'].close()"
-            :on-confirm="deleteAccount"
-        />
-    </modal-card>
 </template>
 
 <script>
@@ -37,11 +28,10 @@ export default {
     },
     data() {
         return {
-            lang: Lang.CurrentLang
+            Lang
         };
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         animateShows(this.$el);
     },
     methods: {

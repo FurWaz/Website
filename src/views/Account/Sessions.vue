@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col grow min-h-full w-full">
         <button-back class="p-2" />
-        <icon-header :label="lang.Sessions()" />
+        <icon-header :label="Lang.CreateTranslationContext('account', 'Sessions')" />
         <div class="flex flex-col">
             <h2 class="show-up my-10 text-center text-xl font-bold italic text-slate-500">
                 This section is still in development, please come back later
@@ -11,10 +11,10 @@
     <modal-card ref="delete-modal">
         <confirm-form
             color="red"
-            :title="lang.DeleteAccount()"
-            :description="lang.DeleteAccountConfirm()"
+            :title="''"
+            :description="''"
             :on-cancel="() => $refs['delete-modal'].close()"
-            :on-confirm="deleteAccount"
+            :on-confirm="() => {}"
         />
     </modal-card>
 </template>
@@ -22,13 +22,10 @@
 <script>
 import { animateShows } from '../../scripts/common';
 import Lang from '../../scripts/Lang';
-import API from '../../scripts/API';
 import IconHeader from '../../components/cards/IconHeader.vue';
-import ButtonBlock from '../../components/inputs/ButtonBlock.vue';
 import ButtonBack from '../../components/inputs/ButtonBack.vue';
 import ModalCard from '../../components/cards/ModalCard.vue';
 import ConfirmForm from '../../components/cards/ConfirmForm.vue';
-import { Log } from '../../scripts/Logs';
 
 export default {
     name: "MyApps",
@@ -40,11 +37,10 @@ export default {
     },
     data() {
         return {
-            lang: Lang.CurrentLang
+            Lang
         };
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         animateShows(this.$el);
     },
     methods: {

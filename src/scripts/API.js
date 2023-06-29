@@ -205,7 +205,7 @@ class API {
 
             let reqHeaders = {
                 "Accept": "application/json",
-                "Accept-Language": Lang.CurrentCode
+                "Accept-Language": Lang.getLanguage()
             };
             if (type != this.TYPE_NONE && type != this.TYPE_FILE) reqHeaders["Content-Type"] = type;
 
@@ -239,7 +239,7 @@ class API {
                     err.json().then(data => {
                         reject({
                             status: err.status,
-                            message: data.message ?? Lang.CurrentLang.UNKNOWN_ERROR,
+                            message: data.message ?? 'Unknown error',
                             field: data.field,
                         });
                     }).catch(err => reject(err));

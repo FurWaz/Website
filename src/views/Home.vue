@@ -16,7 +16,7 @@
                 :onclick="scrollForMore"
             >
                 <div class="flex flex-col justify-center items-center">
-                    <p> {{ lang.ScrollForMore() }} </p>
+                    <p> <get-text :context="{file: 'home', code: 'ScrollForMore'}" /> </p>
                     <chevron-down-icon class="w-6" />
                 </div>
             </button-block>
@@ -77,6 +77,7 @@ import {
 import HomeProjects from '../components/home/HomeProjects.vue';
 import HomeApps from '../components/home/HomeApps.vue';
 import HomeAbout from '../components/home/HomeAbout.vue';
+import GetText from '../components/text/GetText.vue';
 
 export default {
     name: "HomeView",
@@ -86,13 +87,13 @@ export default {
         ChevronDownIcon,
         HomeProjects,
         HomeApps,
-        HomeAbout
+        HomeAbout,
+        GetText
     },
     data() {
-        return { lang: Lang.CurrentLang };
+        return {};
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         animateShows(this.$el);
     },
     methods: {

@@ -20,20 +20,20 @@
                 <form-card
                     class="show-up p-2"
                     :cancel="''"
-                    :validate="lang.Login()"
+                    :validate="Lang.CreateTranslationContext('verbs', 'LogIn')"
                     :on-validate="login"
                     :display-icon="false"
                 >
                     <input-text
                         name="email"
-                        :label="lang.Email()"
+                        :label="Lang.CreateTranslationContext('account', 'Email')"
                         class="show-down"
                         style="animation-delay: 200ms;"
                     />
                     <input-text
                         name="password"
                         type="password"
-                        :label="lang.Password()"
+                        :label="Lang.CreateTranslationContext('account', 'Password')"
                         class="show-down"
                         style="animation-delay: 300ms;"
                     />
@@ -45,22 +45,14 @@
                 <form-card
                     class="show-up p-2"
                     :display-icon="false"
-                    :cancel="lang.Change()"
-                    :validate="lang.Continue()"
+                    :cancel="Lang.CreateTranslationContext('verbs', 'Change')"
+                    :validate="Lang.CreateTranslationContext('verbs', 'Continue')"
                     :on-cancel="change"
                     :on-validate="connect"
                     :disabled="formDisabled"
                 >
                     <p class="text-xl font-semibold text-center mb-4">
-                        <span class="text-slate-600 dark:text-slate-200">
-                            {{ lang.ConnectedAs(user?.pseudo).split("{")[0] }}
-                        </span>
-                        <span class="text-orange-500 dark:text-orange-500">
-                            {{ lang.ConnectedAs(user?.pseudo).split("{")[1].split("}")[0] }}
-                        </span>
-                        <span class="text-slate-600 dark:text-slate-200">
-                            {{ lang.ConnectedAs(user?.pseudo).split("}")[1] }}
-                        </span>
+                        <get-text :context="Lang.CreateTranslationContext('portal', 'ConnectedAs', {username: user?.pseudo})" />
                     </p>
                 </form-card>
                 <log-zone ref="log-zone" />
@@ -74,19 +66,19 @@
                     class="show-up text-xl text-center font-bold italic text-slate-600 dark:text-slate-200"
                     style="animation-delay: 400ms;"
                 >
-                    {{ lang.Woops() }}
+                    <get-text :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
                 </p>
                 <p
                     class="show-up text-xl text-center font-semibold italic text-slate-400 dark:text-slate-400"
                     style="animation-delay: 400ms;"
                 >
-                    {{ lang.NoPortalTokenSpecified() }}
+                    <get-text :context="Lang.CreateTranslationContext('portal', 'NoPortalTokenSpecified')" />
                 </p>
                 <button-block
                     class="mx-auto mt-4"
                     :onclick="close"
                 >
-                    {{ lang.Close() }}
+                    <get-text :context="Lang.CreateTranslationContext('verbs', 'Close')" />
                 </button-block>
             </div>
         </div>
@@ -99,6 +91,7 @@ import IconCard from '../components/cards/IconCard.vue';
 import LogZone from '../components/cards/LogZone.vue';
 import ButtonBlock from '../components/inputs/ButtonBlock.vue';
 import InputText from '../components/inputs/InputText.vue';
+import GetText from '../components/text/GetText.vue';
 import API from '../scripts/API';
 import Lang from '../scripts/Lang';
 import { Log } from '../scripts/Logs';
@@ -111,11 +104,12 @@ export default {
         FormCard,
         IconCard,
         LogZone,
-        ButtonBlock
+        ButtonBlock,
+        GetText
     },
     data() {
         return {
-            lang: Lang.CurrentLang,
+            Lang,
             user: User.CurrentUser,
             error: false,
             token: null,
@@ -128,7 +122,7 @@ export default {
     },
     methods: {
         login(form) {
-            const log = form.log(this.lang.LoggingIn() + " ...");
+            const log = form.log(Lang.CreateTranslationContext('verbs', 'LoggingIn'));
             const body = form.body();
 
             const headers = {};
@@ -169,13 +163,12 @@ export default {
                 setTimeout(() => { log.delete(); }, 4000);
             });
         },
-        connect(form) {
-            const log = form.log(this.lang.Connecting() + " ...");
+        async connect(form) {
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Connecting')));
             this.formDisabled = true;
 
             API.execute_logged(API.ROUTE.PORTAL(this.token), API.METHOD.POST, {}, API.TYPE.JSON, [], this.user).then(res => {
-                console.log(res);
-                log.update(this.lang.Connected(), Log.SUCCESS);
+                log.update(res.message, Log.SUCCESS);
                 this.formDisabled = false;
                 setTimeout(() => {
                     this.close();

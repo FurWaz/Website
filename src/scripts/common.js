@@ -117,6 +117,15 @@ export const levenshteinDistance = (s, t) => {
     return arr[t.length][s.length];
 };
 
+String.prototype.format = function () {
+    let formatted = this;
+    for (let i = 0; i < arguments.length; i++) {
+        let regexp = new RegExp('\\{' + i + '\\}', 'gi');
+        formatted = formatted.replace(regexp, arguments[i]);
+    }
+    return formatted;
+};
+
 /** FOR EXIT PREVENT POPUP **/
 // window.addEventListener("beforeunload", function (e) {
 //     var confirmationMessage = "Certaines modifications ne seront pas enregistrés si vous quittez la page maintenant.\n"+

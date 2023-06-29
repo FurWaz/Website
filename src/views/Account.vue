@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col grow h-full w-full justify-evenly items-center">
-        <icon-header :label="lang.Account()" />
-        <div class="flex h-fit items-baseline overflow-y-auto px-4 my-auto">
+        <icon-header :label="Lang.CreateTranslationContext('account', 'Account')" />
+        <div class="flex h-fit items-baseline overflow-y-auto px-4 my-auto py-2">
             <div class="flex flex-col md:grid md:grid-cols-2 md:gap-8 md:w-fit md:h-fit justify-center items-center">
                 <button-redirect
                     v-for="(item, index) in links"
@@ -11,7 +11,7 @@
                     :href="item.href"
                     :icon="item.icon"
                 >
-                    {{ lang[item.name]() }}
+                    <get-text :context="Lang.CreateTranslationContext('account', item.name)" />
                 </button-redirect>
             </div>
         </div>
@@ -19,7 +19,7 @@
             class="show-up m-4"
             :onclick="disconnect"
         >
-            {{ lang.Logout() }}
+            <get-text :context="Lang.CreateTranslationContext('verbs', 'LogOut')" />
         </button-block>
     </div>
 </template>
@@ -38,6 +38,7 @@ import {
     ComputerDesktopIcon,
     Cog6ToothIcon
 } from '@heroicons/vue/24/outline';
+import GetText from '../components/text/GetText.vue';
 
 const links = [
     {name: "Profile",  icon: UserIcon, href: "/my/profile"},
@@ -52,18 +53,17 @@ export default {
     components: {
         ButtonRedirect,
         IconHeader,
-        ButtonBlock
+        ButtonBlock,
+        GetText
     },
     data() {
         return {
-            lang: Lang.CurrentLang,
+            Lang,
             links,
             User
         };
     },
-    mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-    },
+    mounted() {},
     methods: {
         disconnect() {
             User.forget();

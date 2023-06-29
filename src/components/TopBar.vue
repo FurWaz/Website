@@ -29,12 +29,12 @@
                 <div class="flex grow justify-evenly items-center space-x-4 overflow-x-auto px-20">
                     <button-text
                         v-for="item in menu"
-                        v-show="item.condition() && item.name !== 'Account'"
+                        v-show="item.condition()"
                         :key="item.name"
                         :href="item.href"
                         class="m-2 min-w-fit outline-none focus:outline-orange-500 rounded"
                     >
-                        {{ lang[item.name]() }}
+                        <get-text :context="Lang.CreateTranslationContext(item.file, item.name)" />
                     </button-text>
                 </div>
                 <div class="flex w-fit justify-end items-center space-x-2">
@@ -46,7 +46,7 @@
                             class="m-2"
                             href="/my"
                         >
-                            {{ lang.Account() }}
+                            <get-text :context="Lang.CreateTranslationContext('account', 'Account')" />
                         </button-block>
                     </div>
 
@@ -58,13 +58,13 @@
                             class="m-2"
                             href="/register"
                         >
-                            {{ lang.Register() }}
+                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Register')" />
                         </button-text>
                         <button-block
                             class="m-2"
                             href="/login"
                         >
-                            {{ lang.Login() }}
+                            <get-text :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
                         </button-block>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                                     class="h-7 w-7"
                                 />
                                 <span class="text-md font-semibold whitespace-nowrap text-ellipsis overflow-hidden max-w-full">
-                                    {{ lang[item.name]() }}
+                                    <get-text :context="Lang.CreateTranslationContext(item.file, item.name)" />
                                 </span>
                             </badge-card>
                         </router-link>
@@ -138,13 +138,13 @@
                             class="w-full m-2"
                             href="/register"
                         >
-                            {{ lang.Register() }}
+                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Register')" />
                         </button-text>
                         <button-block
                             class="w-full m-2"
                             href="/login"
                         >
-                            {{ lang.Login() }}
+                            <get-text :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
                         </button-block>
                     </div>
                 </div>
@@ -160,6 +160,7 @@ import BadgeCard from '../components/cards/BadgeCard.vue';
 import ButtonBlock from './inputs/ButtonBlock.vue';
 import ButtonText from './inputs/ButtonText.vue';
 import User from '../scripts/User';
+import GetText from '../components/text/GetText.vue';
 import Lang from '../scripts/Lang';
 
 import {
@@ -173,24 +174,28 @@ import {
 const menu = [
     {
         name: "Home",
+        file: "home",
         icon: HomeIcon,
         href: "/",
         condition: () => true
     },
     {
         name: "Projects",
+        file: "projects",
         icon: WrenchScrewdriverIcon,
         href: "/projects",
         condition: () => true
     },
     {
         name: "Account",
+        file: "account",
         icon: UserIcon,
         href: "/my",
-        condition: () => User.CurrentUser !== null
+        condition: () => User.CurrentUser !== null && window.innerWidth < 768
     },
     {
         name: "About",
+        file: "about",
         icon: InformationCircleIcon,
         href: "/about",
         condition: () => true
@@ -204,23 +209,22 @@ export default {
         BadgeCard,
         Bars3Icon,
         ButtonBlock,
-        ButtonText
+        ButtonText,
+        GetText
     },
     data() {
         window.topbar = this;
         return {
             User,
-            lang: Lang.CurrentLang,
             menu,
             hiding: false,
             isOpen: false,
             lastY: 0,
             mobile: window.innerWidth < 768,
-            console
+            Lang
         };
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         window.addEventListener("wheel", ev => {
             // using deltaY from page movement (calculated in App.vue)
             const deltaY = window.deltaY;

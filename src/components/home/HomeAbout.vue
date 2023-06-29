@@ -24,17 +24,17 @@
                 style="animation-delay: 400ms;"
             >
                 <title-text>
-                    {{ lang.MyAbout() }}
+                    <get-text :context="{file: 'home', code: 'MyAbout'}" />
                 </title-text>
                 <base-text class="text-right">
-                    {{ lang.MyAboutDesc() }}
+                    <get-text :context="{file: 'home', code: 'MyAboutDesc'}" />
                 </base-text>
 
                 <button-block
                     class="ml-auto"
                     href="/about"
                 >
-                    {{ lang.MyAboutBtn() }}
+                    <get-text :context="{file: 'home', code: 'MyAboutBtn'}" />
                 </button-block>
             </div>
         </div>
@@ -45,7 +45,7 @@
 import TitleText from '../text/TitleText.vue';
 import BaseText from '../text/BaseText.vue';
 import ButtonBlock from '../inputs/ButtonBlock.vue';
-import Lang from '../../scripts/Lang'
+import GetText from '../text/GetText.vue';
 
 export default {
     name: "HomeAbout",
@@ -53,14 +53,13 @@ export default {
         TitleText,
         BaseText,
         ButtonBlock,
+        GetText,
     },
     data() {
-        return {
-            lang: Lang.CurrentLang
-        }
+        return {}
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
+        
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col grow min-h-full w-full">
-        <icon-header :label="lang.About()" />
+        <icon-header :label="Lang.CreateTranslationContext('about', 'About')" />
         <div class="flex flex-col">
             <h2 class="show-up my-10 text-center text-xl font-bold italic text-slate-500">
                 This section is still in development, please come back later
@@ -20,12 +20,9 @@ export default {
         IconHeader
     },
     data() {
-        return {
-            lang: Lang.CurrentLang
-        };
+        return { Lang };
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         animateShows(this.$el);
     },
     methods: {

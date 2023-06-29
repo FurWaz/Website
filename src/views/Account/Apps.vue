@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-col grow min-h-full w-full">
         <button-back class="p-2" />
-        <icon-header :label="lang.Apps()" />
+        <icon-header :label="Lang.CreateTranslationContext('apps', 'Apps')" />
         <div class="flex justify-start">
             <button-block
                 class="show-right m-4 my-8"
                 :onclick="() => $refs['create-modal'].open()"
             >
-                {{ lang.CreateApp() }}
+                <get-text :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
             </button-block>
         </div>
         <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full min-h-[22em] pb-8">
@@ -24,10 +24,10 @@
                 class="flex flex-col grow h-full w-full justify-center items-center"
             >
                 <title-text class="show-up">
-                    {{ lang.NoApps() }}
+                    <get-text :context="Lang.CreateTranslationContext('apps', 'NoApps')" />
                 </title-text>
                 <base-text class="show-up">
-                    {{ lang.NoAppsDesc() }}
+                    <get-text :context="Lang.CreateTranslationContext('apps', 'NoAppsDesc')" />
                 </base-text>
             </div>
             <div
@@ -35,41 +35,41 @@
                 class="flex flex-col grow h-full w-full justify-center items-center"
             >
                 <title-text class="show-up">
-                    {{ lang.LoadingApps() }}
+                    <get-text :context="Lang.CreateTranslationContext('apps', 'LoadingApps')" />
                 </title-text>
                 <base-text class="show-up">
-                    {{ lang.LoadingAppsDesc() }}
+                    <get-text :context="Lang.CreateTranslationContext('apps', 'LoadingAppsDesc')" />
                 </base-text>
             </div>
         </div>
         <div class="flex flex-col w-full h-fit md:px-20 px-2 pb-20">
             <section-text class="show-up mx-auto">
-                {{ lang.AppPortal() }}
+                <get-text :context="Lang.CreateTranslationContext('apps', 'AppPortal')" />
             </section-text>
             <title-text class="show-up">
-                {{ lang.AppPortalUsage() }}
+                <get-text :context="Lang.CreateTranslationContext('apps', 'AppPortalUsage')" />
             </title-text>
             <div class="flex show-up h-full w-full">
                 <div class="w-full">
-                    <block-text :text="lang.AppPortalDesc1()" />
+                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc1')" />
                     <code-text
                         lang="js"
-                        :text="lang.AppPortalCode1()"
+                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode1')"
                     />
-                    <block-text :text="lang.AppPortalDesc2()" />
+                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc2')" />
                     <code-text
                         lang="js"
-                        :text="lang.AppPortalCode2()"
+                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode2')"
                     />
-                    <block-text :text="lang.AppPortalDesc3()" />
+                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc3')" />
                     <code-text
                         lang="js"
-                        :text="lang.AppPortalCode3()"
+                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode3')"
                     />
-                    <block-text :text="lang.AppPortalDesc4()" />
+                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc4')" />
                     <code-text
                         lang="js"
-                        :text="lang.AppPortalCode4()"
+                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode4')"
                     />
                 </div>
                 <div class="md:flex hidden float-right w-fit h-fit pl-20">
@@ -81,24 +81,24 @@
             </div>
             <div class="flex flex-col">
                 <title-text class="show-up">
-                    {{ lang.AppPortalScript() }}
+                    <get-text :context="Lang.CreateTranslationContext('apps', 'AppPortalScript')" />
                 </title-text>
                 <div class="inline">
-                    <block-text :text="lang.AppPortalScriptDesc()" />
+                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalScriptDesc')" />
                 </div>
                 <code-text
                     lang="html"
-                    :text="lang.AppPortalScriptCode()"
+                    :text="Lang.CreateTranslationContext('apps', 'AppPortalScriptCode')"
                 />
             </div>
         </div>
     </div>
     <modal-card ref="create-modal">
         <title-text class="show-up">
-            {{ lang.CreateApp() }}
+            <get-text :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
         </title-text>
         <form-card
-            :validate="lang.Create()"
+            :validate="Lang.CreateTranslationContext('verbs', 'Create')"
             :on-cancel="() => $refs['create-modal'].close()"
             :on-validate="createApp"
             :display-icon="false"
@@ -108,14 +108,14 @@
                 class="show-up"
                 name="name"
                 orientation="col"
-                :label="lang.AppName()"
-                :placeholder="lang.AppName()"
+                :label="Lang.CreateTranslationContext('apps', 'AppName')"
+                :placeholder="Lang.CreateTranslationContext('apps', 'AppName')"
             />
             <input-area
                 class="show-up"
                 name="description"
-                :label="lang.AppDescription()"
-                :placeholder="lang.AppDescription()"
+                :label="Lang.CreateTranslationContext('apps', 'AppDescription')"
+                :placeholder="Lang.CreateTranslationContext('apps', 'AppDescription')"
             />
         </form-card>
     </modal-card>
@@ -139,6 +139,7 @@ import SectionText from '../../components/text/SectionText.vue';
 import BlockText from '../../components/text/BlockText.vue';
 import CodeText from '../../components/text/CodeText.vue';
 import BaseText from '../../components/text/BaseText.vue';
+import GetText from '../../components/text/GetText.vue';
 
 const apps = [];
 
@@ -167,17 +168,17 @@ export default {
         SectionText,
         BlockText,
         CodeText,
-        BaseText
+        BaseText,
+        GetText
     },
     data() {
         return {
-            lang: Lang.CurrentLang,
+            Lang,
             apps,
             loading: true
         };
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         animateShows(this.$el);
         fetchMyApps().then(apps => {
             this.apps = apps;
@@ -186,7 +187,7 @@ export default {
     },
     methods: {
         createApp(form) {
-            const log = form.log(this.lang.Creating(), Log.INFO);
+            const log = form.log(Lang.CreateTranslationContext('verbs', 'Creating'), Log.INFO);
             const body = form.body();
             API.execute_logged(API.ROUTE.APPS(), API.METHOD.POST, body).then(res => {
                 log.update(res.message, Log.SUCCESS);

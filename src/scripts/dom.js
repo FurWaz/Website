@@ -24,6 +24,6 @@ export function getTypedValue(value) {
     default:
         const nbr = Number(value);
         if (!isNaN(nbr)) return nbr;
-        return value;
+        return value.trim();
     }
 }

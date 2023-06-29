@@ -9,13 +9,14 @@
 
 <script>
 import hljs from 'highlight.js/lib/common';
+import Lang from '../../scripts/Lang';
 
 export default {
     name: "CodeText",
     props: {
         text: {
-            type: String,
-            default: '',
+            type: Object,
+            default: () => null,
             required: true
         },
         lang: {
@@ -24,9 +25,25 @@ export default {
             required: false
         }
     },
-    computed: {
-        string() {
-            return hljs.highlight(this.lang, this.text).value;
+    data() {
+        return {
+            text_str: '',
+            string: ''
+        };
+    },
+    watch: {
+        text() { this.fetchTranslations(); },
+    },
+    mounted() {
+        this.fetchTranslations();
+    },
+    methods: {
+        async fetchTranslations() {
+            this.text_str = (typeof(this.text) === 'string') ? this.text : await Lang.GetTextAsync(this.text) ?? '';
+            this.createCodeString();
+        },
+        createCodeString() {
+            this.string = hljs.highlight(this.lang, this.text_str).value;
         }
     }
 }

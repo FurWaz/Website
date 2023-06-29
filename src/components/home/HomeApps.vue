@@ -24,10 +24,10 @@
                 style="animation-delay: 400ms;"
             >
                 <title-text>
-                    {{ lang.MyApps() }}
+                    <get-text :context="{file: 'home', code: 'MyApps'}" />
                 </title-text>
                 <base-text class="text-right">
-                    {{ lang.MyAppsDesc() }}
+                    <get-text :context="{file: 'home', code: 'MyAppsDesc'}" />
                 </base-text>
 
                 <div class="flex justify-evenly w-[50%]">
@@ -61,7 +61,7 @@
                     class="ml-auto"
                     href="/projects?tag=app"
                 >
-                    {{ lang.MyAppsBtn() }}
+                    <get-text :context="{file: 'home', code: 'MyAppsBtn'}" />
                 </button-block>
             </div>
         </div>
@@ -73,7 +73,7 @@ import TitleText from '../text/TitleText.vue';
 import BaseText from '../text/BaseText.vue';
 import SvgText from '../text/SvgText.vue';
 import ButtonBlock from '../inputs/ButtonBlock.vue';
-import Lang from '../../scripts/Lang'
+import GetText from '../text/GetText.vue';
 
 export default {
     name: "HomeApps",
@@ -82,14 +82,11 @@ export default {
         BaseText,
         SvgText,
         ButtonBlock,
+        GetText,
     },
     data() {
-        return {
-            lang: Lang.CurrentLang
-        }
+        return {}
     },
-    mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-    }
+    mounted() {}
 }
 </script>

@@ -7,7 +7,10 @@ class User {
         return User.#currentUser || User.fromLocalStorage();
     }
     static props = ["id", "email", "emailVerifiedOn", "pseudo", "role_id", "createdAt", "refresh", "access"];
-    static Roles = [{id: 'Admin', value: 2}, {id: 'User', value: 1}];
+    static Roles = [
+        {code: 'Admin', file: 'account', value: 2},
+        {code: 'User', file: 'account', value: 1}
+    ];
 
     static fromLocalStorage() {
         const data = localStorage.getItem("user");

@@ -5,7 +5,7 @@
             class="noscroll show-up text-4xl font-bold text-slate-700 dark:text-white"
             style="animation-delay: 200ms;"
         >
-            {{ label }}
+            <get-text :context="label" />
         </title-text>
     </div>
 </template>
@@ -14,12 +14,14 @@
 import IconCard from './IconCard.vue';
 import TitleText from '../text/TitleText.vue';
 import { animateShows } from '../../scripts/common';
+import GetText from '../text/GetText.vue';
 
 export default {
     name: "IconHeader",
     components: {
         IconCard,
-        TitleText
+        TitleText,
+        GetText
     },
     props: {
         label: {
@@ -28,10 +30,9 @@ export default {
         }
     },
     data() {
-        return { lang: Lang.CurrentLang };
+        return {};
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
         animateShows(this.$el);
     }
 }

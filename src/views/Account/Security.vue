@@ -5,27 +5,27 @@
             <form-card
                 class="show-up p-2"
                 :display-icon="true"
-                :title="lang.PasswordModification()"
-                :validate="lang.Edit()"
+                :title="Lang.CreateTranslationContext('account', 'PasswordModification')"
+                :validate="Lang.CreateTranslationContext('verbs', 'Edit')"
                 :cancel="''"
                 :disabled="true"
                 :on-validate="editProfile"
             >
                 <input-text
                     ref="password"
-                    :label="lang.OldPassword()"
+                    :label="Lang.CreateTranslationContext('account', 'OldPassword')"
                     class="show-down"
                     style="animation-delay: 100ms;"
                 />
                 <input-text
                     ref="confirmation"
-                    :label="lang.NewPassword()"
+                    :label="Lang.CreateTranslationContext('account', 'NewPassword')"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
                 <input-text
                     ref="confirmation"
-                    :label="lang.Confirmation()"
+                    :label="Lang.CreateTranslationContext('account', 'Confirmation')"
                     class="show-down"
                     style="animation-delay: 300ms;"
                 />
@@ -53,14 +53,15 @@ export default {
     },
     data() {
         if (!User.CurrentUser) goBack(this);
-        return { lang: Lang.CurrentLang, User };
+        return {
+            Lang,
+            User
+        };
     },
-    mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-    },
+    mounted() { },
     methods: {
-        editProfile(form) {
-            const log = form.log(this.lang.Editing() + " ...");
+        async editProfile(form) {
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Editing')), Log.INFO);
             const body = form.body();
 
             delete body.role;

@@ -1,13 +1,13 @@
 <template>
     <div class="flex h-fit w-full justify-between md:space-x-8 space-x-4 items-center my-2 min-w-0 max-w-full">
         <label class="flex text-xl text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap text-ellipsis w-fit">
-            {{ label }}
+            <get-text :context="label" />
         </label>
         <div class="min-w-0 max-w-full">
             <select
                 id=""
                 ref="select"
-                name=""
+                :name="name"
                 :value="value"
                 :disabled="disabled"
                 class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md whitespace-nowrap max-w-full
@@ -20,7 +20,8 @@
                     :key="el.value"
                     :value="el.value"
                 >
-                    {{ el.label ?? lang[el.id]() }}
+                    <p v-if="el.name"> {{ el.name }} </p>
+                    <get-text v-else :context="Lang.CreateTranslationContext(el.file, el.code)" />
                 </option>
             </select>
         </div>
@@ -35,6 +36,7 @@
 
 <script>
 import Lang from '../../scripts/Lang';
+import GetText from '../text/GetText.vue';
 
 function setup(obj) {
     obj.selected = obj.value;
@@ -45,8 +47,9 @@ function setup(obj) {
     for (let i = 0; i < obj.list.length; i++) {
         const el = obj.list[i];
         obj.elements.push({
-            label: el.label,
-            id: el.id,
+            name: el.name,
+            code: el.code,
+            file: el.file,
             value: el.value,
             selected: el.value === obj.value || el.selected
         });
@@ -55,7 +58,7 @@ function setup(obj) {
 
 export default {
     name: 'InputChoice',
-    components: {},
+    components: { GetText },
     props: {
         label: {
             type: String,
@@ -90,11 +93,11 @@ export default {
     },
     data() {
         setup(this);
-        return { lang: Lang.CurrentLang };
+        return {
+            Lang
+        };
     },
     mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-
         this.selected = this.value;
         this.elements.forEach(item => {
             if (item.selected) {
@@ -102,6 +105,8 @@ export default {
             }
         });
     },
-    methods: {}
+    methods: {
+        
+    }
 }
 </script>

@@ -2,10 +2,10 @@
     <div class="flex flex-col">
         <div class="flex flex-col">
             <title-text>
-                {{ title }}
+                <get-text :context="title" />
             </title-text>
             <base-text
-                v-for="line in description.split('\n')"
+                v-for="line in description_str.split('\n')"
                 :key="line"
             >
                 {{ line }}
@@ -19,13 +19,13 @@
             <button-text
                 :onclick="callOnCancel"
             >
-                {{ cancel }}
+                <get-text :context="cancel" />
             </button-text>
             <button-block
                 :color="color"
                 :onclick="callOnConfirm"
             >
-                {{ confirm }}
+                <get-text :context="confirm" />
             </button-block>
         </div>
     </div>
@@ -38,6 +38,7 @@ import Lang from '../../scripts/Lang';
 import TitleText from '../text/TitleText.vue';
 import BaseText from '../text/BaseText.vue';
 import LogZone from './LogZone.vue';
+import GetText from '../text/GetText.vue';
 
 export default {
     name: 'ConfirmForm',
@@ -46,27 +47,28 @@ export default {
         ButtonBlock,
         BaseText,
         TitleText,
-        LogZone
+        LogZone,
+        GetText
     },
     props: {
         title: {
-            type: String,
-            default: '',
+            type: Object,
+            default: () => null,
             required: false
         },
         description: {
-            type: String,
-            default: '',
+            type: Object,
+            default: () => null,
             required: false
         },
         confirm: {
-            type: String,
-            default: Lang.CurrentLang.Confirm(),
+            type: Object,
+            default: Lang.CreateTranslationContext('verbs', 'Confirm'),
             required: false
         },
         cancel: {
-            type: String,
-            default: Lang.CurrentLang.Cancel(),
+            type: Object,
+            default: Lang.CreateTranslationContext('verbs', 'Cancel'),
             required: false
         },
         onConfirm: {
@@ -87,11 +89,14 @@ export default {
     },
     data() {
         return {
-            
+            description_str: ''
         };
     },
+    watch: {
+        description() { this.fetchTranslations(); }
+    },
     mounted() {
-        
+        this.fetchTranslations();
     },
     methods: {
         callOnCancel() {
@@ -104,6 +109,9 @@ export default {
             return {
                 log: this.$refs['log-zone'].log
             };
+        },
+        async fetchTranslations() {
+            this.description_str = await Lang.GetTextAsync(this.description) ?? '';
         }
     }
 }

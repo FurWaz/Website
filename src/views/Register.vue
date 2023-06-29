@@ -3,37 +3,37 @@
         <div class="flex flex-col justify-center items-center">
             <form-card
                 class="show-up p-2"
-                :title="lang.Register()"
-                :validate="lang.Register()"
+                :title="Lang.CreateTranslationContext('verbs', 'Register')"
+                :validate="Lang.CreateTranslationContext('verbs', 'Register')"
                 :on-validate="register"
             >
                 <input-text
                     name="pseudo"
-                    :label="lang.Pseudo()"
-                    :placeholder="lang.Pseudo()"
+                    :label="Lang.CreateTranslationContext('account', 'Pseudo')"
+                    :placeholder="Lang.CreateTranslationContext('account', 'Pseudo')"
                     class="show-down"
                     style="animation-delay: 100ms;"
                 />
                 <input-text
                     name="email"
-                    :label="lang.Email()"
-                    :placeholder="lang.Email()"
+                    :label="Lang.CreateTranslationContext('account', 'Email')"
+                    :placeholder="Lang.CreateTranslationContext('account', 'Email')"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
                 <input-text
                     name="password"
                     type="password"
-                    :label="lang.Password()"
-                    :placeholder="lang.Password()"
+                    :label="Lang.CreateTranslationContext('account', 'Password')"
+                    :placeholder="Lang.CreateTranslationContext('account', 'Password')"
                     class="show-down"
                     style="animation-delay: 300ms;"
                 />
                 <input-text
                     name="confirm"
                     type="password"
-                    :label="lang.Confirmation()"
-                    :placeholder="lang.Confirmation()"
+                    :label="Lang.CreateTranslationContext('account', 'Confirmation')"
+                    :placeholder="Lang.CreateTranslationContext('account', 'Confirmation')"
                     class="show-down"
                     style="animation-delay: 400ms;"
                 />
@@ -58,19 +58,43 @@ export default {
         FormCard,
     },
     data() {
-        return { lang: Lang.CurrentLang };
+        return { Lang };
     },
-    mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-    },
+    mounted() {},
     methods: {
-        register(form) {
-            const log = form.log(this.lang.Registering() + " ...");
+        async register(form) {
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Registering')));
 
             const body = form.body();
 
+            
+            if (!body.pseudo) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyPseudo')), Log.WARNING);
+                form.focus('pseudo');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+            if (!body.email) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyEmail')), Log.WARNING);
+                form.focus('email');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+            if (!body.password) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyPassword')), Log.WARNING);
+                form.focus('password');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+            if (!body.confirm) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyConfirmPassword')), Log.WARNING);
+                form.focus('confirm');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+
             if (body.password !== body.confirm) {
-                log.update(this.lang.PasswordsDontMatch(), Log.ERROR);
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'PasswordsDontMatch')), Log.ERROR);
                 form.focus('confirm');
                 setTimeout(() => { log.delete(); }, 4000);
                 return;

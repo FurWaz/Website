@@ -3,22 +3,22 @@
         <div class="flex flex-col justify-center items-center">
             <form-card
                 class="show-up p-2"
-                :title="lang.Login()"
-                :validate="lang.Login()"
+                :title="Lang.CreateTranslationContext('verbs', 'LogIn')"
+                :validate="Lang.CreateTranslationContext('verbs', 'LogIn')"
                 :on-validate="login"
             >
                 <input-text
                     name="email"
-                    :label="lang.Email()"
-                    :placeholder="lang.Email()"
+                    :label="Lang.CreateTranslationContext('account', 'Email')"
+                    :placeholder="Lang.CreateTranslationContext('account', 'Email')"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
                 <input-text
                     name="password"
                     type="password"
-                    :label="lang.Password()"
-                    :placeholder="lang.Password()"
+                    :label="Lang.CreateTranslationContext('account', 'Password')"
+                    :placeholder="Lang.CreateTranslationContext('account', 'Password')"
                     class="show-down"
                     style="animation-delay: 300ms;"
                 />
@@ -43,15 +43,26 @@ export default {
         FormCard,
     },
     data() {
-        return { lang: Lang.CurrentLang };
+        return { Lang };
     },
-    mounted() {
-        Lang.AddCallback(lang => this.lang = lang);
-    },
+    mounted() {},
     methods: {
-        login(form) {
-            const log = form.log(this.lang.LoggingIn() + " ...");
+        async login(form) {
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'LogIn')), Log.INFO);
+
             const body = form.body();
+            if (!body.email) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyEmail')), Log.WARNING);
+                form.focus('email');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+            if (!body.password) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyPassword')), Log.WARNING);
+                form.focus('password');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
 
             const headers = {};
             headers[API.AuthorizationHeader] = "Basic " + btoa(body.email + ":" + body.password);
