@@ -58,7 +58,7 @@
 
                 <button-block
                     class="mr-auto"
-                    href="/projects?tag=project"
+                    href="/projects?search=project"
                 >
                     <get-text :context="{file: 'home', code: 'MyProjectsBtn'}" />
                 </button-block>

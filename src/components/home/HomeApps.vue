@@ -59,7 +59,7 @@
 
                 <button-block
                     class="ml-auto"
-                    href="/projects?tag=app"
+                    href="/projects?search=app"
                 >
                     <get-text :context="{file: 'home', code: 'MyAppsBtn'}" />
                 </button-block>
