@@ -1,0 +1,5 @@
+{
+    "Portal": "Portail",
+    "ConnectedAs": "Connecté en tant que {username}",
+    "NoPortalTokenSpecified": "Aucun jeton de portail n'a été spécifié, impossible de continuer :("
+}

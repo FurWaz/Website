@@ -43,7 +43,7 @@
                 v-show="user && !error"
             >
                 <form-card
-                    class="show-up p-2"
+                    class="show-up p-2 w-min"
                     :display-icon="false"
                     :cancel="Lang.CreateTranslationContext('verbs', 'Change')"
                     :validate="Lang.CreateTranslationContext('verbs', 'Continue')"

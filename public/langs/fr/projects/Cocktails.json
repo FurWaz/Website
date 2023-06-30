@@ -1,0 +1,11 @@
+{
+    "title": "Cocktails",
+    "short": "Un site de recettes de cocktails, pour les amateurs de boissons alcoolisées !",
+    "button": "J'ai envie de boire !",
+    "description": [
+        "Cocktails est un site web réalisé avec un autre étudiant dans le cadre d'un projet scolaire.",
+        "C'est un site web où vous pouvez trouver des recettes de cocktails, les ajouter à vos favoris et parcourir l'ensemble de la base de données des cocktails en sélectionnant des filtres et des ingrédients !",
+        "Le site web est réalisé avec HTML/CSS/JavaScript et TailwindCSS, et utilise une API écrite en PHP.",
+        "L'ensemble du projet est disponible sur mon site web (lien ci-dessous), afin que vous puissiez l'essayer par vous-même !"
+    ]
+}

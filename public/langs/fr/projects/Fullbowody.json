@@ -1,0 +1,12 @@
+{
+    "title": "FullBowody",
+    "short": "Suivez votre corps en temps réel grâce à une ou plusieurs caméras !",
+    "button": "Montre-moi ça !",
+    "description": [
+        "FullBowody est une application gratuite permettant de suivre votre corps en temps réel à l'aide d'une ou de plusieurs caméras.",
+        "Cette application peut être utilisée pour émuler le suivi du corps entier dans les jeux, ou pour suivre votre corps dans un logiciel 3D (comme Blender par exemple).",
+        "Elle prend également en charge Kinect v1 et Kinect v2 (Kinect pour Xbox 360 et Kinect pour Xbox One) pour suivre votre corps avec plus de précision.",
+        "L'ensemble de l'application est conçu pour être étendu et personnalisé, vous pouvez donc ajouter vos propres fonctionnalités et l'utiliser comme vous le souhaitez !",
+        "L'application est disponible pour Windows et Linux, et le code source est disponible sur GitHub."
+    ]
+}
