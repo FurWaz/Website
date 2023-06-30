@@ -4,17 +4,17 @@
             v-if="label != ''"
             class="flex text-lg dark:text-slate-400 font-bold whitespace-nowrap text-ellipsis w-fit mr-auto"
         >
-            {{ label }}
+            <get-text :context="label" />
         </label>
         <textarea
             ref="input"
             class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md max-w-full
                    min-w-0 transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-400 resize-none"
             :class="disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-400 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 '"
-            :placeholder="placeholder"
+            :placeholder="placeholder_str"
             :type="type"
             :name="name"
-            :value="value"
+            :value="value_str"
             :min="min"
             :max="max"
             :disabled="disabled"
@@ -24,8 +24,14 @@
 </template>
 
 <script>
+import Lang from '../../scripts/Lang';
+import GetText from '../text/GetText.vue';
+
 export default {
     name: 'InputArea',
+    components: {
+        GetText
+    },
     props: {
         label: {
             type: String,
@@ -74,11 +80,25 @@ export default {
         }
     },
     data() {
-        return {isDisabled: true}
+        return {
+            isDisabled: true,
+            placeholder_str: '',
+            value_str: ''
+        }
+    },
+    watch: {
+        placeholder() { this.fetchTranslations(); },
+        value() { this.fetchTranslations(); }
     },
     mounted() {
         this.focus = () => this.$refs.input.focus();
         this.getValue = () => this.$refs.input.value;
+    },
+    methods: {
+        async fetchTranslations() {
+            this.placeholder_str = (typeof(this.placeholder) === 'string')? this.placeholder : await Lang.GetTextAsync(this.placeholder);
+            this.value_str = (typeof(this.value) === 'string')? this.value : await Lang.GetTextAsync(this.value);
+        }
     }
 }
 </script>

@@ -86,9 +86,13 @@ export default {
         }
     },
     data() {
-        return { Lang };
+        return {
+            Lang
+        };
     },
-    mounted() { },
+    mounted() {
+        
+    },
     methods: {
         deleteApp(modal) {
             const log = modal.log(Lang.CurrentLang.Deleting(), Log.INFO);
