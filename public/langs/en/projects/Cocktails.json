@@ -1,0 +1,11 @@
+{
+    "title": "Cocktails",
+    "short": "A cocktail recipe site, for lovers of alcoholic drinks!",
+    "button": "I want to drink!",
+    "description": [
+        "Cocktails is a website made with an other student for a school project.",
+        "It's a website where you can find cocktail recipes, add them in your favorites, and browse the entire cocktail's database by selecting filters and ingredients!",
+        "The website is made with HTML/CSS/JavaScript and TailwindCSS, and is using an API written in PHP.",
+        "The entire project is available on my website (link below), for you to try it out!"
+    ]
+}

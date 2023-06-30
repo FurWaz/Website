@@ -1,0 +1,10 @@
+{
+    "title": "AlgoSniper",
+    "short": "A VS Code extension for algorithmic programming at the Charlemagne IT Department!",
+    "button": "What's that all about?",
+    "description": [
+        "AlgoSniper is a VS Code extension that allows you to code in the algorithmic language used to learn coding at the Charlemagne IT Department.",
+        "It provides syntax highlighting, code completion, and a few other features to make it easier and quicker to write code. It also provides a way create the code's documentation and lexic.",
+        "This extension is open-source and available on GitHub. If you want to contribute, feel free to do so! You can also test the extension by downloading it from the Visual Studio Marketplace."
+    ]
+}

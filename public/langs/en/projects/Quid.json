@@ -1,0 +1,11 @@
+{
+    "title": "Quid",
+    "short": "A web application to create, share and play quizzes!",
+    "button": "Try the app",
+    "description": [
+        "Quid is a web application to create, share and play quizzes.",
+        "It is made with Vue.JS / TailwindCSS for the web interface, and Express / Prisma for the internal API.",
+        "This application is still in development, but you can already try it out at the link below!",
+        "The source code is available on GitHub, if you want to contribute or just take a look at it."
+    ]
+}

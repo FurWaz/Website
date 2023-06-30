@@ -1,0 +1,11 @@
+{
+    "title": "VyBeen",
+    "short": "Listen and sing music together, thanks to VyBeen!",
+    "button": "I want to sing!",
+    "description": [
+        "VyBeen is a web platform to listen and sing music together.",
+        "It's a project I made to listen to music with friends, and i upgrade it sometimes to add new features.",
+        "This project is far from being finished, but it's already usable, so don't hesitate to try it (link below) !",
+        "You can also check the source code on GitHub to see how it works, and maybe contribute to it if you want to."
+    ]
+}

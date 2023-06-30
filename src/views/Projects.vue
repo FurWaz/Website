@@ -17,7 +17,7 @@
             <div class="flex flex-wrap justify-evenly w-full">
                 <badge-card
                     v-for="item in displayedProjects"
-                    :ref="'project-' + item.name.code.toLowerCase().trim()"
+                    :ref="'project-' + item.id?.toLowerCase().trim()"
                     :key="item"
                     :selected="selectedApp === item"
                     class="show-up p-2 m-8 max-w-[18em] min-h-[22em] h-fit hover:shadow-md"
@@ -27,7 +27,7 @@
                     >
                         <svg-text
                             class="w-12 h-12 my-4"
-                            :viewBox="item.iconViewBox ?? '0 0 24 24'"
+                            :viewBox="item.viewBox ?? '0 0 24 24'"
                             v-html="item.icon"
                         />
                         <title-text class="mx-auto text-center">
@@ -35,16 +35,13 @@
                         </title-text>
                     </div>
                     <base-text class="flex grow mx-auto text-center">
-                        <get-text :context="item.description" />
+                        <get-text :context="item.short" />
                     </base-text>
                     <div class="flex justify-between w-full my-6">
                         <button-block
-                            v-for="link in item.links"
-                            :key="link"
-                            :href="link.url"
-                            :onclick="() => openAppPreview(item, link.vue)"
+                            :onclick="() => openAppPreview(item)"
                         >
-                            <get-text :context="link.name" />
+                            <get-text :context="item.button" />
                         </button-block>
                     </div>
                     <div
@@ -72,17 +69,66 @@
             <div class="md:flex hidden py-4">
                 <span class="flex grow w-1 h-full rounded-md bg-slate-300 dark:bg-slate-600" />
             </div>
-            <div class="flex flex-col w-full">
+            <div class="flex flex-col w-full p-2">
                 <div class="flex justify-start h-fit w-full p-2">
                     <div class="md:rotate-180">
                         <button-back :on-click="closeAppPreview" />
                     </div>
                 </div>
-                <div class="flex grow max-h-full h-full max-w-full w-full overflow-auto p-2">
-                    <component
-                        :is="currentView"
-                        v-if="currentView !== null"
-                    />
+                <div
+                    v-if="selectedApp"
+                    class="flex grow max-h-full h-full max-w-full w-full overflow-auto md:p-4"
+                >
+                    <div class="flex flex-col grow items-center space-y-20 h-fit w-fit">
+                        <div
+                            class="show-up flex flex-col items-center space-y-4"
+                            style="animation-delay: 0ms"
+                        >
+                            <img
+                                :src="selectedApp?.logo ?? ''"
+                                :alt="selectedApp?.id + ' icon'"
+                                class="w-32 h-32 rounded-lg"
+                            >
+                            <h1 class="flex text-4xl font-bold text-slate-200 text-center">
+                                <get-text :context="selectedApp?.name" />
+                            </h1>
+                            <p class="flex text-xl font-semibold text-slate-300 text-center">
+                                <get-text :context="selectedApp?.short" />
+                            </p>
+                        </div>
+                        <p
+                            class="show-up flex text-md font-semibold italic text-slate-400 px-4"
+                            style="animation-delay: 200ms"
+                        >
+                            <get-text
+                                :context="selectedApp?.description"
+                                class="flex flex-col space-y-2"
+                            />
+                        </p>
+                        <div
+                            class="show-up flex flex-wrap justify-evenly w-full"
+                            style="animation-delay: 400ms"
+                        >
+                            <badge-card
+                                v-for="item in selectedApp?.links"
+                                :key="item"
+                                class="p-2 space-y-6 md:my-0 m-2 w-fit"
+                                :hoverable="!item.disabled"
+                            >
+                                <svg-text
+                                    class="w-20 pt-2"
+                                    :viewBox="item.viewBox ?? '0 0 512 512'"
+                                    v-html="item.icon"
+                                />
+                                <button-block
+                                    :href="item.link"
+                                    :disabled="item.disabled"
+                                >
+                                    <get-text :context="item.button" />
+                                </button-block>
+                            </badge-card>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -187,10 +233,10 @@ export default {
             this.displayedProjects = sortedProjects.filter(item => item.weight > 0).map(item => item.project);
         },
         displayApp(name) {
-            const app = projects.find(item => item.name.code.toLowerCase().trim() === name.toLowerCase().trim());
+            const app = projects.find(item => item.id?.toLowerCase().trim() === name.toLowerCase().trim());
             if (app) {
                 this.openAppPreview(app, app.vue ?? app.links[0].vue ?? null);
-                const appDiv = this.$refs['project-' + app.name.code.toLowerCase().trim()][0]?.$el;
+                const appDiv = this.$refs['project-' + app.id.toLowerCase().trim()][0]?.$el;
                 this.$refs["projects"].scrollTo({
                     top: appDiv.offsetTop - 100,
                     behavior: "smooth"
@@ -206,8 +252,7 @@ export default {
             const app = this.$route.query.app ?? null;
             if (app) this.displayApp(app);
         },
-        openAppPreview(app, vue) {
-            this.currentView = vue;
+        openAppPreview(app) {
             this.selectedApp = app;
             this.updateUrl();
 
@@ -219,7 +264,6 @@ export default {
         },
         closeAppPreview() {
             this.selectedApp = null;
-            this.currentView = null;
             this.updateUrl();
 
             const preview = this.$refs["preview"];
@@ -232,7 +276,7 @@ export default {
             this.$router.push({
                 query: {
                     search: (!this.searchValue.length)? undefined: this.searchValue,
-                    app: (!this.selectedApp)? undefined: this.selectedApp.name.code
+                    app: (!this.selectedApp)? undefined: this.selectedApp.id
                 }
             });
         }

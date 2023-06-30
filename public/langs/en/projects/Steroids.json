@@ -1,0 +1,11 @@
+{
+    "title": "Steroids",
+    "short": "Kill all enemies without getting hit, watch out for the chorus!",
+    "button": "Pew Pew time",
+    "description": [
+        "Steroids is an arcade game made for a Itch.io game jam. The goal was to make a game without any premade levels, by using music to generate them.",
+        "The game is a top down shooter, where you have to kill all enemies without getting hit. The speed and amount of enemies is based on the music, so you have to be careful when the chorus starts!",
+        "This game has been made from scratch using the C++ programming language and the SFML library, and is available for Windows.",
+        "The game is available for free on Itch.io, and the source code is available on Github."
+    ]
+}

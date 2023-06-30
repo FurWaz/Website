@@ -1,5 +1,12 @@
 <template>
-    <span v-if="!loading"> {{ text }} </span>
+    <div v-if="!loading">
+        <span
+            v-for="line in text.split('\n')"
+            :key="line"
+        >
+            {{ line }}
+        </span>
+    </div>
     <span
         v-else
         class="flex w-16 h-3 rounded-2xl animate-text-loading"

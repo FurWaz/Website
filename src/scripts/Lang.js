@@ -86,6 +86,12 @@ export default class Lang {
         return text;
     }
 
+    static #processTranslation(translation) {
+        if (typeof translation === "string") return translation;
+        if (Array.isArray(translation)) return translation.join("\n");
+        return JSON.stringify(translation);
+    }
+
     static getLanguages() {
         return [
             { value: "en", name: "English" },
@@ -115,12 +121,12 @@ export default class Lang {
         const filePath = this.#getFilePath(this.getLanguage(), context.file);
         const translationFile = await this.#getTranslationFile(filePath);
         if (translationFile && translationFile[context.code])
-            return translationFile[context.code];
+            return this.#processTranslation(translationFile[context.code]);
 
         const fallbackFilePath = this.#getFilePath(this.#getFallbackLanguageCode(), context.file);
         const fallbackTranslationFile = await this.#getTranslationFile(fallbackFilePath);
         if (fallbackTranslationFile && fallbackTranslationFile[context.code])
-            return fallbackTranslationFile[context.code];
+            return this.#processTranslation(fallbackTranslationFile[context.code]);
 
         console.error(
             "Translation not found for code [" + context.code + "] in file : [" + context.file + "]\n" +

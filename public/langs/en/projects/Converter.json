@@ -1,0 +1,11 @@
+{
+    "title": "Converter",
+    "short": "A Youtube video converter to multiple audio and video formats!",
+    "button": "Oh, that's cool!",
+    "description": [
+        "Converter is a Youtube video converter to multiple audio and video formats!",
+        "It's a simple and easy to use tool that can convert any Youtube video to MP3, MP4, WEBM, M4A, WAV, AVI, and much more.",
+        "It's also completely free and open source, so you can check out the code hosted on Github!",
+        "An instance of Converter is hosted on my own server, available at the link below if you want to try it."
+    ]
+}
