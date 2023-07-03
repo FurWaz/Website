@@ -22,7 +22,9 @@ const routes = [
     { path: '/my/apps', name: 'MyApps',       component: () => import("./views/Account/Apps.vue"),     condition: () => User.CurrentUser !== null },
     { path: '/my/sessions', name: 'Sessions', component: () => import("./views/Account/Sessions.vue"), condition: () => User.CurrentUser !== null },
     { path: '/my/security', name: 'Security', component: () => import("./views/Account/Security.vue"), condition: () => User.CurrentUser !== null },
-    { path: '/my/settings', name: 'Settings', component: () => import("./views/Account/Settings.vue"), condition: () => User.CurrentUser !== null }
+    { path: '/my/settings', name: 'Settings', component: () => import("./views/Account/Settings.vue"), condition: () => User.CurrentUser !== null },
+
+    { path: '/policy/downhill', name: 'DownHillPolicy', component: () => import("./views/Policies/DownHill.vue"), condition: () => true }
 ];
 
 // 404 redirection
