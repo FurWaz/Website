@@ -1,5 +1,13 @@
 <template>
     <div class="flex flex-col grow min-h-full h-fit w-full">
+        <!-- BACKGROUND -->
+        <div class="absolute top-0 left-0 right-0 bottom-0 p-0 pointer-events-none">
+            <canvas
+                ref="three-background"
+                class="flex grow w-full h-full"
+            />
+        </div>
+        <!-- FOREGROUND -->
         <div class="flex flex-col h-[75vh] w-full justify-center items-center">
             <icon-card class="h-40 w-40" />
             <h1
@@ -69,7 +77,6 @@
 import IconCard from "../components/cards/IconCard.vue";
 import ButtonBlock from '../components/inputs/ButtonBlock.vue';
 import { animateShows } from '../scripts/common';
-import Lang from '../scripts/Lang';
 
 import {
     ChevronDownIcon,
@@ -78,6 +85,8 @@ import HomeProjects from '../components/home/HomeProjects.vue';
 import HomeApps from '../components/home/HomeApps.vue';
 import HomeAbout from '../components/home/HomeAbout.vue';
 import GetText from '../components/text/GetText.vue';
+
+import * as Home from '../scripts/views/Home';
 
 export default {
     name: "HomeView",
@@ -95,6 +104,7 @@ export default {
     },
     mounted() {
         animateShows(this.$el);
+        Home.setupBackground(this.$refs["three-background"]);
     },
     methods: {
         scrollForMore() {
