@@ -25,12 +25,14 @@
                     :display-icon="false"
                 >
                     <input-text
+                        ref="email"
                         name="email"
                         :label="Lang.CreateTranslationContext('account', 'Email')"
                         class="show-down"
                         style="animation-delay: 200ms;"
                     />
                     <input-text
+                        ref="password"
                         name="password"
                         type="password"
                         :label="Lang.CreateTranslationContext('account', 'Password')"
@@ -121,8 +123,8 @@ export default {
         if (!this.token) this.error = true;
     },
     methods: {
-        login(form) {
-            const log = form.log(Lang.CreateTranslationContext('verbs', 'LoggingIn'));
+        async login(form) {
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'LoggingIn')));
             const body = form.body();
 
             const headers = {};
@@ -148,19 +150,19 @@ export default {
                     }, 1000);
                 }).catch(err => {
                     log.error(err);
+                    console.error(err);
+                    setTimeout(() => { log.delete(); }, 4000);
                     if (err.field) {
                         this.$refs[err.field].focus();
                     }
-                    console.error(err);
-                    setTimeout(() => { log.delete(); }, 4000);
                 });
             }).catch(err => {
+                console.error(err);
                 log.error(err);
+                setTimeout(() => { log.delete(); }, 4000);
                 if (err.field) {
                     this.$refs[err.field].focus();
                 }
-                console.error(err);
-                setTimeout(() => { log.delete(); }, 4000);
             });
         },
         async connect(form) {
