@@ -194,8 +194,17 @@ export default {
             }, 200)
         },
         close() {
-            window.close();
-            this.$router.push("/");
+            const redirect = this.$route.query.redirect;
+            if (!redirect) {
+                window.close();
+                this.$router.push("/");
+            } else {
+                window.location.href = (
+                    redirect.includes("?")
+                        ? redirect + "&"
+                        : redirect + "?"
+                ) + "token=" + this.token;
+            }
         }
     }
 }
