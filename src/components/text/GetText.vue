@@ -21,7 +21,7 @@ export default {
     name: "GetText",
     props: {
         context: {
-            type: Object,
+            type: [Object, String],
             required: true
         }
     },

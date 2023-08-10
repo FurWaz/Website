@@ -42,56 +42,6 @@
                 </base-text>
             </div>
         </div>
-        <div class="flex flex-col w-full h-fit md:px-20 px-2 pb-20">
-            <section-text class="show-up mx-auto">
-                <get-text :context="Lang.CreateTranslationContext('apps', 'AppPortal')" />
-            </section-text>
-            <title-text class="show-up">
-                <get-text :context="Lang.CreateTranslationContext('apps', 'AppPortalUsage')" />
-            </title-text>
-            <div class="flex show-up h-full w-full">
-                <div class="w-full">
-                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc1')" />
-                    <code-text
-                        lang="js"
-                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode1')"
-                    />
-                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc2')" />
-                    <code-text
-                        lang="js"
-                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode2')"
-                    />
-                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc3')" />
-                    <code-text
-                        lang="js"
-                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode3')"
-                    />
-                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalDesc4')" />
-                    <code-text
-                        lang="js"
-                        :text="Lang.CreateTranslationContext('apps', 'AppPortalCode4')"
-                    />
-                </div>
-                <div class="md:flex hidden float-right w-fit h-fit pl-20">
-                    <iframe
-                        src="/portal?token=dummytoken"
-                        class="w-[18em] h-[32em] rounded-lg shadow-lg border-2 border-slate-300 dark:border-slate-600"
-                    />
-                </div>
-            </div>
-            <div class="flex flex-col">
-                <title-text class="show-up">
-                    <get-text :context="Lang.CreateTranslationContext('apps', 'AppPortalScript')" />
-                </title-text>
-                <div class="inline">
-                    <block-text :text="Lang.CreateTranslationContext('apps', 'AppPortalScriptDesc')" />
-                </div>
-                <code-text
-                    lang="html"
-                    :text="Lang.CreateTranslationContext('apps', 'AppPortalScriptCode')"
-                />
-            </div>
-        </div>
     </div>
     <modal-card ref="create-modal">
         <title-text class="show-up">

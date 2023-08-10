@@ -34,13 +34,13 @@ export default {
     },
     props: {
         label: {
-            type: String,
-            default: '',
+            type: [Object, String],
+            default: () => '',
             required: false
         },
         placeholder: {
-            type: String,
-            default: '',
+            type: [Object, String],
+            default: () => '',
             required: false
         },
         value: {

@@ -67,7 +67,7 @@ export default {
             required: false
         },
         value: {
-            type: Object,
+            type: [Object, String],
             default: () => null,
             required: false
         },
@@ -111,7 +111,7 @@ export default {
         return {
             isDisabled: true,
             additionnalClasses:
-                (this.disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-400 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 ') +
+                (this.disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-600 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 ') +
                 (this.showCopy ? ' rounded-r-none' : ''),
             showCopyCheck: false,
             placeholder_str: "",

@@ -74,8 +74,9 @@ export default {
     },
     props: {
         title: {
-            type: Object,
-            required: true
+            type: [Object, String],
+            required: false,
+            default: () => ""
         },
         validate: {
             type: Object,

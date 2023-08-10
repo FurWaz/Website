@@ -19,7 +19,6 @@
             >
                 <form-card
                     class="show-up p-2"
-                    :cancel="''"
                     :validate="Lang.CreateTranslationContext('verbs', 'LogIn')"
                     :on-validate="login"
                     :display-icon="false"

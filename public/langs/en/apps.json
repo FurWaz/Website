@@ -10,45 +10,5 @@
     "NoApps": "You don't have any apps yet",
     "NoAppsDesc": "Create an app by clicking on the [Create app] button !",
     "LoadingApps": "Loading apps",
-    "LoadingAppsDesc": "Please wait while we load your apps",
-    "AppPortal": "Application portal",
-    "AppPortalDesc1": [
-        "You can use FurWaz's portal to link a FurWaz's user to your application.",
-        "This will allow you to get the user's informations using the FurWaz's API.",
-        "",
-        "To use FurWaz's portal in your application, you'll have to include FurWaz's portal script in it.",
-        "For websites and web applications, you can also use the script hosted on FurWaz's CDN server.",
-        "",
-        "Once the script is added, you will be able to create a connection Portal by writing:"
-    ],
-    "AppPortalDesc2": "Now that the portal has been created, you can open it by calling the open() method:",
-    "AppPortalDesc3": [
-        "Once the user connects to the portal, the 'response' event will be triggered.",
-        "To add a listener on those events, use the 'on' method, here's an example:"
-    ],
-    "AppPortalDesc4": [
-        "If anything wrong occurs during the process, the 'error' event will be triggered.",
-        "Like the 'response' event, you can add a listener to the 'error' event to handle those cases:"
-    ],
-    "AppPortalCode1": "let portal = new FurWaz.Portal(appKey);",
-    "AppPortalCode2": "portal.open();",
-    "AppPortalCode3": [
-        "portal.on('response', (infos) => {",
-        "    console.log('Got user infos :', infos);",
-        "});"
-    ],
-    "AppPortalCode4": [
-        "portal.on('error', (err) => {",
-        "    console.error('Portal error :', err);",
-        "});"
-    ],
-    "AppPortalUsage": "Usage :",
-    "AppPortalScript": "FurWaz's portal scripts :",
-    "AppPortalScriptDesc": [
-        "FurWaz's portal scripts are currently available in JavaScript only.",
-        "Support for other languages will be added soon.",
-        "",
-        "To include the javascript script in your website, add the following line in your HTML file:"
-    ],
-    "AppPortalScriptCode": "<script src=\"https://cdn.furwaz.fr/api/portal.min.js\"></script>"
+    "LoadingAppsDesc": "Please wait while we load your apps"
 }
