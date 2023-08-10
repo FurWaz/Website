@@ -48,7 +48,7 @@ export default {
     mounted() {},
     methods: {
         async login(form) {
-            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'LogIn')), Log.INFO);
+            const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'LoggingIn')), Log.INFO);
 
             const body = form.body();
             if (!body.email) {
