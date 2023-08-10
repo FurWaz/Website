@@ -192,7 +192,7 @@ class API {
      * @param {object[]} headers API call additional headers
      * @returns a promise resolving when the API call is done
      */
-    static execute(path, method = this.METHOD.GET, body = {}, type = this.TYPE.JSON, headers = []) {
+    static execute(path, method = this.METHOD.GET, body = {}, type = this.TYPE.JSON, headers = {}) {
         return new Promise((resolve, reject) => {
             if (API.API_URL == null) reject("Error : API host not set");
             path = path.replace("/?", "?").replace(/\/\//g, "/");
@@ -255,11 +255,6 @@ class API {
                 mode: "cors"
             }).then(response => {
                 if (!response.status.toString().startsWith("2")) {
-                    if (response.status === 498) { // token expired
-                        User.forget();
-                        window.location.reload();
-                        return;
-                    }
                     sendError(response);
                 } else {
                     response.json().then(data => {
@@ -280,7 +275,7 @@ class API {
      * @param {object[]} headers API call additionnal headers
      * @returns A promise resolving when the API call is done
      */
-    static execute_logged(path, method = API.METHOD.GET, body = {}, type = this.TYPE.JSON, headers = [], user = User.CurrentUser, retryLogin = true) {
+    static execute_logged(path, method = API.METHOD.GET, body = {}, type = this.TYPE.JSON, headers = {}, user = User.CurrentUser, retryLogin = true) {
         return new Promise((resolve, reject) => {
             const credentials = user.getCredentials();
             if (!credentials) {
@@ -304,16 +299,23 @@ class API {
                 reqHeaders[API.AuthorizationHeader] = credentials.token;
                 this.execute(path, method, body, type, reqHeaders).then(resolve).catch(err => {
                     if (err.status === 498 || err.status === 406) { // token expired
-                        User.forget();
-                        window.location.reload();
+                        if (!retryLogin) reject({status: 400, message: "Invalid credentials"});
+                        API.execute(API.ROUTE.TOKEN(), API.METHOD.GET, undefined, undefined, { [API.AuthorizationHeader]: "Bearer " + user.refresh}).then(response => {
+                            user.setTokens(response.data.tokens);
+                            user.save();
+                            this.execute_logged(path, method, body, type, reqHeaders, user, false).then(resolve).catch(reject);
+                        }).catch(err => {
+                            User.forget();
+                            const url = window.location.href;
+                            window.location.href = '/login?link=' + url;
+                        });
+                    } else {
+                        reject(err);
                     }
-                    reject(err);
                 });
             } else {
                 if (!retryLogin) reject({status: 400, message: "Invalid credentials"});
-                const auth = {};
-                auth[API.AuthorizationHeader] = "Bearer " + user.refresh;
-                this.execute(API.ROUTE.TOKEN(), this.METHOD.GET, undefined, undefined, auth).then(data => {
+                this.execute(API.ROUTE.TOKEN(), this.METHOD.GET, undefined, undefined, {[API.AuthorizationHeader]: "Bearer " + user.refresh}).then(data => {
                     user.setTokens(data.tokens);
                     this.execute_logged(path, method, body, type, reqHeaders, user, false).then(resolve).catch(reject);
                 }).catch(err => reject(err));

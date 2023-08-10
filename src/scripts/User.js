@@ -53,8 +53,8 @@ class User {
     }
 
     setTokens(tokens) {
-        this.refresh = tokens.refresh;
-        this.access = tokens.access;
+        this.refresh = tokens.refresh ?? this.refresh;
+        this.access = tokens.access ?? this.access;
     }
 
     save() {

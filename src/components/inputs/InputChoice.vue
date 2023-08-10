@@ -61,8 +61,8 @@ export default {
     components: { GetText },
     props: {
         label: {
-            type: String,
-            default: "",
+            type: [Object, String],
+            default: () => '',
             required: false
         },
         value: {
