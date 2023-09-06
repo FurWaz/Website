@@ -11,18 +11,19 @@ import "./index.css";
 // }
 
 const routes = [
-    { path: '/', name: 'Home',                component: () => import("./views/Home.vue"),             condition: () => true },
-    { path: '/register', name: 'Register',    component: () => import("./views/Register.vue"),         condition: () => true },
-    { path: '/login', name: 'Login',          component: () => import("./views/Login.vue"),            condition: () => true },
-    { path: '/about', name: 'About',          component: () => import("./views/About.vue"),            condition: () => true },
-    { path: '/projects', name: 'Projects',    component: () => import("./views/Projects.vue"),         condition: () => true },
-    { path: '/portal', name: 'Portal',        component: () => import("./views/Portal.vue"),           condition: () => true },
-    { path: '/my', name: 'Account'     ,      component: () => import("./views/Account.vue"),          condition: () => User.CurrentUser !== null },
-    { path: '/my/profile', name: 'Profile',   component: () => import("./views/Account/Profile.vue"),  condition: () => User.CurrentUser !== null },
-    { path: '/my/apps', name: 'MyApps',       component: () => import("./views/Account/Apps.vue"),     condition: () => User.CurrentUser !== null },
+    { path: '/',            name: 'Home',     component: () => import("./views/Home.vue"),             condition: () => true },
+    { path: '/register',    name: 'Register', component: () => import("./views/Register.vue"),         condition: () => true },
+    { path: '/login',       name: 'Login',    component: () => import("./views/Login.vue"),            condition: () => true },
+    { path: '/about',       name: 'About',    component: () => import("./views/About.vue"),            condition: () => true },
+    { path: '/projects',    name: 'Projects', component: () => import("./views/Projects.vue"),         condition: () => true },
+    { path: '/portal',      name: 'Portal',   component: () => import("./views/Portal.vue"),           condition: () => true },
+    { path: '/my',          name: 'Account',  component: () => import("./views/Account.vue"),          condition: () => User.CurrentUser !== null },
+    { path: '/my/profile',  name: 'Profile',  component: () => import("./views/Account/Profile.vue"),  condition: () => User.CurrentUser !== null },
+    { path: '/my/apps',     name: 'MyApps',   component: () => import("./views/Account/Apps.vue"),     condition: () => User.CurrentUser !== null },
     { path: '/my/sessions', name: 'Sessions', component: () => import("./views/Account/Sessions.vue"), condition: () => User.CurrentUser !== null },
     { path: '/my/security', name: 'Security', component: () => import("./views/Account/Security.vue"), condition: () => User.CurrentUser !== null },
     { path: '/my/settings', name: 'Settings', component: () => import("./views/Account/Settings.vue"), condition: () => User.CurrentUser !== null },
+    { path: '/admin',       name: 'Admin',    component: () => import("./views/Admin.vue"),            condition: () => User.CurrentUser !== null && User.CurrentUser.role_id >= 2 },
 
     { path: '/policy/downhill', name: 'DownHillPolicy', component: () => import("./views/Policies/DownHill.vue"), condition: () => true }
 ];
