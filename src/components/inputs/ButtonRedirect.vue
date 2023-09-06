@@ -3,7 +3,7 @@
         <router-link
             class="flex md:flex-col min-w-0 w-full max-w-full py-1 md:px-8 px-1 outline-none outline-offset-4 rounded-md justify-between items-center
                    md:space-y-2 md:space-x-0 space-x-2 border-slate-300 dark:border-slate-600 border-2 transition-all"
-            :class="disabled? ' cursor-default text-slate-400': ' focus:outline-orange-500 text-slate-500 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 hover:border-slate-400 dark:hover:border-slate-500'"
+            :class="disabled? ' cursor-default text-slate-400': ' focus:outline-orange-500 text-slate-600 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 hover:border-slate-400 dark:hover:border-slate-500'"
             :to="disabled ? '' : href"
         >
             <component

@@ -25,13 +25,13 @@
             >
             <button
                 v-if="showCopy"
-                class="bg-slate-600 border-2 border-slate-600 hover:border-slate-500 rounded-lg rounded-l-none transition-colors outline-none outline-offset-2 focus:outline-orange-500"
+                class="bg-slate-200 dark:bg-slate-600 border-2 border-slate-200 dark:border-slate-600 hover:border-slate-500 rounded-lg rounded-l-none transition-colors outline-none outline-offset-2 focus:outline-orange-500"
                 @click="copy"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     :viewBox="showCopyCheck ? '0 0 384 512' : '0 0 448 512'"
-                    class="text-slate-200 w-8 px-2"
+                    class="text-slate-600 dark:text-slate-200 w-8 px-2"
                     fill="currentColor"
                 >
                     <path
