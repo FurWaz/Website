@@ -63,7 +63,7 @@
         </div>
         <div
             ref="preview"
-            class="flex z-50 bg-slate-700 transition-all duration-300 md:border-0 md:shadow-none shadow-md rounded-md border-2 border-slate-200 dark:border-slate-600"
+            class="flex z-50 bg-slate-700 transition-all duration-300 md:border-0 md:shadow-none shadow-md rounded-md border-2 border-slate-200 dark:border-slate-600 overflow-hidden"
             :class="isMobile? 'absolute left-2 right-2 -bottom-2 h-0' : 'w-0'"
         >
             <div class="md:flex hidden py-4">
