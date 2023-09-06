@@ -85,7 +85,10 @@ export default {
             User
         };
     },
-    mounted() {},
+    async mounted() {
+        let response = await API.execute_logged(API.ROUTE.ME());
+        User.CurrentUser.setInformations(response.data.user);
+    },
     methods: {
         async editProfile(form) {
             const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Editing')), Log.INFO);
