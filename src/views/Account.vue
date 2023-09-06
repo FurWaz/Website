@@ -5,6 +5,7 @@
             <div class="flex flex-col md:grid md:grid-cols-2 md:gap-8 md:w-fit md:h-fit justify-center items-center">
                 <button-redirect
                     v-for="(item, index) in links"
+                    v-show="!item.condition || item.condition()"
                     :key="item"
                     class="show-right md:m-0 m-2"
                     :style="'animation-delay: '+index+'00ms;'"
@@ -36,7 +37,8 @@ import {
     Squares2X2Icon,
     KeyIcon,
     ComputerDesktopIcon,
-    Cog6ToothIcon
+    Cog6ToothIcon,
+    CommandLineIcon
 } from '@heroicons/vue/24/outline';
 import GetText from '../components/text/GetText.vue';
 
@@ -46,6 +48,7 @@ const links = [
     {name: "Sessions", icon: ComputerDesktopIcon, href: "/my/sessions"},
     {name: "Security", icon: KeyIcon, href: "/my/security"},
     {name: "Settings", icon: Cog6ToothIcon, href: "/my/settings"},
+    {name: "Administration", icon: CommandLineIcon, href: "/admin", condition: () => User.CurrentUser.role_id >= 2},
 ];
 
 export default {
