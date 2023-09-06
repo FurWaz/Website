@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-fit w-full justify-between md:space-x-8 space-x-4 items-center my-2 min-w-0 max-w-full">
-        <label class="flex text-xl text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap text-ellipsis w-fit">
+        <label class="flex text-xl text-slate-600 dark:text-slate-400 font-bold whitespace-nowrap text-ellipsis w-fit">
             <get-text :context="label" />
         </label>
         <div class="min-w-0 max-w-full">
@@ -12,7 +12,7 @@
                 :disabled="disabled"
                 class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md whitespace-nowrap max-w-full
                        min-w-0 text-ellipsis transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-600/[0.5]"
-                :class="disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-400 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 '"
+                :class="disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-600 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 '"
                 @change="onchange"
             >
                 <option
