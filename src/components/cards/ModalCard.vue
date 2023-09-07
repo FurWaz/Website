@@ -6,7 +6,7 @@
     >
         <badge-card
             ref="card"
-            class="p-2 bg-slate-700"
+            class="p-2 bg-slate-50 dark:bg-slate-700"
             :hoverable="false"
         >
             <slot />

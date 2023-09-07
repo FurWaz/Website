@@ -5,7 +5,7 @@
     >
         <label
             v-if="label"
-            class="flex text-lg dark:text-slate-400 font-bold whitespace-nowrap text-ellipsis w-fit items-center"
+            class="flex text-lg text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit items-center"
         >
             <get-text :context="label" />
         </label>
@@ -13,7 +13,7 @@
             <input
                 ref="input"
                 class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md whitespace-nowrap max-w-full
-                    min-w-0 text-ellipsis transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-400"
+                    min-w-0 w-full text-ellipsis transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-400"
                 :class="additionnalClasses"
                 :placeholder="placeholder_str"
                 :type="type"

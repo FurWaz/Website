@@ -2,13 +2,13 @@
     <div class="flex grow h-fit w-full min-w-0 flex-col justify-between md:items-center md:my-2 my-1 space-y-1">
         <label
             v-if="label != ''"
-            class="flex text-lg dark:text-slate-400 font-bold whitespace-nowrap text-ellipsis w-fit mr-auto"
+            class="flex text-lg text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit mr-auto"
         >
             <get-text :context="label" />
         </label>
         <textarea
             ref="input"
-            class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md max-w-full
+            class="flex h-fit border-2 rounded-md w-full px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md max-w-full
                    min-w-0 transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-400 resize-none"
             :class="disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-400 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 '"
             :placeholder="placeholder_str"
