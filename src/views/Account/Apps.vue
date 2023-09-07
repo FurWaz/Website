@@ -10,11 +10,11 @@
                 <get-text :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
             </button-block>
         </div>
-        <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full min-h-[22em] pb-8">
+        <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full md:min-h-[22em] pb-8">
             <app-card
                 v-for="(app, index) in apps"
                 :key="app"
-                class="show-up mx-auto"
+                class="show-up w-72 h-80 mx-auto md:mx-0 md:w-80 md:h-96"
                 :style="'animation-delay: '+index+'00ms;'"
                 :app="app"
                 :on-delete="() => apps.splice(index, 1)"

@@ -1,12 +1,12 @@
 <template>
     <badge-card
-        class="md:p-4 p-2 space-y-4 min-h-0 h-fit w-fit"
+        class="md:p-4 p-2 space-y-4 min-h-0 min-h-0 min-w-0 h-fit w-fit max-h-full max-w-full"
     >
-        <div class="flex flex-col justify-center items-center space-y-4">
+        <div class="flex flex-col justify-center items-center space-y-4 min-h-0">
             <title-text>
                 {{ app.name }}
             </title-text>
-            <base-text>
+            <base-text class="text-center overflow-hidden text-ellipsis">
                 {{ app.description }}
             </base-text>
         </div>
