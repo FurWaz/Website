@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+ENV VITE_API_URL=https://main.apis.furwaz.fr
 RUN npm run build
 
 FROM nginx:stable-alpine as production-stage
