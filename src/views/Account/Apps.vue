@@ -137,7 +137,10 @@ export default {
     },
     methods: {
         createApp(form) {
-            const log = form.log(Lang.CreateTranslationContext('verbs', 'Creating'), Log.INFO);
+            const log = form.log("", Log.INFO);
+            Lang.GetText(Lang.CreateTranslationContext('verbs', 'Creating'), txt => {
+                log.update(txt, Log.INFO);
+            });
             const body = form.body();
             API.execute_logged(API.ROUTE.APPS(), API.METHOD.POST, body).then(res => {
                 log.update(res.message, Log.SUCCESS);
