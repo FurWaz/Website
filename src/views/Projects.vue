@@ -63,7 +63,7 @@
         </div>
         <div
             ref="preview"
-            class="flex z-50 bg-slate-700 transition-all duration-300 md:border-0 md:shadow-none shadow-md rounded-md border-2 border-slate-200 dark:border-slate-600 overflow-hidden"
+            class="flex z-50 bg-slate-50 dark:bg-slate-700 transition-all duration-300 md:border-0 md:shadow-none shadow-md rounded-md border-2 border-slate-200 dark:border-slate-600 overflow-hidden"
             :class="isMobile? 'absolute left-2 right-2 -bottom-2 h-0' : 'w-0'"
         >
             <div class="md:flex hidden py-4">
@@ -89,10 +89,10 @@
                                 :alt="selectedApp?.id + ' icon'"
                                 class="w-32 h-32 rounded-lg"
                             >
-                            <h1 class="flex text-4xl font-bold text-slate-200 text-center">
+                            <h1 class="flex text-4xl font-bold text-slate-600 dark:text-slate-200 text-center">
                                 <get-text :context="selectedApp?.name" />
                             </h1>
-                            <p class="flex text-xl font-semibold text-slate-300 text-center">
+                            <p class="flex text-xl font-semibold text-slate-500 dark:text-slate-300 text-center">
                                 <get-text :context="selectedApp?.short" />
                             </p>
                         </div>
@@ -116,7 +116,7 @@
                                 :hoverable="!item.disabled"
                             >
                                 <svg-text
-                                    class="w-20 pt-2"
+                                    class="w-20 pt-2 text-slate-600 dark:text-slate-200"
                                     :viewBox="item.viewBox ?? '0 0 512 512'"
                                     v-html="item.icon"
                                 />
