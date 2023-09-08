@@ -24,6 +24,7 @@ const routes = [
     { path: '/my/security', name: 'Security', component: () => import("./views/Account/Security.vue"), condition: () => User.CurrentUser !== null },
     { path: '/my/settings', name: 'Settings', component: () => import("./views/Account/Settings.vue"), condition: () => User.CurrentUser !== null },
     { path: '/admin',       name: 'Admin',    component: () => import("./views/Admin.vue"),            condition: () => User.CurrentUser !== null && User.CurrentUser.role_id >= 2 },
+    { path: '/admin/explorer', name: 'Explorer', component: () => import("./views/Admin/FileExplorer.vue"), condition: () => User.CurrentUser !== null && User.CurrentUser.role_id >= 2 },
 
     { path: '/policy/downhill', name: 'DownHillPolicy', component: () => import("./views/Policies/DownHill.vue"), condition: () => true }
 ];

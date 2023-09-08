@@ -1,6 +1,9 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <icon-card class="noscroll show-up h-24 w-24" />
+        <icon-card
+            v-show="showIcon"
+            class="noscroll show-up h-24 w-24"
+        />
         <title-text
             class="noscroll show-up text-4xl font-bold text-slate-700 dark:text-white"
             style="animation-delay: 200ms;"
@@ -27,6 +30,10 @@ export default {
         label: {
             type: [String, Object],
             required: true
+        },
+        showIcon: {
+            type: Boolean,
+            default: true
         }
     },
     data() {

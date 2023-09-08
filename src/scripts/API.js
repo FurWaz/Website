@@ -131,7 +131,7 @@ class API {
     static Credentials = Credentials;
 
     // API constants
-    static API_URL = import.meta.env.VITE_API_URL;
+    static API_URL = import.meta.env.VITE_MAIN_API_URL;
     static get METHOD() {
         return {
             GET: "GET",

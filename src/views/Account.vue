@@ -31,6 +31,7 @@ import ButtonBlock from '../components/inputs/ButtonBlock.vue';
 import ButtonRedirect from '../components/inputs/ButtonRedirect.vue';
 import Lang from '../scripts/Lang';
 import User from '../scripts/User';
+import GetText from '../components/text/GetText.vue';
 
 import {
     UserIcon,
@@ -40,7 +41,6 @@ import {
     Cog6ToothIcon,
     CommandLineIcon
 } from '@heroicons/vue/24/outline';
-import GetText from '../components/text/GetText.vue';
 
 const links = [
     {name: "Profile",  icon: UserIcon, href: "/my/profile"},
