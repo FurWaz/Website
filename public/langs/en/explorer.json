@@ -1,4 +1,6 @@
 {
     "FileExplorer": "File explorer",
-    "Back": "Retour"
+    "Back": "Retour",
+    "Settings": "Settings",
+    "ServerURL": "Server URL"
 }

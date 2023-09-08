@@ -1,4 +1,6 @@
 {
     "FileExplorer": "Explorateur de fichiers",
-    "Back": "Retour"
+    "Back": "Retour",
+    "Settings": "Paramètres",
+    "ServerURL": "URL du serveur"
 }

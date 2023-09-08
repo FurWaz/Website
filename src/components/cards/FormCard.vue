@@ -1,7 +1,7 @@
 <template>
     <component
         :is="borders? 'badge-card' : 'div'"
-        class="show-up p-2"
+        class="show-up"
         :hoverable="false"
     >
         <div
