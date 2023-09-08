@@ -95,7 +95,10 @@ export default {
     },
     methods: {
         deleteApp(modal) {
-            const log = modal.log(Lang.CurrentLang.Deleting(), Log.INFO);
+            const log = modal.log("", Log.INFO);
+            Lang.GetText(Lang.CreateTranslationContext("verbs", "Deleting"), text => {
+                log.update(text);
+            });
             API.execute_logged(API.ROUTE.APPS(this.app.id), API.METHOD.DELETE).then(res => {
                 log.update(res.message, Log.SUCCESS);
                 setTimeout(() => {

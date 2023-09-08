@@ -44,7 +44,7 @@
         </div>
     </div>
     <modal-card ref="create-modal">
-        <title-text class="show-up mb-2 p-1 pb-2 border-b-2">
+        <title-text class="show-up mb-2 p-1 pb-2 border-b-2 border-slate-500">
             <get-text :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
         </title-text>
         <form-card
