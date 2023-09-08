@@ -21,7 +21,7 @@
                     </p>
                 </div>
             </div>
-            <div class="min-h-0 h-full bg-white dark:bg-slate-800 overflow-auto">
+            <div class="min-h-0 h-full bg-white dark:bg-slate-800 overflow-x-hidden overflow-y-auto">
                 <div class="h-fit w-full">
                     <div
                         v-for="el in element?.elements"
