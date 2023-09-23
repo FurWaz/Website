@@ -66,7 +66,7 @@
             <home-about class="md:hidden flex" />
         </div>
         <div class="flex w-full justify-center items-center py-12">
-            <p class="show-up text-lg font-bold text-slate-600 italic">
+            <p class="show-up text-lg font-bold dark:text-slate-500 text-slate-400 italic">
                 snuggles and wuggles
             </p>
         </div>
@@ -86,8 +86,6 @@ import HomeApps from '../components/home/HomeApps.vue';
 import HomeAbout from '../components/home/HomeAbout.vue';
 import GetText from '../components/text/GetText.vue';
 
-import * as Home from '../scripts/views/Home';
-
 export default {
     name: "HomeView",
     components: {
@@ -104,7 +102,6 @@ export default {
     },
     mounted() {
         animateShows(this.$el);
-        Home.setupBackground(this.$refs["three-background"]);
     },
     methods: {
         scrollForMore() {

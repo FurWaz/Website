@@ -25,6 +25,7 @@ export default {
     mounted() {
         let theme = localStorage.getItem('theme');
         if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        // TODO : add event listener for theme change
         if (theme === 'dark') {
             document.documentElement.classList.add('dark');
         } else {
