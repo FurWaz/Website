@@ -143,7 +143,7 @@
                     :key="link.name"
                     :href="link.link"
                     class="show-up mx-auto w-48 md:w-[15%] h-fit"
-                    :style="'animation-delay: ' + (100 * (isMobile? 0: (links.length - links.indexOf(link) - 1))) + 'ms'"
+                    :style="'animation-delay: ' + (100 * (isMobile? 0: (links.length - links.indexOf(link)))) + 'ms'"
                     target="_blank"
                 >
                     <badge-card
