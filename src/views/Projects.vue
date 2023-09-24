@@ -51,7 +51,7 @@
                         <router-link
                             v-for="tag in item.tags"
                             :key="tag"
-                            :to="'/projects?tag=' + tag"
+                            :to="'/projects?search=' + tag"
                             class="mx-2 px-2 pb-1 rounded-lg border-2 font-semibold border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400
                                 hover:border-slate-400 hover:bg-slate-200 hover:text-slate-700 dark:hover:bg-slate-600 dark:hover:text-slate-200 transition-all"
                         >
@@ -175,6 +175,12 @@ export default {
     },
     computed: {
         isMobile: () => window.innerWidth <= 768,
+    },
+    watch: {
+        $route() {
+            this.checkForDefaultSearch();
+            this.checkForDefaultApp();
+        }
     },
     mounted() {
         animateShows(this.$el);
