@@ -106,3 +106,7 @@
 
 .w-inherit { width: inherit; }
 .h-inherit { height: inherit; }
+
+.href {
+    @apply text-sky-500 hover:text-sky-400 hover:bg-sky-500/[0.1] px-1 rounded
+}
