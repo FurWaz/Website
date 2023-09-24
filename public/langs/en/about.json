@@ -1,4 +1,21 @@
 {
     "About": "About",
-    "AboutMe": "About me"
+    "AboutMe": "About me",
+    "Name": "Name",
+    "Grade": "Grade",
+    "Domain": "Domain",
+    "ComputerScience": "Computer Science",
+    "Interests": "Interests",
+    "WebDev": "Web Development",
+    "WebDevDesc": "Creating interactive and intuitive websites with Vue.js, HTML, CSS, JS, and more.",
+    "MobDev": "Mobile Development",
+    "MobDevDesc": "Developing iOS and Android applications to simplify everyday life.",
+    "DesDev": "Desktop Development",
+    "DesDevDesc": "Designing high-performance software for Windows, macOS, and Linux.",
+    "GameDev": "Game Development",
+    "GameDevDesc": "Exploring the world of video games as both a player and developer.",
+    "Links": "Links",
+    "Friends": "Friends",
+    "ContactMe": "Contact Me",
+    "Mail": "Mail"
 }

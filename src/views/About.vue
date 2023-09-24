@@ -5,7 +5,7 @@
             <div class="show-up flex space-x-4 md:space-x-8">
                 <user-circle-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    A propos de moi
+                    <get-text :context="Lang.CreateTranslationContext('about', 'AboutMe')" />
                 </title-text>
             </div>
             <div class="show-up flex mx-auto justify-center items-center md:space-x-[30%]">
@@ -15,8 +15,8 @@
                         :style="'animation-delay: ' + (isMobile? 0: 1) + '00ms'"
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
-                            <span class="font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                Nom :
+                            <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
+                                <get-text :context="Lang.CreateTranslationContext('about', 'Name')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
                                 Paul LOISIL
@@ -28,8 +28,8 @@
                         :style="'animation-delay: ' + (isMobile? 0: 2) + '00ms'"
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
-                            <span class="font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                Niveau :
+                            <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
+                                <get-text :context="Lang.CreateTranslationContext('about', 'Grade')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
                                 Master 1
@@ -41,11 +41,11 @@
                         :style="'animation-delay: ' + (isMobile? 0: 3) + '00ms'"
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
-                            <span class="font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                Domaine :
+                            <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
+                                <get-text :context="Lang.CreateTranslationContext('about', 'Domain')" /> :
                             </span>
-                            <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
-                                Informatique
+                            <span class="flex font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
+                                <get-text :context="Lang.CreateTranslationContext('about', 'ComputerScience')" />
                             </span>
                         </p>
                     </badge-card>
@@ -67,7 +67,7 @@
             </div>
             <div class="show-up flex mx-auto">
                 <title-text class="my-8 text-slate-500 dark:text-slate-400">
-                    Centres d'intérêt
+                    <get-text :context="Lang.CreateTranslationContext('about', 'Interests')" />
                 </title-text>
             </div>
             <div class="flex flex-col md:flex-row justify-evenly space-y-4 md:space-y-0">
@@ -77,10 +77,10 @@
                 >
                     <code-bracket-icon class="w-10 mr-auto text-orange-500" />
                     <p class="text-lg font-semibold mr-auto text-orange-500">
-                        Développement Web
+                        <get-text :context="Lang.CreateTranslationContext('about', 'WebDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        Création de sites web interactifs et intuitifs avec Vue.js, HTML, CSS, JS, et plus encore.
+                        <get-text :context="Lang.CreateTranslationContext('about', 'WebDevDesc')" />
                     </p>
                 </badge-card>
                 <badge-card
@@ -89,10 +89,10 @@
                 >
                     <device-phone-mobile-icon class="w-10 mr-auto text-pink-500" />
                     <p class="text-lg font-semibold mr-auto text-pink-500">
-                        Applications Mobiles
+                        <get-text :context="Lang.CreateTranslationContext('about', 'MobDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        Développement d'applications iOS et Android pour simplifier la vie quotidienne.
+                        <get-text :context="Lang.CreateTranslationContext('about', 'MobDevDesc')" />
                     </p>
                 </badge-card>
                 <badge-card
@@ -101,10 +101,10 @@
                 >
                     <code-bracket-icon class="w-10 mr-auto text-fuchsia-500" />
                     <p class="text-lg font-semibold mr-auto text-fuchsia-500">
-                        Applications de Bureau
+                        <get-text :context="Lang.CreateTranslationContext('about', 'DesDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        Conception de logiciels performants pour Windows, macOS et Linux.
+                        <get-text :context="Lang.CreateTranslationContext('about', 'DesDevDesc')" />
                     </p>
                 </badge-card>
                 <badge-card
@@ -113,10 +113,10 @@
                 >
                     <code-bracket-icon class="w-10 mr-auto text-purple-500" />
                     <p class="text-lg font-semibold mr-auto text-purple-500">
-                        Jeux Vidéo
+                        <get-text :context="Lang.CreateTranslationContext('about', 'GameDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        Exploration de l'univers des jeux vidéo en tant que joueur et développeur.
+                        <get-text :context="Lang.CreateTranslationContext('about', 'GameDevDesc')" />
                     </p>
                 </badge-card>
             </div>
@@ -132,7 +132,7 @@
             <div class="show-up flex space-x-4 md:space-x-8 mt-20">
                 <link-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    Liens
+                    <get-text :context="Lang.CreateTranslationContext('about', 'Links')" />
                 </title-text>
             </div>
             <div class="flex flex-col md:flex-row justify-evenly space-y-4 md:space-y-0">
@@ -166,7 +166,7 @@
             <div class="show-up flex space-x-4 md:space-x-8 mt-20">
                 <user-group-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    Les copains
+                    <get-text :context="Lang.CreateTranslationContext('about', 'Friends')" />
                 </title-text>
             </div>
             <div class="show-up flex flex-wrap justify-evenly">
@@ -200,7 +200,7 @@
             <div class="show-up flex space-x-4 md:space-x-8 mt-20">
                 <envelope-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    Me contacter
+                    <get-text :context="Lang.CreateTranslationContext('about', 'ContactMe')" />
                 </title-text>
             </div>
             <div class="show-up flex justify-center mb-20">
@@ -213,8 +213,8 @@
                         class="show-up bg-slate-200 dark:bg-slate-600 p-4 space-y-2"
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
-                            <span class="font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                Mail :
+                            <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
+                                <get-text :context="Lang.CreateTranslationContext('about', 'Mail')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
                                 fur.waz06@gmail.com
@@ -229,10 +229,12 @@
 
 <script>
 import { animateShows } from '../scripts/common';
-import Lang from '../scripts/Lang';
 import IconHeader from '../components/cards/IconHeader.vue';
 import TitleText from '../components/text/TitleText.vue';
 import BadgeCard from '../components/cards/BadgeCard.vue';
+import BaseText from '../components/text/BaseText.vue';
+import GetText from '../components/text/GetText.vue';
+import Lang from '../scripts/Lang';
 
 import {
     BuildingOffice2Icon,
@@ -243,7 +245,6 @@ import {
     DevicePhoneMobileIcon,
     LinkIcon
 } from '@heroicons/vue/24/outline';
-import BaseText from '../components/text/BaseText.vue';
 
 const friends = [
     {
@@ -300,7 +301,8 @@ export default {
         DevicePhoneMobileIcon,
         EnvelopeIcon,
         LinkIcon,
-        BaseText
+        BaseText,
+        GetText
     },
     data() {
         return {

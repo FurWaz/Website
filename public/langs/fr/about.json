@@ -1,4 +1,21 @@
 {
     "About": "À propos",
-    "AboutMe": "À propos de moi"
+    "AboutMe": "À propos de moi",
+    "Name": "Nom",
+    "Grade": "Niveau",
+    "Domain": "Domaine",
+    "ComputerScience": "Informatique",
+    "Interests": "Centres d'intérêt",
+    "WebDev": "Développement Web",
+    "WebDevDesc": "Création de sites web interactifs et intuitifs avec Vue.js, HTML, CSS, JS, et plus encore.",
+    "MobDev": "Développement Mobile",
+    "MobDevDesc": "Développement d'applications iOS et Android pour simplifier la vie quotidienne.",
+    "DesDev": "Applications de Bureau",
+    "DesDevDesc": "Conception de logiciels performants pour Windows, macOS et Linux.",
+    "GameDev": "Développement de Jeux",
+    "GameDevDesc": "Exploration de l'univers des jeux vidéo en tant que joueur et développeur.",
+    "Links": "Liens",
+    "Friends": "Les copains",
+    "ContactMe": "Me contacter",
+    "Mail": "Mail"
 }
