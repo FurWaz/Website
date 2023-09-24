@@ -8,6 +8,7 @@
 
             <div class="flex show-up h-fit w-fit justify-center mx-auto my-4 space-x-4">
                 <input-text
+                    ref="searchbar"
                     :placeholder="Lang.CreateTranslationContext('verbs', 'Search')"
                     :oninput="search"
                     :value="searchValue"
@@ -186,6 +187,7 @@ export default {
         animateShows(this.$el);
         this.checkForDefaultSearch();
         this.checkForDefaultApp();
+        this.$refs.searchbar?.focus();
     },
     methods: {
         search(ev) {
