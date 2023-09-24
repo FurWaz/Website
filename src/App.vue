@@ -32,6 +32,14 @@ export default {
             document.documentElement.classList.remove('dark');
         }
 
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (ev) => {
+            if (ev.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
         this.$refs["content"].addEventListener("scroll", (ev) => {
             const deltaY = ev.target.scrollTop - this.lastScroll;
             this.lastScroll = ev.target.scrollTop;
