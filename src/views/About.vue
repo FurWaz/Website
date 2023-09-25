@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col grow min-h-full w-full">
         <icon-header :label="Lang.CreateTranslationContext('about', 'About')" />
-        <div class="flex flex-col px-4 md:px-[10%]">
+        <div class="flex flex-col px-4 md:px-4 lg:px-[10%]">
             <div class="show-up flex space-x-4 md:space-x-8">
                 <user-circle-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
@@ -56,7 +56,7 @@
                             <div class="absolute w-full aspect-square border-4 border-orange-500 rounded-[6em]" />
                             <div class="z-10">
                                 <img
-                                    class="w-full h-fit border-4 border-transparent rounded-[6em]"
+                                    class="w-full border-4 border-transparent rounded-[6em]"
                                     src="/img/moi.png"
                                     alt="Moi"
                                 >
