@@ -54,6 +54,24 @@ const projects = [
         tags: ["school", "cocktail", "web", "js", "html", "css", "tailwind", "drink"]
     },
     {
+        icon: `<path fill="currentColor" d="M171.3 80H224V96v80 16H99.4l34.7-86.9C140.3 90 155 80 171.3 80zM272 192V176 96 80h81.2c12.2 0 23.6 5.5 31.2 15l77.6 97H272zm252 .6L422 65c-16.7-20.9-42-33-68.7-33H171.3c-36 0-68.3 21.9-81.7 55.3l-42.8 107C19.8 201.8 0 226.6 0 256V368c0 17.7 14.3 32 32 32H65.3c7.6 45.4 47.1 80 94.7 80s87.1-34.6 94.7-80H385.3c7.6 45.4 47.1 80 94.7 80s87.1-34.6 94.7-80H608c17.7 0 32-14.3 32-32V320c0-66.7-50.9-121.4-116-127.4zM434.7 368a48 48 0 1 1 90.5 32 48 48 0 1 1 -90.5-32zm135.8-16c-13.2-37.3-48.7-64-90.5-64s-77.4 26.7-90.5 64H250.5c-13.2-37.3-48.7-64-90.5-64s-77.4 26.7-90.5 64H48V256c0-8.8 7.2-16 16-16H512c44.2 0 80 35.8 80 80v32H570.5zM160 336a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />`,
+        logo: "/img/projects/CarShare.png",
+        id: "Car Share",
+        viewBox: "0 0 640 512",
+        name: Lang.CreateTranslationContext('projects/CarShare', 'title'),
+        short: Lang.CreateTranslationContext('projects/CarShare', 'short'),
+        button: Lang.CreateTranslationContext('projects/CarShare', 'button'),
+        description: Lang.CreateTranslationContext('projects/CarShare', 'description'),
+        links: [
+            {
+                icon: `<path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 32a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm384 0c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24s10.7 24 24 24H424c13.3 0 24-10.7 24-24z"/>`,
+                button: Lang.CreateTranslationContext('projects', 'SeeTheWebsite'),
+                link: "https://carshare.projects.furwaz.fr"
+            }
+        ],
+        tags: ["school", "car", "carpool", "share", "web", "js", "html", "css", "tailwind", "vue"]
+    },
+    {
         icon: `<path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle>`,
         logo: "/img/projects/VyBeen.png",
         id: "VyBeen",
