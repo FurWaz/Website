@@ -59,6 +59,13 @@
     }
 }
 
+@keyframes dring {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    20% { transform: rotate(4deg) scale(1.1); }
+    50% { transform: rotate(-4deg) scale(1.1); }
+    70% { transform: rotate(4deg) scale(1.1); }
+}
+
 .show-up {
     opacity: 0;
     animation: show-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 0.8) forwards;
@@ -102,6 +109,10 @@
     text-shadow: 0px 0px 0px #0004;
     opacity: 0;
     animation: show-jump 1s forwards cubic-bezier(0.5, 0, 0, 0.5);
+}
+
+.dring {
+    animation: dring 0.5s ease-in-out;
 }
 
 .w-inherit { width: inherit; }

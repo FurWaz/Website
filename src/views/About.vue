@@ -8,7 +8,7 @@
                     <get-text :context="Lang.CreateTranslationContext('about', 'AboutMe')" />
                 </title-text>
             </div>
-            <div class="show-up flex mx-auto justify-center items-center md:space-x-[30%]">
+            <div class="show-up flex w-full mx-auto justify-center items-center md:space-x-32">
                 <div class="flex w-fit h-fit flex-col space-y-4">
                     <badge-card
                         class="show-right flex w-full bg-slate-200 dark:bg-slate-600 py-2 px-3"
@@ -63,6 +63,31 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div
+                    class="show-left flex flex-col items-center absolute top-0 right-0 w-6 h-6 md:flex hidden space-y-4"
+                    :style="'animation-delay: ' + (isMobile? 0: 4) + '00ms'"
+                >
+                    <button
+                        class="w-fit h-fit dring drop-shadow-lg"
+                        :style="'animation-delay: ' + (isMobile? 0: 8) + '00ms'"
+                        @click="displayCV"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 384 512"
+                            fill="currentColor"
+                            class="w-12 text-orange-500 -rotate-[15deg] mx-auto"
+                        >
+                            <path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
+                        </svg>
+                    </button>
+                    <p
+                        class="text-center text-lg text-orange-500 font-bold w-32 show-down"
+                        :style="'animation-delay: ' + (isMobile? 0: 9) + '00ms'"
+                    >
+                        Jetez un œil à mon CV !
+                    </p>
                 </div>
             </div>
             <div class="show-up flex mx-auto">
@@ -208,7 +233,7 @@
             <div class="show-up flex justify-center mb-20">
                 <a
                     class="w-fit h-fit"
-                    href="mailto:fur.waz06@gmail.com"
+                    href="mailto:loisil.paul06@gmail.com"
                     target="_blank"
                 >
                     <badge-card
@@ -219,7 +244,7 @@
                                 <get-text :context="Lang.CreateTranslationContext('about', 'Mail')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
-                                fur.waz06@gmail.com
+                                loisil.paul06@gmail.com
                             </span>
                         </p>
                     </badge-card>
@@ -323,7 +348,10 @@ export default {
         });
     },
     methods: {
-        
+        displayCV() {
+            const CVurl = "/CurriculumVitae.pdf";
+            window.open(CVurl, "_blank");
+        }
     }
 }
 </script>
