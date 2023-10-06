@@ -27,7 +27,7 @@
                         class="flex flex-col items-center justify-center w-full"
                     >
                         <svg-text
-                            class="w-12 h-12 my-4"
+                            class="w-14 h-14 my-4"
                             :viewBox="item.viewBox ?? '0 0 24 24'"
                             v-html="item.icon"
                         />

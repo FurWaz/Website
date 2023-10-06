@@ -7,7 +7,7 @@
         stroke-linecap="round"
         stroke-linejoin="round" 
         stroke="currentColor"
-        class="w-full h-full text-slate-600 dark:text-slate-400"
+        class="text-slate-600 dark:text-slate-400"
     >
         <slot />
     </svg>
