@@ -86,7 +86,7 @@
                         class="text-center text-lg text-orange-500 font-bold w-32 show-down"
                         :style="'animation-delay: ' + (isMobile? 0: 9) + '00ms'"
                     >
-                        Jetez un œil à mon CV !
+                        <get-text :context="Lang.CreateTranslationContext('about', 'DownloadCV')" />
                     </p>
                 </div>
             </div>
