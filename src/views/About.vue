@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col grow min-h-full w-full">
         <icon-header :label="Lang.CreateTranslationContext('about', 'About')" />
-        <div class="flex flex-col px-4 md:px-4 lg:px-[10%]">
+        <div class="flex flex-col px-2 md:px-4 lg:px-[10%]">
             <div class="show-up flex space-x-4 md:space-x-8">
                 <user-circle-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
                     <get-text :context="Lang.CreateTranslationContext('about', 'AboutMe')" />
                 </title-text>
             </div>
-            <div class="show-up flex w-full mx-auto justify-center items-center md:space-x-32">
+            <div class="show-up flex w-full mx-auto justify-center items-center md:space-x-16 lg:space-x-32">
                 <div class="flex w-fit h-fit flex-col space-y-4">
                     <badge-card
                         class="show-right flex w-full bg-slate-200 dark:bg-slate-600 py-2 px-3"
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div
-                    class="show-left flex flex-col items-center absolute top-0 right-0 w-6 h-6 md:flex hidden space-y-4"
+                    class="show-left flex flex-col items-center absolute top-0 md:right-14 lg:right-0 w-6 h-6 md:flex hidden space-y-4"
                     :style="'animation-delay: ' + (isMobile? 0: 4) + '00ms'"
                 >
                     <button
@@ -200,16 +200,16 @@
                 <badge-card
                     v-for="friend in friends"
                     :key="friend.name"
-                    class="show-up bg-slate-200 dark:bg-slate-600 p-2 w-fit my-4 md:mx-4"
+                    class="show-up bg-slate-200 dark:bg-slate-600 p-2 min-w-fit w-1/4 my-4 mx-4"
                     :style="'animation-delay: ' + (100 * (isMobile? 0: friends.indexOf(friend) + 1)) + 'ms'"
                 >
-                    <div class="flex justify-center items-center">
+                    <div class="flex w-full justify-center items-center">
                         <img
                             class="w-20 rounded-lg"
                             :src="friend.icon"
                             :alt="friend.name + ' icon'"
                         >
-                        <div class="px-4">
+                        <div class="flex flex-col grow items-center px-2 md:px-4">
                             <p class="text-xl font-semibold text-slate-700 dark:text-slate-200 pl-1"> {{ friend.name }} </p>
                             <base-text>
                                 <a
