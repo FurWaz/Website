@@ -134,18 +134,22 @@
                         v-show="User.CurrentUser === null"
                         class="flex wrap justify-evenly items-center grow py-2"
                     >
-                        <button-text
-                            class="w-full m-2"
-                            href="/register"
-                        >
-                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Register')" />
-                        </button-text>
-                        <button-block
-                            class="w-full m-2"
-                            href="/login"
-                        >
-                            <get-text :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
-                        </button-block>
+                        <div class="w-full">
+                            <button-text
+                                class="mx-auto w-fit m-2"
+                                href="/register"
+                            >
+                                <get-text :context="Lang.CreateTranslationContext('verbs', 'Register')" />
+                            </button-text>
+                        </div>
+                        <div class="w-full">
+                            <button-block
+                                class="mx-auto w-fit m-2"
+                                href="/login"
+                            >
+                                <get-text :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
+                            </button-block>
+                        </div>
                     </div>
                 </div>
             </div>
