@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col">
         <div class="flex flex-col">
-            <title-text>
+            <title-text class="mb-4">
                 <get-text :context="title" />
             </title-text>
             <base-text

@@ -12,13 +12,9 @@
                    min-w-0 transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-400 resize-none"
             :class="disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-400 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 '"
             :placeholder="placeholder_str"
-            :type="type"
             :name="name"
             :value="value_str"
-            :min="min"
-            :max="max"
             :disabled="disabled"
-            :cols="cols"
         />
     </div>
 </template>
@@ -53,29 +49,9 @@ export default {
             default: '',
             required: false
         },
-        type: {
-            type: String,
-            default: 'text',
-            required: false
-        },
-        min: {
-            type: [Number, String],
-            default: "",
-            required: false
-        },
-        max: {
-            type: [Number, String],
-            default: "",
-            required: false
-        },
         disabled: {
             type: [Boolean, String],
             default: false,
-            required: false
-        },
-        cols: {
-            type: [Number, String],
-            default: 20,
             required: false
         }
     },
@@ -93,6 +69,7 @@ export default {
     mounted() {
         this.focus = () => this.$refs.input.focus();
         this.getValue = () => this.$refs.input.value;
+        this.fetchTranslations();
     },
     methods: {
         async fetchTranslations() {

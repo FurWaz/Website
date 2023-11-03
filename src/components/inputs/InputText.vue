@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex grow h-fit max-w-full w-full min-w-0 justify-between flex-col md:my-2 my-1"
+        class="flex grow h-fit max-w-full min-w-0 justify-between flex-col md:my-2 my-1"
         :class="orientation == 'row' ? ' md:flex-row md:space-x-8 ' : 'space-y-1'"
     >
         <label
