@@ -140,6 +140,8 @@ export default class Lang {
 
     static async GetTextAsync(context) {
         if (!context) return null;
+        if (typeof(context) === 'string') return context;
+
         const translation = await this.TranslateAsync(context);
         if (!translation) return null;
         return this.#getFormatedText(translation, context.format);

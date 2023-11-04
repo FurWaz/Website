@@ -1,5 +1,10 @@
 {
     "Portal": "Portal",
-    "ConnectedAs": "Connected as {username}",
-    "NoPortalTokenSpecified": "No portal token has been specified, can't continue :("
+    "PortalError": "{error}, can't continue :(",
+    "CreatedBy": "Created by",
+    "LoginTo": "Login to",
+    "WithAccount": "As",
+    "UseOtherAccount": "Use other account",
+    "UseAccount": "Use the {account} account",
+    "CreateAccount": "No account ? Create one here !"
 }
