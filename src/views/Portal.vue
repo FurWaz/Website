@@ -73,19 +73,21 @@
                             :placeholder="Lang.CreateTranslationContext('account', 'Password')"
                             style="animation-delay: 300ms;"
                         />
-                        <button
-                            v-if="user"
-                            class="text-sm italic hover:underline"
-                            @click="() => mode = 'useAccount'"
-                        >
-                            <get-text :context="Lang.CreateTranslationContext('portal', 'UseAccount', {account: user.pseudo})" />
-                        </button>
-                        <button
-                            class="text-sm italic hover:underline"
-                            @click="createAccount"
-                        >
-                            <get-text :context="Lang.CreateTranslationContext('portal', 'CreateAccount')" />
-                        </button>
+                        <div class="flex flex-col items-start">
+                            <button
+                                v-if="user"
+                                class="text-sm italic hover:underline"
+                                @click="() => mode = 'useAccount'"
+                            >
+                                <get-text :context="Lang.CreateTranslationContext('portal', 'UseAccount', {account: user.pseudo})" />
+                            </button>
+                            <button
+                                class="text-sm italic hover:underline"
+                                @click="createAccount"
+                            >
+                                <get-text :context="Lang.CreateTranslationContext('portal', 'CreateAccount')" />
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div
