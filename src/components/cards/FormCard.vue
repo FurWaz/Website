@@ -79,11 +79,11 @@ export default {
             default: () => ""
         },
         validate: {
-            type: Object,
+            type: [Object, String],
             default: () => Lang.CreateTranslationContext('verbs', 'Validate')
         },
         cancel: {
-            type: Object,
+            type: [Object, String],
             default: () => Lang.CreateTranslationContext('verbs', 'Cancel')
         },
         onValidate: {

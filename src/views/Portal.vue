@@ -26,9 +26,17 @@
                             >
                                 <div class="flex items-center space-x-2">
                                     <title-text> {{ app.name }} </title-text>
-                                    <check-badge-icon
-                                        class="w-6 h-6"
-                                        :class="app.verified? 'text-green-500': 'text-slate-400'"
+                                    <div
+                                        id="app-check"
+                                    >
+                                        <check-badge-icon
+                                            class="w-6 h-6"
+                                            :class="app.verified? 'text-green-500': 'text-slate-400'"
+                                        />
+                                    </div>
+                                    <name-card
+                                        :value="Lang.CreateTranslationContext('portal', 'AppVerified')"
+                                        target="#app-check"
                                     />
                                 </div>
                                 <base-text class="w-fit mx-auto"> {{ app.description }} </base-text>
@@ -114,11 +122,13 @@
 </template>
 
 <script>
-import IconCard from '../components/cards/IconCard.vue';
 import LogZone from '../components/cards/LogZone.vue';
-import ButtonBlock from '../components/inputs/ButtonBlock.vue';
 import InputText from '../components/inputs/InputText.vue';
 import GetText from '../components/text/GetText.vue';
+import BadgeCard from '../components/cards/BadgeCard.vue';
+import TitleText from '../components/text/TitleText.vue';
+import BaseText from '../components/text/BaseText.vue';
+import FormCard from '../components/cards/FormCard.vue';
 import API from '../scripts/API';
 import Lang from '../scripts/Lang';
 import { Log } from '../scripts/Logs';
@@ -127,26 +137,20 @@ import User from '../scripts/User';
 import {
     CheckBadgeIcon
 } from '@heroicons/vue/24/outline';
-import BadgeCard from '../components/cards/BadgeCard.vue';
-import TitleText from '../components/text/TitleText.vue';
-import BaseText from '../components/text/BaseText.vue';
-import ButtonText from '../components/inputs/ButtonText.vue';
-import FormCard from '../components/cards/FormCard.vue';
+import NameCard from '../components/cards/NameCard.vue';
 
 export default {
     name: "RegisterView",
     components: {
         InputText,
-        IconCard,
         LogZone,
-        ButtonBlock,
-        ButtonText,
         GetText,
         CheckBadgeIcon,
         BadgeCard,
         TitleText,
         BaseText,
-        FormCard
+        FormCard,
+        NameCard
     },
     data() {
         return {

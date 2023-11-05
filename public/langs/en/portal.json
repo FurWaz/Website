@@ -6,5 +6,6 @@
     "WithAccount": "As",
     "UseOtherAccount": "Use other account",
     "UseAccount": "Use the {account} account",
-    "CreateAccount": "No account ? Create one here !"
+    "CreateAccount": "No account ? Create one here !",
+    "AppVerified": "This app has been verified"
 }
