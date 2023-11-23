@@ -6,7 +6,7 @@
         >
             <icon-header :label="Lang.CreateTranslationContext('projects', 'Projects')" />
 
-            <div class="flex show-up h-fit w-fit justify-center mx-auto my-4 space-x-4">
+            <div class="flex show-down h-fit w-fit justify-center mx-auto my-4 space-x-4">
                 <input-text
                     ref="searchbar"
                     :placeholder="Lang.CreateTranslationContext('verbs', 'Search')"
@@ -64,8 +64,9 @@
         </div>
         <div
             ref="preview"
-            class="flex z-50 bg-slate-50 dark:bg-slate-700 transition-all duration-300 md:border-0 md:shadow-none shadow-md rounded-md border-2 border-slate-200 dark:border-slate-600 overflow-hidden"
-            :class="isMobile? 'absolute left-2 right-2 -bottom-2 h-0' : 'w-0'"
+            class="flex hidden z-50 bg-slate-50 dark:bg-slate-700 transition-all duration-300 md:border-0 md:shadow-none shadow-md rounded-md border-2 border-slate-200 dark:border-slate-600 overflow-hidden"
+            :class="isMobile? 'absolute left-2 right-2 -bottom-2' : 'w-0'"
+            style="top: 100em;"
         >
             <div class="md:flex hidden py-4">
                 <span class="flex grow w-1 h-full rounded-md bg-slate-300 dark:bg-slate-600" />
@@ -187,7 +188,8 @@ export default {
         animateShows(this.$el);
         this.checkForDefaultSearch();
         this.checkForDefaultApp();
-        this.$refs.searchbar?.focus();
+        if (!this.isMobile)
+            this.$refs.searchbar?.focus();
     },
     methods: {
         search(ev) {
@@ -265,10 +267,13 @@ export default {
             this.updateUrl();
 
             const preview = this.$refs["preview"];
-            if (this.isMobile) {
-                preview.style.bottom = "0.5em";
-                preview.style.height = "calc(100vh - 4.5em)";
-            } else preview.style.width = "60em";
+            preview.classList.remove("hidden");
+            setTimeout(() => {
+                if (this.isMobile) {
+                    preview.style.bottom = "0.5em";
+                    preview.style.top = "4em";
+                } else preview.style.width = "60em";
+            }, 10);
         },
         closeAppPreview() {
             this.selectedApp = null;
@@ -277,8 +282,12 @@ export default {
             const preview = this.$refs["preview"];
             if (this.isMobile) {
                 preview.style.bottom = "-2em";
-                preview.style.height = "0em";
+                preview.style.top = "100em";
             } else preview.style.width = "0em";
+
+            setTimeout(() => {
+                preview.classList.add("hidden");
+            }, 250);
         },
         updateUrl() {
             this.$router.push({
