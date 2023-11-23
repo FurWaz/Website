@@ -1,0 +1,13 @@
+{
+    "title": "CharlySheet",
+    "short": "Collabore avec tes amis sur des feuilles de calcul !",
+    "button": "Je veux Exceliser !",
+    "description": [
+        "CharlySheet est un tableur collaboratif en ligne.",
+        "Il permet de travailler à plusieurs sur des feuilles de calcul.",
+        "Il est possible de créer des feuilles de calcul, de les partager avec ses amis, de les modifier en même temps, et tout cela en temps réel !",
+        "CharlySheet est un projet open-source, vous pouvez donc le modifier et l'améliorer à votre guise sur le dépôt GitHub.",
+        "Cette application web à réalisé par Paul Loisil, Antonin Rouseau, Antoine Contoux, et Guillaume Renard dans le cadre d'un projet scolaire de 1ère année de Master Informatique à l'Université de Nancy.",
+        "Le projet utilise plusieurs technologies telles que Node.js, Express, Socket.io, MongoDB, VueJS et TailwindCSS."
+    ]
+}
