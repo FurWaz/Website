@@ -79,9 +79,9 @@ export default {
             this.$refs["btn"].addEventListener("click", this.onClick);
     },
     methods: {
-        onClick() {
+        onClick(ev) {
             if (this.href || this.disabled) return;
-            this.onclick?.(this);
+            this.onclick?.(this, ev);
         }
     }
 }

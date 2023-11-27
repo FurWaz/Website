@@ -20,10 +20,8 @@
                 <get-text :context="title" />
             </p>
         </div>
-        
-        <div ref="content">
-            <slot />
-        </div>
+    
+        <slot ref="content" />
 
         <log-zone ref="log-zone" />
         <span
@@ -132,17 +130,17 @@ export default {
 
         this.$el.addEventListener('keydown', (ev) => {
             if (ev.key === 'Enter') {
-                this.doValidate();
+                this.doValidate(null, ev);
                 ev.preventDefault();
             }
         });
     },
     methods: {
-        doValidate() {
-            if (this.onValidate) this.onValidate(this);
+        doValidate(btn, ev) {
+            if (this.onValidate) this.onValidate(this, ev);
         },
-        doCancel() {
-            if (this.onCancel) this.onCancel(this);
+        doCancel(btn, ev) {
+            if (this.onCancel) this.onCancel(this, ev);
         },
         body() {
             const body = {};
