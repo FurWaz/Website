@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col grow h-full w-full">
-        <button-back class="p-2" />
+        <button-back class="px-2 h-fit" />
         <div class="flex flex-col grow justify-center items-center space-y-2">
             <form-card
                 class="show-up p-2"
