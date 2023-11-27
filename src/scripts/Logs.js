@@ -90,15 +90,11 @@ class LogZone {
     }
 
     #getLogSize() {
-        switch (this.dom.children.length) {
-        case 1:
-            return this.dom.children[0].getBoundingClientRect().height;
-        case 2:
-            return this.dom.children[1].getBoundingClientRect().top -
-                       this.dom.children[0].getBoundingClientRect().top;
-        default:
-            return 56;
-        }
+        return Math.max(
+            this.dom.children[0]?.getBoundingClientRect().height ?? 0,
+            (this.dom.children[1]?.getBoundingClientRect().top ?? 0) - (this.dom.children[0]?.getBoundingClientRect().top ?? 0),
+            56
+        );
     }
 
     render() {
