@@ -1,11 +1,11 @@
 <template>
     <div
-        class="flex grow h-fit max-w-full min-w-0 justify-between flex-col md:my-2 my-1"
-        :class="orientation == 'row' ? ' md:flex-row md:space-x-8 ' : 'space-y-1'"
+        class="flex grow h-fit w-full max-w-full min-w-0 justify-between md:my-2 my-1 items-center"
+        :class="orientation == 'row' ? ' md:flex-row flex-row md:space-x-8 ' : (orientation == 'col' ? ' md:flex-col flex-col md:space-y-2' : ' flex-col md:flex-row md:space-x-8')"
     >
         <label
             v-if="label"
-            class="flex text-lg text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit items-center"
+            class="flex text-lg text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit max-w-full items-center"
         >
             <get-text :context="label" />
         </label>
@@ -98,7 +98,7 @@ export default {
         },
         orientation: {
             type: String,
-            default: 'row',
+            default: '',
             required: false
         },
         showCopy: {
@@ -119,8 +119,8 @@ export default {
         }
     },
     watch: {
-        placeholder() { this.fetchTranslations(); },
-        value() { this.fetchTranslations(); }
+        placeholder() { this.fetchPlaceholderTranslations(); },
+        value() { this.fetchValueTranslations(); }
     },
     mounted() {
         this.focus = () => this.$refs.input.focus();
@@ -137,9 +137,29 @@ export default {
             this.$refs.input.blur();
         },
         async fetchTranslations() {
-            this.placeholder_str = (typeof(this.placeholder) === 'string') ? this.placeholder : await Lang.GetTextAsync(this.placeholder);
-            this.value_str = (typeof(this.value) === 'string') ? this.value : await Lang.GetTextAsync(this.value);
+            await this.fetchPlaceholderTranslations();
+            await this.fetchValueTranslations();
+        },
+        async fetchPlaceholderTranslations() {
+            this.placeholder_str = await Lang.GetTextAsync(this.placeholder);
+        },
+        async fetchValueTranslations() {
+            this.value_str = await Lang.GetTextAsync(this.value);
         }
     }
 }
 </script>
+
+<style scoped>
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 36px;
+    height: 36px;
+    @apply rounded-md bg-slate-600 cursor-pointer transition-all;
+}
+input[type="checkbox"]:checked {
+    @apply bg-orange-500 border-8;
+}
+</style>

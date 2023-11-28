@@ -21,7 +21,9 @@
             </p>
         </div>
     
-        <slot ref="content" />
+        <div ref="content">
+            <slot />
+        </div>
 
         <log-zone ref="log-zone" />
         <span
