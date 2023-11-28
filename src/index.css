@@ -125,3 +125,14 @@
 html, head, body {
     height: 100%;
 }
+
+@keyframes rainbow-outline {
+    0%, 100% { border-color: rgb(255, 0, 0); }
+    33% { border-color: rgb(0, 255, 0); }
+    66% { border-color: rgb(0, 0, 255); }
+}
+
+.debug {
+    border: 3px solid red;
+    animation: rainbow-outline 5s infinite;
+}
