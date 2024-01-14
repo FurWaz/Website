@@ -100,20 +100,24 @@ export default {
                 return;
             }
 
-            API.execute(API.ROUTE.USERS(), API.METHOD.POST, body).then(res => {
-                const user = new User(res.data.user);
-                user.setTokens(res.data.tokens);
+            try {
+                const resRegister = await API.execute(API.ROUTE.USERS(), API.METHOD.POST, { ...body, confirm: undefined });
+                const user = new User(resRegister.data);
+
+                const resLogin = await API.execute(API.ROUTE.LOGIN(), API.METHOD.POST, { email: body.email, password: body.password });
+                user.setTokens(resLogin.data);
                 user.save();
-                log.update(res.message, Log.SUCCESS);
+
+                log.update(resLogin.message, Log.SUCCESS);
                 setTimeout(() => { log.delete(); redirectLink(this); }, 2000);
-            }).catch(err => {
+            } catch (err) {
                 log.error(err);
                 if (err.field) {
                     this.$el.querySelector("input[name=" + err.field + "]")?.focus();
                 }
                 console.error(err);
                 setTimeout(() => { log.delete(); }, 4000);
-            });
+            }
         }
     }
 }

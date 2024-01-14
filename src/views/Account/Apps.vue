@@ -85,18 +85,13 @@ import InputText from '../../components/inputs/InputText.vue';
 import TitleText from '../../components/text/TitleText.vue';
 import InputArea from '../../components/inputs/InputArea.vue';
 import { Log } from '../../scripts/Logs';
-import SectionText from '../../components/text/SectionText.vue';
-import BlockText from '../../components/text/BlockText.vue';
-import CodeText from '../../components/text/CodeText.vue';
 import BaseText from '../../components/text/BaseText.vue';
 import GetText from '../../components/text/GetText.vue';
-
-const apps = [];
 
 function fetchMyApps() {
     return new Promise((resolve, reject) => {
         API.execute_logged(API.ROUTE.MY.APPS()).then(res => {
-            resolve(res.data.items);
+            resolve(res.data.apps);
         }).catch(err => {
             console.error(err);
         });
@@ -115,16 +110,13 @@ export default {
         InputText,
         TitleText,
         InputArea,
-        SectionText,
-        BlockText,
-        CodeText,
         BaseText,
         GetText
     },
     data() {
         return {
             Lang,
-            apps,
+            apps: [],
             loading: true
         };
     },
@@ -144,7 +136,7 @@ export default {
             const body = form.body();
             API.execute_logged(API.ROUTE.APPS(), API.METHOD.POST, body).then(res => {
                 log.update(res.message, Log.SUCCESS);
-                this.apps.push(res.data.app);
+                this.apps.push(res.data);
                 setTimeout(() => {
                     log.delete();
                     this.$refs['create-modal'].close();

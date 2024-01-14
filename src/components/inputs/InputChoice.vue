@@ -10,9 +10,9 @@
                 :name="name"
                 :value="value"
                 :disabled="disabled"
-                class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md whitespace-nowrap max-w-full
+                class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-300 dark:border-slate-600 font-bold text-md whitespace-nowrap max-w-full
                        min-w-0 text-ellipsis transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-600/[0.5]"
-                :class="disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-600 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 '"
+                :class="disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-600 dark:text-slate-200 hover:border-slate-400 hover:dark:border-slate-500 '"
                 @change="onchange"
             >
                 <option

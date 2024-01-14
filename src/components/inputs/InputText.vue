@@ -12,7 +12,7 @@
         <div class="flex max-w-full min-w-0 h-fit">
             <input
                 ref="input"
-                class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-200 dark:border-slate-600 font-bold text-md whitespace-nowrap max-w-full
+                class="flex h-fit border-2 rounded-md px-2 py-1 border-slate-300 dark:border-slate-600 font-bold text-md whitespace-nowrap max-w-full
                     min-w-0 w-full text-ellipsis transition-colors outline-2 outline-offset-2 outline-orange-500 focus:outline placeholder-slate-400"
                 :class="additionnalClasses"
                 :placeholder="placeholder_str"
@@ -25,7 +25,7 @@
             >
             <button
                 v-if="showCopy"
-                class="bg-slate-200 dark:bg-slate-600 border-2 border-slate-200 dark:border-slate-600 hover:border-slate-500 rounded-lg rounded-l-none transition-colors outline-none outline-offset-2 focus:outline-orange-500"
+                class="bg-slate-200 dark:bg-slate-600 border-2 border-slate-300 dark:border-slate-600 hover:border-slate-500 rounded-lg rounded-l-none transition-colors outline-none outline-offset-2 focus:outline-orange-500"
                 @click="copy"
             >
                 <svg
@@ -67,7 +67,7 @@ export default {
             required: false
         },
         value: {
-            type: [Object, String],
+            type: [Object, String, Number],
             default: () => null,
             required: false
         },
@@ -111,7 +111,7 @@ export default {
         return {
             isDisabled: true,
             additionnalClasses:
-                (this.disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-600 dark:text-slate-200 hover:border-slate-300 hover:dark:border-slate-500 ') +
+                (this.disabled ? ' bg-slate-100 dark:bg-slate-700 text-slate-300 dark:text-slate-400 ' : ' bg-white dark:bg-slate-600 text-slate-600 dark:text-slate-200 hover:border-slate-400 hover:dark:border-slate-500 ') +
                 (this.showCopy ? ' rounded-r-none' : ''),
             showCopyCheck: false,
             placeholder_str: "",
@@ -157,7 +157,7 @@ input[type="checkbox"] {
     appearance: none;
     width: 36px;
     height: 36px;
-    @apply rounded-md bg-slate-600 cursor-pointer transition-all;
+    @apply rounded-md bg-white dark:bg-slate-600 cursor-pointer transition-all;
 }
 input[type="checkbox"]:checked {
     @apply bg-orange-500 border-8;

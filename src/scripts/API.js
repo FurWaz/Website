@@ -237,7 +237,7 @@ class API {
                     err.json().then(data => {
                         reject({
                             status: err.status,
-                            message: data.message ?? 'Unknown error',
+                            error: data.error ?? 'Unknown error',
                             field: data.field,
                         });
                     }).catch(err => reject(err));

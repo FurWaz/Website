@@ -68,9 +68,9 @@ class Log {
 
     async error(err) {
         switch (err.status) {
-        case 400: this.update(err.message, Log.ERROR); break;
-        case 417: this.update(err.message, Log.WARNING); break;
-        default:  this.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('common', 'Error')) + " : " + err.message, Log.ERROR); break;
+        case 400: this.update(err.error, Log.ERROR); break;
+        case 417: this.update(err.error, Log.WARNING); break;
+        default:  this.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('common', 'Error')) + " : " + err.error, Log.ERROR); break;
         }
     }
 

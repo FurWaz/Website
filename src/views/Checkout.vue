@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col grow h-full w-full justify-evenly items-center text-slate-200">
+    <div class="flex flex-col grow h-full w-full justify-evenly items-center text-slate-500 dark:text-slate-200">
         <icon-header
             class="pb-2"
             label="Paiement"
@@ -21,7 +21,7 @@
                             <get-text :context="Lang.CreateTranslationContext('checkout', 'PaymentSuccess')" />
                         </p>
                         <div class="border-2 rounded-md border-green-500 p-1">
-                            <check-icon class="w-5 h-5 text-slate-200" />
+                            <check-icon class="w-5 h-5 text-slate-500 dark:text-slate-200" />
                         </div>
                     </div>
                     <p class="text-md italic text-center">
@@ -55,7 +55,7 @@
                                     <p> <get-text :context="Lang.CreateTranslationContext('checkout', 'Price')" /> </p>
                                 </div>
                             </div>
-                            <span class="flex w-full h-1 rounded-full bg-slate-600 mt-1" />
+                            <span class="flex w-full h-1 rounded-full bg-slate-300 dark:bg-slate-600 mt-1" />
                             <div class="flex w-full max-h-full min-h-0 overflow-auto my-2">
                                 <div class="flex flex-col w-full h-fit">
                                     <badge-card
@@ -66,47 +66,49 @@
                                     >
                                         <div class="flex w-full">
                                             <div class="flex w-1/2 p-3">
-                                                <div class="bg-slate-800 rounded-lg p-1">
+                                                <div class="bg-slate-200 dark:bg-slate-800 rounded-lg p-1">
                                                     <squares-2-x-2-icon class="w-12 h-12 text-slte-200" />
                                                 </div>
                                                 <div class="flex flex-col justify-center mx-4 w-fit max-w-full min-w-0">
-                                                    <p class="text-xl font-semibold text-slate-50 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.name }} </p>
-                                                    <p class="text-md font-base text-slate-300 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.app }} </p>
+                                                    <p class="text-xl font-semibold text-slate-700 dark:text-slate-50 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.name }} </p>
+                                                    <p class="text-md font-base text-slate-500 dark:text-slate-300 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.app }} </p>
                                                 </div>
                                             </div>
                                             <div class="flex w-1/4 p-3 justify-center items-center">
                                                 <div class="flex">
                                                     <button
-                                                        class="bg-slate-600 rounded-l-md px-1 border-2 border-transparent"
+                                                        class="bg-slate-200 dark:bg-slate-600 rounded-l-md px-1 border-2 border-transparent"
                                                         disabled="true"
                                                     >
-                                                        <minus-icon class="w-5 h-5 text-slate-400" />
+                                                        <minus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
                                                     </button>
-                                                    <p class="text-lg font-semibold text-slate-200 bg-slate-800 px-3">
+                                                    <p class="text-lg font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 px-3">
                                                         {{ product.quantity }}
                                                     </p>
                                                     <button
-                                                        class="bg-slate-600 rounded-r-md px-1 border-2 border-transparent"
+                                                        class="bg-slate-200 dark:bg-slate-600 rounded-r-md px-1 border-2 border-transparent"
                                                         disabled="true"
                                                     >
-                                                        <plus-icon class="w-5 h-5 text-slate-400" />
+                                                        <plus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="flex w-1/4 p-3 justify-center items-center">
-                                                <p class="text-lg font-semibold text-slate-200 px-3 py-0.5 rounded-md bg-slate-800"> {{ formatPrice(product.price) }} </p>
+                                                <p class="text-lg font-semibold text-slate-700 dark:text-slate-200 px-3 py-0.5 rounded-md border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800">
+                                                    {{ formatPrice(product.price) }}
+                                                </p>
                                             </div>
                                         </div>
                                     </badge-card>
                                 </div>
                             </div>
                             <div class="flex flex-col grow h-full justify-end">
-                                <span class="flex w-full h-1 rounded-full bg-slate-600 mb-2" />
+                                <span class="flex w-full h-1 rounded-full bg-slate-300 dark:bg-slate-600 mb-2" />
                                 <div class="flex justify-end space-x-8">
                                     <div class="flex justify-center items-center">
                                         <p class="text-xl font-bold">Total</p>
                                     </div>
-                                    <p class="text-xl font-bold w-1/4 text-center px-3 py-2 rounded-md bg-slate-800">
+                                    <p class="text-xl font-bold w-1/4 text-center px-3 py-2 rounded-md border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800">
                                         {{ formatPrice(products.reduce((acc, product) => acc + product.price, 0)) }}
                                     </p>
                                 </div>
@@ -128,7 +130,7 @@
                         :on-validate="onFormValidate"
                         :disabled="!formInputsValid && formOpened != 'cartForm'"
                     >
-                        <div class="flex flex-col max-w-full w-full max-h-full h-fit bg-slate-800 rounded-md">
+                        <div class="flex flex-col max-w-full w-full max-h-full h-fit bg-white dark:bg-slate-800 rounded-md">
                             <div v-show="isMobile">
                                 <button
                                     class="flex justify-between p-2 w-full space-x-4"
@@ -140,7 +142,7 @@
                                     <div class="flex justify-center items-center">
                                         <chevron-down-icon
                                             ref="cartFormChevron"
-                                            class="w-6 h-6 text-slate-200 transition-all"
+                                            class="w-6 h-6 text-slate-500 dark:text-slate-200 transition-all"
                                         />
                                     </div>
                                 </button>
@@ -153,38 +155,38 @@
                                         <badge-card
                                             v-for="product in products"
                                             :key="product.id"
-                                            class="w-full h-fit my-2 bg-slate-700"
+                                            class="w-full h-fit my-2 bg-slate-200 dark:bg-slate-700"
                                             :hoverable="false"
                                         >
                                             <div class="flex w-full p-3">
-                                                <div class="bg-slate-800 rounded-lg p-1">
+                                                <div class="bg-slate-200 dark:bg-slate-800 rounded-lg p-1">
                                                     <squares-2-x-2-icon class="w-12 h-12 text-slte-200" />
                                                 </div>
                                                 <div class="flex flex-col justify-center mx-4 w-fit max-w-full min-w-0">
-                                                    <p class="text-xl font-semibold text-slate-50 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.name }} </p>
+                                                    <p class="text-xl font-semibold text-slate-700 dark:text-slate-50 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.name }} </p>
                                                     <p class="text-md font-base text-slate-300 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.app }} </p>
                                                 </div>
                                             </div>
                                             <div class="flex justify-between items-center w-full px-2">
                                                 <div class="flex h-fit">
                                                     <button
-                                                        class="bg-slate-600 rounded-l-md px-1 border-2 border-transparent"
+                                                        class="bg-slate-400 dark:bg-slate-600 rounded-l-md px-1 border-2 border-transparent"
                                                         disabled="true"
                                                     >
-                                                        <minus-icon class="w-5 h-5 text-slate-400" />
+                                                        <minus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
                                                     </button>
-                                                    <p class="text-lg font-semibold text-slate-200 bg-slate-800 px-3">
+                                                    <p class="text-lg font-semibold text-slate-500 dark:text-slate-200 bg-white dark:bg-slate-800 px-3">
                                                         {{ product.quantity }}
                                                     </p>
                                                     <button
-                                                        class="bg-slate-600 rounded-r-md px-1 border-2 border-transparent"
+                                                        class="bg-slate-400 dark:bg-slate-600 rounded-r-md px-1 border-2 border-transparent"
                                                         disabled="true"
                                                     >
-                                                        <plus-icon class="w-5 h-5 text-slate-400" />
+                                                        <plus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
                                                     </button>
                                                 </div>
                                                 <div class="flex w-1/4 p-3 justify-center items-center mx-1">
-                                                    <p class="text-lg font-semibold text-slate-200 px-3 py-0.5 rounded-md bg-slate-800"> {{ formatPrice(product.price) }} </p>
+                                                    <p class="text-lg font-semibold text-slate-500 dark:text-slate-200 px-3 py-0.5 rounded-md bg-white dark:bg-slate-800"> {{ formatPrice(product.price) }} </p>
                                                 </div>
                                             </div>
                                         </badge-card>
@@ -195,7 +197,7 @@
                                 v-show="isMobile"
                                 class="px-2"
                             >
-                                <span class="flex w-full h-1 bg-slate-700 rounded-md" />
+                                <span class="flex w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-md" />
                             </div>
                             <div>
                                 <button
@@ -208,7 +210,7 @@
                                     <div class="flex justify-center items-center">
                                         <chevron-down-icon
                                             ref="infosFormChevron"
-                                            class="w-6 h-6 text-slate-200 transition-all"
+                                            class="w-6 h-6 text-slate-500 dark:text-slate-200 transition-all"
                                         />
                                     </div>
                                 </button>
@@ -218,7 +220,7 @@
                                     style="max-height: 0px"
                                 >
                                     <div class="p-2 space-y-2">
-                                        <p class="text-md italic text-slate-400 pb-2">
+                                        <p class="text-md text-slate-700 dark:text-slate-200 pb-2">
                                             <get-text :context="Lang.CreateTranslationContext('checkout', 'PersoInfosDesc')" />
                                         </p>
                                         <div>
@@ -261,15 +263,22 @@
                                                 type="checkbox"
                                                 orientation="row"
                                             />
+                                            <a
+                                                class="italic text-slate-500 dark:text-slate-400 hover:underline cursor-pointer"
+                                                href="/privacy"
+                                                target="_blank"
+                                            >
+                                                <get-text :context="Lang.CreateTranslationContext('checkout', 'CheckPrivacyPolicy')" />
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="px-2"> <span class="flex w-full h-1 bg-slate-700 rounded-md" /> </div>
+                            <div class="px-2"> <span class="flex w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-md" /> </div>
                             <div>
                                 <button
                                     class="flex justify-between p-2 w-full space-x-4"
-                                    :class="formInputsValid? 'cursor-pointer' : 'cursor-default text-slate-400'"
+                                    :class="formInputsValid? 'cursor-pointer' : 'cursor-default text-slate-400 dark:text-slate-400'"
                                     @click="() => { if (formInputsValid) toggleForm('paymentForm'); }"
                                 >
                                     <p class="text-lg font-semibold">
@@ -417,8 +426,9 @@ export default {
         },
         openForm(toOpen) {
             const formOpen = this.$refs[toOpen];
-            if (!formOpen) return;
             const chevronOpen = this.$refs[toOpen + 'Chevron'];
+            if (!formOpen) return console.warn(`OpenForm: Form ${toOpen} not found`);
+            if (!chevronOpen) return console.warn(`OpenForm: Chevron ${toOpen} not found`);
             const formOpenRect = formOpen.firstElementChild.getBoundingClientRect();
 
             formOpen.style.maxHeight = formOpenRect.height + 'px';
@@ -431,9 +441,10 @@ export default {
         },
         closeForm(toClose) {
             const formClose = this.$refs[toClose];
-            if (!formClose) return;
-            const formCloseRect = formClose.firstElementChild.getBoundingClientRect();
             const chevronClose = this.$refs[toClose + 'Chevron'];
+            if (!formClose) return console.warn(`CloseForm: Form ${toClose} not found`);
+            if (!chevronClose) return console.warn(`CloseForm: Chevron ${toClose} not found`);
+            const formCloseRect = formClose.firstElementChild.getBoundingClientRect();
 
             formClose.style.maxHeight = formCloseRect.height + 'px';
 
@@ -446,11 +457,22 @@ export default {
             if (this.formOpened === 'paymentForm') {
                 this.handleSubmit(form, ev);
             } else {
-                this.toggleForm(this.forms[this.forms.indexOf(this.formOpened) + 1]);
+                if (this.isFormValid())
+                    this.toggleForm(this.forms[this.forms.indexOf(this.formOpened) + 1]);
+                else {
+                    const inputs = [this.getInput('lastname'), this.getInput('firstname'), this.getInput('address'), this.getInput('city'), this.getInput('zipcode')];
+                    inputs.reduce((skip, input) => {
+                        if (!input.value && !skip) {
+                            input.focus();
+                            skip = true;
+                        }
+                        return skip;
+                    }, false);
+                }
             }
         },
         async initialize() {
-            const response = await fetch("http://192.168.1.50:8080/checkout/test", {
+            const response = await fetch("http://localhost:8080/checkout/checkout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" }
             });
@@ -477,7 +499,7 @@ export default {
             const { error } = await this.stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: "http://192.168.1.50/checkout?type=success",
+                    return_url: "http://localhost/checkout?type=success",
                     receipt_email: 'fur.waz06@gmail.com'
                 },
             });

@@ -11,6 +11,12 @@
                 {{ line }}
             </base-text>
         </div>
+        <div
+            ref="content"
+            class="flex flex-col mx-auto my-4"
+        >
+            <slot />
+        </div>
         <log-zone
             ref="log-zone"
             class="my-2"
@@ -39,6 +45,7 @@ import TitleText from '../text/TitleText.vue';
 import BaseText from '../text/BaseText.vue';
 import LogZone from './LogZone.vue';
 import GetText from '../text/GetText.vue';
+import { getTypedValue } from '../../scripts/dom';
 
 export default {
     name: 'ConfirmForm',
@@ -106,8 +113,28 @@ export default {
             this.onConfirm?.(this.getModal());
         },
         getModal() {
+            const form = this;
             return {
-                log: this.$refs['log-zone'].log
+                log: form.$refs['log-zone'].log,
+                body() {
+                    const body = {};
+                    const content = form.$refs['content'];
+                    const inputs = content.querySelectorAll('input');
+                    const selects = content.querySelectorAll('select');
+                    const textareas = content.querySelectorAll('textarea');
+                    const checkboxes = content.querySelectorAll('input[type="checkbox"]');
+                    const radios = content.querySelectorAll('input[type="radio"]');
+                    const files = content.querySelectorAll('input[type="file"]');
+
+                    inputs.forEach(input => { body[input.name] = getTypedValue(input.value); });
+                    selects.forEach(select => { body[select.name] = getTypedValue(select.value); });
+                    textareas.forEach(textarea => { body[textarea.name] = getTypedValue(textarea.value); });
+                    checkboxes.forEach(checkbox => { body[checkbox.name] = getTypedValue(checkbox.checked); });
+                    radios.forEach(radio => { if (radio.checked) body[radio.name] = getTypedValue(radio.value); });
+                    files.forEach(file => { body[file.name] = getTypedValue(file.files); });
+
+                    return body;
+                },
             };
         },
         async fetchTranslations() {

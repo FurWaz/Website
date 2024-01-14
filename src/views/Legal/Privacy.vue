@@ -121,7 +121,7 @@
         <p>
             <b>Payment Data:</b>
             <br>
-            We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by Stripe. You may find their privacy notice link(s) here: https://stripe.com/fr/privacy.</p>
+            We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by Stripe. You may find their privacy notice link(s) here: <a href="https://stripe.com/fr/privacy">https://stripe.com/fr/privacy</a>.</p>
 
         <p>
             <b>Social Media Login Data:</b>

@@ -1,0 +1,6 @@
+{
+    "emailTitle": "Email verification",
+    "emailError": "Error verifying email : {error}",
+    "emailSuccess": "Email verified successfully",
+    "emailLoading": "Verifying email..."
+}

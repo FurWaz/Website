@@ -51,7 +51,14 @@
                 :description="Lang.CreateTranslationContext('account', 'DeleteAccountConfirm')"
                 :on-cancel="() => $refs['delete-modal'].close()"
                 :on-confirm="deleteAccount"
-            />
+            >
+                <input-text
+                    type="password"
+                    name="password"
+                    :label="Lang.CreateTranslationContext('account', 'Password')"
+                    :placeholder="Lang.CreateTranslationContext('account', 'Password')"
+                />
+            </confirm-form>
         </modal-card>
     </div>
 </template>
@@ -87,15 +94,32 @@ export default {
     },
     async mounted() {
         let response = await API.execute_logged(API.ROUTE.ME());
-        User.CurrentUser.setInformations(response.data.user);
+        User.CurrentUser.setInformations(response.data);
+        User.CurrentUser.save();
     },
     methods: {
         async editProfile(form) {
             const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Editing')), Log.INFO);
             const body = form.body();
 
+            if (!body.pseudo) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyPseudo')), Log.WARNING);
+                form.focus('pseudo');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+            if (!body.email) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyEmail')), Log.WARNING);
+                form.focus('email');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+
             delete body.role;
-            API.execute_logged(API.ROUTE.ME(), API.METHOD.PATCH, body).then(res => {
+            API.execute_logged(API.ROUTE.ME(), API.METHOD.PATCH, {
+                pseudo: body.pseudo,
+                email: body.email
+            }).then(res => {
                 User.CurrentUser.setInformations(res.data.user);
                 User.CurrentUser.save();
                 log.update(res.message, Log.SUCCESS);
@@ -111,20 +135,30 @@ export default {
         },
         async deleteAccount(form) {
             const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Deleting')), Log.INFO);
-            API.execute_logged(API.ROUTE.ME(), API.METHOD.DELETE).then(res => {
-                log.update(Lang.CurrentLang.Deleted(), Log.SUCCESS);
+            const body = form.body();
+            const password = body.password;
+            if (!password || !password.trim()) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('account', 'SpecifyPassword')), Log.WARNING);
+                form.focus('password');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+
+            try {
+                const res = await API.execute_logged(API.ROUTE.ME(), API.METHOD.DELETE, { password });
+                log.update(res.message, Log.SUCCESS);
                 setTimeout(() => {
                     log.delete();
                     this.$refs['delete-modal'].close();
                     User.forget();
                     this.$router.go();
                 }, 1000);
-            }).catch(err => {
+            } catch (err) {
                 log.error(err);
                 setTimeout(() => {
                     log.delete();
                 }, 4000);
-            })
+            }
         }
     }
 }

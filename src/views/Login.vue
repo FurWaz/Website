@@ -64,33 +64,27 @@ export default {
                 return;
             }
 
-            const headers = {};
-            headers[API.AuthorizationHeader] = "Basic " + btoa(body.email + ":" + body.password);
-            API.execute(API.ROUTE.TOKEN(), API.METHOD.GET, undefined, undefined, headers).then(res => {
+            try {
+                const resLogin = await API.execute(API.ROUTE.LOGIN(), API.METHOD.POST, { email: body.email, password: body.password });
                 const user = new User();
-                user.setTokens(res.data.tokens);
-                API.execute_logged(API.ROUTE.ME()).then(res => {
-                    user.setInformations(res.data.user);
-                    user.save();
-                    log.update(res.message, Log.SUCCESS);
-                    redirectLink(this, true);
-                    setTimeout(() => { log.delete(); }, 2000);
-                }).catch(err => {
-                    log.error(err);
-                    if (err.field) {
-                        this.$refs[err.field].focus();
-                    }
-                    console.error(err);
-                    setTimeout(() => { log.delete(); }, 4000);
-                });
-            }).catch(err => {
+                user.setTokens(resLogin.data);
+                user.save();
+
+                const resMe = await API.execute_logged(API.ROUTE.ME());
+                user.setInformations(resMe.data);
+                user.save();
+
+                log.update(resLogin.message, Log.SUCCESS);
+                redirectLink(this, true);
+                setTimeout(() => { log.delete(); }, 2000);
+            } catch (err) {
                 log.error(err);
                 if (err.field) {
-                    this.$el.querySelector("input[name=" + err.field + "]")?.focus();
+                    this.$refs[err.field].focus();
                 }
                 console.error(err);
                 setTimeout(() => { log.delete(); }, 4000);
-            });
+            }
         }
     }
 }
