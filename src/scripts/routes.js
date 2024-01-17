@@ -5,6 +5,9 @@ export default {
     LOGIN: (...args) => "/auth/login" + (args.length ? "/" + args.join("/") : ""),
     PORTAL: (...args) => "/portal" + (args.length > 1 ? `/${args[0]}?token=${args[1]}` : `/${args[0]}`),
     APPS: (...args) => "/apps" + (args.length ? "/" + args.join("/") : ""),
+    RESET: {
+        PASSWORD: (...args) => "/reset/password" + (args.length ? "/" + args.join("/") : ""),
+    },
     VERIFY: {
         EMAIL: (...args) => "/verify/email" + (args.length ? "/" + args.join("/") : ""),
     },

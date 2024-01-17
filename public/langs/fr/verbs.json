@@ -52,5 +52,11 @@
     "Nexted": "Suivi",
     "Pay": "Payer",
     "Paying": "Paiement en cours",
-    "Payed": "Payé"
+    "Payed": "Payé",
+    "Send": "Envoyer",
+    "Sending": "Envoi en cours",
+    "Sended": "Envoyé",
+    "Reset": "Réinitialiser",
+    "Reseting": "Réinitialisation en cours",
+    "Reseted": "Réinitialisé"
 }

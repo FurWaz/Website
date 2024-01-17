@@ -24,6 +24,7 @@
     "Security": "Security",
     "PasswordModification": "Password modification",
     "Password": "Password",
+    "ForgotPassword": "Forgot password ?",
     "Confirmation": "Confirmation",
     "OldPassword": "Old password",
     "NewPassword": "New password",

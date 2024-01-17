@@ -1,9 +1,9 @@
 <template>
-    <div class="mx-auto text-center py-16 space-y-4 text-white">
+    <div class="flex grow justify-center items-center">
         <form-card
             class="p-2 text-xl"
             :title="Lang.CreateTranslationContext('verifications', 'emailTitle')"
-            :disabled="error"
+            :disabled="error !== null"
             :on-cancel="goHome"
             :on-validate="goHome"
         >
@@ -49,15 +49,6 @@ export default {
     },
     mounted() {
         this.verifyEmail();
-        fetch('http://localhost:8080/test', {
-            mode: 'cors',
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'authorization': 'Bearer owo'
-            }
-        });
     },
     methods: {
         async verifyEmail() {
