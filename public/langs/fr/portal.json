@@ -7,5 +7,6 @@
     "UseOtherAccount": "Utiliser un autre compte",
     "UseAccount": "Utiliser le compte {account}",
     "CreateAccount": "Pas de compte ? Créez-en un ici !",
-    "AppVerified": "Cette appli a été vérifiée"
+    "AppVerified": "Cette appli a été vérifiée",
+    "AppNotVerified": "Cette appli n'a pas été vérifiée"
 }

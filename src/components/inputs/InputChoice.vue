@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-fit w-full justify-between md:space-x-8 space-x-4 items-center my-2 min-w-0 max-w-full">
-        <label class="flex text-xl text-slate-600 dark:text-slate-400 font-bold whitespace-nowrap text-ellipsis w-fit">
+        <label class="flex text-xl text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit">
             <get-text :context="label" />
         </label>
         <div class="min-w-0 max-w-full">

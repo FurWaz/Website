@@ -2,12 +2,15 @@
     <div class="flex grow justify-center items-center">
         <form-card
             class="p-2 text-xl"
+            cancel=""
             :title="Lang.CreateTranslationContext('verifications', 'emailTitle')"
             :disabled="error !== null"
-            :on-cancel="goHome"
             :on-validate="goHome"
         >
-            <div class="pb-4">
+            <div
+                class="show-up pb-4"
+                style="animation-delay: 400ms;"
+            >
                 <div v-if="error">
                     <p class="text-red-500">
                         <get-text :context="Lang.CreateTranslationContext('verifications', 'emailError', {error})" />

@@ -33,15 +33,6 @@
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
-                <input-choice
-                    name="role"
-                    :label="Lang.CreateTranslationContext('account', 'Role')"
-                    :disabled="true"
-                    :value="User.CurrentUser.role_id"
-                    :list="User.Roles"
-                    class="show-down"
-                    style="animation-delay: 200ms;"
-                />
             </form-card>
         </div>
         <modal-card ref="delete-modal">
@@ -83,7 +74,7 @@ export default {
         FormCard,
         ButtonBack,
         ModalCard,
-        ConfirmForm,
+        ConfirmForm
     },
     data() {
         return {

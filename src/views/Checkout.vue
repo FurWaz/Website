@@ -1,415 +1,327 @@
 <template>
     <div class="flex flex-col grow h-full w-full justify-evenly items-center text-slate-500 dark:text-slate-200">
         <icon-header
-            class="pb-2"
-            label="Paiement"
+            class="flex pb-2"
+            :show-icon="!isMobile"
+            :label="Lang.CreateTranslationContext('checkout', 'Payment')"
         />
-        <div
-            v-if="pageType == 'success'"
-            class="p-2"
-        >
-            <form-card
-                class="max-w-full w-fit h-fit p-2"
-                :display-icon="false"
-                :on-validate="() => $router.push('/')"
-                :validate="'Continuer'"
-                :cancel="''"
+        <div class="flex grow items-center justify-center min-w-0 max-w-full min-h-0 max-h-full p-2 md:p-4">
+            <badge-card
+                v-show="isMobile && formOpened === 'cartForm'"
+                :hoverable="false"
             >
-                <div class="flex flex-col items-center my-4 space-y-6">
-                    <div class="show-up flex space-x-4 items-center">
-                        <p class="text-xl font-bold">
-                            <get-text :context="Lang.CreateTranslationContext('checkout', 'PaymentSuccess')" />
+                <div class="flex grow p-4 min-w-0 max-w-full min-h-0 max-h-full">
+                    <div class="flex flex-col space-y-2">
+                        <p class="text-xl font-semibold">
+                            <get-text :context="Lang.CreateTranslationContext('checkout', 'Cart')" />
                         </p>
-                        <div class="border-2 rounded-md border-green-500 p-1">
-                            <check-icon class="w-5 h-5 text-slate-500 dark:text-slate-200" />
-                        </div>
-                    </div>
-                    <p class="text-md italic text-center">
-                        <get-text :context="Lang.CreateTranslationContext('checkout', 'PaymentSuccessDesc')" />
-                    </p>
-                </div>
-            </form-card>
-        </div>
-        <div
-            v-else
-            class="flex w-full min-h-0 h-full justify-evenly"
-        >
-            <div class="hidden lg:flex flex-col justify-center items-center w-fit h-full p-10">
-                <div class="w-fit h-fit max-w-full max-h-full lg:pb-8">
-                    <p class="text-2xl font-bold pb-2">
-                        <get-text :context="Lang.CreateTranslationContext('checkout', 'Order')" />
-                    </p>
-                    <badge-card
-                        class="show-right flex flex-col w-[50vw] max-h-full min-h-[50vh] h-fit p-2"
-                        :hoverable="false"
-                    >
-                        <div class="flex flex-col grow w-full min-h-0 max-h-full">
-                            <div class="flex w-full h-fit text-xl font-semibold">
-                                <div class="w-1/2">
-                                    <p> <get-text :context="Lang.CreateTranslationContext('checkout', 'Product')" /> </p>
-                                </div>
-                                <div class="w-1/4">
-                                    <p> <get-text :context="Lang.CreateTranslationContext('checkout', 'Quantity')" /> </p>
-                                </div>
-                                <div class="w-1/4">
-                                    <p> <get-text :context="Lang.CreateTranslationContext('checkout', 'Price')" /> </p>
-                                </div>
-                            </div>
-                            <span class="flex w-full h-1 rounded-full bg-slate-300 dark:bg-slate-600 mt-1" />
-                            <div class="flex w-full max-h-full min-h-0 overflow-auto my-2">
-                                <div class="flex flex-col w-full h-fit">
-                                    <badge-card
-                                        v-for="product in products"
-                                        :key="product.id"
-                                        class="w-full h-fit my-2"
-                                        :hoverable="false"
-                                    >
-                                        <div class="flex w-full">
-                                            <div class="flex w-1/2 p-3">
-                                                <div class="bg-slate-200 dark:bg-slate-800 rounded-lg p-1">
-                                                    <squares-2-x-2-icon class="w-12 h-12 text-slte-200" />
-                                                </div>
-                                                <div class="flex flex-col justify-center mx-4 w-fit max-w-full min-w-0">
-                                                    <p class="text-xl font-semibold text-slate-700 dark:text-slate-50 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.name }} </p>
-                                                    <p class="text-md font-base text-slate-500 dark:text-slate-300 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.app }} </p>
-                                                </div>
-                                            </div>
-                                            <div class="flex w-1/4 p-3 justify-center items-center">
-                                                <div class="flex">
-                                                    <button
-                                                        class="bg-slate-200 dark:bg-slate-600 rounded-l-md px-1 border-2 border-transparent"
-                                                        disabled="true"
-                                                    >
-                                                        <minus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
-                                                    </button>
-                                                    <p class="text-lg font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 px-3">
-                                                        {{ product.quantity }}
-                                                    </p>
-                                                    <button
-                                                        class="bg-slate-200 dark:bg-slate-600 rounded-r-md px-1 border-2 border-transparent"
-                                                        disabled="true"
-                                                    >
-                                                        <plus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="flex w-1/4 p-3 justify-center items-center">
-                                                <p class="text-lg font-semibold text-slate-700 dark:text-slate-200 px-3 py-0.5 rounded-md border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800">
-                                                    {{ formatPrice(product.price) }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </badge-card>
-                                </div>
-                            </div>
-                            <div class="flex flex-col grow h-full justify-end">
-                                <span class="flex w-full h-1 rounded-full bg-slate-300 dark:bg-slate-600 mb-2" />
-                                <div class="flex justify-end space-x-8">
-                                    <div class="flex justify-center items-center">
-                                        <p class="text-xl font-bold">Total</p>
-                                    </div>
-                                    <p class="text-xl font-bold w-1/4 text-center px-3 py-2 rounded-md border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800">
-                                        {{ formatPrice(products.reduce((acc, product) => acc + product.price, 0)) }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </badge-card>
-                </div>
-            </div>
-            <div class="lg:show-left flex flex-col w-fit max-w-full h-full justify-center items-center p-1 lg:p-10">
-                <div class="max-w-full max-h-full w-fit h-fit">
-                    <p class="hidden lg:flex text-2xl font-bold my-2">
-                        <get-text :context="Lang.CreateTranslationContext('checkout', 'Informations')" />
-                    </p>
-                    <form-card
-                        ref="form"
-                        class="max-w-full w-fit h-fit p-2"
-                        :display-icon="false"
-                        :validate="formOpened == 'paymentForm' ? Lang.CreateTranslationContext('verbs', 'Pay') : Lang.CreateTranslationContext('verbs', 'Next')"
-                        :on-validate="onFormValidate"
-                        :disabled="!formInputsValid && formOpened != 'cartForm'"
-                    >
-                        <div class="flex flex-col max-w-full w-full max-h-full h-fit bg-white dark:bg-slate-800 rounded-md">
-                            <div v-show="isMobile">
-                                <button
-                                    class="flex justify-between p-2 w-full space-x-4"
-                                    @click="toggleForm('cartForm')"
-                                >
-                                    <p class="text-lg font-semibold">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'Order')" />
-                                    </p>
-                                    <div class="flex justify-center items-center">
-                                        <chevron-down-icon
-                                            ref="cartFormChevron"
-                                            class="w-6 h-6 text-slate-500 dark:text-slate-200 transition-all"
-                                        />
-                                    </div>
-                                </button>
-                                <div
-                                    ref="cartForm"
-                                    class="overflow-hidden transition-all"
-                                    style="max-height: 1000px"
-                                >
-                                    <div class="p-2 space-y-2">
-                                        <badge-card
-                                            v-for="product in products"
-                                            :key="product.id"
-                                            class="w-full h-fit my-2 bg-slate-200 dark:bg-slate-700"
-                                            :hoverable="false"
-                                        >
-                                            <div class="flex w-full p-3">
-                                                <div class="bg-slate-200 dark:bg-slate-800 rounded-lg p-1">
-                                                    <squares-2-x-2-icon class="w-12 h-12 text-slte-200" />
-                                                </div>
-                                                <div class="flex flex-col justify-center mx-4 w-fit max-w-full min-w-0">
-                                                    <p class="text-xl font-semibold text-slate-700 dark:text-slate-50 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.name }} </p>
-                                                    <p class="text-md font-base text-slate-300 whitespace-nowrap text-ellipsis overflow-hidden"> {{ product.app }} </p>
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-between items-center w-full px-2">
-                                                <div class="flex h-fit">
-                                                    <button
-                                                        class="bg-slate-400 dark:bg-slate-600 rounded-l-md px-1 border-2 border-transparent"
-                                                        disabled="true"
-                                                    >
-                                                        <minus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
-                                                    </button>
-                                                    <p class="text-lg font-semibold text-slate-500 dark:text-slate-200 bg-white dark:bg-slate-800 px-3">
-                                                        {{ product.quantity }}
-                                                    </p>
-                                                    <button
-                                                        class="bg-slate-400 dark:bg-slate-600 rounded-r-md px-1 border-2 border-transparent"
-                                                        disabled="true"
-                                                    >
-                                                        <plus-icon class="w-5 h-5 text-slate-500 dark:text-slate-400" />
-                                                    </button>
-                                                </div>
-                                                <div class="flex w-1/4 p-3 justify-center items-center mx-1">
-                                                    <p class="text-lg font-semibold text-slate-500 dark:text-slate-200 px-3 py-0.5 rounded-md bg-white dark:bg-slate-800"> {{ formatPrice(product.price) }} </p>
-                                                </div>
-                                            </div>
-                                        </badge-card>
-                                    </div>
-                                </div>
+                        <div class="flex flex-col grow space-y-4 overflow-auto max-h-full min-h-0 py-4">
+                            <product-card
+                                v-for="product in products"
+                                :key="product.id"
+                                class="show-up"
+                                :product="product"
+                            />
+                            <div
+                                v-if="products === null"
+                                class="flex flex-col justify-center items-center h-full"
+                            >
+                                <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
+                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProducts')" />
+                                </p>
+                                <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
+                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProductsDesc')" />
+                                </p>
                             </div>
                             <div
-                                v-show="isMobile"
-                                class="px-2"
+                                v-else-if="products.length === 0"
+                                class="flex flex-col justify-center items-center h-full"
                             >
-                                <span class="flex w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-md" />
+                                <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
+                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProducts')" />
+                                </p>
+                                <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
+                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProductsDesc')" />
+                                </p>
                             </div>
-                            <div>
-                                <button
-                                    class="flex justify-between p-2 w-full space-x-4"
-                                    @click="toggleForm('infosForm')"
-                                >
-                                    <p class="text-lg font-semibold">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'PersoInfos')" />
+                        </div>
+                        <div class="flex flex-col h-fit">
+                            <span class="flex w-full h-1 rounded-full bg-slate-200 dark:bg-slate-600" />
+                            <div class="flex pt-2 justify-end">
+                                <div class="flex justify-center items-center mx-4">
+                                    <p class="text-xl font-semibold">
+                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'Total')" />
                                     </p>
-                                    <div class="flex justify-center items-center">
-                                        <chevron-down-icon
-                                            ref="infosFormChevron"
-                                            class="w-6 h-6 text-slate-500 dark:text-slate-200 transition-all"
-                                        />
-                                    </div>
-                                </button>
-                                <div
-                                    ref="infosForm"
-                                    class="overflow-hidden transition-all"
-                                    style="max-height: 0px"
-                                >
-                                    <div class="p-2 space-y-2">
-                                        <p class="text-md text-slate-700 dark:text-slate-200 pb-2">
-                                            <get-text :context="Lang.CreateTranslationContext('checkout', 'PersoInfosDesc')" />
-                                        </p>
-                                        <div>
-                                            <input-text
-                                                :label="Lang.CreateTranslationContext('checkout', 'Firstname')"
-                                                :placeholder="Lang.CreateTranslationContext('checkout', 'Firstname')"
-                                                :value="userInfos.firstname"
-                                                name="firstname"
-                                            />
-                                            <input-text
-                                                :label="Lang.CreateTranslationContext('checkout', 'Lastname')"
-                                                :placeholder="Lang.CreateTranslationContext('checkout', 'Lastname')"
-                                                :value="userInfos.lastname"
-                                                name="lastname"
-                                            />
-                                            <input-text
-                                                class="pt-2"
-                                                :label="Lang.CreateTranslationContext('checkout', 'Address')"
-                                                :placeholder="Lang.CreateTranslationContext('checkout', 'Address')"
-                                                :value="userInfos.address"
-                                                name="address"
-                                            />
-                                            <input-text
-                                                :label="Lang.CreateTranslationContext('checkout', 'City')"
-                                                :placeholder="Lang.CreateTranslationContext('checkout', 'City')"
-                                                :value="userInfos.city"
-                                                name="city"
-                                            />
-                                            <input-text
-                                                :label="Lang.CreateTranslationContext('checkout', 'Zipcode')"
-                                                :placeholder="Lang.CreateTranslationContext('checkout', 'Zipcode')"
-                                                :value="userInfos.zipcode"
-                                                type="number"
-                                                name="zipcode"
-                                            />
-                                            <input-text
-                                                class="pt-6"
-                                                :label="Lang.CreateTranslationContext('checkout', 'SavePersoInfos')"
-                                                :placeholder="Lang.CreateTranslationContext('checkout', 'SavePersoInfos')"
-                                                type="checkbox"
-                                                orientation="row"
-                                            />
-                                            <a
-                                                class="italic text-slate-500 dark:text-slate-400 hover:underline cursor-pointer"
-                                                href="/privacy"
-                                                target="_blank"
-                                            >
-                                                <get-text :context="Lang.CreateTranslationContext('checkout', 'CheckPrivacyPolicy')" />
-                                            </a>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <input
+                                        class="w-24 h-10 text-xl font-semibold text-center bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-white rounded-md"
+                                        disabled="true"
+                                        :value="formatPrice(products?.reduce((acc, cur) => acc + cur.price * cur.quantity, 0))"
+                                    >
                                 </div>
                             </div>
-                            <div class="px-2"> <span class="flex w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-md" /> </div>
-                            <div>
-                                <button
-                                    class="flex justify-between p-2 w-full space-x-4"
-                                    :class="formInputsValid? 'cursor-pointer' : 'cursor-default text-slate-400 dark:text-slate-400'"
-                                    @click="() => { if (formInputsValid) toggleForm('paymentForm'); }"
-                                >
-                                    <p class="text-lg font-semibold">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'BankInfos')" />
-                                    </p>
-                                    <div class="flex justify-center items-center">
-                                        <chevron-down-icon
-                                            ref="paymentFormChevron"
-                                            class="w-6 h-6 transition-all"
-                                        />
-                                    </div>
-                                </button>
+                        </div>
+                    </div>
+                </div>
+                <span class="flex w-full h-1 bg-slate-200 dark:bg-slate-600" />
+                <div class="flex w-full justify-end p-3 rounded-lg">
+                    <div class="flex justify-between w-full h-fit">
+                        <button-text :onclick="() => $router.go(-1)">
+                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Cancel')" />
+                        </button-text>
+                        <button-block
+                            :onclick="() => formOpened = 'infosForm'"
+                            :disabled="!products?.length"
+                        >
+                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Continue')" />
+                        </button-block>
+                    </div>
+                </div>
+            </badge-card>
+
+            <badge-card
+                v-show="!isMobile || formOpened !== 'cartForm'"
+                class="flex w-fit h-fit max-w-full min-w-0 max-h-full min-h-0"
+                :hoverable="false"
+            >
+                <div class="flex min-w-0 max-w-full min-h-0 max-h-full">
+                    <div class="hidden sm:flex grow p-4 min-w-0 max-w-full min-h-0 max-h-full">
+                        <div class="flex flex-col space-y-2">
+                            <p class="text-xl font-semibold">
+                                <get-text :context="Lang.CreateTranslationContext('checkout', 'Cart')" />
+                            </p>
+                            <div class="flex flex-col grow space-y-4 overflow-auto max-h-full min-h-0 p-4">
+                                <product-card
+                                    v-for="product in products"
+                                    :key="product.id"
+                                    :product="product"
+                                />
                                 <div
-                                    ref="paymentForm"
-                                    class="overflow-hidden transition-all"
-                                    style="max-height: 0px"
+                                    v-if="products === null"
+                                    class="flex flex-col justify-center items-center h-full"
                                 >
-                                    <div class="p-2 pb-0.5">
-                                        <div
-                                            id="payment-element"
-                                            class="bg-white p-4 rounded-md w-full"
-                                            style="margin: 0 0 0.5em 0;"
+                                    <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
+                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProducts')" />
+                                    </p>
+                                    <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
+                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProductsDesc')" />
+                                    </p>
+                                </div>
+                                <div
+                                    v-else-if="products.length === 0"
+                                    class="flex flex-col justify-center items-center h-full"
+                                >
+                                    <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
+                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProducts')" />
+                                    </p>
+                                    <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
+                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProductsDesc')" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col h-fit">
+                                <span class="flex w-full h-1 rounded-full bg-slate-200 dark:bg-slate-600" />
+                                <div class="flex pt-2 justify-end">
+                                    <div class="flex justify-center items-center mx-4">
+                                        <p class="text-xl font-semibold">
+                                            <get-text :context="Lang.CreateTranslationContext('checkout', 'Total')" />
+                                        </p>
+                                    </div>
+                                    <div class="flex justify-center items-center">
+                                        <input
+                                            class="w-24 h-10 text-xl font-semibold text-center bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-white rounded-md"
+                                            disabled="true"
+                                            :value="formatPrice(products?.reduce((acc, cur) => acc + cur.price * cur.quantity, 0))"
                                         >
-                                            <!--Stripe.js Elements-->
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form-card>
+                    </div>
+                    <div class="flex flex-col w-fit bg-slate-200 dark:bg-slate-600 p-2 md:p-4">
+                        <div class="flex flex-col space-y-2 grow min-h-0 max-h-full">
+                            <p class="text-xl font-semibold">
+                                <get-text :context="Lang.CreateTranslationContext('checkout', 'Informations')" />
+                            </p>
+                            <div class="flex flex-col grow space-y-4 justify-between min-h-0 max-h-full">
+                                <div class="flex flex-col bg-slate-50 dark:bg-slate-700 rounded-lg max-h-full min-h-0 overflow-auto">
+                                    <div
+                                        v-show="formOpened === 'infosForm'"
+                                        class="flex flex-col p-3"
+                                    >
+                                        <input-text
+                                            name="firstname"
+                                            :label="Lang.CreateTranslationContext('checkout', 'Firstname')"
+                                            :placeholder="Lang.CreateTranslationContext('checkout', 'Firstname')"
+                                        />
+                                        <input-text
+                                            name="lastname"
+                                            :label="Lang.CreateTranslationContext('checkout', 'Lastname')"
+                                            :placeholder="Lang.CreateTranslationContext('checkout', 'Lastname')"
+                                        />
+                                        <input-text
+                                            name="address"
+                                            :label="Lang.CreateTranslationContext('checkout', 'Address')"
+                                            :placeholder="Lang.CreateTranslationContext('checkout', 'Address')"
+                                        />
+                                        <input-text
+                                            name="city"
+                                            :label="Lang.CreateTranslationContext('checkout', 'City')"
+                                            :placeholder="Lang.CreateTranslationContext('checkout', 'City')"
+                                        />
+                                        <input-text
+                                            name="zipcode"
+                                            :label="Lang.CreateTranslationContext('checkout', 'Zipcode')"
+                                            :placeholder="Lang.CreateTranslationContext('checkout', 'Zipcode')"
+                                        />
+                                        <input-text
+                                            name="saveInfos"
+                                            type="checkbox"
+                                            :label="Lang.CreateTranslationContext('checkout', 'SavePersoInfos')"
+                                            :placeholder="Lang.CreateTranslationContext('checkout', 'SavePersoInfos')"
+                                        />
+                                        <a
+                                            class="italic hover:underline text-slate-500 dark:text-slate-400"
+                                            href="/privacy"
+                                            target="_blank"
+                                        >
+                                            <get-text :context="Lang.CreateTranslationContext('checkout', 'CheckPrivacyPolicy')" />
+                                        </a>
+                                    </div>
+                                    <div
+                                        v-show="formOpened === 'paymentForm'"
+                                        id="payment-element"
+                                        class="bg-white p-2"
+                                    >
+                                        <!-- Stripe content -->
+                                    </div>
+                                </div>
+                                <div class="flex flex-col justify-end bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
+                                    <log-zone ref="log-zone" />
+                                    <div class="flex justify-between w-full h-fit">
+                                        <button-text :onclick="() => { (isMobile || formOpened === 'paymentForm')? formOpened = forms[forms.indexOf(formOpened)-1]: $router.go(-1) }">
+                                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Cancel')" />
+                                        </button-text>
+                                        <button-block
+                                            :onclick="() => { formOpened === 'infosForm' ? openPaymentForm(): handleSubmit() }"
+                                            :disabled="formInputsValid || !products?.length"
+                                        >
+                                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Continue')" />
+                                        </button-block>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </badge-card>
         </div>
     </div>
 </template>
 
 <script>
-import FormCard from '../components/cards/FormCard.vue';
+import { Log } from '../scripts/Logs';
 import Lang from '../scripts/Lang';
 import User from '../scripts/User';
 import 'https://js.stripe.com/v3/';
+import API from '../scripts/API';
 
-import {
-    Squares2X2Icon,
-    CheckIcon,
-    PlusIcon,
-    MinusIcon,
-    ChevronDownIcon
-} from '@heroicons/vue/24/outline';
-import { Log } from '../scripts/Logs';
 import BadgeCard from '../components/cards/BadgeCard.vue';
-import InputText from '../components/inputs/InputText.vue';
 import IconHeader from '../components/cards/IconHeader.vue';
 import GetText from '../components/text/GetText.vue';
-
-const STRIPE_KEY = 'pk_test_51OGgPeCfML9YeK6HdhHbiLr3wwu4kOzo6b9WsD4UgEbvuGcuJQCPnol9JybZZIve8s9bUVs8BOf53fIB1l2tUvin001e2BRoSF';
-
-const products = [
-    {
-        name: "Kinect support for tracking",
-        app: "FullBowody",
-        description: "Add Kinect cameras support in FullBowody for better full body tracking.",
-        quantity: 1,
-        price: 8
-    }
-];
+import Ressources from '../scripts/Ressources';
+import InputText from '../components/inputs/InputText.vue';
+import ButtonBlock from '../components/inputs/ButtonBlock.vue';
+import ButtonText from '../components/inputs/ButtonText.vue';
+import ProductCard from '../components/cards/ProductCard.vue';
+import LogZone from '../components/cards/LogZone.vue';
 
 export default {
     name: "RegisterView",
     components: {
-        FormCard,
-        Squares2X2Icon,
-        CheckIcon,
         BadgeCard,
-        PlusIcon,
-        MinusIcon,
-        ChevronDownIcon,
-        InputText,
         IconHeader,
-        GetText
+        GetText,
+        InputText,
+        ButtonBlock,
+        ButtonText,
+        ProductCard,
+        LogZone
     },
     data() {
         return {
             Lang,
             user: User.CurrentUser,
-            products,
-            stripe: Stripe(STRIPE_KEY),
+            products: null,
+            stripe: Stripe(import.meta.env.VITE_STRIPE_KEY),
             elements: null,
             pageType: new URLSearchParams(window.location.search).get("type"),
-            isMobile: window.innerWidth < 1024,
-            formOpened: 'infosForm',
+            isMobile: window.innerWidth < 768,
+            formOpened: window.innerWidth < 768? 'cartForm': 'infosForm',
             forms: ['cartForm', 'infosForm', 'paymentForm'],
-            formInputsValid: false,
             userInfos: {
                 firstname: '',
                 lastname: '',
                 address: '',
                 city: '',
-                zipcode: 0
-            }
+                zipcode: 0,
+                saveInfos: false
+            },
+            initialized: false
         };
     },
-    mounted() {
-        window.addEventListener('resize', () => { this.isMobile = window.innerWidth < 1024; });
-        
-        if (!this.pageType) {
-            this.initialize();
-            this.checkStatus();
+    watch: {
+        formOpened() {
+            if (this.formOpened === 'infosForm') {
+                this.fetchProfile();
+            }
+        }
+    },
+    async mounted() {
+        await this.fetchCartProducts();
+
+        const inputs = ["firstname", "lastname", "address", "city", "zipcode", "saveInfos"];
+        for (const input of inputs) {
+            this.$el.querySelector(`input[name="${input}"]`).addEventListener('input', (e) => {
+                this.userInfos[input] = e.target.type === 'checkbox'? e.target.checked: e.target.value;
+            });
         }
 
-        const inputs = [this.getInput('lastname'), this.getInput('firstname'), this.getInput('address'), this.getInput('city'), this.getInput('zipcode')];
-        inputs.forEach(input => {
-            input?.addEventListener('input', (ev) => {
-                this.userInfos[input.name] = ev.target.value;
-                if (this.isFormValid()) this.formInputsValid = true;
-                else this.formInputsValid = false;
-            });
-        });
-
-        this.openForm(this.isMobile ? 'cartForm' : 'infosForm');
+        await this.fetchProfile();
     },
     methods: {
-        isFormValid() {
-            return (this.getInput('lastname')?.value &&
-                this.getInput('firstname')?.value &&
-                this.getInput('address')?.value &&
-                this.getInput('city')?.value &&
-                this.getInput('zipcode')?.value) ? true : false;
+        async fetchCartProducts() {
+            this.products = [];
+            const { products } = (await API.execute_logged(API.ROUTE.CARTS(), API.METHOD.GET)).data;
+            for (const p of products) {
+                const product = await Ressources.getProduct(p.productId);
+                const app = await Ressources.getApp(product.app);
+                const element = {
+                    id: p.id,
+                    name: product.name,
+                    description: product.description,
+                    price: product.price,
+                    quantity: p.quantity,
+                    app: app.name,
+                };
+                this.products.push(element);
+            }
         },
-        getInput(name) {
-            return document.querySelector(`input[name="${name}"]`);
+        async fetchProfile() {
+            const profile = await API.execute_logged(API.ROUTE.PROFILE());
+            if (!profile) return;
+
+            const { firstname, lastname, address, city, zipcode } = profile.data;
+            this.userInfos = { firstname, lastname, address, city, zipcode, saveInfos: true };
+
+            const inputs = ["firstname", "lastname", "address", "city", "zipcode", "saveInfos"];
+            for (const input of inputs) {
+                const el = this.$el.querySelector(`input[name="${input}"]`);
+                if (!el) continue;
+                if (el.type === 'checkbox') el.checked = this.userInfos[input];
+                else el.value = this.userInfos[input];
+            }
         },
         formatPrice(price) {
             return new Intl.NumberFormat("fr-FR", {
@@ -417,66 +329,24 @@ export default {
                 currency: "EUR",
             }).format(price);
         },
-        toggleForm(toOpen) {
-            if (this.formOpened == toOpen) {
-                return;
-            }
-            this.openForm(toOpen);
-            this.forms.forEach(form => { if (form != toOpen) this.closeForm(form); });
-        },
-        openForm(toOpen) {
-            const formOpen = this.$refs[toOpen];
-            const chevronOpen = this.$refs[toOpen + 'Chevron'];
-            if (!formOpen) return console.warn(`OpenForm: Form ${toOpen} not found`);
-            if (!chevronOpen) return console.warn(`OpenForm: Chevron ${toOpen} not found`);
-            const formOpenRect = formOpen.firstElementChild.getBoundingClientRect();
+        async openPaymentForm() {
+            if (!Object.values(this.userInfos).every(v => {
+                if (v !== '' && v !== 0) return true;
+                Lang.GetText(Lang.CreateTranslationContext('checkout', 'PersoInfosDesc'), text => {
+                    const log = this.$refs['log-zone'].log(text, Log.WARNING);
+                    setTimeout(() => { log.delete(); }, 2000);
+                });
+                return false;
+            })) return;
 
-            formOpen.style.maxHeight = formOpenRect.height + 'px';
-            setTimeout(() => {
-                formOpen.style.maxHeight = '800px';
-            }, 250);
-            chevronOpen.classList.add('rotate-180');
-
-            this.formOpened = toOpen;
-        },
-        closeForm(toClose) {
-            const formClose = this.$refs[toClose];
-            const chevronClose = this.$refs[toClose + 'Chevron'];
-            if (!formClose) return console.warn(`CloseForm: Form ${toClose} not found`);
-            if (!chevronClose) return console.warn(`CloseForm: Chevron ${toClose} not found`);
-            const formCloseRect = formClose.firstElementChild.getBoundingClientRect();
-
-            formClose.style.maxHeight = formCloseRect.height + 'px';
-
-            setTimeout(() => {
-                formClose.style.maxHeight = '0px';
-                chevronClose.classList.remove('rotate-180');
-            }, 10);
-        },
-        onFormValidate(form, ev) {
-            if (this.formOpened === 'paymentForm') {
-                this.handleSubmit(form, ev);
-            } else {
-                if (this.isFormValid())
-                    this.toggleForm(this.forms[this.forms.indexOf(this.formOpened) + 1]);
-                else {
-                    const inputs = [this.getInput('lastname'), this.getInput('firstname'), this.getInput('address'), this.getInput('city'), this.getInput('zipcode')];
-                    inputs.reduce((skip, input) => {
-                        if (!input.value && !skip) {
-                            input.focus();
-                            skip = true;
-                        }
-                        return skip;
-                    }, false);
-                }
-            }
+            await this.initialize();
+            this.formOpened = 'paymentForm';
         },
         async initialize() {
-            const response = await fetch("http://localhost:8080/checkout/checkout", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" }
-            });
-            const { clientSecret } = await response.json();
+            if (this.initialized) return;
+            this.initialized = true;
+
+            const { clientSecret } = (await API.execute_logged(API.ROUTE.CHECKOUT(), API.METHOD.POST, this.userInfos)).data;
 
             const appearance = {
                 theme: 'stripe'
@@ -490,63 +360,24 @@ export default {
             const paymentElement = this.elements.create("payment", paymentElementOptions);
             paymentElement.mount("#payment-element");
         },
-        async handleSubmit(form, e) {
-            e.preventDefault();
-            this.setLoading(true);
-            this.showMessage("Paiement en cours ...", Log.INFO);
-            const elements = this.elements;
+        async handleSubmit() {
+            const logZone = this.$refs['log-zone'];
+            const log = logZone.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Paying')), Log.INFO);
 
+            const elements = this.elements;
             const { error } = await this.stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: "http://localhost/checkout?type=success",
+                    return_url: window.location.origin + "/checkout/status",
                     receipt_email: 'fur.waz06@gmail.com'
                 },
             });
             
             if (error.type === "card_error" || error.type === "validation_error") {
-                this.showMessage(error.message, Log.ERROR);
-            } else {
-                this.showMessage("An unexpected error occurred.");
+                log.update(error.message, Log.ERROR);
             }
 
-            this.setLoading(false);
-        },
-        async checkStatus() {
-            const clientSecret = new URLSearchParams(window.location.search).get(
-                "payment_intent_client_secret"
-            );
-
-            if (!clientSecret) {
-                return;
-            }
-
-            const { paymentIntent } = await this.stripe.retrievePaymentIntent(clientSecret);
-
-            switch (paymentIntent.status) {
-            case "succeeded":
-                this.showMessage("Payment succeeded!", Log.SUCCESS);
-                break;
-            case "processing":
-                this.showMessage("Your payment is processing.", Log.INFO);
-                break;
-            case "requires_payment_method":
-                this.showMessage("Your payment was not successful, please try again.", Log.WARNING);
-                break;
-            default:
-                this.showMessage("Something went wrong.", Log.ERROR);
-                break;
-            }
-        },
-        showMessage(messageText, type) {
-            const form = this.$refs.form;
-            const log = form.log(messageText, type ?? Log.INFO);
-            setTimeout(() => {
-                log.delete();
-            }, 4000);
-        },
-        setLoading(isLoading) {
-            this.validateBtnDisabled = isLoading;
+            setTimeout(() => { log.delete() }, 2000);
         }
     }
 }

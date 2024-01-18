@@ -47,8 +47,7 @@ const links = [
     {name: "Apps",     icon: Squares2X2Icon, href: "/my/apps"},
     {name: "Sessions", icon: ComputerDesktopIcon, href: "/my/sessions"},
     {name: "Security", icon: KeyIcon, href: "/my/security"},
-    {name: "Settings", icon: Cog6ToothIcon, href: "/my/settings"},
-    {name: "Administration", icon: CommandLineIcon, href: "/admin", condition: () => User.CurrentUser.role_id >= 2},
+    {name: "Settings", icon: Cog6ToothIcon, href: "/my/settings"}
 ];
 
 export default {

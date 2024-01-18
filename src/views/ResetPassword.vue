@@ -44,7 +44,7 @@ export default {
     mounted() {
         this.token = this.$route.query.token;
         if (!this.token) {
-            this.error = 'No token provided'; // TODO : change
+            this.$router.push('/');
             return;
         }
     },
