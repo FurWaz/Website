@@ -57,11 +57,6 @@
             <home-projects />
             <home-about class="md:hidden flex" />
         </div>
-        <div class="flex w-full justify-center items-center py-12">
-            <p class="show-up text-lg font-bold dark:text-slate-500 text-slate-400 italic">
-                snuggles and wuggles
-            </p>
-        </div>
     </div>
 </template>
 
