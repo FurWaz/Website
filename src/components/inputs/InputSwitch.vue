@@ -61,7 +61,7 @@ export default {
         }
     },
     mounted() {
-        this.$refs["switch"].addEventListener("click", ev => {
+        this.$refs["switch"].addEventListener("click", () => {
             this.applyValue(!this.state);
         });
         this.updateButton();

@@ -88,7 +88,7 @@ export default {
         },
         onValidate: {
             type: Function,
-            default: (modal) => {}
+            default: () => {}
         },
         onCancel: {
             type: Function,

@@ -24,7 +24,7 @@ export default class CachedRessource {
         // If already fetching (listeners not null)
         if (this.#listeners != null) {
             // Add this request to listeners list
-            const promise = new Promise((resolve, reject) => {
+            const promise = new Promise((resolve) => {
                 this.#listeners.push(resolve);
             });
             return await promise;

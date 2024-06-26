@@ -314,7 +314,7 @@ class API {
                             user.setTokens(response.data.tokens);
                             user.save();
                             this.execute_logged(path, method, body, type, reqHeaders, user, false).then(resolve).catch(reject);
-                        }).catch(err => {
+                        }).catch(() => {
                             User.forget();
                             const url = window.location.href;
                             window.location.href = '/login?link=' + url;

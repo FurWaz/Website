@@ -15,16 +15,12 @@ import { animateShows } from '../../scripts/common';
 import Lang from '../../scripts/Lang';
 import IconHeader from '../../components/cards/IconHeader.vue';
 import ButtonBack from '../../components/inputs/ButtonBack.vue';
-import ModalCard from '../../components/cards/ModalCard.vue';
-import ConfirmForm from '../../components/cards/ConfirmForm.vue';
 
 export default {
     name: "MyApps",
     components: {
         IconHeader,
         ButtonBack,
-        ModalCard,
-        ConfirmForm
     },
     data() {
         return {

@@ -43,6 +43,7 @@ export function goBack() {
  * @param {number} time time in seconds to convert to a string
  * @returns stringified time (minutes+seconds)
  */
+/*
 export function stringTime(time) {
     let nbMinutes = Math.floor(time / 60);
     let nbSeconds = time % 60;
@@ -54,7 +55,7 @@ export function stringTime(time) {
     let seconds = `${Math.round(nbSeconds)} ${nbSeconds >= 2 ? LANGUAGE.DATA.TIME.SECONDS : LANGUAGE.DATA.TIME.SECOND}`;
     return (minutes + seconds).toLowerCase();
 }
-
+*/
 /**
  * Manages all the .show-* page elements animations
  * @param {HTMLDivElement} page page

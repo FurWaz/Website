@@ -79,7 +79,7 @@ export default {
                 setTimeout(() => { log.delete(); }, 4000);
             });
         },
-        logout(modal) {
+        logout() {
             User.forget();
             this.$router.push({ name: 'Home' });
             window.topbar.$forceUpdate();

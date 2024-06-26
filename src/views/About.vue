@@ -271,7 +271,6 @@ import GetText from '../components/text/GetText.vue';
 import Lang from '../scripts/Lang';
 
 import {
-    BuildingOffice2Icon,
     UserCircleIcon,
     UserGroupIcon,
     CodeBracketIcon,

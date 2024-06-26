@@ -31,10 +31,11 @@ const router = createRouter({
 });
 
 // User access control
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
     const route = router.getRoutes().find(route => route.name === to.name);
-    if (route.beforeEnter === undefined) return true;
+    if (route === undefined) return { name: "NotFound" };
 
+    if (route.beforeEnter === undefined) return true;
     return (route.beforeEnter as any)() ? true : { name: "Home" };
 });
 

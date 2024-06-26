@@ -131,8 +131,8 @@ export default {
             let timeout = null;
             this.input = input;
 
-            input.addEventListener("focus", ev => this.showing = true);
-            input.addEventListener("blur", ev => {
+            input.addEventListener("focus", () => this.showing = true);
+            input.addEventListener("blur", () => {
                 const rect = this.$el.firstElementChild.getBoundingClientRect();
                 if (this.mouse.x < rect.left || this.mouse.x > rect.left + rect.width || this.mouse.y < rect.top || this.mouse.y > rect.top + rect.height) {
                     this.showing = false;

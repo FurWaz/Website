@@ -21,9 +21,10 @@ export function getTypedValue(value) {
     case false:
     case 'false':
         return false;
-    default:
+    default: {
         const nbr = Number(value);
         if (!isNaN(nbr)) return nbr;
         return value.trim();
+    }
     }
 }

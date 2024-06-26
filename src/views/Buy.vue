@@ -97,7 +97,6 @@
 
 <script>
 import LogZone from '../components/cards/LogZone.vue';
-import InputText from '../components/inputs/InputText.vue';
 import GetText from '../components/text/GetText.vue';
 import BadgeCard from '../components/cards/BadgeCard.vue';
 import TitleText from '../components/text/TitleText.vue';

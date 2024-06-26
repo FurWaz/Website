@@ -152,7 +152,7 @@ export default class Lang {
         this.GetTextAsync(context).then(callback);
     }
 
-    static CreateTranslationContext(file: any, code: any, format: any) {
+    static CreateTranslationContext(file: any, code: any, format: any = undefined) {
         return {file, code, format: format ?? undefined};
     }
 

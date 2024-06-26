@@ -89,7 +89,7 @@ import BaseText from '../../components/text/BaseText.vue';
 import GetText from '../../components/text/GetText.vue';
 
 function fetchMyApps() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         API.execute_logged(API.ROUTE.MY.APPS()).then(res => {
             resolve(res.data.apps);
         }).catch(err => {

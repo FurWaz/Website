@@ -68,7 +68,7 @@ export default {
             if (this.mode === 'login') this.mode = 'forgot';
             else this.mode = 'login';
         },
-        cancel(form) {
+        cancel() {
             if (this.mode === 'login') this.$router.go(-1);
             else this.mode = 'login';
         },

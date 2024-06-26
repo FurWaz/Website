@@ -1,15 +1,15 @@
-import Lang from "./Lang.js";
+import Lang from "./Lang";
 import { applyClasses } from "./dom.js";
 
-let LogIdCounter = 0;
 class Log {
+    static LogIdCounter = 0;
     static INFO = "dark:text-slate-300 text-slate-600";
     static ERROR = "text-red-500";
     static WARNING = "text-orange-500";
     static SUCCESS = "text-teal-500";
 
     constructor(msg, type = Log.INFO) {
-        this.id = LogIdCounter++;
+        this.id = Log.LogIdCounter++;
         this.zone = null;
         this.type = type;
         this.dom = document.createElement("p");
@@ -137,10 +137,11 @@ class LogZone {
         case "object":
             this.toremove.push(log);
             break;
-        case "number":
+        case "number": {
             const l = this.logs.find(l => l.id === log);
             if (l) this.toremove.push(l);
             break;
+        }
         default: break;
         }
         this.render();

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-text-v-html-on-component -->
 <template>
     <div class="flex md:flex-row flex-col grow min-h-full h-full w-full">
         <div

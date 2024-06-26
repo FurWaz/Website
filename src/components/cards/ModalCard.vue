@@ -38,7 +38,7 @@ export default {
         card.$el.addEventListener("click", e => {
             e.stopPropagation();
         });
-        root.addEventListener("click", e => {
+        root.addEventListener("click", () => {
             this.close();
         });
     },

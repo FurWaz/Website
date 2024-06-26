@@ -38,8 +38,7 @@ import {
     Squares2X2Icon,
     KeyIcon,
     ComputerDesktopIcon,
-    Cog6ToothIcon,
-    CommandLineIcon
+    Cog6ToothIcon
 } from '@heroicons/vue/24/outline';
 
 const links = [
