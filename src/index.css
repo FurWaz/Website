@@ -125,10 +125,6 @@
 
 html, head, body {
     height: 100%;
-}
-
-body {
-    @apply bg-slate-200 dark:bg-slate-900;
     font-family: 'Poppins', sans-serif;
 }
 

@@ -1,55 +1,48 @@
 <template>
-    <div class="flex flex-col grow min-w-0 min-h-0 dark:bg-slate-700 bg-slate-50 overflow-hidden">        
-        <top-bar />
+    <div class="flex grow bg-slate-200 dark:bg-slate-700">        
+        <TopBar />
         <div
             id="page-content"
             ref="content"
-            class="flex grow max-w-full max-h-full overflow-x-hidden overflow-y-auto md:pt-20 pt-16"
+            class="flex grow overflow-x-hidden overflow-y-auto md:pt-20 pt-16"
         >
-            <router-view />
+            <RouterView />
         </div>
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import TopBar from "./components/TopBar.vue";
+import { RouterView } from "vue-router";
 
-export default {
-    name: "App",
+export default defineComponent({
     components: {
-        TopBar
+        TopBar,
+        RouterView
     },
     data() {
-        return {lastScroll: 0}
+        return {
+            lastScroll: 0
+        }
     },
     mounted() {
-        let theme = localStorage.getItem('theme');
-        if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        // TODO : add event listener for theme change
-        if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        // scroll events for topbar show/hide
+        const content = this.$refs.content as HTMLElement|null;
+        if (!content) return;
 
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (ev) => {
-            if (ev.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        });
-
-        this.$refs["content"].addEventListener("scroll", (ev) => {
-            const deltaY = ev.target.scrollTop - this.lastScroll;
-            this.lastScroll = ev.target.scrollTop;
-            window.deltaY = deltaY;
+        content.addEventListener("scroll", () => {
+            const deltaY = content.scrollTop - this.lastScroll;
+            this.lastScroll = content.scrollTop;
+            (window as any).deltaY = deltaY;
             
-            if (window.innerWidth >= 768) return; // not mobile, don't trigger fake events
+            // not mobile, don't trigger fake events
+            if (window.innerWidth >= 768) return;
+
             window.dispatchEvent(new Event("wheel"));
         });
     }
-};
+});
 </script>
 
 <style>

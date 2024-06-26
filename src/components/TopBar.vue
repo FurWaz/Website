@@ -1,6 +1,6 @@
 <template>
     <div
-        ref="topbar-cont"
+        ref="topbarContainer"
         class="fixed left-0 flex grow h-fit w-full md:p-2 p-1 transition-all"
         style="top: 0; z-index: 1000;"
     >
@@ -103,7 +103,7 @@
             <!-- MOBILE MENU -->
             <div
                 v-if="mobile"
-                ref="mobile-menu"
+                ref="mobileMenu"
                 class="md:hidden flex grow space-x-2 transition-all overflow-hidden"
                 style="max-height: 0;"
             >
@@ -158,7 +158,9 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
 import IconCard from '../components/cards/IconCard.vue';
 import BadgeCard from '../components/cards/BadgeCard.vue';
 import ButtonBlock from './inputs/ButtonBlock.vue';
@@ -206,8 +208,7 @@ const menu = [
     }
 ];
 
-export default {
-    name: "TopBar",
+export default defineComponent({
     components: {
         IconCard,
         BadgeCard,
@@ -217,7 +218,7 @@ export default {
         GetText
     },
     data() {
-        window.topbar = this;
+        (window as any).topbar = this;
         return {
             User,
             menu,
@@ -229,14 +230,17 @@ export default {
         };
     },
     mounted() {
-        window.addEventListener("wheel", ev => {
+        window.addEventListener("wheel", () => {
             // using deltaY from page movement (calculated in App.vue)
-            const deltaY = window.deltaY;
+            const deltaY = (window as any).deltaY;
             const deadZone = 4;
-            const shouldHide = (deltaY > deadZone) ? true : (deltaY < -deadZone) ? false : this.hiding;
+            const shouldHide = (deltaY > deadZone)? true: ((deltaY < 0)? false: this.hiding);
+            
             if (shouldHide !== this.hiding) {
                 this.hiding = shouldHide;
-                const container = this.$refs["topbar-cont"];
+                const container = this.$refs.topbarContainer as HTMLElement|null;
+                if (!container) return;
+
                 if (shouldHide) {
                     container.style.transform = "translateY(-100%)";
                     if (this.isOpen) this.toogleMobileMenu();
@@ -245,18 +249,8 @@ export default {
                 }
             }
         });
-        window.addEventListener("click", ev => {
-            if (this.isOpen) {
-                const topbar = this.$refs["topbar"];
-                const rect = topbar.getBoundingClientRect();
-                const isInside = ev.clientX >= rect.left && ev.clientX <= rect.right && ev.clientY >= rect.top && ev.clientY <= rect.bottom;
-                if (!isInside) {
-                    this.toogleMobileMenu();
-                }
-            }
-        });
 
-        window.addEventListener("resize", ev => {
+        window.addEventListener("resize", () => {
             this.mobile = window.innerWidth < 768;
             if (this.isOpen) this.toogleMobileMenu();
         });
@@ -264,13 +258,14 @@ export default {
         this.$router.afterEach((to, from) => {
             if (to.fullPath === from.fullPath) return;
             if (this.isOpen) this.toogleMobileMenu();
-            document.getElementById("page-content").scrollTo(0, 0);
+            document.getElementById("page-content")?.scrollTo(0, 0);
         });
     },
     methods: {
         toogleMobileMenu() {
-            const mobileMenu = this.$refs["mobile-menu"];
-            const topbar = this.$refs["topbar"];
+            const mobileMenu = this.$refs.mobileMenu as HTMLElement|null;
+            const topbar = this.$refs.topbar as HTMLElement|null;
+            if (!mobileMenu || !topbar) return;
 
             if (!this.isOpen) {
                 const childRect = mobileMenu.children[0].getBoundingClientRect();
@@ -285,5 +280,5 @@ export default {
             this.isOpen = mobileMenu.style.maxHeight !== '0px';
         }
     }
-}
+})
 </script>

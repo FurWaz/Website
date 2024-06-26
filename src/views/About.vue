@@ -8,10 +8,11 @@
                     <get-text :context="Lang.CreateTranslationContext('about', 'AboutMe')" />
                 </title-text>
             </div>
-            <div class="show-up flex w-full mx-auto justify-center items-center md:space-x-16 lg:space-x-32">
+            <div class="show-up flex w-full mx-auto justify-center items-center md:space-x-16 lg:space-x-32 ">
                 <div class="flex w-fit h-fit flex-col space-y-4">
                     <badge-card
                         class="show-right flex w-full bg-slate-200 dark:bg-slate-600 py-2 px-3"
+                        :hoverable="false"
                         :style="'animation-delay: ' + (isMobile? 0: 1) + '00ms'"
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
@@ -25,6 +26,7 @@
                     </badge-card>
                     <badge-card
                         class="show-right flex w-full bg-slate-200 dark:bg-slate-600 py-2 px-3"
+                        :hoverable="false"
                         :style="'animation-delay: ' + (isMobile? 0: 2) + '00ms'"
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
@@ -38,6 +40,7 @@
                     </badge-card>
                     <badge-card
                         class="show-right flex w-full bg-slate-200 dark:bg-slate-600 py-2 px-3"
+                        :hoverable="false"
                         :style="'animation-delay: ' + (isMobile? 0: 3) + '00ms'"
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
@@ -65,7 +68,7 @@
                     </div>
                 </div>
                 <div
-                    class="show-left flex flex-col items-center absolute top-0 md:right-14 lg:right-0 w-6 h-6 md:flex hidden space-y-4"
+                    class="show-left flex flex-col items-center absolute top-0 md:right-20 lg:right-24 w-6 h-6 md:flex hidden space-y-4"
                     :style="'animation-delay: ' + (isMobile? 0: 4) + '00ms'"
                 >
                     <button
@@ -98,6 +101,7 @@
             <div class="flex flex-col md:flex-row justify-evenly space-y-4 md:space-y-0">
                 <badge-card
                     class="show-up bg-slate-200 dark:bg-slate-600 p-4 w-full md:w-[22%] h-fit md:h-full space-y-2"
+                    :hoverable="false"
                     :style="'animation-delay: ' + (isMobile? 0: 1) + '00ms'"
                 >
                     <code-bracket-icon class="w-10 mr-auto text-orange-500" />
@@ -110,6 +114,7 @@
                 </badge-card>
                 <badge-card
                     class="show-up bg-slate-200 dark:bg-slate-600 p-4 w-full md:w-[22%] h-fit md:h-full space-y-2"
+                    :hoverable="false"
                     :style="'animation-delay: ' + (isMobile? 0: 2) + '00ms'"
                 >
                     <device-phone-mobile-icon class="w-10 mr-auto text-pink-500" />
@@ -122,6 +127,7 @@
                 </badge-card>
                 <badge-card
                     class="show-up bg-slate-200 dark:bg-slate-600 p-4 w-full md:w-[22%] h-fit md:h-full space-y-2"
+                    :hoverable="false"
                     :style="'animation-delay: ' + (isMobile? 0: 3) + '00ms'"
                 >
                     <computer-desktop-icon class="w-10 mr-auto text-fuchsia-500" />
@@ -134,6 +140,7 @@
                 </badge-card>
                 <badge-card
                     class="show-up bg-slate-200 dark:bg-slate-600 p-4 w-full md:w-[22%] h-fit md:h-full space-y-2"
+                    :hoverable="false"
                     :style="'animation-delay: ' + (isMobile? 0: 4) + '00ms'"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor" class="w-10 h-10 mr-auto text-purple-500">
@@ -196,11 +203,11 @@
                     <get-text :context="Lang.CreateTranslationContext('about', 'Friends')" />
                 </title-text>
             </div>
-            <div class="show-up flex flex-wrap justify-evenly">
+            <div class="show-up flex flex-wrap justify-evenly w-full">
                 <badge-card
                     v-for="friend in friends"
                     :key="friend.name"
-                    class="show-up bg-slate-200 dark:bg-slate-600 p-2 min-w-fit w-1/4 my-4 mx-4"
+                    class="show-up bg-slate-200 dark:bg-slate-600 p-2 min-w-fit w-full max-w-[25em] md:w-1/4 my-4 mx-4"
                     :style="'animation-delay: ' + (100 * (isMobile? 0: friends.indexOf(friend) + 1)) + 'ms'"
                 >
                     <div class="flex w-full justify-center items-center">
@@ -233,7 +240,7 @@
             <div class="show-up flex justify-center mb-20">
                 <a
                     class="w-fit h-fit"
-                    href="mailto:loisil.paul06@gmail.com"
+                    href="mailto:contact@furwaz.fr"
                     target="_blank"
                 >
                     <badge-card
@@ -244,7 +251,7 @@
                                 <get-text :context="Lang.CreateTranslationContext('about', 'Mail')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
-                                loisil.paul06@gmail.com
+                                contact@furwaz.fr
                             </span>
                         </p>
                     </badge-card>

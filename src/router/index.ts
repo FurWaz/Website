@@ -6,8 +6,8 @@ const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         { path: '/',                name: 'Home',           component: HomeView,                                        beforeEnter: () => true },
-        { path: '/privacy',         name: 'Privacy',        component: () => import("../views/Legal.vue"),              beforeEnter: () => true },
-        { path: '/terms',           name: 'Terms',          component: () => import("../views/Legal.vue"),              beforeEnter: () => true },
+        { path: '/privacy',         name: 'Privacy',        component: () => import("../views/LegalDocView.vue"),       beforeEnter: () => true },
+        { path: '/terms',           name: 'Terms',          component: () => import("../views/LegalDocView.vue"),       beforeEnter: () => true },
         { path: '/register',        name: 'Register',       component: () => import("../views/Register.vue"),           beforeEnter: () => true },
         { path: '/login',           name: 'Login',          component: () => import("../views/Login.vue"),              beforeEnter: () => true },
         { path: '/about',           name: 'About',          component: () => import("../views/About.vue"),              beforeEnter: () => true },

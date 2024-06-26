@@ -1,9 +1,9 @@
 <template>
     <div class="flex flex-col grow min-h-full h-fit w-full">
-        <div class="flex flex-col h-[75vh] w-full justify-center items-center">
-            <icon-card class="h-40 w-40" />
+        <div class="flex flex-col h-[75vh] w-full justify-center items-center space-y-8">
+            <icon-card class="h-48 w-48" />
             <h1
-                class="noscroll show-up text-4xl font-bold text-slate-700 dark:text-white"
+                class="noscroll show-up text-7xl font-bold text-slate-700 dark:text-white"
                 style="animation-delay: 400ms;"
             >
                 FurWaz
