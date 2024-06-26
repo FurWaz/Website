@@ -21,9 +21,7 @@ const router = createRouter({
         { path: '/my',              name: 'Account',        component: () => import("../views/Account.vue"),            beforeEnter: () => User.CurrentUser !== null },
         { path: '/my/profile',      name: 'Profile',        component: () => import("../views/Account/Profile.vue"),    beforeEnter: () => User.CurrentUser !== null },
         { path: '/my/apps',         name: 'MyApps',         component: () => import("../views/Account/Apps.vue"),       beforeEnter: () => User.CurrentUser !== null },
-        { path: '/my/sessions',     name: 'Sessions',       component: () => import("../views/Account/Sessions.vue"),   beforeEnter: () => User.CurrentUser !== null },
         { path: '/my/security',     name: 'Security',       component: () => import("../views/Account/Security.vue"),   beforeEnter: () => User.CurrentUser !== null },
-        { path: '/my/settings',     name: 'Settings',       component: () => import("../views/Account/Settings.vue"),   beforeEnter: () => User.CurrentUser !== null },
 
         // 404 redirect
         { path: "/:catchAll(.*)", name: 'NotFound', component: () => import("../views/NotFound.vue") }

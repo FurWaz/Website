@@ -36,17 +36,13 @@ import GetText from '../components/text/GetText.vue';
 import {
     UserIcon,
     Squares2X2Icon,
-    KeyIcon,
-    ComputerDesktopIcon,
-    Cog6ToothIcon
+    KeyIcon
 } from '@heroicons/vue/24/outline';
 
 const links = [
     {name: "Profile",  icon: UserIcon, href: "/my/profile"},
-    {name: "Apps",     icon: Squares2X2Icon, href: "/my/apps"},
-    {name: "Sessions", icon: ComputerDesktopIcon, href: "/my/sessions"},
     {name: "Security", icon: KeyIcon, href: "/my/security"},
-    {name: "Settings", icon: Cog6ToothIcon, href: "/my/settings"}
+    {name: "Apps",     icon: Squares2X2Icon, href: "/my/apps"},
 ];
 
 export default {
