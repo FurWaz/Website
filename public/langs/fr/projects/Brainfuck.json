@@ -1,6 +1,6 @@
 {
     "title": "Brainfuck",
-    "short": "Un interpréteur Brainfuck avec une belle interface pour voir ce qui se passe en coulisses !",
+    "short": "Un interpréteur Brainfuck avec une belle interface pour voir ce qui s'y passe !",
     "button": "J'aime bricoler",
     "description": [
         "Brainfuck est un interpréteur Brainfuck graphique simple réalisé avec du JavaScript pur.",

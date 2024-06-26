@@ -22,7 +22,7 @@
                     :ref="'project-' + item.id?.toLowerCase().trim()"
                     :key="item"
                     :selected="selectedApp === item"
-                    class="show-up p-2 m-8 max-w-[18em] min-h-[22em] h-fit hover:shadow-md"
+                    class="flex show-up p-2 m-8 max-w-[18em] min-h-[22em] h-fit hover:shadow-md space-y-4"
                 >
                     <div
                         class="flex flex-col items-center justify-center w-full"
@@ -39,7 +39,7 @@
                     <base-text class="flex grow mx-auto text-center">
                         <get-text :context="item.short" />
                     </base-text>
-                    <div class="flex justify-between w-full my-6">
+                    <div class="flex justify-between w-full">
                         <button-block
                             :onclick="() => openAppPreview(item)"
                         >
@@ -48,16 +48,16 @@
                     </div>
                     <div
                         v-if="item.tags && item.tags.length > 0"
-                        class="flex w-full overflow-y-hidden overflow-x-auto pb-2"
+                        class="flex w-full overflow-y-hidden overflow-x-auto space-x-2"
                     >
                         <router-link
                             v-for="tag in item.tags"
                             :key="tag"
                             :to="'/projects?search=' + tag"
-                            class="mx-2 px-2 pb-1 rounded-lg border-2 font-semibold border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400
+                            class="pt-1 px-2 pb-1 rounded-lg border-2 font-semibold border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400
                                 hover:border-slate-400 hover:bg-slate-200 hover:text-slate-700 dark:hover:bg-slate-600 dark:hover:text-slate-200 transition-all"
                         >
-                            #{{ tag }}
+                            <p class="whitespace-nowrap p-0">#{{ tag }}</p>
                         </router-link>
                     </div>
                 </badge-card>

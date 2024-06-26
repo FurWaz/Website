@@ -1,0 +1,11 @@
+{
+    "title": "BigyRenderer",
+    "short": "A 3D renderer and OBj file loader made from scratch !",
+    "button": "I'm interested :)",
+    "description": [
+        "BigyRenderer is a 3D renderer made during a 4th year project in computer science at the University of Lorraine.",
+        "This renderer supports the reading of OBJ files, and their different associated textures (diffuse, normal, specular).",
+        "The entire 3D rendering is done in C++ without any library and runs on the CPU.",
+        "Only the loading and saving of images is done using the STB library."
+    ]
+}
