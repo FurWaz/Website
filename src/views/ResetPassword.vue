@@ -1,33 +1,34 @@
 <template>
     <div class="flex grow justify-center items-center">
-        <form-card
+        <FormCard
             class="p-2"
             :title="Lang.CreateTranslationContext('verifications', 'passwordReset')"
             :on-cancel="goHome"
             :on-validate="resetPassword"
         >
-            <input-text
+            <InputText
                 name="password"
                 :label="Lang.CreateTranslationContext('verifications', 'passwordNew')"
                 :placeholder="Lang.CreateTranslationContext('verifications', 'passwordNew')"
                 type="password"
             />
-            <input-text
+            <InputText
                 name="passwordConfirm"
                 :label="Lang.CreateTranslationContext('verifications', 'passwordConfirm')"
                 :placeholder="Lang.CreateTranslationContext('verifications', 'passwordConfirm')"
                 type="password"
             />
-        </form-card>
+        </FormCard>
     </div>
 </template>
 
 <script>
 import FormCard from '../components/cards/FormCard.vue';
 import InputText from '../components/inputs/InputText.vue';
-import API from '../scripts/API';
-import Lang from '../scripts/Lang';
 import { Log } from '../scripts/Logs';
+import { API } from '../scripts/API';
+import ROUTES from '../scripts/routes';
+import Lang from '../scripts/Lang';
 
 export default {
     name: 'ResetPassword',
@@ -77,23 +78,19 @@ export default {
                 return;
             }
 
-            try {
-                const res = await API.execute(API.ROUTE.RESET.PASSWORD(), API.METHOD.POST, {
-                    token: this.token,
-                    password: password
-                });
-                
-                log.update(res.message, Log.SUCCESS);
-                setTimeout(() => {
-                    log.delete();
-                    this.$router.push('/login');
-                }, 2000);
-            } catch (err) {
-                log.error(err);
-                if (err.field) form.focus(err.field);
-                console.error(err);
+            const res = await API.Request(ROUTES.PASSWORD.RESET(this.token, password));
+            if (res.error) {
+                log.error(res);
+                if (res.field) form.focus(res.field);
                 setTimeout(() => { log.delete(); }, 4000);
+                return;
             }
+
+            log.update(res.message, Log.SUCCESS);
+            setTimeout(() => {
+                log.delete();
+                this.$router.push({ name: 'Login' });
+            }, 2000);
         },
         goHome() {
             this.$router.push('/');

@@ -1,6 +1,6 @@
 <template>
     <div class="flex grow justify-center items-center">
-        <form-card
+        <FormCard
             class="p-2 text-xl"
             cancel=""
             :title="Lang.CreateTranslationContext('verifications', 'emailTitle')"
@@ -13,28 +13,29 @@
             >
                 <div v-if="error">
                     <p class="text-red-500">
-                        <get-text :context="Lang.CreateTranslationContext('verifications', 'emailError', {error})" />
+                        <GetText :context="Lang.CreateTranslationContext('verifications', 'emailError', {error})" />
                     </p>
                 </div>
                 <div v-else-if="success">
                     <p class="text-green-500">
-                        <get-text :context="Lang.CreateTranslationContext('verifications', 'emailSuccess')" />
+                        <GetText :context="Lang.CreateTranslationContext('verifications', 'emailSuccess')" />
                     </p>
                 </div>
                 <div v-else>
                     <p class="text-slate-500">
-                        <get-text :context="Lang.CreateTranslationContext('verifications', 'emailLoading')" />
+                        <GetText :context="Lang.CreateTranslationContext('verifications', 'emailLoading')" />
                     </p>
                 </div>
             </div>
-        </form-card>
+        </FormCard>
     </div>
 </template>
 
 <script>
 import FormCard from '../components/cards/FormCard.vue';
 import GetText from '../components/text/GetText.vue';
-import API from '../scripts/API';
+import { API } from '../scripts/API';
+import ROUTES from '../scripts/routes';
 import Lang from '../scripts/Lang';
 
 export default {
@@ -61,11 +62,11 @@ export default {
                 return;
             }
 
-            try {
-                await API.execute(API.ROUTE.VERIFY.EMAIL(), API.METHOD.POST, { token });
+            const res = await API.Request(ROUTES.VERIFY.EMAIL(token));
+            if (res.error) {
+                this.error = res.error;
+            } else {
                 this.success = true;
-            } catch (err) {
-                this.error = err.error;
             }
         },
         goHome() {

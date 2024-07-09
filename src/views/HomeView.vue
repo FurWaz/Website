@@ -10,16 +10,16 @@
             </h1>
         </div>
         <div class="flex w-full h-fit justify-center">
-            <button-block
+            <ButtonBlock
                 class="show-up"
                 style="animation-delay: 600ms"
                 :onclick="scrollForMore"
             >
                 <div class="flex flex-col justify-center items-center">
-                    <p> <get-text :context="{file: 'home', code: 'ScrollForMore'}" /> </p>
+                    <p> <GetText :context="{file: 'home', code: 'ScrollForMore'}" /> </p>
                     <chevron-down-icon class="w-6" />
                 </div>
-            </button-block>
+            </ButtonBlock>
         </div>
         <div class="flex md:flex-row flex-col h-fit w-full mt-20">
             <div class="md:flex hidden flex-col w-full">

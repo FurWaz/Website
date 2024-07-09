@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col grow h-full w-full justify-evenly items-center">
         <div class="flex w-full max-w-[25em] h-full flex-col justify-evenly items-center">
-            <form-card
+            <FormCard
                 title="Store"
                 class="p-2 mx-1"
                 :on-validate="connect"
@@ -14,7 +14,7 @@
                 >
                     <div class="space-y-2">
                         <p class="text-xl text-slate-600 dark:text-slate-200 w-fit">
-                            <get-text :context="Lang.CreateTranslationContext('buy', 'AddToCart')" />
+                            <GetText :context="Lang.CreateTranslationContext('buy', 'AddToCart')" />
                         </p>
                         <badge-card
                             v-if="product"
@@ -32,7 +32,7 @@
                             </div>
                         </badge-card>
                         <p class="md:pt-4 text-xl text-slate-600 dark:text-slate-200 w-fit">
-                            <get-text :context="Lang.CreateTranslationContext('buy', 'FromApp')" />
+                            <GetText :context="Lang.CreateTranslationContext('buy', 'FromApp')" />
                         </p>
                         <badge-card
                             v-if="app"
@@ -60,14 +60,14 @@
                                 <base-text class="w-fit mx-auto text-center"> {{ app.description }} </base-text>
                             </div>
                             <base-text class="flex space-x-1 w-full text-sm">
-                                <get-text :context="Lang.CreateTranslationContext('portal', 'CreatedBy')" />
+                                <GetText :context="Lang.CreateTranslationContext('portal', 'CreatedBy')" />
                                 <span class="font-bold">{{ author?.pseudo ?? '...' }}</span>
                             </base-text>
                         </badge-card>
                     </div>
                     <div class="show-right">
                         <p class="flex text-xl text-slate-600 dark:text-slate-200 w-full space-x-2">
-                            <get-text :context="Lang.CreateTranslationContext('buy', 'ToAccount')" />
+                            <GetText :context="Lang.CreateTranslationContext('buy', 'ToAccount')" />
                             <span class="font-bold"> {{ user.pseudo }} </span>
                         </p>
                     </div>
@@ -80,17 +80,17 @@
                         class="show-up text-xl text-center font-bold italic text-slate-600 dark:text-slate-200"
                         style="animation-delay: 400ms;"
                     >
-                        <get-text :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
+                        <GetText :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
                     </p>
                     <p
                         class="show-up text-xl text-center font-semibold italic text-slate-400 dark:text-slate-400"
                         style="animation-delay: 400ms;"
                     >
-                        <get-text :context="Lang.CreateTranslationContext('portal', 'PortalError', {error: errorMessage})" />
+                        <GetText :context="Lang.CreateTranslationContext('portal', 'PortalError', {error: errorMessage})" />
                     </p>
                 </div>
-                <log-zone ref="log-zone" />
-            </form-card>
+                <LogZone ref="LogZone" />
+            </FormCard>
         </div>
     </div>
 </template>
@@ -102,7 +102,7 @@ import BadgeCard from '../components/cards/BadgeCard.vue';
 import TitleText from '../components/text/TitleText.vue';
 import BaseText from '../components/text/BaseText.vue';
 import FormCard from '../components/cards/FormCard.vue';
-import API from '../scripts/API';
+import { API } from '../scripts/API';
 import Lang from '../scripts/Lang';
 import { Log } from '../scripts/Logs';
 import User from '../scripts/User';

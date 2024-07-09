@@ -24,18 +24,18 @@
                 style="animation-delay: 400ms;"
             >
                 <title-text>
-                    <get-text :context="{file: 'home', code: 'MyAbout'}" />
+                    <GetText :context="{file: 'home', code: 'MyAbout'}" />
                 </title-text>
                 <base-text class="text-right">
-                    <get-text :context="{file: 'home', code: 'MyAboutDesc'}" />
+                    <GetText :context="{file: 'home', code: 'MyAboutDesc'}" />
                 </base-text>
 
-                <button-block
+                <ButtonBlock
                     class="ml-auto"
                     href="/about"
                 >
-                    <get-text :context="{file: 'home', code: 'MyAboutBtn'}" />
-                </button-block>
+                    <GetText :context="{file: 'home', code: 'MyAboutBtn'}" />
+                </ButtonBlock>
             </div>
         </div>
     </div>

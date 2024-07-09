@@ -5,7 +5,7 @@
             <div class="show-up flex space-x-4 md:space-x-8">
                 <user-circle-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    <get-text :context="Lang.CreateTranslationContext('about', 'AboutMe')" />
+                    <GetText :context="Lang.CreateTranslationContext('about', 'AboutMe')" />
                 </title-text>
             </div>
             <div class="show-up flex w-full mx-auto justify-center items-center md:space-x-16 lg:space-x-32 ">
@@ -17,7 +17,7 @@
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
                             <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                <get-text :context="Lang.CreateTranslationContext('about', 'Name')" /> :
+                                <GetText :context="Lang.CreateTranslationContext('about', 'Name')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
                                 Paul LOISIL
@@ -31,7 +31,7 @@
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
                             <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                <get-text :context="Lang.CreateTranslationContext('about', 'Grade')" /> :
+                                <GetText :context="Lang.CreateTranslationContext('about', 'Grade')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
                                 Master 1
@@ -45,10 +45,10 @@
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
                             <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                <get-text :context="Lang.CreateTranslationContext('about', 'Domain')" /> :
+                                <GetText :context="Lang.CreateTranslationContext('about', 'Domain')" /> :
                             </span>
                             <span class="flex font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
-                                <get-text :context="Lang.CreateTranslationContext('about', 'ComputerScience')" />
+                                <GetText :context="Lang.CreateTranslationContext('about', 'ComputerScience')" />
                             </span>
                         </p>
                     </badge-card>
@@ -89,13 +89,13 @@
                         class="text-center text-lg text-orange-500 font-bold w-32 show-down"
                         :style="'animation-delay: ' + (isMobile? 0: 9) + '00ms'"
                     >
-                        <get-text :context="Lang.CreateTranslationContext('about', 'DownloadCV')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'DownloadCV')" />
                     </p>
                 </div>
             </div>
             <div class="show-up flex mx-auto">
                 <title-text class="my-8 text-slate-500 dark:text-slate-400">
-                    <get-text :context="Lang.CreateTranslationContext('about', 'Interests')" />
+                    <GetText :context="Lang.CreateTranslationContext('about', 'Interests')" />
                 </title-text>
             </div>
             <div class="flex flex-col md:flex-row justify-evenly space-y-4 md:space-y-0">
@@ -106,10 +106,10 @@
                 >
                     <code-bracket-icon class="w-10 mr-auto text-orange-500" />
                     <p class="text-lg font-semibold mr-auto text-orange-500">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'WebDev')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'WebDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'WebDevDesc')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'WebDevDesc')" />
                     </p>
                 </badge-card>
                 <badge-card
@@ -119,10 +119,10 @@
                 >
                     <device-phone-mobile-icon class="w-10 mr-auto text-pink-500" />
                     <p class="text-lg font-semibold mr-auto text-pink-500">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'MobDev')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'MobDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'MobDevDesc')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'MobDevDesc')" />
                     </p>
                 </badge-card>
                 <badge-card
@@ -132,10 +132,10 @@
                 >
                     <computer-desktop-icon class="w-10 mr-auto text-fuchsia-500" />
                     <p class="text-lg font-semibold mr-auto text-fuchsia-500">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'DesDev')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'DesDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'DesDevDesc')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'DesDevDesc')" />
                     </p>
                 </badge-card>
                 <badge-card
@@ -147,10 +147,10 @@
                         <path d="M216 336H424c22 0 41.2 15 46.6 36.4l3.6 14.3c6.7 26.6 30.6 45.3 58 45.3c33 0 59.8-26.8 59.8-59.8v-2.8c0-3.5-.3-7.1-.9-10.6L558.4 168c-6.2-36-27.8-60.4-54.6-67.1C461.4 90.3 399.7 80 320 80s-141.5 10.3-183.7 20.9C109.4 107.6 87.8 132 81.6 168L48.9 358.8c-.6 3.5-.9 7-.9 10.6v2.8c0 33 26.8 59.8 59.8 59.8c27.4 0 51.4-18.7 58-45.3l3.6-14.3C174.8 351 194 336 216 336zm211.6 62.3L424 384H216l-3.6 14.3c-12 48-55.1 81.7-104.6 81.7C48.3 480 0 431.7 0 372.2v-2.8c0-6.3 .5-12.5 1.6-18.7L34.3 159.8c8.6-50.2 40.9-93.2 90.3-105.5C170.5 42.9 236.2 32 320 32s149.5 10.9 195.3 22.3c49.4 12.3 81.7 55.3 90.3 105.5l32.7 190.9c1.1 6.2 1.6 12.4 1.6 18.7v2.8C640 431.7 591.7 480 532.2 480c-49.5 0-92.6-33.7-104.6-81.7zM232 168v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H232v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H152c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24zm168 72a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm32-64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
                     </svg>
                     <p class="text-lg font-semibold mr-auto text-purple-500">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'GameDev')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'GameDev')" />
                     </p>
                     <p class="flex grow items-center text-md font-base">
-                        <get-text :context="Lang.CreateTranslationContext('about', 'GameDevDesc')" />
+                        <GetText :context="Lang.CreateTranslationContext('about', 'GameDevDesc')" />
                     </p>
                 </badge-card>
             </div>
@@ -166,7 +166,7 @@
             <div class="show-up flex space-x-4 md:space-x-8 mt-20">
                 <link-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    <get-text :context="Lang.CreateTranslationContext('about', 'Links')" />
+                    <GetText :context="Lang.CreateTranslationContext('about', 'Links')" />
                 </title-text>
             </div>
             <div class="flex flex-col md:flex-row justify-evenly space-y-4 md:space-y-0">
@@ -200,7 +200,7 @@
             <div class="show-up flex space-x-4 md:space-x-8 mt-20">
                 <user-group-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    <get-text :context="Lang.CreateTranslationContext('about', 'Friends')" />
+                    <GetText :context="Lang.CreateTranslationContext('about', 'Friends')" />
                 </title-text>
             </div>
             <div class="show-up flex flex-wrap justify-evenly w-full">
@@ -234,7 +234,7 @@
             <div class="show-up flex space-x-4 md:space-x-8 mt-20">
                 <envelope-icon class="w-10 md:w-12 text-slate-600 dark:text-slate-300" />
                 <title-text class="my-10">
-                    <get-text :context="Lang.CreateTranslationContext('about', 'ContactMe')" />
+                    <GetText :context="Lang.CreateTranslationContext('about', 'ContactMe')" />
                 </title-text>
             </div>
             <div class="show-up flex justify-center mb-20">
@@ -248,7 +248,7 @@
                     >
                         <p class="flex space-x-2 w-full text-left text-lg">
                             <span class="flex font-bold text-slate-700 dark:text-slate-50 whitespace-nowrap">
-                                <get-text :context="Lang.CreateTranslationContext('about', 'Mail')" /> :
+                                <GetText :context="Lang.CreateTranslationContext('about', 'Mail')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
                                 contact@furwaz.fr

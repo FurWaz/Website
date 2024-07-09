@@ -2,22 +2,23 @@
     <div class="flex flex-col grow h-full w-full">
         <button-back class="px-2 h-fit" />
         <div class="flex flex-col grow justify-center items-center space-y-2">
-            <form-card
+            <FormCard
                 class="show-up p-2"
                 :title="Lang.CreateTranslationContext('account', 'Profile')"
                 :validate="Lang.CreateTranslationContext('verbs', 'Edit')"
                 :cancel="Lang.CreateTranslationContext('verbs', 'Delete')"
+                :cancel-color="'red'"
                 :on-cancel="() => $refs['delete-modal'].open()"
                 :on-validate="editProfile"
             >
-                <input-text
+                <InputText
                     name="pseudo"
                     :label="Lang.CreateTranslationContext('account', 'Pseudo')"
                     :value="User.CurrentUser?.pseudo"
                     class="show-down"
                     style="animation-delay: 100ms;"
                 />
-                <input-text
+                <InputText
                     name="email"
                     :label="Lang.CreateTranslationContext('account', 'Email')"
                     :value="User.CurrentUser?.email"
@@ -33,7 +34,7 @@
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
-            </form-card>
+            </FormCard>
         </div>
         <modal-card ref="delete-modal">
             <confirm-form
@@ -43,7 +44,7 @@
                 :on-cancel="() => $refs['delete-modal'].close()"
                 :on-confirm="deleteAccount"
             >
-                <input-text
+                <InputText
                     type="password"
                     name="password"
                     :label="Lang.CreateTranslationContext('account', 'Password')"
@@ -58,13 +59,14 @@
 import FormCard from '../../components/cards/FormCard.vue';
 import InputText from '../../components/inputs/InputText.vue';
 import InputChoice from '../../components/inputs/InputChoice.vue';
-import API from '../../scripts/API';
-import Lang from '../../scripts/Lang';
-import { Log } from '../../scripts/Logs';
-import User from '../../scripts/User';
 import ButtonBack from '../../components/inputs/ButtonBack.vue';
 import ModalCard from '../../components/cards/ModalCard.vue';
 import ConfirmForm from '../../components/cards/ConfirmForm.vue';
+import { Log } from '../../scripts/Logs';
+import { API } from '../../scripts/API';
+import ROUTES from '../../scripts/routes';
+import Lang from '../../scripts/Lang';
+import User from '../../scripts/User';
 
 export default {
     name: "MyProfile",
@@ -84,9 +86,7 @@ export default {
         };
     },
     async mounted() {
-        let response = await API.execute_logged(API.ROUTE.ME());
-        User.CurrentUser.setInformations(response.data);
-        User.CurrentUser.save();
+        
     },
     methods: {
         async editProfile(form) {
@@ -106,23 +106,17 @@ export default {
                 return;
             }
 
-            delete body.role;
-            API.execute_logged(API.ROUTE.ME(), API.METHOD.PATCH, {
-                pseudo: body.pseudo,
-                email: body.email
-            }).then(res => {
-                User.CurrentUser.setInformations(res.data.user);
-                User.CurrentUser.save();
-                log.update(res.message, Log.SUCCESS);
-                setTimeout(() => { log.delete(); }, 2000);
-            }).catch(err => {
-                log.error(err);
-                if (err.field) {
-                    this.$refs[err.field].focus();
-                }
-                console.error(err);
+            const res = await API.RequestLogged(ROUTES.USERS.ME.UPDATE(body.pseudo, body.email));
+            if (res.error) {
+                log.error(res);
                 setTimeout(() => { log.delete(); }, 4000);
-            });
+                return;
+            }
+
+            User.CurrentUser.setInformations(res.data);
+            User.CurrentUser.save();
+            log.update(res.message, Log.SUCCESS);
+            setTimeout(() => { log.delete(); }, 2000);
         },
         async deleteAccount(form) {
             const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Deleting')), Log.INFO);
@@ -135,21 +129,20 @@ export default {
                 return;
             }
 
-            try {
-                const res = await API.execute_logged(API.ROUTE.ME(), API.METHOD.DELETE, { password });
-                log.update(res.message, Log.SUCCESS);
-                setTimeout(() => {
-                    log.delete();
-                    this.$refs['delete-modal'].close();
-                    User.forget();
-                    this.$router.go();
-                }, 1000);
-            } catch (err) {
-                log.error(err);
-                setTimeout(() => {
-                    log.delete();
-                }, 4000);
+            const res = await API.RequestLogged(ROUTES.USERS.ME.DELETE(password));
+            if (res.error) {
+                log.error(res);
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
             }
+
+            log.update(res.message, Log.SUCCESS);
+            setTimeout(() => {
+                log.delete();
+                this.$refs['delete-modal'].close();
+                User.forget();
+                this.$router.go();
+            }, 1000);
         }
     }
 }

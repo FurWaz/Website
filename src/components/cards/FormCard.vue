@@ -17,7 +17,7 @@
                 class="show-up text-lg font-semibold text-slate-600 dark:text-slate-200"
                 style="animation-delay: 300ms;"
             >
-                <get-text :context="title" />
+                <GetText :context="title" />
             </p>
         </div>
     
@@ -25,7 +25,7 @@
             <slot />
         </div>
 
-        <log-zone ref="log-zone" />
+        <LogZone ref="LogZone" />
         <span
             class="show-up flex w-full h-1 rounded-lg bg-slate-200 dark:bg-slate-600 my-2"
             style="animation-delay: 200ms;"
@@ -35,19 +35,20 @@
             :class="cancel === '' ? 'justify-end' : 'justify-between'"
             style="animation-delay: 300ms;"
         >
-            <button-text
+            <ButtonText
                 v-show="cancel !== ''"
                 :onclick="doCancel"
+                :color="cancelColor"
             >
-                <get-text :context="cancel" />
-            </button-text>
-            <button-block
+                <GetText :context="cancel" />
+            </ButtonText>
+            <ButtonBlock
                 v-show="validate !== ''"
                 :disabled="disabled"
                 :onclick="doValidate"
             >
-                <get-text :context="validate" />
-            </button-block>
+                <GetText :context="validate" />
+            </ButtonBlock>
         </div>
     </component>
 </template>
@@ -85,6 +86,10 @@ export default {
         cancel: {
             type: [Object, String],
             default: () => Lang.CreateTranslationContext('verbs', 'Cancel')
+        },
+        cancelColor: {
+            type: String,
+            default: 'slate'
         },
         onValidate: {
             type: Function,
@@ -125,7 +130,7 @@ export default {
         this.fetchTranslations();
 
         this.log = (msg, type) => {
-            const logZone = this.$refs['log-zone'];
+            const logZone = this.$refs['LogZone'];
             const log = logZone.log(msg, type);
             return log;
         }

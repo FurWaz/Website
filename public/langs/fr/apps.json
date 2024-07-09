@@ -7,6 +7,8 @@
     "AppKey": "Clé de l'application",
     "DeleteApp": "Supprimer l'application",
     "DeleteAppConfirm": "Êtes-vous sûr de vouloir supprimer cette application ?\nCette action est irréversible.",
+    "SpecifyName": "Veuillez spécifier un nom pour l'application",
+    "SpecifyDescription": "Veuillez spécifier une description pour l'application",
     "NoApps": "Vous n'avez pas encore d'application",
     "NoAppsDesc": "Créez une application en cliquant sur le bouton [Créer une application] !",
     "LoadingApps": "Chargement des applications",

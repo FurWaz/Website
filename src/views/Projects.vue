@@ -8,7 +8,7 @@
             <icon-header :label="Lang.CreateTranslationContext('projects', 'Projects')" />
 
             <div class="flex show-down h-fit w-fit justify-center mx-auto my-4 space-x-4">
-                <input-text
+                <InputText
                     ref="searchbar"
                     :placeholder="Lang.CreateTranslationContext('verbs', 'Search')"
                     :oninput="search"
@@ -33,18 +33,18 @@
                             v-html="item.icon"
                         />
                         <title-text class="mx-auto text-center">
-                            <get-text :context="item.name" />
+                            <GetText :context="item.name" />
                         </title-text>
                     </div>
                     <base-text class="flex grow mx-auto text-center">
-                        <get-text :context="item.short" />
+                        <GetText :context="item.short" />
                     </base-text>
                     <div class="flex justify-between w-full">
-                        <button-block
+                        <ButtonBlock
                             :onclick="() => openAppPreview(item)"
                         >
-                            <get-text :context="item.button" />
-                        </button-block>
+                            <GetText :context="item.button" />
+                        </ButtonBlock>
                     </div>
                     <div
                         v-if="item.tags && item.tags.length > 0"
@@ -93,17 +93,17 @@
                                 class="w-32 h-32 rounded-lg"
                             >
                             <h1 class="flex text-4xl font-bold text-slate-600 dark:text-slate-200 text-center">
-                                <get-text :context="selectedApp?.name" />
+                                <GetText :context="selectedApp?.name" />
                             </h1>
                             <p class="flex text-xl font-semibold text-slate-500 dark:text-slate-300 text-center">
-                                <get-text :context="selectedApp?.short" />
+                                <GetText :context="selectedApp?.short" />
                             </p>
                         </div>
                         <p
                             class="show-up flex text-md font-semibold italic text-slate-400 px-4"
                             style="animation-delay: 200ms"
                         >
-                            <get-text
+                            <GetText
                                 :context="selectedApp?.description"
                                 class="flex flex-col space-y-2"
                             />
@@ -123,12 +123,12 @@
                                     :viewBox="item.viewBox ?? '0 0 512 512'"
                                     v-html="item.icon"
                                 />
-                                <button-block
+                                <ButtonBlock
                                     :href="item.link"
                                     :disabled="item.disabled"
                                 >
-                                    <get-text :context="item.button" />
-                                </button-block>
+                                    <GetText :context="item.button" />
+                                </ButtonBlock>
                             </badge-card>
                         </div>
                     </div>

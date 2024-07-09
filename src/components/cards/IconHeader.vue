@@ -8,7 +8,7 @@
             class="noscroll show-up text-4xl font-bold text-slate-700 dark:text-white"
             style="animation-delay: 200ms;"
         >
-            <get-text :context="label" />
+            <GetText :context="label" />
         </title-text>
     </div>
 </template>

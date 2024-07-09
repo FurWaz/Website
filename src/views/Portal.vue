@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col grow h-full w-full justify-evenly items-center">
         <div class="flex w-full max-w-[25em] h-full flex-col justify-evenly items-center">
-            <form-card
+            <FormCard
                 title="Portal"
                 class="p-2 mx-1"
                 :on-validate="connect"
@@ -14,49 +14,22 @@
                 >
                     <div class="space-y-2">
                         <p class="text-xl text-slate-600 dark:text-slate-200 w-fit mx-auto">
-                            <get-text :context="Lang.CreateTranslationContext('portal', 'LoginTo')" />
+                            <GetText :context="Lang.CreateTranslationContext('portal', 'LoginTo')" />
                         </p>
-                        <badge-card
-                            v-if="app"
-                            :hoverable="false"
-                            class="p-2 space-y-4"
-                        >
-                            <div
-                                class="flex flex-col items-center"
-                            >
-                                <div class="flex items-center space-x-2">
-                                    <title-text> {{ app.name }} </title-text>
-                                    <div
-                                        id="app-check"
-                                    >
-                                        <check-badge-icon
-                                            class="w-6 h-6"
-                                            :class="app.verified? 'text-green-500': 'text-slate-400'"
-                                        />
-                                    </div>
-                                    <name-card
-                                        :value="Lang.CreateTranslationContext('portal', 'AppVerified')"
-                                        target="#app-check"
-                                    />
-                                </div>
-                                <base-text class="w-fit mx-auto"> {{ app.description }} </base-text>
-                            </div>
-                            <base-text class="flex space-x-1 w-full text-sm">
-                                <get-text :context="Lang.CreateTranslationContext('portal', 'CreatedBy')" />
-                                <span class="font-bold">{{ app.author.pseudo }}</span>
-                            </base-text>
-                        </badge-card>
+                        <div class="flex w-fit h-fit mx-auto">
+                            <AppCard :id="appId" :view-only="true" />
+                        </div>
                     </div>
                     <div class="show-right">
                         <p class="flex text-xl text-slate-600 dark:text-slate-200 w-full space-x-2">
-                            <get-text :context="Lang.CreateTranslationContext('buy', 'ToAccount')" />
+                            <GetText :context="Lang.CreateTranslationContext('portal', 'WithAccount')" />
                             <span class="font-bold"> {{ user.pseudo }} </span>
                         </p>
                         <button
                             class="text-sm italic hover:underline"
                             @click="goToLogin"
                         >
-                            <get-text :context="Lang.CreateTranslationContext('portal', 'UseOtherAccount')" />
+                            <GetText :context="Lang.CreateTranslationContext('portal', 'UseOtherAccount')" />
                         </button>
                     </div>
                 </div>
@@ -68,17 +41,17 @@
                         class="show-up text-xl text-center font-bold italic text-slate-600 dark:text-slate-200"
                         style="animation-delay: 400ms;"
                     >
-                        <get-text :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
+                        <GetText :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
                     </p>
                     <p
                         class="show-up text-xl text-center font-semibold italic text-slate-400 dark:text-slate-400"
                         style="animation-delay: 400ms;"
                     >
-                        <get-text :context="Lang.CreateTranslationContext('portal', 'PortalError', {error: errorMessage})" />
+                        <GetText :context="Lang.CreateTranslationContext('portal', 'PortalError', {error: errorMessage})" />
                     </p>
                 </div>
-                <log-zone ref="log-zone" />
-            </form-card>
+                <LogZone ref="LogZone" />
+            </FormCard>
         </div>
     </div>
 </template>
@@ -86,31 +59,21 @@
 <script>
 import LogZone from '../components/cards/LogZone.vue';
 import GetText from '../components/text/GetText.vue';
-import BadgeCard from '../components/cards/BadgeCard.vue';
-import TitleText from '../components/text/TitleText.vue';
-import BaseText from '../components/text/BaseText.vue';
 import FormCard from '../components/cards/FormCard.vue';
-import API from '../scripts/API';
-import Lang from '../scripts/Lang';
+import AppCard from '@/components/apps/AppCard.vue';
+import { API } from '../scripts/API';
+import ROUTES from '../scripts/routes';
 import { Log } from '../scripts/Logs';
+import Lang from '../scripts/Lang';
 import User from '../scripts/User';
-
-import {
-    CheckBadgeIcon
-} from '@heroicons/vue/24/outline';
-import NameCard from '../components/cards/NameCard.vue';
 
 export default {
     name: "RegisterView",
     components: {
         LogZone,
         GetText,
-        CheckBadgeIcon,
-        BadgeCard,
-        TitleText,
-        BaseText,
         FormCard,
-        NameCard
+        AppCard
     },
     data() {
         return {
@@ -119,7 +82,7 @@ export default {
             error: false,
             errorMessage: "",
             token: null,
-            app: undefined,
+            appId: undefined,
             mode: 'useAccount'
         };
     },
@@ -127,7 +90,7 @@ export default {
         this.token = this.$route.query.token;
         if (!this.token) this.error = true;
 
-        this.retreiveAppInfos();
+        this.retreivePortalInfos();
     },
     methods: {
         goToLogin() {
@@ -138,13 +101,14 @@ export default {
                 }
             });
         },
-        async retreiveAppInfos() {
-            API.execute(API.ROUTE.PORTAL(this.token, 'app'), API.METHOD.GET).then(res => {
-                this.app = res.data.app;
-            }).catch(err => {
+        async retreivePortalInfos() {
+            const appRes = await API.Request(ROUTES.PORTAL.APP.GET(this.token));
+            if (appRes.error) {
+                this.appId = null;
                 this.error = true;
-                this.errorMessage = err.error;
-            });
+                this.errorMessage = appRes.message;
+            }
+            else this.appId = appRes.data['app']['id'];
         },
         async connect(form) {
             if (this.user === null || this.mode === 'useOther') {
@@ -155,17 +119,18 @@ export default {
             
             const log = form.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Connecting')));
 
-            API.execute_logged(API.ROUTE.PORTAL(this.token), API.METHOD.POST, {}, API.TYPE.JSON, [], this.user).then(res => {
+            const res = await API.RequestLogged(ROUTES.PORTAL.CONNECT(this.token));
+            if (res.error) {
+                log.update(res.message, Log.ERROR);
+                setTimeout(() => {
+                    log.delete();
+                }, 4000);
+            } else {
                 log.update(res.message, Log.SUCCESS);
                 setTimeout(() => {
                     this.close();
                 }, 1000);
-            }).catch(err => {
-                log.update(err.message, Log.ERROR);
-                setTimeout(() => {
-                    log.delete();
-                }, 4000);
-            });
+            }
         },
         change(form) {
             form.$el.classList.remove("show-up");

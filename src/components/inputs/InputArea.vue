@@ -1,10 +1,10 @@
 <template>
-    <div class="flex grow h-fit w-full min-w-0 flex-col justify-between md:items-center md:my-2 my-1 space-y-1">
+    <div class="flex flex-col grow h-fit w-full max-w-full min-w-0 justify-between items-center md:my-2 my-1 space-y-1">
         <label
-            v-if="label != ''"
+            v-if="label"
             class="flex text-lg text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit mr-auto"
         >
-            <get-text :context="label" />
+            <GetText :context="label" />
         </label>
         <textarea
             ref="input"

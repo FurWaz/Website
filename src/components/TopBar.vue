@@ -27,45 +27,45 @@
                     </h1>
                 </router-link>
                 <div class="flex grow justify-evenly items-center space-x-4 overflow-x-auto px-20">
-                    <button-text
+                    <ButtonText
                         v-for="item in menu"
                         v-show="item.condition()"
                         :key="item.name"
                         :href="item.href"
                         class="m-2 min-w-fit outline-none focus:outline-orange-500 rounded"
                     >
-                        <get-text :context="Lang.CreateTranslationContext(item.file, item.name)" />
-                    </button-text>
+                        <GetText :context="Lang.CreateTranslationContext(item.file, item.name)" />
+                    </ButtonText>
                 </div>
                 <div class="flex w-fit justify-end items-center space-x-2">
                     <div 
                         v-show="User.CurrentUser !== null"
                         class="flex wrap justify-evenly items-center grow"
                     >
-                        <button-block
+                        <ButtonBlock
                             class="m-2"
                             href="/my"
                         >
-                            <get-text :context="Lang.CreateTranslationContext('account', 'Account')" />
-                        </button-block>
+                            <GetText :context="Lang.CreateTranslationContext('account', 'Account')" />
+                        </ButtonBlock>
                     </div>
 
                     <div 
                         v-show="User.CurrentUser === null"
                         class="flex wrap justify-evenly items-center grow"
                     >
-                        <button-text
+                        <ButtonText
                             class="m-2"
                             href="/register"
                         >
-                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Register')" />
-                        </button-text>
-                        <button-block
+                            <GetText :context="Lang.CreateTranslationContext('verbs', 'Register')" />
+                        </ButtonText>
+                        <ButtonBlock
                             class="m-2"
                             href="/login"
                         >
-                            <get-text :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
-                        </button-block>
+                            <GetText :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
+                        </ButtonBlock>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                                     class="h-7 w-7"
                                 />
                                 <span class="text-md font-semibold whitespace-nowrap text-ellipsis overflow-hidden max-w-full">
-                                    <get-text :context="Lang.CreateTranslationContext(item.file, item.name)" />
+                                    <GetText :context="Lang.CreateTranslationContext(item.file, item.name)" />
                                 </span>
                             </badge-card>
                         </router-link>
@@ -135,20 +135,20 @@
                         class="flex wrap justify-evenly items-center grow py-2"
                     >
                         <div class="w-full">
-                            <button-text
+                            <ButtonText
                                 class="mx-auto w-fit m-2"
                                 href="/register"
                             >
-                                <get-text :context="Lang.CreateTranslationContext('verbs', 'Register')" />
-                            </button-text>
+                                <GetText :context="Lang.CreateTranslationContext('verbs', 'Register')" />
+                            </ButtonText>
                         </div>
                         <div class="w-full">
-                            <button-block
+                            <ButtonBlock
                                 class="mx-auto w-fit m-2"
                                 href="/login"
                             >
-                                <get-text :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
-                            </button-block>
+                                <GetText :context="Lang.CreateTranslationContext('verbs', 'LogIn')" />
+                            </ButtonBlock>
                         </div>
                     </div>
                 </div>

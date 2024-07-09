@@ -13,7 +13,7 @@
                 <div class="flex grow p-4 min-w-0 max-w-full min-h-0 max-h-full">
                     <div class="flex flex-col space-y-2">
                         <p class="text-xl font-semibold">
-                            <get-text :context="Lang.CreateTranslationContext('checkout', 'Cart')" />
+                            <GetText :context="Lang.CreateTranslationContext('checkout', 'Cart')" />
                         </p>
                         <div class="flex flex-col grow space-y-4 overflow-auto max-h-full min-h-0 py-4">
                             <product-card
@@ -27,10 +27,10 @@
                                 class="flex flex-col justify-center items-center h-full"
                             >
                                 <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
-                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProducts')" />
+                                    <GetText :context="Lang.CreateTranslationContext('checkout', 'LoadingProducts')" />
                                 </p>
                                 <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
-                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProductsDesc')" />
+                                    <GetText :context="Lang.CreateTranslationContext('checkout', 'LoadingProductsDesc')" />
                                 </p>
                             </div>
                             <div
@@ -38,10 +38,10 @@
                                 class="flex flex-col justify-center items-center h-full"
                             >
                                 <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
-                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProducts')" />
+                                    <GetText :context="Lang.CreateTranslationContext('checkout', 'NoProducts')" />
                                 </p>
                                 <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
-                                    <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProductsDesc')" />
+                                    <GetText :context="Lang.CreateTranslationContext('checkout', 'NoProductsDesc')" />
                                 </p>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="flex pt-2 justify-end">
                                 <div class="flex justify-center items-center mx-4">
                                     <p class="text-xl font-semibold">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'Total')" />
+                                        <GetText :context="Lang.CreateTranslationContext('checkout', 'Total')" />
                                     </p>
                                 </div>
                                 <div class="flex justify-center items-center">
@@ -67,15 +67,15 @@
                 <span class="flex w-full h-1 bg-slate-200 dark:bg-slate-600" />
                 <div class="flex w-full justify-end p-3 rounded-lg">
                     <div class="flex justify-between w-full h-fit">
-                        <button-text :onclick="() => $router.go(-1)">
-                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Cancel')" />
-                        </button-text>
-                        <button-block
+                        <ButtonText :onclick="() => $router.go(-1)">
+                            <GetText :context="Lang.CreateTranslationContext('verbs', 'Cancel')" />
+                        </ButtonText>
+                        <ButtonBlock
                             :onclick="() => formOpened = 'infosForm'"
                             :disabled="!products?.length"
                         >
-                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Continue')" />
-                        </button-block>
+                            <GetText :context="Lang.CreateTranslationContext('verbs', 'Continue')" />
+                        </ButtonBlock>
                     </div>
                 </div>
             </badge-card>
@@ -89,7 +89,7 @@
                     <div class="hidden sm:flex grow p-4 min-w-0 max-w-full min-h-0 max-h-full">
                         <div class="flex flex-col space-y-2">
                             <p class="text-xl font-semibold">
-                                <get-text :context="Lang.CreateTranslationContext('checkout', 'Cart')" />
+                                <GetText :context="Lang.CreateTranslationContext('checkout', 'Cart')" />
                             </p>
                             <div class="flex flex-col grow space-y-4 overflow-auto max-h-full min-h-0 p-4">
                                 <product-card
@@ -102,10 +102,10 @@
                                     class="flex flex-col justify-center items-center h-full"
                                 >
                                     <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProducts')" />
+                                        <GetText :context="Lang.CreateTranslationContext('checkout', 'LoadingProducts')" />
                                     </p>
                                     <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'LoadingProductsDesc')" />
+                                        <GetText :context="Lang.CreateTranslationContext('checkout', 'LoadingProductsDesc')" />
                                     </p>
                                 </div>
                                 <div
@@ -113,10 +113,10 @@
                                     class="flex flex-col justify-center items-center h-full"
                                 >
                                     <p class="text-lg font-semibold text-center text-slate-700 dark:text-white">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProducts')" />
+                                        <GetText :context="Lang.CreateTranslationContext('checkout', 'NoProducts')" />
                                     </p>
                                     <p class="text-md font-semibold text-center text-slate-500 dark:text-slate-300">
-                                        <get-text :context="Lang.CreateTranslationContext('checkout', 'NoProductsDesc')" />
+                                        <GetText :context="Lang.CreateTranslationContext('checkout', 'NoProductsDesc')" />
                                     </p>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                                 <div class="flex pt-2 justify-end">
                                     <div class="flex justify-center items-center mx-4">
                                         <p class="text-xl font-semibold">
-                                            <get-text :context="Lang.CreateTranslationContext('checkout', 'Total')" />
+                                            <GetText :context="Lang.CreateTranslationContext('checkout', 'Total')" />
                                         </p>
                                     </div>
                                     <div class="flex justify-center items-center">
@@ -142,7 +142,7 @@
                     <div class="flex flex-col w-fit bg-slate-200 dark:bg-slate-600 p-2 md:p-4">
                         <div class="flex flex-col space-y-2 grow min-h-0 max-h-full">
                             <p class="text-xl font-semibold">
-                                <get-text :context="Lang.CreateTranslationContext('checkout', 'Informations')" />
+                                <GetText :context="Lang.CreateTranslationContext('checkout', 'Informations')" />
                             </p>
                             <div class="flex flex-col grow space-y-4 justify-between min-h-0 max-h-full">
                                 <div class="flex flex-col bg-slate-50 dark:bg-slate-700 rounded-lg max-h-full min-h-0 overflow-auto">
@@ -150,32 +150,32 @@
                                         v-show="formOpened === 'infosForm'"
                                         class="flex flex-col p-3"
                                     >
-                                        <input-text
+                                        <InputText
                                             name="firstname"
                                             :label="Lang.CreateTranslationContext('checkout', 'Firstname')"
                                             :placeholder="Lang.CreateTranslationContext('checkout', 'Firstname')"
                                         />
-                                        <input-text
+                                        <InputText
                                             name="lastname"
                                             :label="Lang.CreateTranslationContext('checkout', 'Lastname')"
                                             :placeholder="Lang.CreateTranslationContext('checkout', 'Lastname')"
                                         />
-                                        <input-text
+                                        <InputText
                                             name="address"
                                             :label="Lang.CreateTranslationContext('checkout', 'Address')"
                                             :placeholder="Lang.CreateTranslationContext('checkout', 'Address')"
                                         />
-                                        <input-text
+                                        <InputText
                                             name="city"
                                             :label="Lang.CreateTranslationContext('checkout', 'City')"
                                             :placeholder="Lang.CreateTranslationContext('checkout', 'City')"
                                         />
-                                        <input-text
+                                        <InputText
                                             name="zipcode"
                                             :label="Lang.CreateTranslationContext('checkout', 'Zipcode')"
                                             :placeholder="Lang.CreateTranslationContext('checkout', 'Zipcode')"
                                         />
-                                        <input-text
+                                        <InputText
                                             name="saveInfos"
                                             type="checkbox"
                                             :label="Lang.CreateTranslationContext('checkout', 'SavePersoInfos')"
@@ -186,7 +186,7 @@
                                             href="/privacy"
                                             target="_blank"
                                         >
-                                            <get-text :context="Lang.CreateTranslationContext('checkout', 'CheckPrivacyPolicy')" />
+                                            <GetText :context="Lang.CreateTranslationContext('checkout', 'CheckPrivacyPolicy')" />
                                         </a>
                                     </div>
                                     <div
@@ -198,17 +198,17 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col justify-end bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
-                                    <log-zone ref="log-zone" />
+                                    <LogZone ref="LogZone" />
                                     <div class="flex justify-between w-full h-fit">
-                                        <button-text :onclick="() => { (isMobile || formOpened === 'paymentForm')? formOpened = forms[forms.indexOf(formOpened)-1]: $router.go(-1) }">
-                                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Cancel')" />
-                                        </button-text>
-                                        <button-block
+                                        <ButtonText :onclick="() => { (isMobile || formOpened === 'paymentForm')? formOpened = forms[forms.indexOf(formOpened)-1]: $router.go(-1) }">
+                                            <GetText :context="Lang.CreateTranslationContext('verbs', 'Cancel')" />
+                                        </ButtonText>
+                                        <ButtonBlock
                                             :onclick="() => { formOpened === 'infosForm' ? openPaymentForm(): handleSubmit() }"
                                             :disabled="formInputsValid || !products?.length"
                                         >
-                                            <get-text :context="Lang.CreateTranslationContext('verbs', 'Continue')" />
-                                        </button-block>
+                                            <GetText :context="Lang.CreateTranslationContext('verbs', 'Continue')" />
+                                        </ButtonBlock>
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@ import { Log } from '../scripts/Logs';
 import Lang from '../scripts/Lang';
 import User from '../scripts/User';
 import 'https://js.stripe.com/v3/';
-import API from '../scripts/API';
+import { API } from '../scripts/API';
 
 import BadgeCard from '../components/cards/BadgeCard.vue';
 import IconHeader from '../components/cards/IconHeader.vue';
@@ -333,7 +333,7 @@ export default {
             if (!Object.values(this.userInfos).every(v => {
                 if (v !== '' && v !== 0) return true;
                 Lang.GetText(Lang.CreateTranslationContext('checkout', 'PersoInfosDesc'), text => {
-                    const log = this.$refs['log-zone'].log(text, Log.WARNING);
+                    const log = this.$refs['LogZone'].log(text, Log.WARNING);
                     setTimeout(() => { log.delete(); }, 2000);
                 });
                 return false;
@@ -361,7 +361,7 @@ export default {
             paymentElement.mount("#payment-element");
         },
         async handleSubmit() {
-            const logZone = this.$refs['log-zone'];
+            const logZone = this.$refs['LogZone'];
             const log = logZone.log(await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Paying')), Log.INFO);
 
             const elements = this.elements;

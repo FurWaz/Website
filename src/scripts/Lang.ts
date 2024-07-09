@@ -130,7 +130,7 @@ export default class Lang {
 
         console.error(
             "Translation not found for code [" + context.code + "] in file : [" + context.file + "]\n" +
-            "Language : [" + /*this.Language*/ + "]\n" +
+            "Language : [" + this.getLanguage() + "]\n" +
             "Fallback language : [" + this.#getFallbackLanguageCode() + "]\n" +
             "Translation file : [" + filePath + "]\n" +
             "Fallback translation file : [" + fallbackFilePath + "]\n"

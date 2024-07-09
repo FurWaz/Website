@@ -6,28 +6,28 @@
                 class="show-up text-4xl font-bold text-slate-700 dark:text-white"
                 style="animation-delay: 400ms;"
             >
-                <get-text :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
+                <GetText :context="Lang.CreateTranslationContext('notfound', 'Woops')" />
             </h1>
             <p
                 class="show-up text-2xl font-bold text-slate-600 dark:text-slate-200"
                 style="animation-delay: 500ms;"
             >
-                <get-text :context="Lang.CreateTranslationContext('notfound', 'NotFound')" />
+                <GetText :context="Lang.CreateTranslationContext('notfound', 'NotFound')" />
             </p>
         </div>
-        <button-block
+        <ButtonBlock
             class="show-up"
             style="animation-delay: 600ms;"
             :onclick="() => $router.go(-1)"
         >
-            <get-text :context="Lang.CreateTranslationContext('common', 'Back')" />
-        </button-block>
+            <GetText :context="Lang.CreateTranslationContext('common', 'Back')" />
+        </ButtonBlock>
         <div class="opacity-50">
             <p
                 class="show-up text-xl italic font-semibold text-slate-700 dark:text-slate-200"
                 style="animation-delay: 800ms;"
             >
-                <get-text :context="Lang.CreateTranslationContext('notfound', 'WhereAmI')" /> 🤔
+                <GetText :context="Lang.CreateTranslationContext('notfound', 'WhereAmI')" /> 🤔
             </p>
         </div>
     </div>

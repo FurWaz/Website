@@ -15,6 +15,9 @@
 import { defineComponent } from "vue";
 import TopBar from "./components/TopBar.vue";
 import { RouterView } from "vue-router";
+import { API } from "./scripts/API";
+import ROUTES from "./scripts/routes";
+import User from "./scripts/User";
 
 export default defineComponent({
     components: {
@@ -25,6 +28,9 @@ export default defineComponent({
         return {
             lastScroll: 0
         }
+    },
+    setup() {
+        API.Setup(import.meta.env.VITE_API_URL);
     },
     mounted() {
         // scroll events for topbar show/hide
@@ -41,6 +47,15 @@ export default defineComponent({
 
             window.dispatchEvent(new Event("wheel"));
         });
+
+        // Verify that user is connected and valid
+        // (if not, it will automatically disconnect him)
+        if (User.CurrentUser) {
+            API.RequestLogged(ROUTES.USERS.ME.GET()).then(res => {
+                User.CurrentUser?.setInformations(res.data);
+                User.CurrentUser?.save();
+            });
+        }
     }
 });
 </script>

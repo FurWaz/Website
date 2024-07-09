@@ -2,7 +2,7 @@
     <div class="flex flex-col">
         <div class="flex flex-col">
             <title-text class="mb-4">
-                <get-text :context="title" />
+                <GetText :context="title" />
             </title-text>
             <base-text
                 v-for="line in description_str.split('\n')"
@@ -17,22 +17,22 @@
         >
             <slot />
         </div>
-        <log-zone
-            ref="log-zone"
+        <LogZone
+            ref="LogZone"
             class="my-2"
         />
         <div class="flex justify-between w-full space-x-4">
-            <button-text
+            <ButtonText
                 :onclick="callOnCancel"
             >
-                <get-text :context="cancel" />
-            </button-text>
-            <button-block
+                <GetText :context="cancel" />
+            </ButtonText>
+            <ButtonBlock
                 :color="color"
                 :onclick="callOnConfirm"
             >
-                <get-text :context="confirm" />
-            </button-block>
+                <GetText :context="confirm" />
+            </ButtonBlock>
         </div>
     </div>
 </template>
@@ -115,7 +115,7 @@ export default {
         getModal() {
             const form = this;
             return {
-                log: form.$refs['log-zone'].log,
+                log: form.$refs['LogZone'].log,
                 body() {
                     const body = {};
                     const content = form.$refs['content'];

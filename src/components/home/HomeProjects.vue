@@ -24,10 +24,10 @@
                 style="animation-delay: 400ms;"
             >
                 <title-text>
-                    <get-text :context="{file: 'home', code: 'MyProjects'}" />
+                    <GetText :context="{file: 'home', code: 'MyProjects'}" />
                 </title-text>
                 <base-text class="text-left">
-                    <get-text :context="{file: 'home', code: 'MyProjectsDesc'}" />
+                    <GetText :context="{file: 'home', code: 'MyProjectsDesc'}" />
                 </base-text>
 
                 <div class="flex justify-evenly w-[50%]">
@@ -56,12 +56,12 @@
                     </svg-text>
                 </div>
 
-                <button-block
+                <ButtonBlock
                     class="mr-auto"
                     href="/projects?search=project"
                 >
-                    <get-text :context="{file: 'home', code: 'MyProjectsBtn'}" />
-                </button-block>
+                    <GetText :context="{file: 'home', code: 'MyProjectsBtn'}" />
+                </ButtonBlock>
             </div>
         </div>
     </div>

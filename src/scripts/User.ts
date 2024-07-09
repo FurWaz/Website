@@ -1,5 +1,3 @@
-import API from "./API";
-
 class User {
     /** @type {User} */
     static #currentUser: User|null = null;
@@ -64,10 +62,6 @@ class User {
         }
         localStorage.setItem("user", JSON.stringify(userInfos));
         User.#currentUser = this;
-    }
-
-    getCredentials() {
-        return new API.Credentials({token: "Bearer " + this.access, type: API.Credentials.TYPE.TOKEN});
     }
 }
 

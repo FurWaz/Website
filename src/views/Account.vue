@@ -12,16 +12,16 @@
                     :href="item.href"
                     :icon="item.icon"
                 >
-                    <get-text :context="Lang.CreateTranslationContext('account', item.name)" />
+                    <GetText :context="Lang.CreateTranslationContext('account', item.name)" />
                 </button-redirect>
             </div>
         </div>
-        <button-block
+        <ButtonBlock
             class="show-up m-4"
             :onclick="disconnect"
         >
-            <get-text :context="Lang.CreateTranslationContext('verbs', 'LogOut')" />
-        </button-block>
+            <GetText :context="Lang.CreateTranslationContext('verbs', 'LogOut')" />
+        </ButtonBlock>
     </div>
 </template>
 

@@ -4,7 +4,7 @@
             class="absolute rounded-lg bg-slate-50 dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 shadow-lg p-1 -translate-x-1/2 -translate-y-[180%]"
         >
             <p class="text-md font-semibold text-center w-max">
-                <get-text :context="value" />
+                <GetText :context="value" />
             </p>
         </div>
     </div>

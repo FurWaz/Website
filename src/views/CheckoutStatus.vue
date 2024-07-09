@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col grow h-full w-full justify-evenly items-center text-slate-500 dark:text-slate-200">
-        <form-card
+        <FormCard
             class="p-2 max-w-[30em]"
             cancel=""
             :title="Lang.CreateTranslationContext('checkout', 'Payment')"
@@ -16,13 +16,13 @@
                     class="text-center"
                     :class="success? 'text-green-500': (error? 'text-red-500': 'text-slate-800 dark:text-slate-50')"
                 >
-                    <get-text :context="title" />
+                    <GetText :context="title" />
                 </p>
                 <p class="text-lg text-slate-700 dark:text-slate-200 text-center">
-                    <get-text :context="description" />
+                    <GetText :context="description" />
                 </p>
             </div>
-        </form-card>
+        </FormCard>
     </div>
 </template>
 
@@ -30,7 +30,7 @@
 import Lang from '../scripts/Lang';
 import User from '../scripts/User';
 
-import API from '../scripts/API';
+import { API } from '../scripts/API';
 import FormCard from '../components/cards/FormCard.vue';
 import GetText from '../components/text/GetText.vue';
 

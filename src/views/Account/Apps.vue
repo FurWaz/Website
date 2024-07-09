@@ -3,31 +3,34 @@
         <button-back class="px-2 h-fit" />
         <icon-header :label="Lang.CreateTranslationContext('apps', 'Apps')" />
         <div class="flex justify-start">
-            <button-block
+            <ButtonBlock
                 class="show-right m-4 my-8"
                 :onclick="() => $refs['create-modal'].open()"
             >
-                <get-text :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
-            </button-block>
+                <GetText :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
+            </ButtonBlock>
         </div>
-        <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 justify-evenly w-full md:min-h-[22em] pb-8">
-            <app-card
+        <div class="flex md:flex-row flex-col md:space-x-8 md:space-y-0 space-y-4 items-center justify-evenly w-full pb-8">
+            <div
                 v-for="(app, index) in apps"
-                :key="app"
-                class="show-up w-72 h-80 mx-auto md:mx-0 md:w-80 md:h-96"
+                :key="app.id"
+                class="show-up"
                 :style="'animation-delay: '+index+'00ms;'"
-                :app="app"
-                :on-delete="() => apps.splice(index, 1)"
-            />
+            >
+                <app-card
+                    :id="app.id"
+                    :on-delete="() => apps.splice(index, 1)"
+                />
+            </div>
             <div
                 v-show="apps.length <= 0 && !loading"
                 class="flex flex-col grow h-full w-full justify-center items-center"
             >
                 <title-text class="show-up">
-                    <get-text :context="Lang.CreateTranslationContext('apps', 'NoApps')" />
+                    <GetText :context="Lang.CreateTranslationContext('apps', 'NoApps')" />
                 </title-text>
                 <base-text class="show-up">
-                    <get-text :context="Lang.CreateTranslationContext('apps', 'NoAppsDesc')" />
+                    <GetText :context="Lang.CreateTranslationContext('apps', 'NoAppsDesc')" />
                 </base-text>
             </div>
             <div
@@ -35,39 +38,41 @@
                 class="flex flex-col grow h-full w-full justify-center items-center"
             >
                 <title-text class="show-up">
-                    <get-text :context="Lang.CreateTranslationContext('apps', 'LoadingApps')" />
+                    <GetText :context="Lang.CreateTranslationContext('apps', 'LoadingApps')" />
                 </title-text>
                 <base-text class="show-up">
-                    <get-text :context="Lang.CreateTranslationContext('apps', 'LoadingAppsDesc')" />
+                    <GetText :context="Lang.CreateTranslationContext('apps', 'LoadingAppsDesc')" />
                 </base-text>
             </div>
         </div>
     </div>
     <modal-card ref="create-modal">
         <title-text class="show-up mb-2 p-1 pb-2 border-b-2 border-slate-500">
-            <get-text :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
+            <GetText :context="Lang.CreateTranslationContext('apps', 'CreateApp')" />
         </title-text>
-        <form-card
+        <FormCard
             :validate="Lang.CreateTranslationContext('verbs', 'Create')"
             :on-cancel="() => $refs['create-modal'].close()"
             :on-validate="createApp"
             :display-icon="false"
             :borders="false"
         >
-            <input-text
-                class="show-up"
-                name="name"
-                orientation="col"
-                :label="Lang.CreateTranslationContext('apps', 'AppName')"
-                :placeholder="Lang.CreateTranslationContext('apps', 'AppName')"
-            />
-            <input-area
-                class="show-up"
-                name="description"
-                :label="Lang.CreateTranslationContext('apps', 'AppDescription')"
-                :placeholder="Lang.CreateTranslationContext('apps', 'AppDescription')"
-            />
-        </form-card>
+            <div class="space-y-4 my-2">
+                <InputText
+                    class="show-up"
+                    name="name"
+                    orientation="col"
+                    :label="Lang.CreateTranslationContext('apps', 'AppName')"
+                    :placeholder="Lang.CreateTranslationContext('apps', 'AppName')"
+                />
+                <input-area
+                    class="show-up"
+                    name="description"
+                    :label="Lang.CreateTranslationContext('apps', 'AppDescription')"
+                    :placeholder="Lang.CreateTranslationContext('apps', 'AppDescription')"
+                />
+            </div>
+        </FormCard>
     </modal-card>
 </template>
 
@@ -75,7 +80,8 @@
 import AppCard from "../../components/apps/AppCard.vue";
 import { animateShows } from '../../scripts/common';
 import Lang from '../../scripts/Lang';
-import API from '../../scripts/API';
+import { API } from '../../scripts/API';
+import ROUTES from '../../scripts/routes';
 import IconHeader from '../../components/cards/IconHeader.vue';
 import ButtonBlock from '../../components/inputs/ButtonBlock.vue';
 import ButtonBack from '../../components/inputs/ButtonBack.vue';
@@ -88,14 +94,8 @@ import { Log } from '../../scripts/Logs';
 import BaseText from '../../components/text/BaseText.vue';
 import GetText from '../../components/text/GetText.vue';
 
-function fetchMyApps() {
-    return new Promise((resolve) => {
-        API.execute_logged(API.ROUTE.MY.APPS()).then(res => {
-            resolve(res.data.apps);
-        }).catch(err => {
-            console.error(err);
-        });
-    })
+async function fetchMyApps() {
+    return (await API.RequestLogged(ROUTES.APPS.ME.GET())).data;
 }
 
 export default {
@@ -122,29 +122,44 @@ export default {
     },
     mounted() {
         animateShows(this.$el);
-        fetchMyApps().then(apps => {
-            this.apps = apps;
+        fetchMyApps().then(res => {
+            this.apps = res.apps;
             this.loading = false;
         });
     },
     methods: {
-        createApp(form) {
-            const log = form.log("", Log.INFO);
-            Lang.GetText(Lang.CreateTranslationContext('verbs', 'Creating'), txt => {
-                log.update(txt, Log.INFO);
-            });
+        async createApp(form) {
+            const text = await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Creating'));
+            const log = form.log(text, Log.INFO);
             const body = form.body();
-            API.execute_logged(API.ROUTE.APPS(), API.METHOD.POST, body).then(res => {
-                log.update(res.message, Log.SUCCESS);
-                this.apps.push(res.data);
-                setTimeout(() => {
-                    log.delete();
-                    this.$refs['create-modal'].close();
-                }, 2000);
-            }).catch(err => {
-                log.error(err);
+
+            if (!body.name) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('apps', 'SpecifyName')), Log.WARNING);
+                form.focus('name');
                 setTimeout(() => { log.delete(); }, 4000);
-            });
+                return;
+            }
+
+            if (!body.description) {
+                log.update(await Lang.GetTextAsync(Lang.CreateTranslationContext('apps', 'SpecifyDescription')), Log.WARNING);
+                form.focus('description');
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+
+            const res = await API.RequestLogged(ROUTES.APPS.CREATE(body.name, body.description));
+            if (res.error) {
+                log.error(res);
+                setTimeout(() => { log.delete(); }, 4000);
+                return;
+            }
+
+            log.update(res.message, Log.SUCCESS);
+            this.apps.push(res.data);
+            setTimeout(() => {
+                log.delete();
+                this.$refs['create-modal'].close();
+            }, 2000);
         }
     }
 }

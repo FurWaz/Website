@@ -1,27 +1,27 @@
 <template>
     <div class="flex flex-col grow h-full w-full justify-evenly items-center">
         <div class="flex flex-col justify-center items-center">
-            <form-card
+            <FormCard
                 class="show-up p-2"
                 :title="Lang.CreateTranslationContext('verbs', 'Register')"
                 :validate="Lang.CreateTranslationContext('verbs', 'Register')"
                 :on-validate="register"
             >
-                <input-text
+                <InputText
                     name="pseudo"
                     :label="Lang.CreateTranslationContext('account', 'Pseudo')"
                     :placeholder="Lang.CreateTranslationContext('account', 'Pseudo')"
                     class="show-down"
                     style="animation-delay: 100ms;"
                 />
-                <input-text
+                <InputText
                     name="email"
                     :label="Lang.CreateTranslationContext('account', 'Email')"
                     :placeholder="Lang.CreateTranslationContext('account', 'Email')"
                     class="show-down"
                     style="animation-delay: 200ms;"
                 />
-                <input-text
+                <InputText
                     name="password"
                     type="password"
                     :label="Lang.CreateTranslationContext('account', 'Password')"
@@ -29,7 +29,7 @@
                     class="show-down"
                     style="animation-delay: 300ms;"
                 />
-                <input-text
+                <InputText
                     name="confirm"
                     type="password"
                     :label="Lang.CreateTranslationContext('account', 'Confirmation')"
@@ -37,7 +37,7 @@
                     class="show-down"
                     style="animation-delay: 400ms;"
                 />
-            </form-card>
+            </FormCard>
         </div>
     </div>
 </template>
@@ -45,10 +45,11 @@
 <script>
 import FormCard from '../components/cards/FormCard.vue';
 import InputText from '../components/inputs/InputText.vue';
-import API from '../scripts/API';
 import { redirectLink } from '../scripts/common';
-import Lang from '../scripts/Lang';
 import { Log } from '../scripts/Logs';
+import { API } from '../scripts/API';
+import ROUTES from '../scripts/routes';
+import Lang from '../scripts/Lang';
 import User from '../scripts/User';
 
 export default {
@@ -101,11 +102,15 @@ export default {
             }
 
             try {
-                const resRegister = await API.execute(API.ROUTE.USERS(), API.METHOD.POST, { ...body, confirm: undefined });
+                const resRegister = await API.Request(ROUTES.USERS.CREATE(body.pseudo, body.email, body.password));
                 const user = new User(resRegister.data);
 
-                const resLogin = await API.execute(API.ROUTE.LOGIN(), API.METHOD.POST, { email: body.email, password: body.password });
+                const resLogin = await API.Request(ROUTES.AUTH.LOGIN(body.email, body.password));
                 user.setTokens(resLogin.data);
+                user.save();
+
+                const resMe = await API.RequestLogged(ROUTES.USERS.ME.GET());
+                user.setInformations(resMe.data);
                 user.save();
 
                 log.update(resLogin.message, Log.SUCCESS);

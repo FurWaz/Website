@@ -1,13 +1,10 @@
 <template>
-    <div
-        class="flex grow h-fit w-full max-w-full min-w-0 justify-between md:my-2 my-1 items-center"
-        :class="orientation == 'row' ? ' md:flex-row flex-row md:space-x-8 ' : (orientation == 'col' ? ' md:flex-col flex-col md:space-y-2' : ' flex-col md:flex-row md:space-x-8')"
-    >
+    <div class="flex flex-col grow h-fit w-full max-w-full min-w-0 justify-between items-center md:my-2 my-1 space-y-1">
         <label
             v-if="label"
-            class="flex text-lg text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit max-w-full items-center"
+            class="flex text-lg text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap text-ellipsis w-fit mr-auto"
         >
-            <get-text :context="label" />
+            <GetText :context="label" />
         </label>
         <div class="flex max-w-full min-w-0 h-fit">
             <input
@@ -94,11 +91,6 @@ export default {
         disabled: {
             type: [Boolean, String],
             default: false,
-            required: false
-        },
-        orientation: {
-            type: String,
-            default: '',
             required: false
         },
         showCopy: {
