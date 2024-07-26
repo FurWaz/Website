@@ -1,0 +1,11 @@
+{
+    "title": "Pollpe",
+    "short": "Let him choose for you!",
+    "button": "Try Pollpe!",
+    "description": [
+        "Pollpe is a new social network that allows you to ask questions to thousands of people and receive instant answers.",
+        "You can ask questions on any topic and get answers from people all over the world. You can also vote for other users' answers and see the results in real-time.",
+        "The project consists of several parts: A website and mobile application made in VueJS, a REST API in NodeJS, and a MySQL database. Check out the source code on GitHub for more information.",
+        "Pollpe is completely free and requires no registration. So don't hesitate to take a look!"
+    ]
+}
