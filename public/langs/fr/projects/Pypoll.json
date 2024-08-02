@@ -1,11 +1,11 @@
 {
-    "title": "Pollpe",
-    "short": "Laissez-le choisir pour vous !",
-    "button": "Tester Pollpe !",
+    "title": "Pypoll",
+    "short": "Laissez-les choisir pour vous !",
+    "button": "Tester Pypoll !",
     "description": [
-        "Pollpe est un nouveau réseau social qui vous permet de poser des questions à des milliers de personnes et de recevoir des réponses instantanées.",
+        "Pypoll est un nouveau réseau social qui vous permet de poser des questions à des milliers de personnes et de recevoir des réponses instantanées.",
         "Vous pouvez poser des questions sur n'importe quel sujet et obtenir des réponses de personnes du monde entier. Vous pouvez également voter pour les réponses des autres utilisateurs et voir les résultats en temps réel.",
         "Le projet est composé de plusieurs parties : Un site web et application mobile faits en VueJS, une API REST en NodeJS et une base de données MySQL. Regardez le code source sur GitHub pour plus d'informations.",
-        "Pollpe est entièrement gratuit et ne nécessite aucune inscription. Alors n'hésitez pas à y jeter un coup d'œil !"
+        "Pypoll est entièrement gratuit et ne nécessite aucune inscription. Alors n'hésitez pas à y jeter un coup d'œil !"
     ]
 }
