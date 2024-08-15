@@ -2,11 +2,11 @@
     <div class="space-y-4">
         <h1>AGREEMENT TO OUR LEGAL TERMS</h1>
 
-        <p>We are FurWaz ("<b>Company</b>", "<b>we</b>", "<b>us</b>", "<b>our</b>"), a company registered in France at 6 Faubourg Saint Claude, Manonville, Grand Est 54 385.</p>
+        <p>We are FurWaz ("<b>Company</b>", "<b>we</b>", "<b>us</b>", "<b>our</b>"), a company registered in France at 33 Rue du Morvan, Vandoeuvre-Lès-Nancy, Grand-Est 54500, France.</p>
 
         <p>We operate the website https://furwaz.fr (the "<b>Site</b>"), as well as any other related products and services that refer or link to these legal terms (the "<b>Legal Terms</b>") (collectively, the "<b>Services</b>").</p>
 
-        <p>You can contact us by phone at 0782582541, email at contact@furwaz.fr, or by mail to 6 Faubourg Saint Claude, Manonville, Grand Est 54 385, France.</p>
+        <p>You can contact us by phone at 0782582541, email at contact@furwaz.fr, or by mail to 33 Rue du Morvan, Vandoeuvre-Lès-Nancy, Grand-Est 54500, France.</p>
 
         <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and FurWaz, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</p>
 
@@ -388,13 +388,11 @@
 
         <p>In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:</p>
 
-        <p>
+        <p class="ml-4">
             FurWaz <br>
-            6 Faubourg Saint Claude <br>
-            Manonville, Grand Est 54 385 <br>
+            33 Rue du Morvan <br>
+            Vandoeuvre-Lès-Nancy, Grand-Est 54500 <br>
             France <br>
-            Phone: 0782582541 <br>
-            contact@furwaz.fr <br>
         </p>
     </div>
 </template>

@@ -1,0 +1,10 @@
+{
+    "title": "AI Chat",
+    "short": "A chatbot that uses Chrome's built-in AI to communicate with you!",
+    "button": "Ow, that's new !",
+    "description": [
+        "AI Chat is a chatbot that uses Chrome's built-in AI to communicate with you. It can answer your questions, tell you jokes, or even play games with you!",
+        "It's a fun way to pass the time and learn more about AI. You can also use it to practice your conversational skills and improve your typing speed.",
+        "This Chatbot uses Gemini's Nano model, which is a 3.5 billion parameter model with 4 bits of precision. Note that the webpage will not work if you are using a browser that does not have a built-in ai model."
+    ]
+}

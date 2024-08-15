@@ -1,10 +1,10 @@
 <template>
-    <div class="flex grow bg-slate-200 dark:bg-slate-700">        
+    <div class="flex grow min-w-0 max-w-full min-h-0 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
         <TopBar />
         <div
             id="page-content"
             ref="content"
-            class="flex grow overflow-x-hidden overflow-y-auto md:pt-20 pt-16"
+            class="flex grow overflow-x-hidden overflow-y-auto md:pt-20 pt-16 min-w-0 max-w-full min-h-0 max-h-full"
         >
             <RouterView />
         </div>

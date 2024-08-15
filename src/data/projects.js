@@ -301,6 +301,23 @@ const projects = [
         tags: ["app", "python", "music", "fft", "fourier", "transform", "audio", "wav", "visualizer", "tkinter", "tk"]
     },
     {
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />`,
+        logo: "/img/projects/AIChat.png",
+        id: "AIChat",
+        name: Lang.CreateTranslationContext('projects/AIChat', 'title'),
+        short: Lang.CreateTranslationContext('projects/AIChat', 'short'),
+        button: Lang.CreateTranslationContext('projects/AIChat', 'button'),
+        description: Lang.CreateTranslationContext('projects/AIChat', 'description'),
+        links: [
+            {
+                icon: `<path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm64 32a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm384 0c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24s10.7 24 24 24H424c13.3 0 24-10.7 24-24z"/>`,
+                button: Lang.CreateTranslationContext('projects', 'SeeTheWebsite'),
+                link: "/other/aichat"
+            }
+        ],
+        tags: ["app", "python", "music", "fft", "fourier", "transform", "audio", "wav", "visualizer", "tkinter", "tk"]
+    },
+    {
         icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />`,
         logo: "/img/projects/BigyRenderer.png",
         id: "BigyRenderer",

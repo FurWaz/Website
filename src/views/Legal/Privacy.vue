@@ -294,8 +294,8 @@
 
         <p class="ml-4">
             FurWaz <br>
-            6 Faubourg Saint Claude <br>
-            Manonville, Grand Est 54 385 <br>
+            33 Rue du Morvan <br>
+            Vandoeuvre-Lès-Nancy, Grand-Est 54500 <br>
             France <br>
         </p>
 

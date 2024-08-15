@@ -23,6 +23,8 @@ const router = createRouter({
         { path: '/my/apps',         name: 'MyApps',         component: () => import("../views/Account/Apps.vue"),       beforeEnter: () => User.CurrentUser !== null },
         { path: '/my/security',     name: 'Security',       component: () => import("../views/Account/Security.vue"),   beforeEnter: () => User.CurrentUser !== null },
 
+        { path: '/other/aichat',     name: 'AIChat',       component: () => import("../views/Other/AIChat.vue"),        beforeEnter: () => true },
+
         // 404 redirect
         { path: "/:catchAll(.*)", name: 'NotFound', component: () => import("../views/NotFound.vue") }
     ]
