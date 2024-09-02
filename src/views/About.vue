@@ -287,11 +287,6 @@ const friends = [
         website: "https://antoninrousseau.fr"
     },
     {
-        name: "Cats & Foxes",
-        icon: "/img/friends/catsandfoxes.png",
-        website: "https://catsandfoxes.com"
-    },
-    {
         name: "LeToucan",
         icon: "/img/friends/letoucan.png",
         website: "https://antoinectx.fr"
