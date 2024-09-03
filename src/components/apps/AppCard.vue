@@ -15,7 +15,7 @@
                 v-if="mode === 'view'"
                 class="flex flex-col justify-center items-center min-h-0 w-min min-w-[16em]"
             >
-                <div class="flex-col space-y-8 w-fit h-fit">
+                <div class="flex-col space-y-4 w-fit h-fit">
                     <div class="flex items-center space-x-2">
                         <div class="dark:bg-slate-800 rounded-lg p-1">
                             <Squares2X2Icon
@@ -44,7 +44,7 @@
                         {{ app.description }}
                     </base-text>
                     <base-text
-                        v-if="app.authorId !== user.id || !canEdit"
+                        v-if="app.authorId !== user?.id || !canEdit"
                         class="flex space-x-1 w-full text-sm"
                     >
                         <GetText :context="Lang.CreateTranslationContext('portal', 'CreatedBy')" />

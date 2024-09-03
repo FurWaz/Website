@@ -25,9 +25,8 @@ export function redirectLink(wait = true) {
         if (url.toString() !== newurl.toString()) return;
 
         let link = window.topbar.$route.query.link;
-        console.log('link is ' + link);
         if (!link) link = "/";
-        window.location.href = link;
+        window.topbar.$router.push(link);
     }, wait ? 1000 : 0);
 }
 

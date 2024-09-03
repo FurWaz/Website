@@ -37,6 +37,15 @@
                     class="show-down"
                     style="animation-delay: 400ms;"
                 />
+                <div class="flex flex-col justify-start items-start py-2 space-y-2">
+                    <RouterLink
+                        :to="{ name: 'Login', query: { link: $route.query.link } }"
+                        class="show-down italic text-slate-500 dark:text-slate-400 hover:underline"
+                        style="animation-delay: 300ms;"
+                    >
+                        <GetText :context="Lang.CreateTranslationContext('account', 'AlreadyAccount')" />
+                    </RouterLink>
+                </div>
             </FormCard>
         </div>
     </div>
@@ -51,12 +60,16 @@ import { API } from '../scripts/API';
 import ROUTES from '../scripts/routes';
 import Lang from '../scripts/Lang';
 import User from '../scripts/User';
+import { RouterLink } from 'vue-router';
+import GetText from '@/components/text/GetText.vue';
 
 export default {
     name: "RegisterView",
     components: {
         InputText,
         FormCard,
+        RouterLink,
+        GetText
     },
     data() {
         return { Lang };

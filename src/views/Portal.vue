@@ -23,10 +23,10 @@
                     <div class="show-right">
                         <p class="flex text-xl text-slate-600 dark:text-slate-200 w-full space-x-2">
                             <GetText :context="Lang.CreateTranslationContext('portal', 'WithAccount')" />
-                            <span class="font-bold"> {{ user.pseudo }} </span>
+                            <span class="font-bold"> {{ user?.pseudo }} </span>
                         </p>
                         <button
-                            class="text-sm italic hover:underline"
+                            class="text-sm italic hover:underline text-slate-400 dark:text-slate-400"
                             @click="goToLogin"
                         >
                             <GetText :context="Lang.CreateTranslationContext('portal', 'UseOtherAccount')" />
@@ -87,6 +87,10 @@ export default {
         };
     },
     mounted() {
+        if (!User.CurrentUser) {
+            this.goToLogin();
+        }
+
         this.token = this.$route.query.token;
         if (!this.token) this.error = true;
 

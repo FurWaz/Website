@@ -25,6 +25,8 @@
     "PasswordModification": "Password modification",
     "Password": "Password",
     "ForgotPassword": "Forgot password ?",
+    "NoAccount": "No account ? Sign up",
+    "AlreadyAccount": "Already an account ? Log in",
     "Confirmation": "Confirmation",
     "OldPassword": "Old password",
     "NewPassword": "New password",

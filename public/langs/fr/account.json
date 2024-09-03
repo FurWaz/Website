@@ -25,6 +25,7 @@
     "PasswordModification": "Modification du mot de passe",
     "Password": "Mot de passe",
     "ForgotPassword": "Mot de passe oublié ?",
+    "NoAccount": "Pas de compte ? S'inscrire",
     "Confirmation": "Confirmation",
     "OldPassword": "Ancien mot de passe",
     "NewPassword": "Nouveau mot de passe",

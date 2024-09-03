@@ -28,13 +28,22 @@
                     :label="Lang.CreateTranslationContext('account', 'Password')"
                     :placeholder="Lang.CreateTranslationContext('account', 'Password')"
                 />
-                <button
-                    class="show-down italic text-slate-500 dark:text-slate-400 hover:underline"
-                    style="animation-delay: 300ms;"
-                    :onclick="toggleMode"
-                >
-                    <GetText :context="Lang.CreateTranslationContext('account', 'ForgotPassword')" />
-                </button>
+                <div class="flex flex-col justify-start items-start py-2 space-y-2">
+                    <button
+                        class="show-down italic text-slate-500 dark:text-slate-400 hover:underline"
+                        style="animation-delay: 300ms;"
+                        :onclick="toggleMode"
+                    >
+                        <GetText :context="Lang.CreateTranslationContext('account', 'ForgotPassword')" />
+                    </button>
+                    <RouterLink
+                        :to="{ name: 'Register', query: { link: $route.query.link } }"
+                        class="show-down italic text-slate-500 dark:text-slate-400 hover:underline"
+                        style="animation-delay: 300ms;"
+                    >
+                        <GetText :context="Lang.CreateTranslationContext('account', 'NoAccount')" />
+                    </RouterLink>
+                </div>
             </FormCard>
 
             <!-- FORGOT PASSWORD CARD -->
@@ -69,6 +78,7 @@ import { redirectLink } from '../scripts/common';
 import Lang from '../scripts/Lang';
 import { Log } from '../scripts/Logs';
 import User from '../scripts/User';
+import { RouterLink } from 'vue-router';
 
 export default {
     name: "LoginView",
@@ -76,6 +86,7 @@ export default {
         InputText,
         FormCard,
         GetText,
+        RouterLink
     },
     data() {
         return {
