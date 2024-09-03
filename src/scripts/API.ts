@@ -1,3 +1,4 @@
+import Lang from "./Lang";
 import User from "./User";
 
 export enum METHOD {
@@ -137,7 +138,9 @@ export class API {
 
     public static Setup(host: string) {
         API.host = API.SanatizeHost(host);
-        API.protocol = 'https';
+        API.protocol = window.location.protocol.endsWith(':')
+        ? window.location.protocol.substring(0, window.location.protocol.length - 1)
+        : window.location.protocol;
     } 
 
     public static CheckSetup() {
@@ -164,6 +167,7 @@ export class API {
                 body: body,
                 headers: {
                     'Content-Type': route.type,
+                    'Accept-Language': Lang.getLanguage(),
                     ...headers
                 }
             }
