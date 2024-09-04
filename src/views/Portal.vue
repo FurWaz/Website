@@ -91,7 +91,11 @@ export default {
             this.goToLogin();
         }
 
-        this.token = this.$route.query.token;
+        this.token = this.$route.query.token
+            ? (typeof(this.$route.query.token) === 'string')
+                ? this.$route.query.token
+                : this.$route.query.token[0]
+            : null;
         if (!this.token) this.error = true;
 
         this.retreivePortalInfos();
