@@ -116,9 +116,19 @@ export default {
 
             try {
                 const resRegister = await API.Request(ROUTES.USERS.CREATE(body.pseudo, body.email, body.password));
+                if (resRegister.error) {
+                    log.update(resRegister.message, Log.ERROR);
+                    setTimeout(() => { log.delete(); }, 4000);
+                    return;
+                }
                 const user = new User(resRegister.data);
 
                 const resLogin = await API.Request(ROUTES.AUTH.LOGIN(body.email, body.password));
+                if (resLogin.error) {
+                    log.update(resLogin.message, Log.ERROR);
+                    setTimeout(() => { log.delete(); }, 4000);
+                    return;
+                }
                 user.setTokens(resLogin.data);
                 user.save();
 
