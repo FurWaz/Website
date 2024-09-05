@@ -4,7 +4,7 @@
 
         <p>We are FurWaz ("<b>Company</b>", "<b>we</b>", "<b>us</b>", "<b>our</b>"), a company registered in France at 33 Rue du Morvan, Vandoeuvre-Lès-Nancy, Grand-Est 54500, France.</p>
 
-        <p>We operate the website https://furwaz.fr (the "<b>Site</b>"), as well as any other related products and services that refer or link to these legal terms (the "<b>Legal Terms</b>") (collectively, the "<b>Services</b>").</p>
+        <p>We operate the website https://furwaz.com (the "<b>Site</b>"), as well as any other related products and services that refer or link to these legal terms (the "<b>Legal Terms</b>") (collectively, the "<b>Services</b>").</p>
 
         <p>You can contact us by phone at 0782582541, email at contact@furwaz.fr, or by mail to 33 Rue du Morvan, Vandoeuvre-Lès-Nancy, Grand-Est 54500, France.</p>
 
@@ -290,7 +290,7 @@
 
         <h1 id="ppyes">16. PRIVACY POLICY</h1>
 
-        <p>We care about data privacy and security. Please review our Privacy Policy: <a href="https://furwaz.fr/privacy">https://furwaz.fr/privacy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in France. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in France, then through your continued use of the Services, you are transferring your data to France, and you expressly consent to have your data transferred to and processed in France.</p>
+        <p>We care about data privacy and security. Please review our Privacy Policy: <a href="https://furwaz.com/privacy">https://furwaz.com/privacy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in France. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in France, then through your continued use of the Services, you are transferring your data to France, and you expressly consent to have your data transferred to and processed in France.</p>
 
         <span class="break" />
 

@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import FormCard from '../components/cards/FormCard.vue';
 import InputText from '../components/inputs/InputText.vue';
 import GetText from '../components/text/GetText.vue';
@@ -80,7 +81,7 @@ import { Log } from '../scripts/Logs';
 import User from '../scripts/User';
 import { RouterLink } from 'vue-router';
 
-export default {
+export default defineComponent({
     name: "LoginView",
     components: {
         InputText,
@@ -173,5 +174,5 @@ export default {
             }
         }
     }
-}
+});
 </script>

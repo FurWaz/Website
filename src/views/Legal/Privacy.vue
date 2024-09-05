@@ -2,7 +2,7 @@
     <div class="space-y-4">
         <p>This privacy notice for FurWaz ("<b>we</b>," "<b>us</b>," or "<b>our</b>"), describes how and why we might collect, store, use, and/or share ("<b>process</b>") your information when you use our services ("<b>Services</b>"), such as when you:</p>
         <ul>
-            <li> Visit our website at <a href="https://furwaz.fr">https://furwaz.fr</a>, or any website of ours that links to this privacy notice </li>
+            <li> Visit our website at <a href="https://furwaz.com">https://furwaz.com</a>, or any website of ours that links to this privacy notice </li>
             <li> Engage with us in other related ways, including any sales, marketing, or events </li>
         </ul>
 
@@ -59,7 +59,7 @@
         <p>
             <b>How do you exercise your rights?</b>
             <br>
-            The easiest way to exercise your rights is by visiting https://furwaz.fr/my/profile, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.
+            The easiest way to exercise your rights is by visiting https://furwaz.com/my/profile, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.
         </p>
 
         <p>
@@ -301,7 +301,7 @@
 
         <h1 id="request">14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h1>
 
-        <p>You have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please visit: <a href="https://furwaz.fr/my/profile">https://furwaz.fr/my/profile</a>.</p>
+        <p>You have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please visit: <a href="https://furwaz.com/my/profile">https://furwaz.com/my/profile</a>.</p>
     </div>
 </template>
 
