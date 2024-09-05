@@ -31,8 +31,9 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
     name: 'ButtonText',
     props: {
         href: {
@@ -59,7 +60,7 @@ export default {
     data() {
         return {
             window,
-            link: this.href
+            link: this.href as string|undefined
         }
     },
     watch: {
@@ -70,7 +71,7 @@ export default {
     mounted() {
         this.link = this.disabled? undefined : this.href;
         if (!this.link)
-            this.$refs["btn"].addEventListener("click", this.onClick);
+            (this.$refs["btn"] as any).addEventListener("click", this.onClick);
     },
     methods: {
         onClick() {
@@ -78,5 +79,5 @@ export default {
             this.onclick?.(this);
         }
     }
-}
+});
 </script>

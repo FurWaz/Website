@@ -7,8 +7,9 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
     name: "BadgeCard",
     props: {
         hoverable: {
@@ -32,5 +33,5 @@ export default {
             (this.selected?  ' border-slate-400 dark:border-slate-400' : ' border-slate-200 dark:border-slate-600 ')
         }
     }
-}
+});
 </script>

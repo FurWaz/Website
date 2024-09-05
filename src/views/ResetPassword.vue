@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import FormCard from '../components/cards/FormCard.vue';
 import InputText from '../components/inputs/InputText.vue';
 import { Log } from '../scripts/Logs';
@@ -30,7 +31,7 @@ import { API } from '../scripts/API';
 import ROUTES from '../scripts/routes';
 import Lang from '../scripts/Lang';
 
-export default {
+export default defineComponent({
     name: 'ResetPassword',
     components: {
         FormCard,
@@ -96,5 +97,5 @@ export default {
             this.$router.push('/');
         }
     }
-}
+});
 </script>

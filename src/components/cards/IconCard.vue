@@ -66,8 +66,9 @@
     </button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
     name: "IconCard",
     props: {
         clickable: {
@@ -82,7 +83,7 @@ export default {
     data() {
         return {};
     }
-}
+});
 </script>
 
 <style scoped>

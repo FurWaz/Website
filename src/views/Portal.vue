@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import LogZone from '../components/cards/LogZone.vue';
 import GetText from '../components/text/GetText.vue';
 import FormCard from '../components/cards/FormCard.vue';
@@ -67,7 +68,7 @@ import { Log } from '../scripts/Logs';
 import Lang from '../scripts/Lang';
 import User from '../scripts/User';
 
-export default {
+export default defineComponent({
     name: "RegisterView",
     components: {
         LogZone,
@@ -164,5 +165,5 @@ export default {
             }
         }
     }
-}
+});
 </script>

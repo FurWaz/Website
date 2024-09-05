@@ -32,8 +32,9 @@
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
     name: 'ButtonBlock',
     props: {
         href: {
@@ -65,7 +66,7 @@ export default {
     data() {
         return {
             window,
-            link: this.href
+            link: this.href as string|undefined
         }
     },
     watch: {
@@ -76,13 +77,13 @@ export default {
     mounted() {
         this.link = this.disabled? undefined : this.href;
         if (!this.link)
-            this.$refs["btn"].addEventListener("click", this.onClick);
+            (this.$refs["btn"] as any).addEventListener("click", this.onClick);
     },
     methods: {
-        onClick(ev) {
+        onClick(ev: Event) {
             if (this.href || this.disabled) return;
             this.onclick?.(this, ev);
         }
     }
-}
+});
 </script>

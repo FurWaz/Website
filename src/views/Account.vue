@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import IconHeader from '../components/cards/IconHeader.vue';
 import ButtonBlock from '../components/inputs/ButtonBlock.vue';
 import ButtonRedirect from '../components/inputs/ButtonRedirect.vue';
@@ -45,7 +46,7 @@ const links = [
     {name: "Apps",     icon: Squares2X2Icon, href: "/my/apps"},
 ];
 
-export default {
+export default defineComponent({
     name: "AccountView",
     components: {
         ButtonRedirect,
@@ -67,5 +68,5 @@ export default {
             this.$router.go();
         }
     }
-}
+});
 </script>

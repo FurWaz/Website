@@ -139,6 +139,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import BadgeCard from '../components/cards/BadgeCard.vue';
 import ButtonBlock from '../components/inputs/ButtonBlock.vue';
 import SvgText from '../components/text/SvgText.vue';
@@ -153,7 +154,7 @@ import InputText from '../components/inputs/InputText.vue';
 import ButtonBack from '../components/inputs/ButtonBack.vue';
 import GetText from '../components/text/GetText.vue';
 
-export default {
+export default defineComponent({
     name: "AppsView",
     components: {
         TitleText,
@@ -299,5 +300,5 @@ export default {
             });
         }
     }
-}
+});
 </script>

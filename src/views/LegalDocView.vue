@@ -19,11 +19,12 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import ButtonBack from '../components/inputs/ButtonBack.vue';
 import PrivacyDocument from './Legal/Privacy.vue';
 import TermsDocument from './Legal/Terms.vue';
 
-export default {
+export default defineComponent({
     name: "LegalDocView",
     components: {
         ButtonBack
@@ -51,5 +52,5 @@ export default {
     methods: {
         
     },
-};
+});
 </script>

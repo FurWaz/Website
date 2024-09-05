@@ -76,7 +76,8 @@
     </modal-card>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import AppCard from "../../components/apps/AppCard.vue";
 import { animateShows } from '../../scripts/common';
 import Lang from '../../scripts/Lang';
@@ -98,7 +99,7 @@ async function fetchMyApps() {
     return (await API.RequestLogged(ROUTES.APPS.ME.GET())).data;
 }
 
-export default {
+export default defineComponent({
     name: "MyApps",
     components: {
         AppCard,
@@ -116,7 +117,7 @@ export default {
     data() {
         return {
             Lang,
-            apps: [],
+            apps: [] as any[],
             loading: true
         };
     },
@@ -128,7 +129,7 @@ export default {
         });
     },
     methods: {
-        async createApp(form) {
+        async createApp(form: any) {
             const text = await Lang.GetTextAsync(Lang.CreateTranslationContext('verbs', 'Creating'));
             const log = form.log(text, Log.INFO);
             const body = form.body();
@@ -158,9 +159,9 @@ export default {
             this.apps.push(res.data);
             setTimeout(() => {
                 log.delete();
-                this.$refs['create-modal'].close();
+                (this.$refs['create-modal'] as any).close();
             }, 2000);
         }
     }
-}
+});
 </script>

@@ -262,6 +262,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import { animateShows } from '../scripts/common';
 import IconHeader from '../components/cards/IconHeader.vue';
 import TitleText from '../components/text/TitleText.vue';
@@ -317,7 +318,7 @@ const links = [
     }
 ];
 
-export default {
+export default defineComponent({
     name: "AboutView",
     components: {
         IconHeader,
@@ -354,5 +355,5 @@ export default {
             window.open(CVurl, "_blank");
         }
     }
-}
+});
 </script>

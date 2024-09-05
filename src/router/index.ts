@@ -15,15 +15,10 @@ const router = createRouter({
         { path: '/portal',          name: 'Portal',         component: () => import("../views/Portal.vue"),             beforeEnter: () => true },
         { path: '/verify/email',    name: 'VerifyEmail',    component: () => import("../views/VerifyEmail.vue"),        beforeEnter: () => true },
         { path: '/reset/password',  name: 'ResetPassword',  component: () => import("../views/ResetPassword.vue"),      beforeEnter: () => true },
-        // { path: '/buy',             name: 'Buy',            component: () => import("../views/Buy.vue"),                beforeEnter: () => User.CurrentUser !== null },
-        // { path: '/checkout',        name: 'Checkout',       component: () => import("../views/Checkout.vue"),           beforeEnter: () => User.CurrentUser !== null },
-        // { path: '/checkout/status', name: 'CheckoutStatus', component: () => import("../views/CheckoutStatus.vue"),     beforeEnter: () => User.CurrentUser !== null },
         { path: '/my',              name: 'Account',        component: () => import("../views/Account.vue"),            beforeEnter: () => User.CurrentUser !== null },
         { path: '/my/profile',      name: 'Profile',        component: () => import("../views/Account/Profile.vue"),    beforeEnter: () => User.CurrentUser !== null },
         { path: '/my/apps',         name: 'MyApps',         component: () => import("../views/Account/Apps.vue"),       beforeEnter: () => User.CurrentUser !== null },
         { path: '/my/security',     name: 'Security',       component: () => import("../views/Account/Security.vue"),   beforeEnter: () => User.CurrentUser !== null },
-
-        { path: '/other/aichat',     name: 'AIChat',       component: () => import("../views/Other/AIChat.vue"),        beforeEnter: () => true },
 
         // 404 redirect
         { path: "/:catchAll(.*)", name: 'NotFound', component: () => import("../views/NotFound.vue") }

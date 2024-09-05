@@ -34,14 +34,15 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import FormCard from '../../components/cards/FormCard.vue';
 import ButtonBack from '../../components/inputs/ButtonBack.vue';
 import InputText from '../../components/inputs/InputText.vue';
 import Lang from '../../scripts/Lang';
 import User from '../../scripts/User';
 
-export default {
+export default defineComponent({
     name: "MySecurity",
     components: {
         InputText,
@@ -56,9 +57,9 @@ export default {
     },
     mounted() { },
     methods: {
-        async changePassword(form) {
-            // TODO : Change password
-        }
+        // async changePassword(form: any) {
+        //    TODO : Change password
+        // }
     }
-}
+});
 </script>

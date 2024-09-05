@@ -33,13 +33,14 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import IconCard from "../components/cards/IconCard.vue";
 import ButtonBlock from '../components/inputs/ButtonBlock.vue';
 import GetText from '../components/text/GetText.vue';
 import Lang from '../scripts/Lang';
 
-export default {
+export default defineComponent({
     name: "NotFound",
     components: {
         IconCard,
@@ -50,5 +51,5 @@ export default {
         return { Lang };
     },
     mounted() {}
-}
+});
 </script>

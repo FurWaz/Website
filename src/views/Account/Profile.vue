@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import FormCard from '../../components/cards/FormCard.vue';
 import InputText from '../../components/inputs/InputText.vue';
 import InputChoice from '../../components/inputs/InputChoice.vue';
@@ -68,7 +69,7 @@ import ROUTES from '../../scripts/routes';
 import Lang from '../../scripts/Lang';
 import User from '../../scripts/User';
 
-export default {
+export default defineComponent({
     name: "MyProfile",
     components: {
         InputText,
@@ -145,5 +146,5 @@ export default {
             }, 1000);
         }
     }
-}
+});
 </script>
