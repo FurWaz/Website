@@ -240,7 +240,7 @@
             <div class="show-up flex justify-center mb-20">
                 <a
                     class="w-fit h-fit"
-                    href="mailto:contact@furwaz.fr"
+                    href="mailto:contact@furwaz.com"
                     target="_blank"
                 >
                     <badge-card
@@ -251,7 +251,7 @@
                                 <GetText :context="Lang.CreateTranslationContext('about', 'Mail')" /> :
                             </span>
                             <span class="font-semibold text-slate-600 dark:text-slate-200 whitespace-nowrap">
-                                contact@furwaz.fr
+                                contact@furwaz.com
                             </span>
                         </p>
                     </badge-card>

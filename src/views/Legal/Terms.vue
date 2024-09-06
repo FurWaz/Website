@@ -6,11 +6,11 @@
 
         <p>We operate the website https://furwaz.com (the "<b>Site</b>"), as well as any other related products and services that refer or link to these legal terms (the "<b>Legal Terms</b>") (collectively, the "<b>Services</b>").</p>
 
-        <p>You can contact us by phone at 0782582541, email at contact@furwaz.fr, or by mail to 33 Rue du Morvan, Vandoeuvre-Lès-Nancy, Grand-Est 54500, France.</p>
+        <p>You can contact us by phone at 0782582541, email at contact@furwaz.com, or by mail to 33 Rue du Morvan, Vandoeuvre-Lès-Nancy, Grand-Est 54500, France.</p>
 
         <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and FurWaz, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</p>
 
-        <p>We will provide you with prior notice of any scheduled changes to the Services you are using. The modified Legal Terms will become effective upon posting or notifying you by noreply@furwaz.fr, as stated in the email message. By continuing to use the Services after the effective date of any changes, you agree to be bound by the modified terms.</p>
+        <p>We will provide you with prior notice of any scheduled changes to the Services you are using. The modified Legal Terms will become effective upon posting or notifying you by noreply@furwaz.com, as stated in the email message. By continuing to use the Services after the effective date of any changes, you agree to be bound by the modified terms.</p>
 
         <p>The Services are intended for users who are at least 18 years old. Persons under the age of 18 are not permitted to use or register for the Services.</p>
 
@@ -84,7 +84,7 @@
 
         <p>Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.</p>
 
-        <p>If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: contact@furwaz.fr. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.</p>
+        <p>If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: contact@furwaz.com. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.</p>
 
         <p>We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.</p>
 
