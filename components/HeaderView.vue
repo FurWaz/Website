@@ -1,7 +1,38 @@
 <template>
     <div class="z-50 sticky top-0 left-0 w-full h-fit p-1">
         <div class="flex flex-col bg-slate-50 dark:bg-slate-700 rounded-md shadow-md border border-slate-200 dark:border-slate-600 p-1.5">
-            <div class="flex justify-between items-center">
+            <div class="hidden md:flex justify-between items-center space-x-16">
+                <NuxtLink class="flex justify-start items-center w-fit space-x-2" :to="localePath('/')">
+                    <FwIcon class="h-8 w-8" />
+                    <p class="text-md font-semibold"> FurWaz </p>
+                </NuxtLink>
+                <div class="flex w-full space-x-8 justify-start items-center overflow-auto">
+                    <UButton icon="i-heroicons-home" :to="localePath('/')" variant="outline">
+                        {{ $t('home.name') }}
+                    </UButton>
+                    <UButton icon="i-heroicons-wrench-screwdriver" :to="localePath('/projects')" variant="outline">
+                        {{ $t('projects.name') }}
+                    </UButton>
+                    <UButton icon="i-heroicons-information-circle" :to="localePath('/about')" variant="outline">
+                        {{ $t('about.name') }}
+                    </UButton>
+                </div>
+                <div class="flex justify-end items-center space-x-4">
+                    <ThemeSwitcher class="hidden lg:flex min-w-fit"/>
+                    <LangSwitcher class="hidden lg:flex min-w-fit"/>
+                    <div v-show="User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
+                        <UButton :to="localePath('/account')" icon="i-heroicons-user">
+                            {{ $t('account.name') }}
+                        </UButton>
+                    </div>
+                    <div v-show="!User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
+                        <UButton :to="localePath('/login')" variant="solid">
+                            {{ $t('login.login') }}
+                        </UButton>
+                    </div>
+                </div>
+            </div>
+            <div class="flex md:hidden justify-between items-center">
                 <NuxtLink class="flex justify-start items-center w-12" :to="localePath('/')">
                     <FwIcon class="h-8 w-8" />
                 </NuxtLink>
