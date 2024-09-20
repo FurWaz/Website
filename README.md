@@ -1,2 +1,2 @@
 # Website
-My own website UwU
+My personnal website, were you can find my projects, apps, and informations about myself !
