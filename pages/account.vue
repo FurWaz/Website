@@ -11,15 +11,15 @@
         </div>
         <div class="flex grow justify-center items-center">
             <div class="flex flex-col space-y-8 w-fit">
-                <UButton class="show-up w-full" variant="outline" style="animation-delay: 0ms;"
+                <UButton class="show-up w-full" variant="outline" style="animation-delay: 000ms;"
                     icon="i-heroicons-identification" :to="localePath('/account/informations')">
                     {{ $t('account.action.informations') }}
                 </UButton>
-                <UButton class="show-up w-full" variant="outline" style="animation-delay: 50ms;"
+                <UButton class="show-up w-full" variant="outline" style="animation-delay: 100ms;"
                     icon="i-heroicons-squares-2x2" :to="localePath('/account/applications')">
                     {{ $t('account.action.applications') }}
                 </UButton>
-                <UButton class="show-up w-full" variant="outline" style="animation-delay: 100ms;"
+                <UButton class="show-up w-full" variant="outline" style="animation-delay: 200ms;"
                     icon="i-heroicons-cog-6-tooth" :to="localePath('/account/settings')">
                     {{ $t('account.action.settings') }}
                 </UButton>
