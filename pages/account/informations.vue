@@ -1,5 +1,5 @@
 <template>
-    <div class="justify-between items-center">
+    <div class="justify-start items-center">
         <div class="flex flex-col space-y-4">
             <div class="show-down flex flex-col w-full h-fit card p-2">
                 <div class="flex space-x-4 justify-center items-center p-2">
@@ -78,19 +78,27 @@
 </template>
 
 <script lang="ts" setup>
+import { object, string, boolean, type InferType } from 'yup';
+import type { FormSubmitEvent } from '#ui/types';
+import auth from '~/middleware/auth';
+
+const header = useHeader();
 const router = useRouter();
 const route = useRoute();
 const { t } = useI18n();
-import { object, string, boolean, type InferType } from 'yup';
-import type { FormSubmitEvent } from '#ui/types';
 
 useSeoMeta({
-    title: `FurWaz - ${t('login.title')}`,
-    description: `${t('login.description')}`,
-    ogTitle: `FurWaz - ${t('login.title')}`,
-    ogDescription: `${t('login.description')}`,
+    title: `FurWaz - ${t('account.informations.title')}`,
+    description: `${t('account.informations.description')}`,
+    ogTitle: `FurWaz - ${t('account.informations.title')}`,
+    ogDescription: `${t('account.informations.description')}`,
     ogImage: '/icon.png',
     ogUrl: 'https://furwaz.com' + route.fullPath
+});
+header.setTitle(t('account.informations.title'));
+
+definePageMeta({
+    middleware: auth
 });
 
 const mode = ref<'login' | 'register'>(router.currentRoute.value.query.mode as 'login' | 'register' ?? 'login');

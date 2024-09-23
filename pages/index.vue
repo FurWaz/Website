@@ -9,6 +9,7 @@
 
 <script setup lang="ts">
 const route = useRoute();
+const header = useHeader();
 const { t } = useI18n();
 
 useSeoMeta({
@@ -19,4 +20,5 @@ useSeoMeta({
     ogImage: '/icon.png',
     ogUrl: 'https://furwaz.com' + route.fullPath
 });
+header.setTitle(t('FurWaz'));
 </script>

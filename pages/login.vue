@@ -94,6 +94,7 @@
 </template>
 
 <script setup lang="ts">
+const header = useHeader();
 const router = useRouter();
 const route = useRoute();
 const { t } = useI18n();
@@ -110,8 +111,12 @@ useSeoMeta({
 });
 
 const mode = ref<'login' | 'register'>(router.currentRoute.value.query.mode as 'login' | 'register' ?? 'login');
+header.setTitle(t('login.' + mode.value));
 watch(() => router.currentRoute.value, () => {
     mode.value = router.currentRoute.value.query.mode as 'login' | 'register' ?? 'login';
+});
+watch(mode, () => {
+    header.setTitle(t('login.' + mode.value));
 });
 
 const loginState = reactive({

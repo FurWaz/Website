@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+const header = useHeader();
 const route = useRoute();
 const { t } = useI18n();
 
@@ -16,4 +17,5 @@ useSeoMeta({
     ogImage: '/icon.png',
     ogUrl: 'https://furwaz.com' + route.fullPath
 });
+header.setTitle(t('about.name'));
 </script>
