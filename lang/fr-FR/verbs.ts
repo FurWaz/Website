@@ -3,4 +3,7 @@ export default {
     cancel: 'Annuler',
     logout: 'Déconnexion',
     back: 'Retour',
+    update: 'Mettre à jour',
+    reset: 'Réinitialiser',
+    delete: 'Supprimer',
 }

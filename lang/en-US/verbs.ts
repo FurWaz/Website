@@ -3,4 +3,7 @@ export default {
     cancel: 'Cancel',
     logout: 'Logout',
     back: 'Back',
+    update: 'Update',
+    reset: 'Reset',
+    delete: 'Delete',
 }

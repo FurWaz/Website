@@ -106,5 +106,5 @@ p {
 }
 
 .card {
-    @apply border border-slate-200 dark:border-slate-600 rounded-md shadow-md
+    @apply rounded-md shadow-md border border-slate-200 dark:border-slate-600
 }

@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col justify-start items-center py-4 px-4 space-y-4">
+    <div class="flex flex-col">
         <div class="show-down flex flex-col items-center space-y-4">
             <h2> Mes projets </h2>
             <UInput class="show-down" v-model="search" placeholder="Rechercher un projet" />
         </div>
-        <div class="flex flex-col grow h-full w-full overflow-auto">
+        <div class="flex flex-wrap h-fit w-full overflow-auto">
             <ProjectCard v-for="(project, index) in projects" :key="project.id" :project="project"
                 class="my-4 mx-auto" :style="`animation-delay: ${index}00ms;`"/>
         </div>

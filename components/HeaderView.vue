@@ -2,18 +2,18 @@
     <div class="z-50 sticky top-0 left-0 w-full h-fit p-1">
         <div class="flex flex-col bg-slate-50 dark:bg-slate-700 rounded-md shadow-md border border-slate-200 dark:border-slate-600 p-1.5">
             <div class="hidden md:flex justify-between items-center space-x-16">
-                <NuxtLink class="flex justify-start items-center w-fit space-x-2" :to="localePath('/')">
+                <NuxtLink class="flex justify-start items-center w-fit space-x-2" to="/">
                     <FwIcon class="h-8 w-8" />
                     <p class="text-md font-semibold"> FurWaz </p>
                 </NuxtLink>
                 <div class="flex w-full space-x-8 justify-start items-center overflow-auto">
-                    <UButton icon="i-heroicons-home" :to="localePath('/')" variant="outline">
+                    <UButton icon="i-heroicons-home" to="/" variant="outline">
                         {{ $t('home.name') }}
                     </UButton>
-                    <UButton icon="i-heroicons-wrench-screwdriver" :to="localePath('/projects')" variant="outline">
+                    <UButton icon="i-heroicons-wrench-screwdriver" to="/projects" variant="outline">
                         {{ $t('projects.name') }}
                     </UButton>
-                    <UButton icon="i-heroicons-information-circle" :to="localePath('/about')" variant="outline">
+                    <UButton icon="i-heroicons-information-circle" to="/about" variant="outline">
                         {{ $t('about.name') }}
                     </UButton>
                 </div>
@@ -21,19 +21,19 @@
                     <ThemeSwitcher class="hidden lg:flex min-w-fit"/>
                     <LangSwitcher class="hidden lg:flex min-w-fit"/>
                     <div v-show="User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
-                        <UButton :to="localePath('/account')" icon="i-heroicons-user">
+                        <UButton to="/account" icon="i-heroicons-user">
                             {{ $t('account.name') }}
                         </UButton>
                     </div>
                     <div v-show="!User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
-                        <UButton :to="localePath('/login')" variant="solid">
+                        <UButton to="/login" variant="solid">
                             {{ $t('login.login') }}
                         </UButton>
                     </div>
                 </div>
             </div>
             <div class="flex md:hidden justify-between items-center">
-                <NuxtLink class="flex justify-start items-center w-12" :to="localePath('/')">
+                <NuxtLink class="flex justify-start items-center w-12" to="/')">
                     <FwIcon class="h-8 w-8" />
                 </NuxtLink>
                 <div>
@@ -48,13 +48,13 @@
             <div ref="mobileHeader" class="flex w-full h-fit overflow-hidden transition-all ease-custom duration-custom" style="max-height: 0px;">
                 <div class="flex flex-col h-fit p-1 w-full">
                     <div class="flex flex-col w-fit h-fit py-2 justify-center items-center space-y-4 mx-auto">
-                        <UButton class="w-full justify-between" icon="i-heroicons-home" :to="localePath('/')" variant="outline">
+                        <UButton class="w-full justify-between" icon="i-heroicons-home" to="/" variant="outline">
                             {{ $t('home.name') }}
                         </UButton>
-                        <UButton class="w-full justify-between" icon="i-heroicons-wrench-screwdriver" :to="localePath('/projects')" variant="outline">
+                        <UButton class="w-full justify-between" icon="i-heroicons-wrench-screwdriver" to="/projects" variant="outline">
                             {{ $t('projects.name') }}
                         </UButton>
-                        <UButton class="w-full justify-between" icon="i-heroicons-information-circle" :to="localePath('/about')" variant="outline">
+                        <UButton class="w-full justify-between" icon="i-heroicons-information-circle" to="/about" variant="outline">
                             {{ $t('about.name') }}
                         </UButton>
                     </div>
@@ -70,15 +70,15 @@
                             <UButton @click="() => { User.Forget() }" variant="ghost">
                                 {{ $t('verb.logout') }}
                             </UButton>
-                            <UButton :to="localePath('/account')" icon="i-heroicons-user">
+                            <UButton to="/account')" icon="i-heroicons-user">
                                 {{ $t('account.name') }}
                             </UButton>
                         </div>
                         <div v-show="!User.Current" class="flex justify-between items-center w-full h-fit">
-                            <UButton :to="localePath('/login?mode=register')" variant="ghost">
+                            <UButton to="/login?mode=register" variant="ghost">
                                 {{ $t('login.register') }}
                             </UButton>
-                            <UButton :to="localePath('/login')" variant="ghost">
+                            <UButton to="/login" variant="ghost">
                                 {{ $t('login.login') }}
                             </UButton>
                         </div>
