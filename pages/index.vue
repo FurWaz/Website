@@ -20,5 +20,5 @@ useSeoMeta({
     ogImage: '/icon.png',
     ogUrl: 'https://furwaz.com' + route.fullPath
 });
-header.setTitle(t('FurWaz'));
+header.setTitle('FurWaz');
 </script>

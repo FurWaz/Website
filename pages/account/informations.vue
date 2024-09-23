@@ -80,7 +80,6 @@
 <script lang="ts" setup>
 import { object, string, boolean, type InferType } from 'yup';
 import type { FormSubmitEvent } from '#ui/types';
-import auth from '~/middleware/auth';
 
 const header = useHeader();
 const router = useRouter();
@@ -98,7 +97,7 @@ useSeoMeta({
 header.setTitle(t('account.informations.title'));
 
 definePageMeta({
-    middleware: auth
+    middleware: 'auth'
 });
 
 const mode = ref<'login' | 'register'>(router.currentRoute.value.query.mode as 'login' | 'register' ?? 'login');

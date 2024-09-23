@@ -53,8 +53,6 @@
 </template>
 
 <script setup lang="ts">
-import auth from '~/middleware/auth';
-
 const route = useRoute();
 const header = useHeader();
 const { t } = useI18n();
@@ -70,6 +68,6 @@ useSeoMeta({
 header.setTitle(t('account.name'));
 
 definePageMeta({
-    middleware: auth
+    middleware: 'auth'
 });
 </script>
