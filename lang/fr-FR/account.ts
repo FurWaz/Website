@@ -16,10 +16,19 @@ export default {
     applications: {
         title: 'Mes applications',
         description: 'Gérez vos applications FurWaz et leurs paramètres.',
+        search: 'Rechercher des applications...',
+        loading: 'Chargement des applications...',
+        nothing: 'Aucune application trouvée.',
+        error: 'Une erreur est survenue lors du chargement des applications.'
     },
     connections: {
         title: 'Mes connexions',
         description: 'Consultez et gérez vos connexions avec d\'autres services.',
+        search: 'Rechercher des connexions...',
+        loading: 'Chargement des connexions...',
+        nothing: 'Aucune connexion trouvée.',
+        error: 'Une erreur est survenue lors du chargement des connexions.',
+        firstDate: 'Première connexion le {date}',
     },
     settings: {
         title: 'Mes paramètres',

@@ -1,12 +1,11 @@
 <template>
     <div class="flex flex-col">
         <div class="show-down flex flex-col items-center space-y-4">
-            <h2> Mes projets </h2>
-            <UInput class="show-down" v-model="search" placeholder="Rechercher un projet" />
+            <UInput class="show-down" v-model="search" :placeholder="t('projects.search')" />
         </div>
-        <div class="flex flex-wrap h-fit w-full overflow-auto">
+        <div class="flex flex-wrap h-fit w-full overflow-auto px-2">
             <ProjectCard v-for="(project, index) in projects" :key="project.id" :project="project"
-                class="my-4 mx-auto" :style="`animation-delay: ${index}00ms;`"/>
+                class="show-up my-4 mx-auto" :style="`animation-delay: ${index}00ms;`"/>
         </div>
     </div>
 </template>

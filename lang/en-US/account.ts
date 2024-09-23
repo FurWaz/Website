@@ -16,10 +16,19 @@ export default {
     applications: {
         title: 'My applications',
         description: 'Manage your FurWaz applications and their settings.',
+        search: 'Search applications...',
+        loading: 'Loading applications...',
+        nothing: 'No application found.',
+        error: 'An error occurred while loading applications.'
     },
     connections: {
         title: 'My connections',
         description: 'See and manage your connections with other services.',
+        search: 'Search connections...',
+        loading: 'Loading connections...',
+        nothing: 'No connection found.',
+        error: 'An error occurred while loading connections.',
+        firstDate: 'First connection on {date}',
     },
     settings: {
         title: 'My settings',
