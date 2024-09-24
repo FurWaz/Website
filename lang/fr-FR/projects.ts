@@ -10,5 +10,9 @@ export default {
         application: 'Application',
         website: 'Site Web',
         game: 'Jeu',
+    },
+    action: {
+        seeWebsite: 'Voir le site',
+        seeCode: 'Voir le code',
     }
 }
