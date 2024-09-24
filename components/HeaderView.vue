@@ -1,6 +1,6 @@
 <template>
-    <div class="z-50 sticky top-0 left-0 w-full h-fit p-1">
-        <div class="flex flex-col bg-slate-50 dark:bg-slate-700 rounded-md shadow-md border border-slate-200 dark:border-slate-600 p-1.5">
+    <div class="z-50 sticky top-0 left-0 w-full h-fit p-2">
+        <div class="flex flex-col bg-slate-50 dark:bg-slate-700 rounded-md shadow-md border border-slate-200 dark:border-slate-600 p-2">
             <div class="hidden md:flex justify-between items-center space-x-16">
                 <NuxtLink class="flex justify-start items-center w-fit space-x-2" to="/">
                     <FwIcon class="h-8 w-8" />

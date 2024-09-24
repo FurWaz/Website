@@ -1,13 +1,16 @@
 <template>
     <div class="flex flex-col">
-        <div class="show-down flex justify-center items-center space-x-8">
-            <UInput class="show-down" v-model="search" :placeholder="t('projects.search')" />
-            <UFormGroup name="type" label="Type" class="flex justify-center items-center space-x-2 space-y-0">
-                <USelect class="show-down" v-model="type" :options="projectTypes" />
-            </UFormGroup>
+        <div class="show-down flex flex-col justify-center items-center space-y-4 pb-4">
+            <h2> {{ $t('projects.myProjects') }} </h2>
+            <div class="flex flex-col w-fit justify-center items-start space-y-2">
+                <UInput class="show-down" v-model="search" :placeholder="t('projects.search')" />
+                <UFormGroup name="type" label="Type" class="flex justify-center items-center space-x-2 space-y-0">
+                    <USelect class="show-down" v-model="type" :options="projectTypes" />
+                </UFormGroup>
+            </div>
         </div>
-        <div class="flex flex-wrap h-fit w-full overflow-auto px-2">
-            <ProjectCard v-for="project in filteredProjects" :key="project.id" :project="project" class="show-up my-4 mx-auto"/>
+        <div class="flex flex-wrap justify-center items-center h-fit w-full overflow-auto px-2">
+            <ProjectCard v-for="project in filteredProjects" :key="project.id" :project="project" class="show-up m-4 md:m-8" />
         </div>
     </div>
 </template>
@@ -52,7 +55,7 @@ const projects = ref<Project[]>([
     {
         id: 2,
         name: 'Pypoll',
-        description: 'Demande à des milliers de gens en quelques secondes !',
+        description: 'Demandez à des milliers de gens en quelques secondes !',
         image: '/icon.png',
         link: 'https://furwaz.com',
         type: 'application'
@@ -60,7 +63,7 @@ const projects = ref<Project[]>([
     {
         id: 3,
         name: 'VyBeen',
-        description: 'Ecoutez de la musique et chantez ensemble avec VyBeen !',
+        description: 'Écoutez de la musique et chantez ensemble avec VyBeen !',
         image: '/icon.png',
         link: 'https://furwaz.com',
         type: 'application'
@@ -76,7 +79,7 @@ const projects = ref<Project[]>([
     {
         id: 4,
         name: 'PixelPets',
-        description: 'Un petit jeu dont le but est de programmer son animal pour le faire évoluer !',
+        description: 'Programmez votre animal pour le faire évoluer dans son monde !',
         image: '/icon.png',
         link: 'https://furwaz.com',
         type: 'game'

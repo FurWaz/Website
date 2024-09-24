@@ -10,7 +10,7 @@
                 <div class="flex md:hidden pb-8">
                     <div class="flex flex-col w-fit space-y-4 overflow-hidden pt-16">
                         <div
-                            class="relative bg-moi border-2 border-slate-300 dark:border-slate-600 rounded-lg w-fit h-48 p-4">
+                            class="relative border-2 border-slate-300 dark:border-slate-600 rounded-lg w-fit h-48 p-4">
                             <div class="w-48" />
                             <img src="~/assets/img/moi.png" alt="Moi" class="absolute w-48 bottom-0 drop-shadow-2xl">
                         </div>
@@ -30,7 +30,7 @@
                 <div class="hidden md:flex pb-8">
                     <div class="flex flex-col min-w-fit w-fit space-y-4 overflow-hidden pt-24">
                         <div
-                            class="relative bg-moi border-2 border-slate-300 dark:border-slate-600 rounded-lg w-fit h-64 p-4">
+                            class="relative border-2 border-slate-300 dark:border-slate-600 rounded-lg w-fit h-64 p-4">
                             <div class="w-64" />
                             <img src="~/assets/img/moi.png" alt="Moi" class="absolute w-64 bottom-0 drop-shadow-2xl">
                         </div>
@@ -128,9 +128,3 @@ onMounted(() => {
     scroll(appsContainer.value, 0);
 });
 </script>
-
-<style>
-.bg-moi {
-    background: linear-gradient(0deg, #1e293b30 0%, #33415500 100%);
-}
-</style>
