@@ -1,11 +1,13 @@
 <template>
     <div class="flex flex-col">
-        <div class="show-down flex flex-col items-center space-y-4">
+        <div class="show-down flex justify-center items-center space-x-8">
             <UInput class="show-down" v-model="search" :placeholder="t('projects.search')" />
+            <UFormGroup name="type" label="Type" class="flex justify-center items-center space-x-2 space-y-0">
+                <USelect class="show-down" v-model="type" :options="projectTypes" />
+            </UFormGroup>
         </div>
         <div class="flex flex-wrap h-fit w-full overflow-auto px-2">
-            <ProjectCard v-for="(project, index) in projects" :key="project.id" :project="project"
-                class="show-up my-4 mx-auto" :style="`animation-delay: ${index}00ms;`"/>
+            <ProjectCard v-for="project in filteredProjects" :key="project.id" :project="project" class="show-up my-4 mx-auto"/>
         </div>
     </div>
 </template>
@@ -26,29 +28,65 @@ useSeoMeta({
 header.setTitle(t('projects.name'));
 
 const search = ref<string>('');
+const type = ref<string>(route.query.type as string || 'all');
 
-type Project = { id: number, name: string, description: string, image: string, link: string };
+const projectTypes = ref<{ value: string, label: string }[]>([
+    { value: 'all', label: t('projects.type.all') },
+    { value: 'project', label: t('projects.type.project') },
+    { value: 'application', label: t('projects.type.application') },
+    { value: 'website', label: t('projects.type.website') },
+    { value: 'game', label: t('projects.type.game') }
+]);
+
+type ProjectType = 'project' | 'application' | 'website' | 'game';
+type Project = { id: number, name: string, description: string, image: string, link: string, type: ProjectType };
 const projects = ref<Project[]>([
     {
         id: 1,
         name: 'FullBowody',
         description: 'Traquez votre corps en temps réel avec de simples caméras !',
         image: '/icon.png',
-        link: 'https://furwaz.com'
+        link: 'https://furwaz.com',
+        type: 'application'
     },
     {
         id: 2,
         name: 'Pypoll',
         description: 'Demande à des milliers de gens en quelques secondes !',
         image: '/icon.png',
-        link: 'https://furwaz.com'
+        link: 'https://furwaz.com',
+        type: 'application'
     },
     {
         id: 3,
         name: 'VyBeen',
         description: 'Ecoutez de la musique et chantez ensemble avec VyBeen !',
         image: '/icon.png',
-        link: 'https://furwaz.com'
+        link: 'https://furwaz.com',
+        type: 'application'
+    },
+    {
+        id: 4,
+        name: 'Robot',
+        description: 'Un robot humanoïde en impression 3D, animé par un Arduino Nano !',
+        image: '/icon.png',
+        link: 'https://furwaz.com',
+        type: 'project'
+    },
+    {
+        id: 4,
+        name: 'PixelPets',
+        description: 'Un petit jeu dont le but est de programmer son animal pour le faire évoluer !',
+        image: '/icon.png',
+        link: 'https://furwaz.com',
+        type: 'game'
     }
 ]);
+const filteredProjects = computed(() => {
+    return projects.value.filter(project => {
+        if (type.value !== 'all' && project.type !== type.value) return false;
+        if (!search.value) return true;
+        return project.name.toLowerCase().includes(search.value.toLowerCase());
+    });
+});
 </script>
