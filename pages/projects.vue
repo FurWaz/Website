@@ -18,7 +18,7 @@
 <script setup lang="ts">
 const header = useHeader();
 const route = useRoute();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 useSeoMeta({
     title: `FurWaz - ${t('projects.title')}`,
@@ -40,6 +40,15 @@ const projectTypes = ref<{ value: string, label: string }[]>([
     { value: 'website', label: t('projects.type.website') },
     { value: 'game', label: t('projects.type.game') }
 ]);
+watch(locale, () => {
+    projectTypes.value = [
+        { value: 'all', label: t('projects.type.all') },
+        { value: 'project', label: t('projects.type.project') },
+        { value: 'application', label: t('projects.type.application') },
+        { value: 'website', label: t('projects.type.website') },
+        { value: 'game', label: t('projects.type.game') }
+    ];
+});
 
 type ProjectType = 'project' | 'application' | 'website' | 'game';
 type Project = { id: number, name: string, description: string, image: string, link: string, type: ProjectType };
