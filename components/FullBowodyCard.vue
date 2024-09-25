@@ -3,22 +3,22 @@
         <div class="bg-fullbowody flex flex-col justify-between items-center space-y-8 md:space-y-16 p-8 w-full">
             <div class="flex space-x-4 justify-center items-center">
                 <img src="https://fullbowody.com/img/transparent.png" alt="FullBowody" class="w-12 h-12 md:w-16 md:h-16 bg-slate-700 rounded-lg" />
-                <h3 class="text-3xl md:text-4xl font-bold"> FullBowody </h3>
+                <h3 class="text-3xl md:text-4xl font-bold"> {{ $t('home.myApps.fullbowody.title') }} </h3>
             </div>
             <div class="flex flex-col space-y-4 justify-center items-center">
                 <div>
-                    <p class="text-base md:text-lg text-center">Trackez votre corps en temps réel avec de simples caméras !</p>
-                    <p class="text-base md:text-lg text-center">Suivez vos mouvements en temps réel, grâce à l'IA.</p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.fullbowody.description1') }} </p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.fullbowody.description2') }} </p>
                 </div>
                 <div>
-                    <p class="text-base md:text-lg text-center">Animation 3D, analyse de mouvements, applications VR et AR.</p>
-                    <p class="text-base md:text-lg text-center">Utilisez tout votre corps pour interagir avec vos applications !</p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.fullbowody.description3') }} </p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.fullbowody.description4') }} </p>
                 </div>
             </div>
             <div class="flex space-x-4 justify-center items-center">
                 <UButton icon="i-heroicons-chevron-right" trailing variant="solid" size="xl" color="sky"
                     to="https://fullbowody.com" target="_blank">
-                    En savoir plus
+                    {{ $t('home.myApps.fullbowody.action') }} 
                 </UButton>
             </div>
         </div>

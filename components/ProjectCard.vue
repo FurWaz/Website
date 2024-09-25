@@ -7,7 +7,7 @@
         <div class="flex flex-col grow w-full h-full py-2">
             <p class="text-slate-600 dark:text-slate-300"> {{ text(project.description) }} </p>
         </div>
-        <div class="flex overflow-auto w-full h-fit">
+        <div class="flex overflow-auto w-full h-fit pb-3">
             <div class="flex space-x-4 w-fit h-fit">
                 <div v-for="tag in project.tags" :key="tag" class="flex rounded bg-slate-200 dark:bg-slate-800 px-1">
                     <p class="whitespace-nowrap"> #{{ tag }} </p>

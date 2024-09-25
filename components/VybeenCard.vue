@@ -3,22 +3,22 @@
         <div class="bg-vybeen flex flex-col justify-between items-center space-y-8 md:space-y-16 p-8 w-full">
             <div class="flex space-x-4 justify-center items-center">
                 <img src="https://vybeen.projects.furwaz.com/img/favicon.png" alt="Vybeen" class="w-12 h-12 md:w-16 md:h-16 bg-slate-700 rounded-lg p-3" />
-                <h3 class="text-3xl md:text-4xl font-bold"> VyBeen </h3>
+                <h3 class="text-3xl md:text-4xl font-bold"> {{ $t('home.myApps.vybeen.title') }} </h3>
             </div>
             <div class="flex flex-col space-y-4 justify-center items-center">
                 <div>
-                    <p class="text-base md:text-lg text-center">Partagez votre musique préférée en un clic !</p>
-                    <p class="text-base md:text-lg text-center">Écoutez avec vos amis et chantez ensemble grâce à VyBeen.</p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.vybeen.description1') }} </p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.vybeen.description2') }} </p>
                 </div>
                 <div>
-                    <p class="text-base md:text-lg text-center">Liez votre compte Spotify ou Deezer pour partager vos playlists.</p>
-                    <p class="text-base md:text-lg text-center">Rejoignez des salons personnalisés et profitez d'une expérience musicale unique !</p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.vybeen.description3') }} </p>
+                    <p class="text-base md:text-lg text-center"> {{ $t('home.myApps.vybeen.description4') }} </p>
                 </div>
             </div>
             <div class="flex space-x-4 justify-center items-center">
                 <UButton icon="i-heroicons-chevron-right" trailing variant="solid" size="xl" color="green"
                     to="https://vybeen.projects.furwaz.com" target="_blank">
-                    En savoir plus
+                    {{ $t('home.myApps.vybeen.action') }} 
                 </UButton>
             </div>
         </div>
