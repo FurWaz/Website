@@ -4,7 +4,7 @@ export type Project = {
     description: { fr?: string, en?: string },
     explanation?: { fr?: string[], en?: string[] },
     image: string,
-    imagePadding?: boolean,
+    imagePadding?: boolean;
     links: {website?: string, github?: string},
     tags: string[],
     type: ProjectType
@@ -89,8 +89,7 @@ const projects: Project[] = [
                 "You can also check the source code on GitHub to see how it works and maybe contribute to it if you want."
             ]
         },
-        image: 'https://vybeen.projects.furwaz.com/img/favicon.png',
-        imagePadding: true,
+        image: '/img/projects/VyBeen.png',
         links: {
             website: 'https://vybeen.projects.furwaz.com',
             github: 'https://github.com/vybeen'
@@ -128,8 +127,8 @@ const projects: Project[] = [
     {
         name: 'PixelPets',
         description: {
-            fr: 'Programmez votre animal pour le faire évoluer dans son monde !',
-            en: 'Code your pet to make it evolve in its world!',
+            fr: 'Programmez votre animal de companie pour le faire évoluer dans son monde cubique !',
+            en: 'Code your pet to make it evolve in its cubic world!',
         },
         explanation: {
             fr: [
@@ -172,7 +171,7 @@ const projects: Project[] = [
                 "If this project interests you, you can find more information, resources, source code and everything else on the GitHub repository!"
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/XRTouch.png',
         links: {
             github: 'https://github.com/FurWaz/XRTouch'
         },
@@ -182,8 +181,8 @@ const projects: Project[] = [
     {
         name: 'WebXR',
         description: {
-            fr: 'Une scène 3D interactive en ligne, compatible avec la réalité virtuelle !',
-            en: 'An online interactive 3D scene, compatible with virtual reality!',
+            fr: 'Une scène 3D interactive en ligne, combinant réalité virtuelle et retours haptiques !',
+            en: 'An online interactive 3D scene, combining virtual reality and haptic feedback!',
         },
         explanation: {
             fr: [
@@ -199,7 +198,7 @@ const projects: Project[] = [
                 "If this project interests you, you can find the source code on my GitHub page! A hosted version will be available soon."
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/WebXR.png',
         links: {
             github: 'https://github.com/FurWaz/WebXR',
         },
@@ -226,7 +225,7 @@ const projects: Project[] = [
                 "The entire project is available on my website (link below), so you can try it out for yourself!"
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/Cocktails.png',
         links: {
             website: 'https://cocktails.projects.furwaz.com',
             // github: 'https://github.com/FurWaz/WebXR',
@@ -254,7 +253,8 @@ const projects: Project[] = [
                 "The entire project is free and available on my website (link below), so feel free to check it out!"
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/CarShare.png',
+        imagePadding: true,
         links: {
             website: 'https://carshare.projects.furwaz.com',
             // github: 'https://github.com/FurWaz/WebXR',
@@ -284,7 +284,7 @@ const projects: Project[] = [
                 "The project uses several technologies such as Node.js, Express, Socket.io, MongoDB, VueJS and TailwindCSS."
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/CharlySheet.png',
         links: {
             website: 'https://charlysheet.projects.furwaz.com',
             github: 'https://github.com/actxLeToucan/CharlySheet',
@@ -310,7 +310,7 @@ const projects: Project[] = [
                 "This extension is open source and available on GitHub. If you want to contribute, feel free to do so! You can also test the extension by downloading it from the Visual Studio Marketplace."
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/AlgoSnipper.png',
         links: {
             github: 'https://github.com/FurWaz/AlgoSnipper',
         },
@@ -335,7 +335,7 @@ const projects: Project[] = [
                 "The game is not yet available on the Google Play Store as it is still in development, but the entire project can be found via the GitHub link below."
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/ToTheTop.png',
         links: {
             // website: '',
             github: 'https://github.com/FurWaz/ToTheTop',
@@ -361,7 +361,7 @@ const projects: Project[] = [
                 "The game is available on Itch.io and on GitHub, if you want to try it out or check out the source code!"
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/Obstruct.png',
         links: {
             website: 'https://furwaz.itch.io/0bstruct',
             github: 'https://github.com/FurWaz/Obstruct',
@@ -389,7 +389,7 @@ const projects: Project[] = [
                 "The game is available for free on Itch.io, and the source code is available on Github."
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/Steroids.png',
         links: {
             website: 'https://furwaz.itch.io/Steroids',
             github: 'https://github.com/FurWaz/Steroids',
@@ -415,7 +415,7 @@ const projects: Project[] = [
                 "It also highlights the part of the program that is running to that you can follow exactly what's happening, slow down the program or speed it up as you like!"
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/Brainfuck.png',
         links: {
             website: 'https://furwaz.github.io/BrainFuck',
             github: 'https://github.com/FurWaz/Brainfuck'
@@ -443,7 +443,7 @@ const projects: Project[] = [
                 "You can check out the source code on GitHub or download the latest release below."
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/Furalizer.png',
         links: {
             // website: 'https://github.com/FurWaz/Brainfuck',
             github: 'https://github.com/FurWaz/Furalizer'
@@ -454,8 +454,8 @@ const projects: Project[] = [
     {
         name: 'BigyRenderer',
         description: {
-            fr: 'Un moteur de rendu 3D et lecteur OBJ fait de A à Z !',
-            en: 'A 3D renderer and OBj file loader made from scratch !',
+            fr: 'Un moteur de rendu 3D et lecteur OBJ fait de A à Z en c++ !',
+            en: 'A 3D renderer and OBj file loader made from scratch in c++ !',
         },
         explanation: {
             fr: [
@@ -471,7 +471,7 @@ const projects: Project[] = [
                 "Only the loading and saving of images is done using the STB library."
             ]
         },
-        image: '/icon.png',
+        image: '/img/projects/BigyRenderer.png',
         links: {
             // website: 'https://github.com/FurWaz/Brainfuck',
             github: 'https://github.com/FurWaz/BigyRenderer'
