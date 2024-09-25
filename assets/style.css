@@ -5,8 +5,14 @@
     --timing: 0.5s;
 }
 
-html, head, body {
+html {
     height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
     font-family: 'Poppins', Helvetica, sans-serif;
 }
 

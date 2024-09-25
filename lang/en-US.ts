@@ -20,6 +20,7 @@ export default defineI18nLocale(async (locale) => {
         home: (await import('./en-US/home')).default,
         projects: (await import('./en-US/projects')).default,
         about: (await import('./en-US/about')).default,
-        account: (await import('./en-US/account')).default
+        account: (await import('./en-US/account')).default,
+        portal: (await import('./en-US/portal')).default,
     };
 });

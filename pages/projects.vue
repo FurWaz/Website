@@ -2,10 +2,10 @@
     <div class="flex flex-col">
         <div class="show-down flex flex-col justify-center items-center space-y-4 pb-4">
             <h2> {{ $t('projects.myProjects') }} </h2>
-            <div class="flex flex-col w-fit justify-center items-start space-y-2">
-                <UInput class="show-down" v-model="search" :placeholder="t('projects.search')" />
-                <UFormGroup name="type" label="Type" class="flex justify-center items-center space-x-2 space-y-0">
-                    <USelect class="show-down" v-model="type" :options="projectTypes" />
+            <div class="show-down flex flex-col w-fit justify-center items-start space-y-2">
+                <UInput v-model="search" :placeholder="t('projects.search')" />
+                <UFormGroup name="type" label="Type" class="show-down flex justify-center items-center space-x-2 space-y-0">
+                    <USelect v-model="type" :options="projectTypes" />
                 </UFormGroup>
             </div>
         </div>
