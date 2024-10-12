@@ -27,7 +27,7 @@
                     </div>
                 </div> -->
                 <div class="flex w-full h-fit pt-4">
-                    <UButton variant="link" color="gray" :to="{ name: 'login', query: { redirect: encodeURI($route.fullPath) } }" >
+                    <UButton variant="link" color="gray" :to="{ name: 'login', query: { redirect: encodeURIComponent($route.fullPath) } }" >
                         {{ $t('portal.connectWithOther') }}
                     </UButton>
                 </div>
@@ -55,6 +55,10 @@ const router = useRouter();
 const route = useRoute();
 const { t } = useI18n();
 
+definePageMeta({
+    middleware: 'auth'
+});
+
 useSeoMeta({
     title: `FurWaz - ${t('portal.title')}`,
     description: `${t('portal.description')}`,
@@ -72,7 +76,7 @@ const continueLoading = ref(false);
 // const scopes = ref<string[]|undefined>((route.query.scope as string)?.split(' '));
 // const client_id = ref<string|undefined>(route.query.client_id as string);
 // const state = ref<string|undefined>(route.query.state as string);
-const redirect = ref<string|undefined>(route.query.redirect as string);
+const redirect = ref<string|undefined>(decodeURIComponent(route.query.redirect as string));
 const token = ref<string|undefined>(route.query.token as string);
 
 const continueDisabled = ref(false);
