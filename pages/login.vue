@@ -36,7 +36,7 @@
                             />
 
                             <div class="flex justify-between items-center">
-                                <UButton variant="ghost">
+                                <UButton variant="ghost" @click="$router.back()">
                                     {{ $t('verb.cancel') }}
                                 </UButton>
 
@@ -66,7 +66,7 @@
                             />
 
                             <div class="flex justify-between items-center">
-                                <UButton variant="ghost">
+                                <UButton variant="ghost" @click="$router.back()">
                                     {{ $t('verb.cancel') }}
                                 </UButton>
 

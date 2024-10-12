@@ -98,7 +98,7 @@ const projects: Project[] = [
         type: 'application'
     },
     {
-        name: 'Robot',
+        name: 'Robot humanoïde',
         description: {
             fr: 'Un robot humanoïde en impression 3D, animé par un Arduino Nano !',
             en: 'A 3D printed humanoid robot, powered by an Arduino Nano!',
@@ -478,6 +478,24 @@ const projects: Project[] = [
         },
         tags: ['school', 'c++', 'renderer', '3d', 'rasterization'],
         type: 'project'
+    },
+    {
+        name: 'CFS 68',
+        description: {
+            fr: 'Le site vitrine du Centre Français de Secourisme du Haut Rhin !',
+            en: 'Centre Français de Secourisme\'s website !'
+        },
+        explanation: {
+            fr: [],
+            en: []
+        },
+        image: 'https://cfs.projects.furwaz.com/img/Logo512.png',
+        links: {
+            website: 'https://cfs68.org',
+            // github: 'https://github.com/FurWaz/BigyRenderer'
+        },
+        tags: [],
+        type: 'website'
     },
 ];
 

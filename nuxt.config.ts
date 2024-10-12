@@ -4,10 +4,10 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
         '@nuxt/ui',
-        '@nuxt/icon',
-        '@nuxtjs/i18n',
-        '@nuxtjs/color-mode',
         '@nuxtjs/tailwindcss',
+        '@nuxtjs/i18n',
+        '@nuxt/icon',
+        '@nuxtjs/color-mode',
     ],
     i18n: {
         locales: [
@@ -24,5 +24,9 @@ export default defineNuxtConfig({
         langDir: 'lang/',
         defaultLocale: 'en',
         strategy: 'no_prefix',
+    },
+    tailwindcss: {
+        cssPath: '~/assets/style.css',
+        configPath: 'tailwind.config.ts'
     }
 })

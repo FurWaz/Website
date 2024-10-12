@@ -27,7 +27,26 @@
         </button>
         <UModal v-model="modalOpen">
             <div class="p-4">
-                Wesh :3
+                <div class="flex justify-center items-center space-x-4">
+                    <img :src="project.image" class="w-16 h-16 rounded-md bg-slate-200 dark:bg-slate-800" :class="project.imagePadding? 'p-1.5' : ''"/>
+                    <div>
+                        <h2> {{ text(project.name) }} </h2>
+                        <p class="italic text-slate-600 dark:text-slate-300"> {{ text(project.description) }} </p>
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-4 text-center py-8">
+                    <p v-for="sentence in text(project.explanation)">
+                        {{ sentence }}
+                    </p>
+                </div>
+                <div class="flex min-w-fit h-full justify-between items-center">
+                    <UButton v-if="project.links.website" :to="project.links.website" trailing variant="solid" target="_blank">
+                        {{ $t('projects.action.seeWebsite') }}
+                    </UButton>
+                    <UButton v-if="project.links.github" :to="project.links.github" variant="ghost" target="_blank">
+                        {{ $t('projects.action.seeCode') }}
+                    </UButton>
+                </div>
             </div>
         </UModal>
     </div>
@@ -36,12 +55,25 @@
 <script lang="ts" setup>
 import type { Project } from '~/composables/Projects';
 
-defineProps<{
+const router = useRouter();
+
+const props = defineProps<{
     project: Project;
 }>();
+
+watch(() => router.currentRoute.value.query.project, (project) => {
+    if (project === props.project.name) modalOpen.value = true;
+    else modalOpen.value = false;
+});
+
+onMounted(() => {
+    if (router.currentRoute.value.query.project === props.project.name)
+        modalOpen.value = true;
+});
 
 const modalOpen = ref(false);
 function openModal() {
     modalOpen.value = true;
+    router.push({ query: { project: props.project.name } });
 }
 </script>

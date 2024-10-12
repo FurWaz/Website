@@ -152,6 +152,7 @@ export class API {
     }
 
     private static GetProtocol(): string {
+        if (import.meta.server) return 'https';
         return window.location.protocol === 'https:' ? 'https' : (window.location.hostname === 'localhost' ? 'https': 'http');
     }
 
@@ -203,7 +204,7 @@ export class API {
                 { Authorization: `Bearer ${currentUser.tokens.refresh}` }
             );
             if (res.status === 200) {
-                currentUser.updateInformations({tokens: res.data});
+                currentUser.updateInformations({tokens: { access: res.data.token }});
                 currentUser.save();
                 response = await API.RequestLogged(route, headers);
             } else {
