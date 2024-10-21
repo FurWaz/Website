@@ -5,5 +5,8 @@ export default {
     back: 'Retour',
     update: 'Mettre à jour',
     reset: 'Réinitialiser',
+    edit: 'Éditer',
     delete: 'Supprimer',
+    create: 'Créer',
+    save: 'Enregistrer',
 }

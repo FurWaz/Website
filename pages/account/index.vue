@@ -11,35 +11,31 @@
             </div>
         </div>
         <div class="flex grow justify-center items-center">
-            <div class="flex flex-col space-y-8 w-fit px-4">
-                <UButton class="show-up w-full justify-between space-x-2" variant="ghost"
-                    style="animation-delay: 000ms;" icon="i-heroicons-chevron-right" to="/account/informations"
+            <div class="show-up flex flex-col space-y-8 w-fit px-4">
+                <UButton class="w-full justify-between space-x-2" variant="ghost" icon="i-heroicons-chevron-right" to="/account/informations"
                     trailing>
                     <div>
                         <p class="font-semibold">{{ $t('account.informations.title') }}</p>
                         <p class="text-sm">{{ $t('account.informations.description') }}</p>
                     </div>
                 </UButton>
-                <UButton class="show-up w-full justify-between space-x-2" variant="ghost"
-                    style="animation-delay: 100ms;" icon="i-heroicons-chevron-right" to="/account/applications"
+                <UButton class="w-full justify-between space-x-2" variant="ghost" icon="i-heroicons-chevron-right" to="/account/applications"
                     trailing>
                     <div>
                         <p class="font-semibold">{{ $t('account.applications.title') }}</p>
                         <p class="text-sm">{{ $t('account.applications.description') }}</p>
                     </div>
                 </UButton>
-                <UButton class="show-up w-full justify-between space-x-2" variant="ghost"
-                    style="animation-delay: 200ms;" icon="i-heroicons-chevron-right" to="/account/connections" trailing>
+                <UButton class="w-full justify-between space-x-2" variant="ghost" icon="i-heroicons-chevron-right" to="/account/connections" trailing disabled>
                     <div>
-                        <p class="font-semibold">{{ $t('account.connections.title') }}</p>
-                        <p class="text-sm">{{ $t('account.connections.description') }}</p>
+                        <p class="text-slate-500 dark:text-slate-400 font-semibold">{{ $t('account.connections.title') }}</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">{{ $t('account.connections.description') }}</p>
                     </div>
                 </UButton>
-                <UButton class="show-up w-full justify-between space-x-2" variant="ghost"
-                    style="animation-delay: 300ms;" icon="i-heroicons-chevron-right" to="/account/settings" trailing>
+                <UButton class="w-full justify-between space-x-2" variant="ghost" icon="i-heroicons-chevron-right" to="/account/settings" trailing disabled>
                     <div>
-                        <p class="font-semibold">{{ $t('account.settings.title') }}</p>
-                        <p class="text-sm">{{ $t('account.settings.description') }}</p>
+                        <p class="text-slate-500 dark:text-slate-400 font-semibold">{{ $t('account.settings.title') }}</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">{{ $t('account.settings.description') }}</p>
                     </div>
                 </UButton>
             </div>

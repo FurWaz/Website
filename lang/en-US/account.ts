@@ -19,7 +19,8 @@ export default {
         search: 'Search applications...',
         loading: 'Loading applications...',
         nothing: 'No application found.',
-        error: 'An error occurred while loading applications.'
+        error: 'An error occurred while loading applications.',
+        createApp: 'Create a new application',
     },
     connections: {
         title: 'My connections',

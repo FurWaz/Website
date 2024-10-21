@@ -19,7 +19,8 @@ export default {
         search: 'Rechercher des applications...',
         loading: 'Chargement des applications...',
         nothing: 'Aucune application trouvée.',
-        error: 'Une erreur est survenue lors du chargement des applications.'
+        error: 'Une erreur est survenue lors du chargement des applications.',
+        createApp: 'Créer une nouvelle application',
     },
     connections: {
         title: 'Mes connexions',

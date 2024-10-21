@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col w-fit space-y-8">
-                    <h3 class="text-2xl font-semibold"> Paul LOISIL </h3>
+                    <h3 class="text-primary text-3xl font-semibold"> Paul LOISIL </h3>
                     <div class="flex flex-col space-y-4 md:max-w-[40vw]">
                         <p class="text-base md:text-lg"> {{ $t('about.whoAmI.description') }} </p>
                         <p class="text-base md:text-lg"> {{ $t('about.whoAmI.description2') }} </p>
