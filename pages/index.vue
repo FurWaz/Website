@@ -2,10 +2,10 @@
     <div class="space-y-32 pb-32">
         <div class="show-down flex flex-col h-fit w-full">
             <FwIcon class="w-28 h-28 m-auto" />
-            <h1 class="text-center show-down"> FurWaz </h1>
+            <h1 class="text-3xl text-center show-down"> FurWaz </h1>
         </div>
         <div class="show-up w-full h-fit">
-            <h2 class="text-2xl text-center p-8"> {{ $t('home.whoAmI.title') }} </h2>
+            <h2 class="text-2xl text-center p-8"> {{ $t('about.whoAmI.title') }} </h2>
             <div class="flex flex-col md:flex-row w-full h-fit justify-evenly items-center pb-8 md:space-x-4">
                 <div class="flex md:hidden pb-8">
                     <div class="flex flex-col w-fit space-y-4 overflow-hidden pt-16">
@@ -19,12 +19,12 @@
                 <div class="flex flex-col w-fit space-y-8">
                     <h3 class="text-2xl font-semibold"> Paul LOISIL </h3>
                     <div class="flex flex-col space-y-4 md:max-w-[40vw]">
-                        <p class="text-base md:text-lg"> {{ $t('home.whoAmI.description') }} </p>
-                        <p class="text-base md:text-lg"> {{ $t('home.whoAmI.description2') }} </p>
-                        <p class="text-base md:text-lg"> {{ $t('home.whoAmI.description3') }} </p>
+                        <p class="text-base md:text-lg"> {{ $t('about.whoAmI.description') }} </p>
+                        <p class="text-base md:text-lg"> {{ $t('about.whoAmI.description2') }} </p>
+                        <p class="text-base md:text-lg"> {{ $t('about.whoAmI.description3') }} </p>
                     </div>
                     <UButton to="/about" variant="solid" class="w-fit" size="xl" icon="i-heroicons-chevron-right" trailing>
-                        {{ $t('home.whoAmI.action') }}
+                        {{ $t('about.whoAmI.action') }}
                     </UButton>
                 </div>
                 <div class="hidden md:flex pb-8">

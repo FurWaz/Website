@@ -30,11 +30,4 @@ export default {
             action: 'Listen to music',
         }
     },
-    whoAmI: {
-        title: 'Who am I?',
-        description: 'I am a versatile full-stack developer, passionate about computer science and everything around it!',
-        description2: 'I develop websites and web applications, games, and open-source projects in my free time.',
-        description3: 'I am also a computer science student at the University of Lorraine!',
-        action: 'Learn more about me',
-    },
 }
