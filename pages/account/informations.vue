@@ -26,7 +26,7 @@
                         />
 
                         <div class="flex justify-between items-center">
-                            <UButton variant="ghost" @click="resetUserInfos">
+                            <UButton variant="ghost" @click="resetUserInfos" disabled>
                                 {{ $t('verb.reset') }}
                             </UButton>
 
@@ -132,9 +132,7 @@ async function checkFormValidity() {
 }
 
 function resetUserInfos() {
-    userInfosState.pseudo = User.Current?.pseudo ?? '';
-    userInfosState.email = User.Current?.email ?? '';
-    checkFormValidity();
+    // TODO
 }
 
 const userInfosLoading = ref<boolean>(false);
