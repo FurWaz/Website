@@ -1,0 +1,11 @@
+{
+    "title": "FyneWav",
+    "short": "A music creation software, completely free and open-source!",
+    "button": "I want to try it",
+    "description": [
+        "FyneWaz is a music creation software, completely free and open-source!",
+        "It is currently in development, but you can already try it out by downloading the source code and compiling it yourself!",
+        "This application is made using C++ and the OpenAL library for the core engine, and HTML/CSS/JavaScript for the GUI (using electron).",
+        "The source code is available on GitHub (link below) if you want to check it out or contribute to the project!"
+    ]
+}

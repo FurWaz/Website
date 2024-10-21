@@ -1,0 +1,13 @@
+{
+    "emailTitle": "Email verification",
+    "emailError": "Error verifying email : {error}",
+    "emailSuccess": "Email verified successfully",
+    "emailLoading": "Verifying email...",
+    "passwordReset": "Password reset",
+    "passwordNew": "New password",
+    "passwordConfirm": "Confirm new password",
+    "passwordError": "Error resetting password : {error}",
+    "passwordSuccess": "Password reset successfully",
+    "passwordLoading": "Resetting password...",
+    "passwordMismatch": "Passwords do not match"
+}

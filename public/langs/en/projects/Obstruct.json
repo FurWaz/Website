@@ -1,0 +1,10 @@
+{
+    "title": "Obstruct",
+    "short": "Complete all levels without falling into the holes of your game window!",
+    "button": "Give it a shot",
+    "description": [
+        "Obstruct is a little game made for an Itch.io game jam. The goal of the game is to finish all levels without falling into the window's holes.",
+        "This game isn't polished nor stable and it's not meant to be. It's just a little game I made in a few hours to try out Window's window masks system.",
+        "The game is available on Itch.io and on Github, if you want to try it out or check the source code!"
+    ]
+}

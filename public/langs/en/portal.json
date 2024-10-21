@@ -1,0 +1,12 @@
+{
+    "Portal": "Portal",
+    "PortalError": "{error}, can't continue :(",
+    "CreatedBy": "Created by",
+    "LoginTo": "Login to",
+    "WithAccount": "As",
+    "UseOtherAccount": "Use other account",
+    "UseAccount": "Use the {account} account",
+    "CreateAccount": "No account ? Create one here !",
+    "AppVerified": "This app has been verified",
+    "AppNotVerified": "This app has not been verified"
+}

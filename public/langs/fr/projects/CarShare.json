@@ -1,0 +1,11 @@
+{
+    "title": "Car Share",
+    "short": "Une plateforme de covoiturage entre inconnus ou amis !",
+    "button": "Faire vroum vroum!",
+    "description": [
+        "Car Share est une application web créée pour un projet scolaire.",
+        "Sur Car Share vous pouvez créer un trajet, ou rejoindre un trajet existant, et partager le prix du trajet avec les autres passagers ou groupes d'amis.",
+        "Le site est fait avec HTML/CSS/JS en utilisant le framework VueJS, et est basé sur un serveur web fait avec Express, Prisma et une base de données MariaDB.",
+        "Le projet entier est gratuit et disponible sur mon site (lien ci-dessous), donc n'hésitez pas à y jeter un oeil!"
+    ]
+}

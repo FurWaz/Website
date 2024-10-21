@@ -1,0 +1,10 @@
+{
+    "title": "Obstruct",
+    "short": "Terminez tous les niveaux sans tomber dans les trous de la fenêtre de jeu !",
+    "button": "Tester ça",
+    "description": [
+        "Obstruct est un petit jeu réalisé pour une game jam Itch.io. Le but du jeu est de terminer tous les niveaux sans tomber dans les trous de la fenêtre.",
+        "Ce jeu n'est pas poli ni stable et ce n'est pas le but. C'est juste un petit jeu que j'ai réalisé en quelques heures pour essayer le système de masques de fenêtre de Windows.",
+        "Le jeu est disponible sur Itch.io et sur GitHub, si vous souhaitez l'essayer ou consulter le code source !"
+    ]
+}

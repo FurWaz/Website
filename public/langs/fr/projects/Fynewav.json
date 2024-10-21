@@ -1,0 +1,11 @@
+{
+    "title": "FyneWav",
+    "short": "Un logiciel de création musicale, entièrement gratuit et open-source !",
+    "button": "Je veux l'essayer",
+    "description": [
+        "FyneWav est un logiciel de création musicale, entièrement gratuit et open-source !",
+        "Il est actuellement en développement, mais vous pouvez déjà l'essayer en téléchargeant le code source et en le compilant vous-même !",
+        "Cette application est réalisée en utilisant C++ et la bibliothèque OpenAL pour le moteur de base, et HTML/CSS/JavaScript pour l'interface utilisateur (en utilisant Electron).",
+        "Le code source est disponible sur GitHub (lien ci-dessous) si vous souhaitez le consulter ou contribuer au projet !"
+    ]
+}

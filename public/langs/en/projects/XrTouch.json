@@ -1,0 +1,12 @@
+{
+    "title": "XRTouch",
+    "short": "A physical interaction system with a virtual world through a Meta Quest 2! °o°",
+    "button": "Show me!",
+    "description": [
+        "XRTouch is a school project I made with 2 other students.",
+        "The goal of this project was to create real life devices that could give physical feedback to the user about his virtual environment.",
+        "We used a Meta Quest 2 as a virtual reality headset and hand tracking device, and created a physical glove that could give force feedback to the user.",
+        "The glove is made of a 3D printed shell, with servo motors and other components. The hole system is controlled by an Arduino, connected to a computer via Bluetooth serial communication.",
+        "If this project interests you, you can find more information, assets, source code, and all on the GitHub repository!"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "title": "CharlySheet",
+    "short": "Collaborate with your friends on spreadsheets!",
+    "button": "I want to Excelize !",
+    "description": [
+        "CharlySheet is a collaborative online spreadsheet.",
+        "It allows you to work with others on spreadsheets.",
+        "It is possible to create spreadsheets, share them with friends, edit them at the same time, and all in real time!",
+        "CharlySheet is an open-source project, so you can modify and improve it as you wish on the GitHub repository.",
+        "This web application was created by Paul Loisil, Antonin Rouseau, Antoine Contoux, and Guillaume Renard as part of a school project for the 1st year of the Master's degree in Computer Science at the University of Nancy.",
+        "The project uses several technologies such as Node.js, Express, Socket.io, MongoDB, VueJS and TailwindCSS."
+    ]
+}

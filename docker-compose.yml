@@ -1,0 +1,9 @@
+name: furwaz-website
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      VITE_MAIN_API_URL: https://api.furwaz.com

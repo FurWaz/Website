@@ -1,0 +1,11 @@
+{
+    "title": "BigyRenderer",
+    "short": "Un moteur de rendu 3D et lecteur OBJ fait de A à Z !",
+    "button": "Ça m'intéresse :)",
+    "description": [
+        "BigyRenderer est un moteur de rendu 3D créé pendant un projet de Master 1 Informatique à l'Université de Lorraine.",
+        "Ce moteur supporte la lecture de fichiers OBJ, et leurs différentes textures associées (diffuse, normale, spéculaire).",
+        "L'entierté du rendu 3D est faite en C++ sans aucune librairie et tourne donc seulement sur le processeur.",
+        "Seul le chargement et la sauvegarde d'images est fait en utilisant la librairie STB."
+    ]
+}

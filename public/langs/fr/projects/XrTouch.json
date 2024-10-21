@@ -1,0 +1,12 @@
+{
+    "title": "XRTouch",
+    "short": "Un système d'interaction physique avec un monde virtuel via un Meta Quest 2 !",
+    "button": "Fais voir !",
+    "description": [
+        "XRTouch est un projet scolaire que j'ai réalisé avec 2 autres étudiants.",
+        "L'objectif de ce projet était de créer des dispositifs réels pouvant donner un retour physique à l'utilisateur sur son environnement virtuel.",
+        "Nous avons utilisé un Meta Quest 2 comme casque de réalité virtuelle et dispositif de suivi des mains, et nous avons créé un gant physique capable de donner un retour de force à l'utilisateur.",
+        "Le gant est composé d'une coque imprimée en 3D, avec des servomoteurs et d'autres composants. L'ensemble du système est contrôlé par un Arduino, connecté à un ordinateur via une communication série Bluetooth.",
+        "Si ce projet vous intéresse, vous pouvez trouver plus d'informations, des ressources, le code source et tout le reste sur le dépôt GitHub !"
+    ]
+}

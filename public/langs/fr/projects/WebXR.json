@@ -1,0 +1,11 @@
+{
+    "title": "WebXR",
+    "short": "Une scène 3D interactive en ligne, compatible avec la réalité virtuelle !",
+    "button": "Je suis curieux",
+    "description": [
+        "WebXR est plutôt un projet de test avec le développement XR (VR/AR) sur les navigateurs web qu'un véritable jeu.",
+        "Il s'agit d'une scène 3D avec quelques objets de test, qui prend en charge le suivi des mains et détecte certains gestes pour sélectionner des objets, se téléporter dans la scène et déplacer des accessoires.",
+        "Il est compatible (et testé) avec les casques de réalité virtuelle, tels que l'Oculus Quest.",
+        "Si ce projet vous intéresse, vous pouvez trouver le code source sur ma page GitHub ! Une version hébergée sera bientôt disponible."
+    ]
+}

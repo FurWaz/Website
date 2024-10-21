@@ -1,0 +1,10 @@
+{
+    "title": "ToTheTop",
+    "short": "Go as high as you can at the speed of the music without falling off the ladders!",
+    "button": "Try the game",
+    "description": [
+        "ToTheTop is a mini-game where you have to go as high as you can at the speed of the music without falling off the ladders!",
+        "It targets mobile devices and has been made with Unity3D and C#.",
+        "The game isn't available on the Google Play Store yet because it is still in development, but the entire projet can be found at the GitHub link below."
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Furalizer",
+    "short": "Un visualiseur de musique entièrement personnalisable réalisé en python !",
+    "button": "Jetez un coup d'œil",
+    "description": [
+        "Furalizer est un visualiseur de musique réalisé en python à l'aide des bibliothèques SFML, TKinter et Numpy.",
+        "Il est entièrement personnalisable et peut être utilisé pour afficher des visualisations musicales en temps réel ou pour générer des vidéos à partir de fichiers audio.",
+        "L'application peut également être étendue pour contrôler d'autres périphériques tels que des bandes LED ou d'autres visualiseurs.",
+        "Vous pouvez consulter le code source sur GitHub ou télécharger la dernière version ci-dessous."
+    ]
+}
