@@ -115,7 +115,7 @@
         <div class="show-up w-full h-fit">
             <h2 class="text-2xl text-center p-8"> {{ $t('about.mySocials.title') }} </h2>
             <div class="flex flex-wrap justify-evenly items-center">
-                <UButton to="https://www.youtube.com/channel/UCYw9qRksXslrsgMELYPCWNw" target="_blank" variant="outline">
+                <UButton to="https://www.youtube.com/channel/UCYw9qRksXslrsgMELYPCWNw" target="_blank" variant="outline" class="m-2">
                     <div class="flex flex-col justify-center items-center space-y-2 pt-2">
                         <div class="flex justify-center items-center h-14 w-14 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
@@ -125,7 +125,7 @@
                         <p class="text-lg font-medium"> YouTube </p>
                     </div>
                 </UButton>
-                <UButton to="https://github.com/FurWaz" target="_blank" variant="outline">
+                <UButton to="https://github.com/FurWaz" target="_blank" variant="outline" class="m-2">
                     <div class="flex flex-col justify-center items-center space-y-2 pt-2">
                         <div class="flex justify-center items-center h-14 w-14 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" fill="currentColor">
@@ -135,7 +135,7 @@
                         <p class="text-lg font-medium"> Github </p>
                     </div>
                 </UButton>
-                <UButton to="https://www.linkedin.com/in/loisil-paul" target="_blank" variant="outline">
+                <UButton to="https://www.linkedin.com/in/loisil-paul" target="_blank" variant="outline" class="m-2">
                     <div class="flex flex-col justify-center items-center space-y-2 pt-2">
                         <div class="flex justify-center items-center h-14 w-14 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
@@ -145,7 +145,7 @@
                         <p class="text-lg font-medium"> LinkedIn </p>
                     </div>
                 </UButton>
-                <UButton to="https://x.com/FurWaz" target="_blank" variant="outline">
+                <UButton to="https://x.com/FurWaz" target="_blank" variant="outline" class="m-2">
                     <div class="flex flex-col justify-center items-center space-y-2 pt-2">
                         <div class="flex justify-center items-center h-14 w-14 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
@@ -155,7 +155,7 @@
                         <p class="text-lg font-medium"> X / Twitter </p>
                     </div>
                 </UButton>
-                <UButton to="https://www.facebook.com/furwaz" target="_blank" variant="outline">
+                <UButton to="https://www.facebook.com/furwaz" target="_blank" variant="outline" class="m-2">
                     <div class="flex flex-col justify-center items-center space-y-2 pt-2">
                         <div class="flex justify-center items-center h-14 w-14 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
@@ -165,7 +165,7 @@
                         <p class="text-lg font-medium"> Facebook </p>
                     </div>
                 </UButton>
-                <UButton to="https://www.instagram.com/furwaz_" target="_blank" variant="outline">
+                <UButton to="https://www.instagram.com/furwaz_" target="_blank" variant="outline" class="m-2">
                     <div class="flex flex-col justify-center items-center space-y-2 pt-2">
                         <div class="flex justify-center items-center h-14 w-14 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
