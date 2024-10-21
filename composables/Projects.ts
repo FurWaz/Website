@@ -491,8 +491,7 @@ const projects: Project[] = [
         },
         image: 'https://cfs.projects.furwaz.com/img/Logo512.png',
         links: {
-            website: 'https://cfs68.org',
-            // github: 'https://github.com/FurWaz/BigyRenderer'
+            website: 'https://cfs.projects.furwaz.com'
         },
         tags: [],
         type: 'website'
