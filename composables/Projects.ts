@@ -493,8 +493,36 @@ const projects: Project[] = [
         links: {
             website: 'https://cfs.projects.furwaz.com'
         },
-        tags: [],
+        tags: ['website', 'cfs', 'nuxtjs', 'vuejs', 'nodejs', 'tailwindcss'],
         type: 'website'
+    },
+    {
+        name: 'TNY-360',
+        description: {
+            fr: 'Un petit robot-araignée quadrupède, rempli de capteurs et fonctionnant avec un esp32',
+            en: 'A small quadruped spider-like robot, full of sensors and powered by an esp32'
+        },
+        explanation: {
+            fr: [
+                "TNY-360 est un petit robot-araignée dont le but est d'évoluer de la manière la plus autonome et efficace possible dans son environnement.",
+                "Il est entièrement imprimé en 3D (Filament PLA sur une imprimante FDM), et est équipé de plusieurs capteurs (camera, micro, lasers, detecteur de pression) pour détecter son environnement et communiquer en retour (moteurs, haut-parleur, ecran).",
+                "Le robot est contrôlé par un ESP32, réalisant un maximum de tâches simples lui-même (déplacements, planification), et communiquant avec un serveur distant pour des tâches plus complexes (classification d'objets, de visages, de sons).",
+                "L'intégralité du code source du robot, des applications satelites ainsi que les modèles 3D sont disponible sur GitHub, et tout le processus est documenté sur le site internet si vous voulez en réaliser un vous-même !"
+            ],
+            en: [
+                "TNY-360 is a small spider-like robot whose goal is to evolve as autonomously and efficiently as possible in its environment.",
+                "It is entirely 3D printed (PLA Filament on an FDM printer), and is equipped with several sensors (camera, microphone, lasers, pressure detector) to detect its environment and communicate back (motors, speaker, screen).",
+                "The robot is controlled by an ESP32, performing a maximum of simple tasks itself (movements, planning), and communicating with a remote server for more complex tasks (object, face, sound classification).",
+                "The entire source code of the robot, satellite applications as well as the 3D models are available on GitHub, and the entire process is documented on the website if you want to make one yourself!"
+            ]
+        },
+        image: 'https://tny360.projects.furwaz.com/icon.png',
+        links: {
+            website: 'https://tny360.projects.furwaz.com',
+            github: 'https://github.com/FurWaz/TNY-360'
+        },
+        tags: ['robotic', 'esp32', '3dprinting', 'c++', 'python'],
+        type: 'project'
     },
 ];
 
