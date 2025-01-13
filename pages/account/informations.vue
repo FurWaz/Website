@@ -60,6 +60,12 @@
                         :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                     />
 
+                    <UAlert
+                        v-show="userDeleteSuccess" @close="userDeleteSuccess = null" :title="userDeleteSuccess ?? ''"
+                        variant="subtle" color="green" class="show-down" icon="i-heroicons-information-circle"
+                        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }"
+                    />
+
                     <div class="flex justify-between items-center space-y-2">
                         <UButton variant="ghost" @click="deleteModalOpen = false">
                             {{ $t('verb.cancel') }}
@@ -165,16 +171,22 @@ type UserDeleteSchema = InferType<typeof userDeleteSchema>;
 
 const userDeleteLoading = ref<boolean>(false);
 const userDeleteError = ref<string | null>(null);
+const userDeleteSuccess = ref<string | null>(null);
 async function onUserDelete(event: FormSubmitEvent<UserDeleteSchema>) {
-    console.log('onUserDelete', event.data);
     userDeleteLoading.value = true;
 
-    setTimeout(() => {
-        userDeleteError.value = 'Not implemented yet';
-        setTimeout(() => { userDeleteError.value = null; }, 4000);
+    const res = await API.RequestLogged(ROUTES.USERS.ME.DELETE(event.data.password));
+    if (res.error) {
         userDeleteLoading.value = false;
-        // deleteModalOpen.value = false;
-    }, 500);
+        userDeleteError.value = res.message;
+        setTimeout(() => { userDeleteError.value = null; }, 4000);
+        return;
+    }
+    
+    userDeleteSuccess.value = res.message;
+    setTimeout(() => {
+        User.Forget();
+    }, 2000);
 }
 
 onMounted(() => {
