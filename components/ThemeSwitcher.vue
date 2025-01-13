@@ -24,7 +24,7 @@ const themeOptions = ref([
 
 watch(() => locale.value, () => {
     themeOptions.value = [
-        { value: 'auto', label: t('theme.auto') },
+        { value: 'system', label: t('theme.auto') },
         { value: 'light', label: t('theme.light') },
         { value: 'dark', label: t('theme.dark') }
     ];
