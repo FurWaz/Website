@@ -121,6 +121,7 @@ async function authorize() {
     if (redirect.value && redirect.value !== 'undefined') {
         window.location.href = redirect.value + (redirect.value.indexOf('?') === -1 ? '?' : '&') + `token=${token.value}`;
     } else {
+        window.close();
         router.push('/');
     }
 }
