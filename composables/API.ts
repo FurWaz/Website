@@ -185,7 +185,7 @@ export class API {
         return await Response.FromFetchResponse(res);
     }
 
-    public static async RequestLogged(route: Route|RouteBuilder, headers?: object, user?: User): Promise<Response> {
+    public static async RequestLogged(route: Route|RouteBuilder, headers?: object, user?: User, retryIfFail: boolean = true): Promise<Response> {
         const currentUser = user ? user : User.Current;
 
         if (!currentUser) {
@@ -198,7 +198,7 @@ export class API {
         };
 
         let response = await API.Request(route, newHeaders);
-        if (response.status === 401) {
+        if (response.status === 401 && retryIfFail) {
             const res = await API.Request(
                 new Route('auth/token'),
                 { Authorization: `Bearer ${currentUser.tokens.refresh}` }
@@ -206,7 +206,7 @@ export class API {
             if (res.status === 200) {
                 currentUser.updateInformations({tokens: { access: res.data.token }});
                 currentUser.save();
-                response = await API.RequestLogged(route, headers);
+                response = await API.RequestLogged(route, headers, user, false);
             } else {
                 User.Forget();
             }
