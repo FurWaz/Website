@@ -19,6 +19,11 @@ export default {
         confirmNewPassword: 'Confirmation',
         invalidToken: 'The token is invalid or has expired'
     },
+    verify: {
+        title: 'Vérification de l\'email',
+        description: 'Vérifier votre adresse mail pour valider votre compte',
+        invalidToken: 'Le token est invalide ou a expiré'
+    },
     message: {
         specifyPseudo: 'Veuillez spécifier un pseudo',
         specifyEmail: 'Veuillez spécifier un email',
