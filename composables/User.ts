@@ -9,6 +9,8 @@ export default class User {
         const user = localStorage.getItem('user');
         if (user) {
             const json = JSON.parse(user);
+            if (!json || !json._id || !json._pseudo || !json._email || !json._tokens)
+                return null;
             return new User(json._id, json._pseudo, json._email, json._tokens);
         }
         return null;
