@@ -80,6 +80,7 @@ async function onformSubmit(event: FormSubmitEvent<formSchema>) {
     if (res.error) {
         console.error('Error sending mail in:', res.message);
         formError.value = res.message;
+        formButtonDisabled.value = false;
         setTimeout(() => { formError.value = null; }, 4000);
     } else {
         formSuccess.value = res.message;
