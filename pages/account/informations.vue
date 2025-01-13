@@ -25,6 +25,12 @@
                             :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                         />
 
+                        <UAlert
+                            v-show="userInfosSuccess" @close="userInfosSuccess = null" :title="userInfosSuccess ?? ''"
+                            variant="subtle" color="green" class="show-down" icon="i-heroicons-information-circle"
+                            :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }"
+                        />
+
                         <div class="flex justify-between items-center">
                             <UButton variant="ghost" @click="resetUserInfos" disabled>
                                 {{ $t('verb.reset') }}
@@ -143,15 +149,30 @@ function resetUserInfos() {
 
 const userInfosLoading = ref<boolean>(false);
 const userInfosError = ref<string | null>(null);
+const userInfosSuccess = ref<string | null>(null);
 async function onUserUpdate(event: FormSubmitEvent<UserInfosSchema>) {
-    console.log('onUserUpdate', event.data);
     userInfosLoading.value = true;
 
-    setTimeout(() => {
+    const res = await API.RequestLogged(ROUTES.USERS.ME.UPDATE(event.data.pseudo, event.data.email));
+    if (res.error) {
         userInfosLoading.value = false;
-        userInfosError.value = 'Not implemented yet';
+        userInfosError.value = res.message;
         setTimeout(() => { userInfosError.value = null; }, 4000);
-    }, 500);
+        return;
+    }
+
+    userInfosSuccess.value = res.message;
+    User.Current?.updateInformations({
+        pseudo: event.data.pseudo,
+        email: event.data.email
+    });
+    User.Current?.save();
+    userInfosLoading.value = false;
+
+    setTimeout(() => {
+        userInfosSuccess.value = null;
+        checkFormValidity();
+    }, 2000);
 }
 
 const deleteModalOpen = ref<boolean>(false);
