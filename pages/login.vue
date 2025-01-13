@@ -181,9 +181,7 @@ async function onRegisterSubmit(event: FormSubmitEvent<RegisterSchema>) {
         registerError.value = res.message;
         setTimeout(() => { registerError.value = null; }, 4000);
     } else {
-        const user = await User.FromTokens(res.data);
-        user.save();
-        redirect('/');
+        await onLoginSubmit({ data: { email: event.data.email, password: event.data.password } } as any);
     }
     registerButtonLoading.value = false;
 }
