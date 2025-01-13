@@ -55,8 +55,8 @@
                             <UFormGroup :label="$t('login.password')" name="password">
                                 <UInput v-model="loginState.password" type="password" autocomplete="password" />
                             </UFormGroup>
-                            <UButton variant="link" :padded="false" color="gray">
-                                {{ $t('login.forgotPassword') }}
+                            <UButton variant="link" :padded="false" color="gray" to="/forgot-password">
+                                {{ $t('login.forgotPassword.message') }}
                             </UButton>
 
                             <UAlert

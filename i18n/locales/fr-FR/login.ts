@@ -8,7 +8,17 @@ export default {
     email: 'Email',
     password: 'Mot de passe',
     confirmPassword: 'Confirmation',
-    forgotPassword: 'Mot de passe oublié ?',
+    forgotPassword: {
+        message: 'Mot de passe oublié ?',
+        title: 'Mot de passe oublié',
+        description: 'Réinitialisez le mot de passe de votre compte FurWaz',
+        sent: 'Un email de réinitialisation de mot de passe a été envoyé à {email}',
+        passwordsDontMatch: 'Les mots de passe ne correspondent pas',
+        specifyConfirmPassword: 'Veuillez confirmer le mot de passe',
+        newPassword: 'Nouveau mot de passe',
+        confirmNewPassword: 'Confirmation',
+        invalidToken: 'The token is invalid or has expired'
+    },
     message: {
         specifyPseudo: 'Veuillez spécifier un pseudo',
         specifyEmail: 'Veuillez spécifier un email',
