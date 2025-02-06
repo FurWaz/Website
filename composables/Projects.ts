@@ -201,6 +201,7 @@ const projects: Project[] = [
         image: '/img/projects/WebXR.png',
         links: {
             github: 'https://github.com/FurWaz/WebXR',
+            website: 'https://furwaz.github.io/WebXR/client/'
         },
         tags: ['web', 'xr', 'threejs', 'javascript', 'webgl'],
         type: 'website'
