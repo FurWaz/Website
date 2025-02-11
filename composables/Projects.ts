@@ -517,10 +517,10 @@ const projects: Project[] = [
                 "The entire source code of the robot, satellite applications as well as the 3D models are available on GitHub, and the entire process is documented on the website if you want to make one yourself!"
             ]
         },
-        image: 'https://tny360.projects.furwaz.com/icon.png',
+        image: 'https://tny-robotics.com/icon.png',
         links: {
-            website: 'https://tny360.projects.furwaz.com',
-            github: 'https://github.com/FurWaz/TNY-360'
+            website: 'https://tny-robotics.com/robots/tny-360',
+            github: 'https://github.com/TNY-Robotics/TNY-360'
         },
         tags: ['robotic', 'esp32', '3dprinting', 'c++', 'python'],
         type: 'project'
