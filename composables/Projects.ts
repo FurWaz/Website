@@ -500,8 +500,8 @@ const projects: Project[] = [
     {
         name: 'TNY-360',
         description: {
-            fr: 'Un petit robot-araignée quadrupède, rempli de capteurs et fonctionnant avec un esp32',
-            en: 'A small quadruped spider-like robot, full of sensors and powered by an esp32'
+            fr: 'Un petit robot-chien, rempli de capteurs et fonctionnant avec un esp32',
+            en: 'A small quadruped dog-like robot, full of sensors and powered by an esp32'
         },
         explanation: {
             fr: [
