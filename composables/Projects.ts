@@ -525,6 +525,34 @@ const projects: Project[] = [
         tags: ['robotic', 'esp32', '3dprinting', 'c++', 'python'],
         type: 'project'
     },
+    {
+        name: 'VoxelFit',
+        description: {
+            fr: 'Une application web pour modéliser avec un programme LUA',
+            en: 'A web application for modeling with a LUA program'
+        },
+        explanation: {
+            fr: [
+                "VoxelFit est une application web qui permet à n'importe qui de modéliser des formes en 3D à l'aide d'un programme LUA.",
+                "Le principe de l'application est de créer un espace cubique 3D de la dimension que l'on veut, puis de définir des conditions de remplissage pour créer des formes en voxels plus ou moins complexes.",
+                "Le programme tourne pour chaque Voxel x, y, z et renvoie la couleur correspondante au voxel, ou rien si l'on veut du vide.",
+                "Cette application permet de créer des petites scènes 3D mais également de visualiser des formules mathématiques dans un espace à plusieurs dimensions !",
+            ],
+            en: [
+                "VoxelFit is a web application that allows anyone to model 3D shapes using a LUA program.",
+                "The principle of the application is to create a 3D cubic space of the desired dimension, then to define filling conditions to create complex voxel shapes.",
+                "The program runs for each voxel x, y z and returns the corresponding color for the voxel, or nothing if you want to leave it empty.",
+                "This application allows you to create small 3D scenes but also to visualize mathematical formulas in a space with multiple dimensions!",
+            ]
+        },
+        image: '/img/projects/VoxelFit.png',
+        links: {
+            website: 'https://furwaz.github.io/VoxelFit/',
+            github: 'https://github.com/FurWaz/VoxelFit/'
+        },
+        tags: ['3d', 'math', 'code', 'lua', 'web', 'app', 'game'],
+        type: 'project'
+    },
 ];
 
 export const useProjects = () => {
