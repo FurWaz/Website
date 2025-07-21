@@ -28,20 +28,20 @@
                 <p class="text-center text-lg font-medium"> {{ $t('account.applications.createApp') }} </p>
                 <div class="flex flex-col w-full h-fit py-8">
                     <div class="space-y-4">
-                        <UFormGroup :label="`Nom`" name="name">
+                        <UFormField :label="`Nom`" name="name">
                             <UInput v-model="appState.name" />
-                        </UFormGroup>
-                        <UFormGroup :label="`Description`" name="description">
+                        </UFormField>
+                        <UFormField :label="`Description`" name="description">
                             <UInput v-model="appState.description" />
-                        </UFormGroup>
-                        <!-- <UFormGroup :label="`Icone`" name="icon">
+                        </UFormField>
+                        <!-- <UFormField :label="`Icone`" name="icon">
                             <UInput v-model="appState.icon" />
-                        </UFormGroup> -->
+                        </UFormField> -->
                     </div>
                 </div>
                 <div class="py-2">
                     <UAlert v-show="logError" @close="logError = null" :title="logError ?? ''"
-                        variant="subtle" color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                        variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                         :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                 />
                 </div>

@@ -10,11 +10,11 @@
                 <div class="flex h-fit min-w-full justify-center items-center">
                     <div class="show-up p-4 space-y-4 w-full max-w-[20em]">
                         <UAlert v-show="tokenError" @close="tokenError = null" :title="tokenError ?? ''" variant="subtle"
-                            color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                            color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                             :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }" />
 
                         <UAlert v-show="tokenSuccess" @close="tokenSuccess = null" :title="tokenSuccess ?? ''"
-                            variant="subtle" color="green" class="show-down" icon="i-heroicons-information-circle"
+                            variant="subtle" color="success" class="show-down" icon="i-heroicons-information-circle"
                             :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }" />
 
                         <div class="flex justify-between items-center">

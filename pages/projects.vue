@@ -4,9 +4,9 @@
             <h2 class="text-2xl text-center"> {{ $t('projects.myProjects') }} </h2>
             <div class="show-down flex flex-col w-fit justify-center items-start space-y-2">
                 <UInput v-model="search" :placeholder="t('projects.search')" />
-                <UFormGroup name="type" label="Type" class="show-down flex justify-center items-center space-x-2 space-y-0">
-                    <USelect v-model="type" :options="projectTypes" />
-                </UFormGroup>
+                <UFormField name="type" label="Type" class="show-down flex justify-center items-center space-x-2 space-y-0">
+                    <USelect v-model="type" :items="projectTypes" />
+                </UFormField>
             </div>
         </div>
         <div class="flex flex-wrap justify-center items-center h-fit w-full overflow-auto px-2">

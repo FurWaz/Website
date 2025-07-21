@@ -13,25 +13,25 @@
                 <div class="flex w-full h-fit items-center transition-all ease-custom duration-custom" :class="mode !== 'login'? 'translate-x-0' : '-translate-x-full'">
                     <div class="flex h-fit min-w-full justify-center items-center">
                         <UForm :schema="registerSchema" :state="registerState" class="show-up p-4 space-y-4 w-full max-w-[20em]" @submit="onRegisterSubmit">
-                            <UFormGroup :label="$t('login.pseudo')" name="pseudo">
+                            <UFormField :label="$t('login.pseudo')" name="pseudo">
                                 <UInput v-model="registerState.pseudo" autocomplete="pseudo" />
-                            </UFormGroup>
+                            </UFormField>
 
-                            <UFormGroup :label="$t('login.email')" name="email">
+                            <UFormField :label="$t('login.email')" name="email">
                                 <UInput v-model="registerState.email" autocomplete="email" />
-                            </UFormGroup>
+                            </UFormField>
 
-                            <UFormGroup :label="$t('login.password')" name="password">
+                            <UFormField :label="$t('login.password')" name="password">
                                 <UInput v-model="registerState.password" type="password" autocomplete="password" />
-                            </UFormGroup>
+                            </UFormField>
 
-                            <UFormGroup :label="$t('login.confirmPassword')" name="confirm">
+                            <UFormField :label="$t('login.confirmPassword')" name="confirm">
                                 <UInput v-model="registerState.confirm" type="password" autocomplete="password" />
-                            </UFormGroup>
+                            </UFormField>
 
                             <UAlert
                                 v-show="registerError" @close="registerError = null" :title="registerError ?? ''"
-                                variant="subtle" color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                                variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                                 :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                             />
 
@@ -48,20 +48,20 @@
                     </div>
                     <div class="flex h-fit min-w-full justify-center items-center">
                         <UForm :schema="loginSchema" :state="loginState" class="show-up p-4 space-y-4 w-full max-w-[20em]" @submit="onLoginSubmit">
-                            <UFormGroup :label="$t('login.email')" name="email">
+                            <UFormField :label="$t('login.email')" name="email">
                                 <UInput v-model="loginState.email" autocomplete="email" />
-                            </UFormGroup>
+                            </UFormField>
 
-                            <UFormGroup :label="$t('login.password')" name="password">
+                            <UFormField :label="$t('login.password')" name="password">
                                 <UInput v-model="loginState.password" type="password" autocomplete="password" />
-                            </UFormGroup>
-                            <UButton variant="link" :padded="false" color="gray" to="/forgot-password">
+                            </UFormField>
+                            <UButton variant="link" :padded="false" color="primary" to="/forgot-password">
                                 {{ $t('login.forgotPassword.message') }}
                             </UButton>
 
                             <UAlert
                                 v-show="loginError" @close="loginError = null" :title="loginError ?? ''"
-                                variant="subtle" color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                                variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                                 :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                             />
 
@@ -82,11 +82,11 @@
 
         <div class="flex h-fit w-full items-center py-4">
             <UButton v-show="mode === 'login'" @click="mode = 'register'"
-                variant="link" color="gray" icon="i-heroicons-chevron-left" leading class="show-left mr-auto">
+                variant="link" color="primary" icon="i-heroicons-chevron-left" leading class="show-left mr-auto">
                 {{ $t('login.register') }}
             </UButton>
             <UButton v-show="mode !== 'login'" @click="mode = 'login'"
-                variant="link" color="gray" icon="i-heroicons-chevron-right" trailing class="show-right ml-auto">
+                variant="link" color="primary" icon="i-heroicons-chevron-right" trailing class="show-right ml-auto">
                 {{ $t('login.login') }}
             </UButton>
         </div>

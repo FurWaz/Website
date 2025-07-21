@@ -27,13 +27,13 @@
                     </div>
                 </div> -->
                 <div class="flex w-full h-fit pt-4">
-                    <UButton variant="link" color="gray" :to="{ name: 'login', query: { redirect: encodeURIComponent($route.fullPath) } }" >
+                    <UButton variant="link" color="primary" :to="{ name: 'login', query: { redirect: encodeURIComponent($route.fullPath) } }" >
                         {{ $t('portal.connectWithOther') }}
                     </UButton>
                 </div>
                 <UAlert
                     v-show="logError" @close="logError = null" :title="logError ?? ''"
-                    variant="subtle" color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                    variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                     :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                 />
                 <div class="flex w-full h-fit justify-between items-center">

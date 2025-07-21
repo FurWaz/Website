@@ -12,22 +12,22 @@
                 </div>
                 <div>
                     <UForm :schema="userInfosSchema" :model="User.Current" :state="userInfosState" class="p-4 space-y-4 w-full max-w-[20em]" @submit="onUserUpdate">
-                        <UFormGroup :label="$t('login.pseudo')" name="pseudo">
+                        <UFormField :label="$t('login.pseudo')" name="pseudo">
                             <UInput v-model="userInfosState.pseudo" @change="checkFormValidity" />
-                        </UFormGroup>
-                        <UFormGroup :label="$t('login.email')" name="email">
+                        </UFormField>
+                        <UFormField :label="$t('login.email')" name="email">
                             <UInput v-model="userInfosState.email" @change="checkFormValidity" />
-                        </UFormGroup>
+                        </UFormField>
 
                         <UAlert
                             v-show="userInfosError" @close="userInfosError = null" :title="userInfosError ?? ''"
-                            variant="subtle" color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                            variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                             :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                         />
 
                         <UAlert
                             v-show="userInfosSuccess" @close="userInfosSuccess = null" :title="userInfosSuccess ?? ''"
-                            variant="subtle" color="green" class="show-down" icon="i-heroicons-information-circle"
+                            variant="subtle" color="success" class="show-down" icon="i-heroicons-information-circle"
                             :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }"
                         />
 
@@ -44,7 +44,7 @@
                     </UForm>
                 </div>
             </div>
-            <UButton variant="outline" color="red" icon="i-heroicons-trash" class="show-up w-fit mx-auto"
+            <UButton variant="outline" color="error" icon="i-heroicons-trash" class="show-up w-fit mx-auto"
                 @click="showDeletePopup">
                 {{ $t('account.delete.title') }}
             </UButton>
@@ -55,20 +55,20 @@
                 <p> {{ $t('account.delete.description') }} </p>
 
                 <UForm :schema="userDeleteSchema" :state="userDeleteState" class="space-y-4" @submit="onUserDelete">
-                    <UFormGroup :label="$t('login.password')" name="password">
+                    <UFormField :label="$t('login.password')" name="password">
                         <UInput type="password" v-model="userDeleteState.password" autocomplete="password" />
-                    </UFormGroup>
+                    </UFormField>
                     <UCheckbox v-model="userDeleteState.onAllApps" :label="$t('account.delete.onAllApps')" name="deleteEverywhere" />
 
                     <UAlert
                         v-show="userDeleteError" @close="userDeleteError = null" :title="userDeleteError ?? ''"
-                        variant="subtle" color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                        variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                         :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
                     />
 
                     <UAlert
                         v-show="userDeleteSuccess" @close="userDeleteSuccess = null" :title="userDeleteSuccess ?? ''"
-                        variant="subtle" color="green" class="show-down" icon="i-heroicons-information-circle"
+                        variant="subtle" color="success" class="show-down" icon="i-heroicons-information-circle"
                         :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }"
                     />
 
@@ -76,10 +76,10 @@
                         <UButton variant="ghost" @click="deleteModalOpen = false">
                             {{ $t('verb.cancel') }}
                         </UButton>
-                        <UButton type="submit" class="hidden sm:flex" :loading="userDeleteLoading" variant="solid" color="red" icon="i-heroicons-trash">
+                        <UButton type="submit" class="hidden sm:flex" :loading="userDeleteLoading" variant="solid" color="error" icon="i-heroicons-trash">
                             {{ $t('account.delete.action') }}
                         </UButton>
-                        <UButton type="submit" class="flex sm:hidden" :loading="userDeleteLoading" variant="solid" color="red" icon="i-heroicons-trash">
+                        <UButton type="submit" class="flex sm:hidden" :loading="userDeleteLoading" variant="solid" color="error" icon="i-heroicons-trash">
                             {{ $t('verb.delete') }}
                         </UButton>
                     </div>

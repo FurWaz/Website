@@ -10,20 +10,20 @@
                 <div class="flex h-fit min-w-full justify-center items-center">
                     <UForm :schema="formSchema" :state="formState" class="show-up p-4 space-y-4 w-full max-w-[20em]"
                         @submit="onformSubmit">
-                        <UFormGroup :label="$t('login.forgotPassword.newPassword')" name="password">
+                        <UFormField :label="$t('login.forgotPassword.newPassword')" name="password">
                             <UInput v-model="formState.password" type="password" autocomplete="new-password" />
-                        </UFormGroup>
-                        <UFormGroup :label="$t('login.forgotPassword.confirmNewPassword')" name="confirm">
+                        </UFormField>
+                        <UFormField :label="$t('login.forgotPassword.confirmNewPassword')" name="confirm">
                             <UInput v-model="formState.confirm" type="password" autocomplete="new-password" />
-                        </UFormGroup>
+                        </UFormField>
 
 
                         <UAlert v-show="formError" @close="formError = null" :title="formError ?? ''" variant="subtle"
-                            color="red" class="show-down" icon="i-heroicons-exclamation-triangle"
+                            color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
                             :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }" />
 
                         <UAlert v-show="formSuccess" @close="formSuccess = null" :title="formSuccess ?? ''"
-                            variant="subtle" color="green" class="show-down" icon="i-heroicons-information-circle"
+                            variant="subtle" color="success" class="show-down" icon="i-heroicons-information-circle"
                             :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }" />
 
                         <div class="flex justify-between items-center">
@@ -31,7 +31,7 @@
                                 {{ $t('verb.cancel') }}
                             </UButton>
 
-                            <UButton :loading="formButtonLoading" :disabled="formButtonDisabled || formError" type="submit"
+                            <UButton :loading="formButtonLoading" :disabled="formButtonDisabled || (formError !== undefined)" type="submit"
                                 icon="i-heroicons-chevron-right" trailing>
                                 {{ $t('verb.continue') }}
                             </UButton>

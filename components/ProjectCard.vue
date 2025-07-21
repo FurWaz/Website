@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <button class="flex flex-col space-y-4 card p-4 w-80 h-full hover:border-slate-300 hover:dark:border-slate-500 transition-all"
-            @click="openModal">
+    <UModal v-model="modalOpen">
+        <button class="flex flex-col space-y-4 card p-4 w-80 h-full bg-white dark:bg-slate-700 hover:border-slate-300 hover:dark:border-slate-500 transition-all" @click="openModal">
             <div class="flex h-full justify-start items-center space-x-4">
                 <img :src="project.image" class="w-12 h-12 rounded-md bg-slate-200 dark:bg-slate-800" :class="project.imagePadding? 'p-1.5' : ''"/>
                 <h2> {{ text(project.name) }} </h2>
@@ -25,7 +24,7 @@
                 </UButton>
             </div>
         </button>
-        <UModal v-model="modalOpen">
+        <template #content>
             <div class="p-4">
                 <div class="flex justify-center items-center space-x-4">
                     <img :src="project.image" class="w-16 h-16 rounded-md bg-slate-200 dark:bg-slate-800" :class="project.imagePadding? 'p-1.5' : ''"/>
@@ -48,8 +47,8 @@
                     </UButton>
                 </div>
             </div>
-        </UModal>
-    </div>
+        </template>
+    </UModal>
 </template>
 
 <script lang="ts" setup>
