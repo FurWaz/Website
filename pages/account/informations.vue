@@ -49,42 +49,44 @@
                 {{ $t('account.delete.title') }}
             </UButton>
         </div>
-        <UModal v-model="deleteModalOpen">
-            <div class="flex flex-col space-y-4 p-4">
-                <h2> {{ $t('account.delete.title') }} </h2>
-                <p> {{ $t('account.delete.description') }} </p>
+        <UModal v-model:open="deleteModalOpen">
+            <template #content>
+                <div class="flex flex-col space-y-4 p-4">
+                    <h2> {{ $t('account.delete.title') }} </h2>
+                    <p> {{ $t('account.delete.description') }} </p>
 
-                <UForm :schema="userDeleteSchema" :state="userDeleteState" class="space-y-4" @submit="onUserDelete">
-                    <UFormField :label="$t('login.password')" name="password">
-                        <UInput type="password" v-model="userDeleteState.password" autocomplete="password" />
-                    </UFormField>
-                    <UCheckbox v-model="userDeleteState.onAllApps" :label="$t('account.delete.onAllApps')" name="deleteEverywhere" />
+                    <UForm :schema="userDeleteSchema" :state="userDeleteState" class="space-y-4" @submit="onUserDelete">
+                        <UFormField :label="$t('login.password')" name="password">
+                            <UInput type="password" v-model="userDeleteState.password" autocomplete="password" />
+                        </UFormField>
+                        <UCheckbox v-model="userDeleteState.onAllApps" :label="$t('account.delete.onAllApps')" name="deleteEverywhere" />
 
-                    <UAlert
-                        v-show="userDeleteError" @close="userDeleteError = null" :title="userDeleteError ?? ''"
-                        variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
-                        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
-                    />
+                        <UAlert
+                            v-show="userDeleteError" @close="userDeleteError = null" :title="userDeleteError ?? ''"
+                            variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
+                            :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
+                        />
 
-                    <UAlert
-                        v-show="userDeleteSuccess" @close="userDeleteSuccess = null" :title="userDeleteSuccess ?? ''"
-                        variant="subtle" color="success" class="show-down" icon="i-heroicons-information-circle"
-                        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }"
-                    />
+                        <UAlert
+                            v-show="userDeleteSuccess" @close="userDeleteSuccess = null" :title="userDeleteSuccess ?? ''"
+                            variant="subtle" color="success" class="show-down" icon="i-heroicons-information-circle"
+                            :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'green', variant: 'ghost', padded: false }"
+                        />
 
-                    <div class="flex justify-between items-center space-y-2">
-                        <UButton variant="ghost" @click="deleteModalOpen = false">
-                            {{ $t('verb.cancel') }}
-                        </UButton>
-                        <UButton type="submit" class="hidden sm:flex" :loading="userDeleteLoading" variant="solid" color="error" icon="i-heroicons-trash">
-                            {{ $t('account.delete.action') }}
-                        </UButton>
-                        <UButton type="submit" class="flex sm:hidden" :loading="userDeleteLoading" variant="solid" color="error" icon="i-heroicons-trash">
-                            {{ $t('verb.delete') }}
-                        </UButton>
-                    </div>
-                </UForm>
-            </div>
+                        <div class="flex justify-between items-center space-y-2">
+                            <UButton variant="ghost" @click="deleteModalOpen = false">
+                                {{ $t('verb.cancel') }}
+                            </UButton>
+                            <UButton type="submit" class="hidden sm:flex" :loading="userDeleteLoading" variant="solid" color="error" icon="i-heroicons-trash">
+                                {{ $t('account.delete.action') }}
+                            </UButton>
+                            <UButton type="submit" class="flex sm:hidden" :loading="userDeleteLoading" variant="solid" color="error" icon="i-heroicons-trash">
+                                {{ $t('verb.delete') }}
+                            </UButton>
+                        </div>
+                    </UForm>
+                </div>
+            </template>
         </UModal>
     </div>
 </template>

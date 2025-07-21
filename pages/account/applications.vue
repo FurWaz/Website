@@ -19,42 +19,44 @@
             </div>
         </div>
         <div class="flex w-full h-fit justify-center">
-            <UButton icon="i-heroicons-plus" variant="solid" class="show-up m-4" @click="createPopupOpen = true">
-                {{ t('verb.create') }}
-            </UButton>
+            <UModal v-model="createPopupOpen">
+                <UButton icon="i-heroicons-plus" variant="solid" class="show-up m-4" @click="createPopupOpen = true">
+                    {{ t('verb.create') }}
+                </UButton>
+                <template #content>
+                    <UForm class="p-4" :schema="appSchema" :state="appState" @submit="createApp">
+                        <p class="text-center text-lg font-medium"> {{ $t('account.applications.createApp') }} </p>
+                        <div class="flex flex-col w-full h-fit py-8">
+                            <div class="space-y-4">
+                                <UFormField :label="`Nom`" name="name">
+                                    <UInput v-model="appState.name" />
+                                </UFormField>
+                                <UFormField :label="`Description`" name="description">
+                                    <UInput v-model="appState.description" />
+                                </UFormField>
+                                <!-- <UFormField :label="`Icone`" name="icon">
+                                    <UInput v-model="appState.icon" />
+                                </UFormField> -->
+                            </div>
+                        </div>
+                        <div class="py-2">
+                            <UAlert v-show="logError" @close="logError = null" :title="logError ?? ''"
+                                variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
+                                :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
+                        />
+                        </div>
+                        <div class="flex w-full h-fit justify-between">
+                            <UButton variant="ghost" @click="createPopupOpen = false">
+                                {{ $t('verb.cancel') }}
+                            </UButton>
+                            <UButton icon="i-heroicons-plus" variant="solid" type="submit" :loading="createLoading">
+                                {{ $t('verb.create') }}
+                            </UButton>
+                        </div>
+                    </UForm>
+                </template>
+            </UModal>
         </div>
-        <UModal v-model="createPopupOpen">
-            <UForm class="p-4" :schema="appSchema" :state="appState" @submit="createApp">
-                <p class="text-center text-lg font-medium"> {{ $t('account.applications.createApp') }} </p>
-                <div class="flex flex-col w-full h-fit py-8">
-                    <div class="space-y-4">
-                        <UFormField :label="`Nom`" name="name">
-                            <UInput v-model="appState.name" />
-                        </UFormField>
-                        <UFormField :label="`Description`" name="description">
-                            <UInput v-model="appState.description" />
-                        </UFormField>
-                        <!-- <UFormField :label="`Icone`" name="icon">
-                            <UInput v-model="appState.icon" />
-                        </UFormField> -->
-                    </div>
-                </div>
-                <div class="py-2">
-                    <UAlert v-show="logError" @close="logError = null" :title="logError ?? ''"
-                        variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
-                        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
-                />
-                </div>
-                <div class="flex w-full h-fit justify-between">
-                    <UButton variant="ghost" @click="createPopupOpen = false">
-                        {{ $t('verb.cancel') }}
-                    </UButton>
-                    <UButton icon="i-heroicons-plus" variant="solid" type="submit" :loading="createLoading">
-                        {{ $t('verb.create') }}
-                    </UButton>
-                </div>
-            </UForm>
-        </UModal>
     </div>
 </template>
 

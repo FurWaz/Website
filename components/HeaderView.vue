@@ -20,12 +20,12 @@
                 <div class="flex justify-end items-center space-x-4">
                     <ThemeSwitcher class="hidden lg:flex min-w-fit"/>
                     <LangSwitcher class="hidden lg:flex min-w-fit"/>
-                    <div v-show="User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
+                    <div v-if="User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
                         <UButton :to="localePath('/account')" icon="i-heroicons-user">
                             {{ $t('account.name') }}
                         </UButton>
                     </div>
-                    <div v-show="!User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
+                    <div v-if="!User.Current" class="flex justify-center items-center w-fit h-fit space-x-4">
                         <UButton :to="localePath('/login')" variant="solid">
                             {{ $t('login.login') }}
                         </UButton>
@@ -37,7 +37,7 @@
                     <FwIcon class="h-8 w-8" />
                 </NuxtLink>
                 <div v-else class="flex justify-start items-center w-12">
-                    <UButton icon="i-heroicons-arrow-left" variant="ghost" color="white" @click="$router.back()"/>
+                    <UButton icon="i-heroicons-arrow-left" variant="ghost" color="neutral" @click="$router.back()"/>
                 </div>
                 <div>
                     <p v-show="title" class="show-up text-md font-semibold"> {{ title ?? '' }} </p>

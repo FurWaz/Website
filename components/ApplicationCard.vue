@@ -25,53 +25,57 @@
                 {{ $t('verb.delete') }}
             </UButton>
         </div>
-        <UModal v-model="editPopupOpen">
-            <UForm class="p-4" :schema="appSchema" :state="appState" @submit="editApp">
-                <p class="text-center text-lg font-medium"> {{ $t('verb.edit') }} <span class="text-primary">{{ application.name }}</span> </p>
-                <div class="flex flex-col w-full h-fit py-8">
-                    <div class="space-y-4">
-                        <UFormField :label="`Nom`" name="name">
-                            <UInput v-model="appState.name" />
-                        </UFormField>
-                        <UFormField :label="`Description`" name="description">
-                            <UInput v-model="appState.description" />
-                        </UFormField>
-                        <!-- <UFormField :label="`Icone`" name="icon">
-                            <UInput v-model="appState.icon" />
-                        </UFormField> -->
+        <UModal v-model:open="editPopupOpen">
+            <template #content>
+                <UForm class="p-4" :schema="appSchema" :state="appState" @submit="editApp">
+                    <p class="text-center text-lg font-medium"> {{ $t('verb.edit') }} <span class="text-primary">{{ application.name }}</span> </p>
+                    <div class="flex flex-col w-full h-fit py-8">
+                        <div class="space-y-4">
+                            <UFormField :label="`Nom`" name="name">
+                                <UInput v-model="appState.name" />
+                            </UFormField>
+                            <UFormField :label="`Description`" name="description">
+                                <UInput v-model="appState.description" />
+                            </UFormField>
+                            <!-- <UFormField :label="`Icone`" name="icon">
+                                <UInput v-model="appState.icon" />
+                            </UFormField> -->
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <UAlert v-show="editLogError" @close="editLogError = null" :title="editLogError ?? ''"
+                            variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
+                            :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
+                    />
+                    </div>
+                    <div class="flex w-full h-fit justify-between">
+                        <UButton variant="ghost" @click="editPopupOpen = false">
+                            {{ $t('verb.cancel') }}
+                        </UButton>
+                        <UButton icon="i-heroicons-check" variant="solid" type="submit" :loading="editLoading">
+                            {{ $t('verb.save') }}
+                        </UButton>
+                    </div>
+                </UForm>
+            </template>
+        </UModal>
+        <UModal v-model:open="removePopupOpen">
+            <template #content>
+                <div class="p-4">
+                    <p class="text-center text-lg font-medium"> {{ $t('verb.delete') }} <span class="text-primary">{{ application.name }}</span> </p>
+                    <div class="h-fit py-8">
+                        <p class="text-center text-sm text-slate-600 dark:text-slate-300"> Êtes-vous sûr de vouloir supprimer cette application ? </p>
+                    </div>
+                    <div class="flex w-full h-fit justify-between">
+                        <UButton variant="ghost" @click="removePopupOpen = false">
+                            {{ $t('verb.cancel') }}
+                        </UButton>
+                        <UButton icon="i-heroicons-trash" variant="solid" @click="removeApp" :loading="editLoading">
+                            {{ $t('verb.delete') }}
+                        </UButton>
                     </div>
                 </div>
-                <div class="py-2">
-                    <UAlert v-show="editLogError" @close="editLogError = null" :title="editLogError ?? ''"
-                        variant="subtle" color="error" class="show-down" icon="i-heroicons-exclamation-triangle"
-                        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'red', variant: 'ghost', padded: false }"
-                />
-                </div>
-                <div class="flex w-full h-fit justify-between">
-                    <UButton variant="ghost" @click="editPopupOpen = false">
-                        {{ $t('verb.cancel') }}
-                    </UButton>
-                    <UButton icon="i-heroicons-check" variant="solid" type="submit" :loading="editLoading">
-                        {{ $t('verb.save') }}
-                    </UButton>
-                </div>
-            </UForm>
-        </UModal>
-        <UModal v-model="removePopupOpen">
-            <div class="p-4">
-                <p class="text-center text-lg font-medium"> {{ $t('verb.delete') }} <span class="text-primary">{{ application.name }}</span> </p>
-                <div class="h-fit py-8">
-                    <p class="text-center text-sm text-slate-600 dark:text-slate-300"> Êtes-vous sûr de vouloir supprimer cette application ? </p>
-                </div>
-                <div class="flex w-full h-fit justify-between">
-                    <UButton variant="ghost" @click="removePopupOpen = false">
-                        {{ $t('verb.cancel') }}
-                    </UButton>
-                    <UButton icon="i-heroicons-trash" variant="solid" @click="removeApp" :loading="editLoading">
-                        {{ $t('verb.delete') }}
-                    </UButton>
-                </div>
-            </div>
+            </template>
         </UModal>
     </div>
 </template>
