@@ -61,4 +61,11 @@ export default {
         },
         yearInProgress: 'Year in progress',
     },
+    mySocials: {
+        title: 'My social medias'
+    },
+    contactMe: {
+        title: 'Contact me',
+        description: 'You have a project or service to ask me ? Don\'t hesitate to reach out to me and talk about it !',
+    },
 }
