@@ -42,7 +42,7 @@ export default {
         step2: {
             year: '2022',
             title: 'DUT - Computer Science',
-            description: 'University Diploma in Computer Science. Graduated with an average of 15.3.',
+            description: 'University Diploma in Computer Science. Graduated with an average of 15.5.',
         },
         step3: {
             year: '2023',

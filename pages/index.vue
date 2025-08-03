@@ -39,12 +39,25 @@
             </div>
         </div>
         <div class="show-up w-full h-fit">
+            <h2 class="text-2xl text-center p-4 md:p-8">{{ $t('home.myProjects.title') }}</h2>
+            <div class="flex flex-col md:flex-row w-full h-fit pb-16">
+                <div class="flex grow min-w-0 h-fit justify-center items-center">
+                    <TNYCard class="scale-100 transition-all duration-custom ease-custom" />
+                </div>
+            </div>
+            <div class="flex w-full justify-center">
+                <UButton to="/projects?type=project" variant="link" size="xl" color="primary">
+                    {{ $t('home.myProjects.action') }}
+                </UButton>
+            </div>
+        </div>
+        <div class="show-up w-full h-fit">
             <h2 class="text-2xl text-center p-4 md:p-8">{{ $t('home.myApps.title') }}</h2>
             <div class="flex flex-col md:flex-row w-full h-fit">
-                <div class="flex grow-0 w-full md:w-fit justify-between items-center p-2 md:p-4">
-                    <UButton icon="i-heroicons-chevron-left" variant="ghost" size="xl" color="gray"
+                <div class="flex grow-0 w-full md:w-fit justify-between items-center p-2 pb-4 md:p-4">
+                    <UButton icon="i-heroicons-chevron-left" variant="subtle" size="xl" color="neutral"
                         @click="scroll(appsContainer, -1)" />
-                    <UButton icon="i-heroicons-chevron-right" variant="ghost" size="xl" color="gray"
+                    <UButton icon="i-heroicons-chevron-right" variant="subtle" size="xl" color="neutral"
                         @click="scroll(appsContainer, +1)" class="flex md:hidden" />
                 </div>
                 <div class="flex grow min-w-0 h-fit justify-center items-center">
@@ -64,12 +77,12 @@
                     </div>
                 </div>
                 <div class="hidden md:flex grow-0 w-fit justify-center items-center px-4">
-                    <UButton icon="i-heroicons-chevron-right" variant="ghost" size="xl" color="gray"
+                    <UButton icon="i-heroicons-chevron-right" variant="subtle" size="xl" color="neutral"
                         @click="scroll(appsContainer, +1)" />
                 </div>
             </div>
             <div class="flex w-full justify-center">
-                <UButton to="/projects?type=application" variant="solid" size="xl" color="gray">
+                <UButton to="/projects?type=application" variant="link" size="xl" color="primary">
                     {{ $t('home.myApps.action') }}
                 </UButton>
             </div>

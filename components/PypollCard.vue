@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="flex space-x-4 justify-center items-center">
-                <UButton icon="i-heroicons-chevron-right" trailing variant="solid" size="xl" color="indigo"
+                <UButton icon="i-heroicons-chevron-right" trailing variant="ghost" size="xl" color="neutral"
                     to="https://pypoll.com" target="_blank">
                     {{ $t('home.myApps.pypoll.action') }} 
                 </UButton>

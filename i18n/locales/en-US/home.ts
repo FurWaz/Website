@@ -2,6 +2,17 @@ export default {
     name: 'Home',
     title: 'Applications, services and open-source projects',
     description: 'Service delivery, innovative applications and open-source projects. Discover my skills and achievements on my website!',
+    myProjects: {
+        title: 'My Projects',
+        tny: {
+            title: 'TNY Robotics',
+            description1: 'Computer science and robotics are now at the heart of our society, and it’s essential to understand how these technologies work.',
+            description2: 'The tangible product? Our TNY-360 robot dog!',
+            description3: 'Designed for makers, students, and enthusiasts, it’s made for learning, experimenting, and having fun—while remaining accessible to the general public thanks to its affordable price!',
+            action: 'Visit the website'
+        },
+        action: 'See my other projects'
+    },
     myApps: {
         title: 'My applications',
         action: 'See all my applications',

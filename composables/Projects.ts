@@ -173,7 +173,7 @@ const projects: Project[] = [
         },
         image: '/img/projects/XRTouch.png',
         links: {
-            github: 'https://github.com/FurWaz/XRTouch'
+            github: 'https://github.com/XRTouch'
         },
         tags: ['vr', 'oculus', 'unity', 'c#', 'hand', 'tracking'],
         type: 'project'

@@ -42,7 +42,7 @@ export default {
         step2: {
             year: '2022',
             title: 'DUT - Informatique',
-            description: 'Diplôme Universitaire de Technologie en Informatique. Diplômé avec 15.3 de moyenne.',
+            description: 'Diplôme Universitaire de Technologie en Informatique. Diplômé avec 15.5 de moyenne.',
         },
         step3: {
             year: '2023',
