@@ -108,3 +108,7 @@ h2 {
 .card {
     @apply rounded-md shadow-md border border-slate-200 dark:border-slate-600
 }
+
+button {
+    cursor: pointer;
+}
