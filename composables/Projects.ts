@@ -517,7 +517,7 @@ const projects: Project[] = [
                 "The entire source code of the robot, satellite applications as well as the 3D models are available on GitHub, and the entire process is documented on the website if you want to make one yourself!"
             ]
         },
-        image: 'https://tny-robotics.com/icon.png',
+        image: 'https://tny-robotics.com/icon-border.png',
         links: {
             website: 'https://tny-robotics.com/robots/tny-360',
             github: 'https://github.com/TNY-Robotics/TNY-360'

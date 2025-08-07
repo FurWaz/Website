@@ -25,7 +25,8 @@
         </div>
         <UModal v-model:open="modalOpen">
             <template #content>
-                <div class="p-4">
+                <div class="flex flex-col p-4 max-h-full min-h-0 h-full space-y-4">
+                    <UButton icon="i-heroicons-x-mark" color="error" variant="link" class="absolute top-2 right-2" @click="modalOpen = false" />
                     <div class="flex justify-center items-center space-x-4">
                         <img :src="project.image" class="w-16 h-16 rounded-md bg-slate-200 dark:bg-slate-800" :class="project.imagePadding? 'p-1.5' : ''"/>
                         <div>
@@ -33,12 +34,14 @@
                             <p class="italic text-slate-600 dark:text-slate-300"> {{ text(project.description) }} </p>
                         </div>
                     </div>
-                    <div class="flex flex-col space-y-4 text-center py-8">
-                        <p v-for="sentence in text(project.explanation)">
-                            {{ sentence }}
-                        </p>
+                    <div class="flex grow overflow-auto min-h-0 max-h-full h-full">
+                        <div class="flex flex-col space-y-4 text-center">
+                            <p v-for="sentence in text(project.explanation)">
+                                {{ sentence }}
+                            </p>    
+                        </div>
                     </div>
-                    <div class="flex min-w-fit h-full justify-between items-center">
+                    <div class="flex min-w-fit min-h-fit h-full justify-between items-center">
                         <UButton v-if="project.links.website" :to="project.links.website" trailing variant="solid" target="_blank">
                             {{ $t('projects.action.seeWebsite') }}
                         </UButton>
