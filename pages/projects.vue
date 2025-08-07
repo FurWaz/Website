@@ -22,15 +22,29 @@ const header = useHeader();
 const route = useRoute();
 const router = useRouter();
 const { t, locale } = useI18n();
+const projects = ref<Project[]>(useProjects());
 
-useSeoMeta({
-    title: `FurWaz - ${t('projects.title')}`,
-    description: `${t('projects.description')}`,
-    ogTitle: `FurWaz - ${t('projects.title')}`,
-    ogDescription: `${t('projects.description')}`,
-    ogImage: '/icon.png',
-    ogUrl: 'https://furwaz.com' + route.fullPath
-});
+const matchingProject = projects.value.find(p => p.name === router.currentRoute.value.query.project);
+if (matchingProject) {
+    useSeoMeta({
+        title: `${matchingProject.name} - ${matchingProject.description[locale.value]}`,
+        description: `${matchingProject.explanation![locale.value]![0]}`,
+        ogTitle: `${matchingProject.name} - ${matchingProject.description[locale.value]}`,
+        ogDescription: `${matchingProject.explanation![locale.value]![0]}`,
+        ogImage: matchingProject.image,
+        ogUrl: 'https://furwaz.com' + route.fullPath
+    });
+} else {
+    useSeoMeta({
+        title: `FurWaz - ${t('projects.title')}`,
+        description: `${t('projects.description')}`,
+        ogTitle: `FurWaz - ${t('projects.title')}`,
+        ogDescription: `${t('projects.description')}`,
+        ogImage: '/icon.png',
+        ogUrl: 'https://furwaz.com' + route.fullPath
+    });
+}
+
 header.setTitle(t('projects.name'));
 
 const search = ref<string>(route.query.search as string || '');
@@ -75,7 +89,6 @@ function levenshteinDistance(s: string, t: string) {
     return arr[t.length][s.length];
 };
 
-const projects = ref<Project[]>(useProjects());
 const filteredProjects = computed(() => {
     const categoryFiltered = projects.value.filter(p => type.value === 'all' || p.type === type.value);
     if (search.value.trim().length === 0) return categoryFiltered;
