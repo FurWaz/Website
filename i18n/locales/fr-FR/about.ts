@@ -56,10 +56,9 @@ export default {
         },
         step5: {
             year: '2025',
-            title: 'Master 2 - IAAVR',
-            description: 'Master 2 Informatique, option Intelligence Artficielle et ses Applications en Vision et Robotique.',
+            title: 'Master 2 - IA²VR',
+            description: 'Master 2 Informatique, option Intelligence Artificielle et ses Applications en Vision et Robotique. Diplomé avec 14.3 de moyenne.',
         },
-        yearInProgress: 'Année en cours',
     },
     mySocials: {
         title: 'Mes réseaux sociaux'

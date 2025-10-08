@@ -102,10 +102,6 @@
                         <div class="flex flex-col grow max-w-[25em]">
                             <p class="text-slate-600 dark:text-slate-300 text-base italic">
                                 {{ $t(`about.myCareer.step${i}.description`) }}
-                                <span v-if="i === 5">
-                                    <br>
-                                    {{ $t('about.myCareer.yearInProgress') }} ...
-                                </span>
                             </p>
                         </div>
                     </div>

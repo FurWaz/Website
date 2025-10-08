@@ -56,10 +56,9 @@ export default {
         },
         step5: {
             year: '2025',
-            title: 'Master 2 - IAAVR',
-            description: 'Master 2 in Computer Science, option Artificial Intelligence and its Applications in Vision and Robotics.',
+            title: 'Master 2 - IA²VR',
+            description: 'Master 2 in Computer Science, option Artificial Intelligence and its Applications in Vision and Robotics. Graduated with an average of 14.3.',
         },
-        yearInProgress: 'Year in progress',
     },
     mySocials: {
         title: 'My social medias'
