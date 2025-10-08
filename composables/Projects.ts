@@ -490,7 +490,7 @@ const projects: Project[] = [
             fr: [],
             en: []
         },
-        image: 'https://cfs.projects.furwaz.com/img/Logo512.png',
+        image: 'https://cfs68.org/img/Logo512.png',
         links: {
             website: 'https://cfs.projects.furwaz.com'
         },
