@@ -519,8 +519,8 @@ const projects: Project[] = [
         },
         image: 'https://tny-robotics.com/icon-border.png',
         links: {
-            website: 'https://tny-robotics.com/robots/tny-360',
-            github: 'https://github.com/TNY-Robotics/TNY-360'
+            website: 'https://tny-robotics.com',
+            github: 'https://github.com/TNY-Robotics'
         },
         tags: ['robotic', 'esp32', '3dprinting', 'c++', 'python'],
         type: 'project'

@@ -131,7 +131,7 @@
                         <p class="text-lg font-medium"> Github </p>
                     </div>
                 </UButton>
-                <UButton to="https://www.linkedin.com/in/loisil-paul" target="_blank" variant="outline" class="m-2">
+                <UButton to="https://www.linkedin.com/in/paul-loisil" target="_blank" variant="outline" class="m-2">
                     <div class="flex flex-col justify-center items-center space-y-2 pt-2">
                         <div class="flex justify-center items-center h-14 w-14 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
