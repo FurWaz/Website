@@ -22,5 +22,6 @@ export default defineI18nLocale(async (locale) => {
         about: (await import('./en-US/about')).default,
         account: (await import('./en-US/account')).default,
         portal: (await import('./en-US/portal')).default,
+        linktree: (await import('./en-US/linktree')).default,
     };
 });
