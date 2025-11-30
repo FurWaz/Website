@@ -2,7 +2,7 @@
     <div class="flex flex-col justify-start items-center space-y-12 w-full h-full">
         <div v-for="(categ, i) in links" class="show-up space-y-4 min-w-0 w-md max-w-full">
             <div class="flex justify-left items-center">
-                <img :src="categ.icon" alt="icon" class="w-12 h-12 mr-2 rounded-lg" />
+                <img :src="categ.icon" alt="icon" class="w-12 h-12 mr-2 rounded-lg invert dark:invert-0" />
                 <h1> {{ categ.category }} </h1>
             </div>
             <div class="flex flex-col space-y-2">
@@ -43,7 +43,7 @@ const links = [
     },
     {
         category: 'TNY Robotics (TNY-360)',
-        icon: 'https://tny-robotics.com/icon-border.png',
+        icon: 'https://tny-robotics.com/icon.png',
         links: [
             { icon: 'i-lucide-panels-top-left', label: 'Website', url: 'https://tny-robotics.com' },
             { icon: 'i-lucide-github', label: 'GitHub', url: 'https://github.com/TNY-Robotics' },
