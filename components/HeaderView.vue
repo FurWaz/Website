@@ -16,6 +16,9 @@
                     <UButton icon="i-heroicons-information-circle" :to="localePath('/about')" variant="outline">
                         {{ $t('about.name') }}
                     </UButton>
+                    <UButton icon="i-lucide-network" :to="localePath('/linktree')" variant="ghost">
+                        {{ $t('linktree.name') }}
+                    </UButton>
                 </div>
                 <div class="flex justify-end items-center space-x-4">
                     <ThemeSwitcher class="hidden lg:flex min-w-fit"/>
@@ -59,6 +62,9 @@
                         </UButton>
                         <UButton class="w-full justify-between" icon="i-heroicons-information-circle" :to="localePath('/about')" variant="outline">
                             {{ $t('about.name') }}
+                        </UButton>
+                        <UButton class="w-full justify-between" icon="i-lucide-network" :to="localePath('/linktree')" variant="ghost">
+                            {{ $t('linktree.name') }}
                         </UButton>
                     </div>
                     <div class="flex py-2.5">
