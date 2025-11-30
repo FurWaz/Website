@@ -2,80 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://furwaz.com/</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    <url>
-        <loc>https://furwaz.com/projects</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    <url>
-        <loc>https://furwaz.com/linktree</loc>
-        <lastmod>2025-11-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    <url>
-        <loc>https://tny-robotics.com</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://pypoll.com</loc>
-        <lastmod>2024-08-20</lastmod>
+        <loc>https://furwaz.com/projects</loc>
+        <lastmod>2025-11-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://furwaz.com/linktree</loc>
+        <lastmod>2025-11-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://tny-robotics.com</loc>
+        <lastmod>2025-11-30</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.75</priority>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://pypoll.com</loc>
+        <lastmod>2025-11-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://fullbowody.com</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.75</priority>
+        <lastmod>2025-11-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://vybeen.projects.furwaz.com</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.75</priority>
+        <lastmod>2025-11-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://furwaz.com/about</loc>
-        <lastmod>2024-08-20</lastmod>
+        <lastmod>2025-11-30</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://carshare.projects.furwaz.com</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.25</priority>
-    </url>
-    <url>
-        <loc>https://charlysheet.projects.furwaz.com</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.25</priority>
-    </url>
-    <url>
-        <loc>https://tny360.projects.furwaz.com</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.25</priority>
-    </url>
-    <url>
-        <loc>https://furwaz.com/privacy</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.25</priority>
-    </url>
-    <url>
-        <loc>https://furwaz.com/terms</loc>
-        <lastmod>2024-08-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.25</priority>
+        <priority>0.8</priority>
     </url>
 </urlset>
