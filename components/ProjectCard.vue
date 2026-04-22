@@ -15,7 +15,10 @@
                 </div>
             </div>
         </div>
-        <div class="flex min-w-fit h-full justify-between items-center">
+        <div v-if="project.discontinued" class="flex justify-center items-center">
+            <p class="text-red-500 italic p-2"> {{ $t('projects.discontinued') }} </p>
+        </div>
+        <div v-else class="flex min-w-fit h-full justify-between items-center">
             <UButton v-if="project.links.website" :to="project.links.website" trailing variant="solid" target="_blank">
                 {{ $t('projects.action.seeWebsite') }}
             </UButton>
@@ -41,7 +44,10 @@
                             </p>    
                         </div>
                     </div>
-                    <div class="flex min-w-fit min-h-fit h-full justify-between items-center">
+                    <div v-if="project.discontinued" class="flex justify-center items-center">
+                        <p class="text-red-500 italic p-2"> {{ $t('projects.discontinued') }} </p>
+                    </div>
+                    <div v-else class="flex min-w-fit min-h-fit h-full justify-between items-center">
                         <UButton v-if="project.links.website" :to="project.links.website" trailing variant="solid" target="_blank">
                             {{ $t('projects.action.seeWebsite') }}
                         </UButton>

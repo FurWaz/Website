@@ -14,5 +14,6 @@ export default {
     action: {
         seeWebsite: 'Voir le site',
         seeCode: 'Voir le code',
-    }
+    },
+    discontinued: 'Ce projet est arrêté.',
 }

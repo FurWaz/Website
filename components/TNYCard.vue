@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="flex w-full md:w-1/2 h-full justify-center">
-                    <img src="https://tny-robotics.com/_nuxt/tny360-full.B8pxtxQW.png" alt="TNY-360 Robot" class="flex w-full md:w-[80%] h-full pl-8">
+                    <img src="https://tny-robotics.com/tny-360.png" alt="TNY-360 Robot" class="flex w-full md:w-[80%] h-full pl-8">
                 </div>
             </div>
             <div class="flex space-x-4 justify-center items-center">

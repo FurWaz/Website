@@ -14,5 +14,6 @@ export default {
     action: {
         seeWebsite: 'See website',
         seeCode: 'See code',
-    }
+    },
+    discontinued: 'This project is discontinued.',
 }

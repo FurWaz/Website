@@ -7,7 +7,8 @@ export type Project = {
     imagePadding?: boolean;
     links: {website?: string, github?: string},
     tags: string[],
-    type: ProjectType
+    type: ProjectType,
+    discontinued?: boolean
 };
 
 const projects: Project[] = [
@@ -33,7 +34,7 @@ const projects: Project[] = [
                 "The application is available for Windows and Linux, and the source code is available on GitHub."
             ],
         },
-        image: 'https://fullbowody.com/img/transparent.png',
+        image: '/img/projects/FullBowody.png',
         links: {
             website: 'https://fullbowody.com',
             github: 'https://github.com/fullbowody'
@@ -61,13 +62,14 @@ const projects: Project[] = [
                 "Pypoll is completely free and does not require any registration. So feel free to take a look at it !"
             ]
         },
-        image: 'https://pypoll.com/img/icon.png',
+        image: '/img/projects/Pypoll.png',
         links: {
             website: 'https://pypoll.com',
             github: 'https://github.com/pypoll'
         },
         tags: ['poll', 'survey', 'android', 'ios', 'web'],
-        type: 'application'
+        type: 'application',
+        discontinued: true
     },
     {
         name: 'VyBeen',
@@ -95,7 +97,8 @@ const projects: Project[] = [
             github: 'https://github.com/vybeen'
         },
         tags: ['music', 'web', 'socketio', 'nodejs', 'deezer', 'spotify'],
-        type: 'application'
+        type: 'application',
+        discontinued: true
     },
     {
         name: 'Robot humanoïde',
@@ -122,7 +125,8 @@ const projects: Project[] = [
             website: 'https://furwaz.com'
         },
         tags: ['electronic', '3d', 'printing', 'arduino', 'c++'],
-        type: 'project'
+        type: 'project',
+        discontinued: true
     },
     {
         name: 'PixelPets',
@@ -147,7 +151,8 @@ const projects: Project[] = [
             website: 'https://furwaz.com'
         },
         tags: ['game', '3d', 'unity', 'c#', 'pet'],
-        type: 'game'
+        type: 'game',
+        discontinued: true
     },
     {
         name: 'XRTouch',
@@ -342,7 +347,8 @@ const projects: Project[] = [
             github: 'https://github.com/FurWaz/ToTheTop',
         },
         tags: ['unity', 'c#', '2d', 'music', 'ladder'],
-        type: 'game'
+        type: 'game',
+        discontinued: true
     },
     {
         name: 'Obstruct',
